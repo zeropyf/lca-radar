@@ -615,6 +615,13 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 .rail{align-self:stretch}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
+/* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
+.sec{scroll-margin-top:84px}
+body.tb-compact .sec{scroll-margin-top:66px}
+/* 本期版面当前子专题标示：圆点点亮 + 文字加深加粗（.toc a 已有 color transition） */
+.rail .toc a.active{color:var(--primary);font-weight:700}
+.rail .toc a.active .tdot{color:var(--accent)}
+.rail .toc a.active .c{color:var(--accent-deep)}
 .hl-item{gap:13px;margin-bottom:18px}
 .hl-item .t b{font-size:14px}
 /* 往期：月份分组 + 大数字日期条目（版式逻辑参考 AIHOT 存档，视觉语言保持本刊） */
@@ -957,7 +964,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <h1>更新日志</h1>
     <div class="cday">
       <div class="cday-h">2026 年 10 月 1 日 周四</div>
-      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>体验优化</h3><p>收藏页上线；移动端排版修复（顶栏当前 tab 居中、统计条双列、关于页四步对齐）；深色模式切页闪白修复；顶栏胶囊改为从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放；移动端「关于页四步」改纵向时间线。</p></div></div>
+      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>体验优化</h3><p>收藏页上线；移动端排版修复（顶栏当前 tab 居中、统计条双列、关于页四步对齐）；深色模式切页闪白修复；顶栏胶囊改为从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放；移动端「关于页四步」改纵向时间线；日报侧栏体验优化（右栏「本期版面」滚动吸住、可跳转子专题并高亮当前位置；左栏「日报/周报」切换避开顶栏重叠）。</p></div></div>
       <div class="citem"><span class="t">11:00</span><span class="tag launch">上线</span><div class="tx"><h3>LCA RADAR 公网正式上线</h3><p>radar.lcarss.uk：GitHub Pages 托管 + 自定义域名，HTTPS 强制开启。首页默认展示最新一期日报。</p></div></div>
       <div class="citem"><span class="t">10:31</span><span class="tag fix">修复</span><div class="tx"><h3>飞书推送收窄重试条件</h3><p>收到服务端任何响应后即停止重试；连接层彻底失败时仍会重试一次，此时是否已送达无法确认，极端情况下可能重复。如再收到重复卡片请告诉我，继续排查。</p></div></div>
     </div>
@@ -1048,6 +1055,20 @@ function arcSpy(){
 }
 window.addEventListener('scroll', arcSpy, {passive:true});
 arcSpy();
+/* 本期版面滚动高亮（仅日报页生效）：浏览到哪个子专题，就点亮 toc 里对应的一行 */
+function tocSpy(){
+  var vd = document.getElementById('view-daily');
+  var links = document.querySelectorAll('.rail .toc a[href^="#sec-"]');
+  if(!links.length || (vd && !vd.classList.contains('on'))) return;
+  var y = window.scrollY + window.innerHeight * 0.35, cur = null;
+  links.forEach(function(a){
+    var sec = document.querySelector(a.getAttribute('href'));
+    if(sec && sec.getBoundingClientRect().top + window.scrollY <= y) cur = a;
+  });
+  links.forEach(function(a){ a.classList.toggle('active', a === cur); });
+}
+window.addEventListener('scroll', tocSpy, {passive:true});
+tocSpy();
 document.querySelectorAll('.tb-theme input[name="lca-theme"]').forEach(function(r){
   r.addEventListener('change', function(){ try{ localStorage.setItem("lca-watch-theme", r.value); }catch(e){} if(window.__redrawFunnel) window.__redrawFunnel(); });
 });

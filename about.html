@@ -615,6 +615,13 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 .rail{align-self:stretch}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
+/* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
+.sec{scroll-margin-top:84px}
+body.tb-compact .sec{scroll-margin-top:66px}
+/* 本期版面当前子专题标示：圆点点亮 + 文字加深加粗（.toc a 已有 color transition） */
+.rail .toc a.active{color:var(--primary);font-weight:700}
+.rail .toc a.active .tdot{color:var(--accent)}
+.rail .toc a.active .c{color:var(--accent-deep)}
 .hl-item{gap:13px;margin-bottom:18px}
 .hl-item .t b{font-size:14px}
 /* 往期：月份分组 + 大数字日期条目（版式逻辑参考 AIHOT 存档，视觉语言保持本刊） */
@@ -1077,6 +1084,20 @@ function arcSpy(){
 }
 window.addEventListener('scroll', arcSpy, {passive:true});
 arcSpy();
+/* 本期版面滚动高亮（仅日报页生效）：浏览到哪个子专题，就点亮 toc 里对应的一行 */
+function tocSpy(){
+  var vd = document.getElementById('view-daily');
+  var links = document.querySelectorAll('.rail .toc a[href^="#sec-"]');
+  if(!links.length || (vd && !vd.classList.contains('on'))) return;
+  var y = window.scrollY + window.innerHeight * 0.35, cur = null;
+  links.forEach(function(a){
+    var sec = document.querySelector(a.getAttribute('href'));
+    if(sec && sec.getBoundingClientRect().top + window.scrollY <= y) cur = a;
+  });
+  links.forEach(function(a){ a.classList.toggle('active', a === cur); });
+}
+window.addEventListener('scroll', tocSpy, {passive:true});
+tocSpy();
 document.querySelectorAll('.tb-theme input[name="lca-theme"]').forEach(function(r){
   r.addEventListener('change', function(){ try{ localStorage.setItem("lca-watch-theme", r.value); }catch(e){} if(window.__redrawFunnel) window.__redrawFunnel(); });
 });

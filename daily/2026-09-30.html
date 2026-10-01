@@ -615,6 +615,13 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 .rail{align-self:stretch}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
+/* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
+.sec{scroll-margin-top:84px}
+body.tb-compact .sec{scroll-margin-top:66px}
+/* 本期版面当前子专题标示：圆点点亮 + 文字加深加粗（.toc a 已有 color transition） */
+.rail .toc a.active{color:var(--primary);font-weight:700}
+.rail .toc a.active .tdot{color:var(--accent)}
+.rail .toc a.active .c{color:var(--accent-deep)}
 .hl-item{gap:13px;margin-bottom:18px}
 .hl-item .t b{font-size:14px}
 /* 往期：月份分组 + 大数字日期条目（版式逻辑参考 AIHOT 存档，视觉语言保持本刊） */
@@ -1004,7 +1011,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
     <div class="layer">
       <div class="layer-div"><span class="tick"></span><span class="zh">Ⅰ · 合规</span><span class="en">COMPLIANCE</span><span class="rule"></span><span class="lc">12 条</span></div>
-      <div class="sec">
+      <div class="sec" id="sec-c1">
         <div class="sec-head">
           <div class="sec-title"><h2>国内法规与政策</h2><div class="en">DOMESTIC REGULATION</div></div>
           <a class="more" href="#">4 条 →</a>
@@ -1034,7 +1041,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_702ac8398c8c47c79e5da9516cd3fba3.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
-      <div class="sec">
+      <div class="sec" id="sec-c2">
         <div class="sec-head">
           <div class="sec-title"><h2>海外法规与政策</h2><div class="en">GLOBAL REGULATION</div></div>
           <a class="more" href="#">8 条 →</a>
@@ -1091,7 +1098,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </div>
     <div class="layer">
       <div class="layer-div"><span class="tick"></span><span class="zh">Ⅱ · 方法</span><span class="en">METHODOLOGY</span><span class="rule"></span><span class="lc">7 条</span></div>
-      <div class="sec">
+      <div class="sec" id="sec-m1">
         <div class="sec-head">
           <div class="sec-title"><h2>LCA 与方法学</h2><div class="en">LCA &amp; METHODOLOGY</div></div>
           <a class="more" href="#">4 条 →</a>
@@ -1121,7 +1128,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
           <a class="golink" href="https://mp.weixin.qq.com/s/f84X6gcpDoIkNMqzHIVrBA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
-      <div class="sec">
+      <div class="sec" id="sec-m2">
         <div class="sec-head">
           <div class="sec-title"><h2>数据与知识</h2><div class="en">DATA &amp; KNOWLEDGE</div></div>
           <a class="more" href="#">3 条 →</a>
@@ -1148,7 +1155,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </div>
     <div class="layer">
       <div class="layer-div"><span class="tick"></span><span class="zh">Ⅲ · 产业</span><span class="en">INDUSTRY</span><span class="rule"></span><span class="lc">11 条</span></div>
-      <div class="sec">
+      <div class="sec" id="sec-i1">
         <div class="sec-head">
           <div class="sec-title"><h2>整车企业</h2><div class="en">AUTOMAKERS</div></div>
           <a class="more" href="#">1 条 →</a>
@@ -1160,7 +1167,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
           <a class="golink" href="https://www.transportenvironment.org/articles/driving-an-ev-now-costs-half-as-much-as-diesel-new-analysis-shows" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
-      <div class="sec">
+      <div class="sec" id="sec-i2">
         <div class="sec-head">
           <div class="sec-title"><h2>电池产业链</h2><div class="en">BATTERY VALUE CHAIN</div></div>
           <a class="more" href="#">4 条 →</a>
@@ -1190,7 +1197,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
           <a class="golink" href="https://mp.weixin.qq.com/s/MK8lwCVnl3EVKMGOrhlLXQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
-      <div class="sec">
+      <div class="sec" id="sec-i3">
         <div class="sec-head">
           <div class="sec-title"><h2>上游基础材料</h2><div class="en">UPSTREAM MATERIALS</div></div>
           <a class="more" href="#">2 条 →</a>
@@ -1208,7 +1215,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
           <a class="golink" href="https://european-aluminium.eu/wp-content/uploads/2026/09/26-09-29-European-Aluminium_Transparency-statement-on-recycled-content-.pdf" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
-      <div class="sec">
+      <div class="sec" id="sec-i4">
         <div class="sec-head">
           <div class="sec-title"><h2>循环再生</h2><div class="en">CIRCULARITY &amp; RECYCLING</div></div>
           <a class="more" href="#">4 条 →</a>
@@ -1258,16 +1265,16 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       <h4>本期版面</h4>
 
       <div class="toc-layer">Ⅰ 合规</div>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>国内法规与政策<span class="c">4 条</span></a>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>海外法规与政策<span class="c">8 条</span></a>
+      <a href="#sec-c1"><span class="tdot" aria-hidden="true">•</span>国内法规与政策<span class="c">4 条</span></a>
+      <a href="#sec-c2"><span class="tdot" aria-hidden="true">•</span>海外法规与政策<span class="c">8 条</span></a>
       <div class="toc-layer">Ⅱ 方法</div>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>LCA 与方法学<span class="c">4 条</span></a>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>数据与知识<span class="c">3 条</span></a>
+      <a href="#sec-m1"><span class="tdot" aria-hidden="true">•</span>LCA 与方法学<span class="c">4 条</span></a>
+      <a href="#sec-m2"><span class="tdot" aria-hidden="true">•</span>数据与知识<span class="c">3 条</span></a>
       <div class="toc-layer">Ⅲ 产业</div>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>整车企业<span class="c">1 条</span></a>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>电池产业链<span class="c">4 条</span></a>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>上游基础材料<span class="c">2 条</span></a>
-      <a href="#"><span class="tdot" aria-hidden="true">•</span>循环再生<span class="c">4 条</span></a>
+      <a href="#sec-i1"><span class="tdot" aria-hidden="true">•</span>整车企业<span class="c">1 条</span></a>
+      <a href="#sec-i2"><span class="tdot" aria-hidden="true">•</span>电池产业链<span class="c">4 条</span></a>
+      <a href="#sec-i3"><span class="tdot" aria-hidden="true">•</span>上游基础材料<span class="c">2 条</span></a>
+      <a href="#sec-i4"><span class="tdot" aria-hidden="true">•</span>循环再生<span class="c">4 条</span></a>
     </div>
   </aside>
 </div>
@@ -1430,6 +1437,20 @@ function arcSpy(){
 }
 window.addEventListener('scroll', arcSpy, {passive:true});
 arcSpy();
+/* 本期版面滚动高亮（仅日报页生效）：浏览到哪个子专题，就点亮 toc 里对应的一行 */
+function tocSpy(){
+  var vd = document.getElementById('view-daily');
+  var links = document.querySelectorAll('.rail .toc a[href^="#sec-"]');
+  if(!links.length || (vd && !vd.classList.contains('on'))) return;
+  var y = window.scrollY + window.innerHeight * 0.35, cur = null;
+  links.forEach(function(a){
+    var sec = document.querySelector(a.getAttribute('href'));
+    if(sec && sec.getBoundingClientRect().top + window.scrollY <= y) cur = a;
+  });
+  links.forEach(function(a){ a.classList.toggle('active', a === cur); });
+}
+window.addEventListener('scroll', tocSpy, {passive:true});
+tocSpy();
 document.querySelectorAll('.tb-theme input[name="lca-theme"]').forEach(function(r){
   r.addEventListener('change', function(){ try{ localStorage.setItem("lca-watch-theme", r.value); }catch(e){} if(window.__redrawFunnel) window.__redrawFunnel(); });
 });
