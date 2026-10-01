@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<script>!function(){try{var m=localStorage.getItem("lca-watch-theme");if(m==="dark"||m==="light")document.documentElement.classList.add("force-"+m)}catch(e){}}();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22104%22%20height%3D%22104%22%20viewBox%3D%220%200%20104%20104%22%20role%3D%22img%22%20aria-label%3D%22%E5%AE%9A%E5%90%91%E6%89%AB%E6%8F%8F%20%2F%20light%22%3E%3Ctitle%3E%E5%AE%9A%E5%90%91%E6%89%AB%E6%8F%8F%20%2F%20light%3C%2Ftitle%3E%3Cpath%20fill%3D%22%230F2841%22%20d%3D%22M52%2010A42%2042%200%201%200%2094%2052H81A29%2029%200%201%201%2052%2023Z%22%2F%3E%3Cpath%20fill%3D%22%2300BEBE%22%20d%3D%22M47.757%2047.757L79%2016.515L87.485%2025L56.243%2056.243Z%22%2F%3E%3Ccircle%20cx%3D%2252%22%20cy%3D%2252%22%20r%3D%2210%22%20fill%3D%22%2300BEBE%22%2F%3E%3C%2Fsvg%3E">
@@ -30,7 +31,7 @@
 }
 /* 深色变量：跟随系统（"跟随系统"被选中 且 系统为深色时）——纯 CSS，经 :has() 生效 */
 @media (prefers-color-scheme:dark){
-  html:has(.theme-switch input[value="auto"]:checked){
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked){
   --primary:#dce8f7;
   --accent:#33d6d6;
   --accent-deep:#33d6d6;
@@ -52,7 +53,7 @@
   html:has(.theme-switch input[value="auto"]:checked) .sidenav .logo svg .b2{fill:#8fb8e8}
 }
 /* 深色变量：手动选择"深色"（后出现，优先于跟随系统） */
-html:has(.theme-switch input[value="dark"]:checked){
+html:has(.theme-switch input[value="dark"]:checked),html.force-dark{
   --primary:#dce8f7;
   --accent:#33d6d6;
   --accent-deep:#33d6d6;
@@ -73,7 +74,7 @@ html:has(.theme-switch input[value="dark"]:checked){
 }
 html:has(.theme-switch input[value="dark"]:checked) .sidenav .logo svg .b2{fill:#8fb8e8}
 /* 浅色变量：手动选择"浅色"时，覆盖跟随系统的深色 */
-html:has(.theme-switch input[value="light"]:checked){
+html:has(.theme-switch input[value="light"]:checked),html.force-light{
   --primary:#0f2841;
   --accent:#00BEBE;
   --accent-deep:#0a8f8f;
@@ -312,7 +313,7 @@ h1.mast .lca{color:var(--accent)}
 }
 /* 深色变量：跟随系统（"跟随系统"被选中 且 系统为深色时）——纯 CSS，经 :has() 生效 */
 @media (prefers-color-scheme:dark){
-  html:has(.theme-switch input[value="auto"]:checked){
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked){
   --primary:#dce8f7;
   --accent:#33d6d6;
   --accent-deep:#33d6d6;
@@ -334,7 +335,7 @@ h1.mast .lca{color:var(--accent)}
   html:has(.theme-switch input[value="auto"]:checked) .sidenav .logo svg .b2{fill:#8fb8e8}
 }
 /* 深色变量：手动选择"深色"（后出现，优先于跟随系统） */
-html:has(.theme-switch input[value="dark"]:checked){
+html:has(.theme-switch input[value="dark"]:checked),html.force-dark{
   --primary:#dce8f7;
   --accent:#33d6d6;
   --accent-deep:#33d6d6;
@@ -355,7 +356,7 @@ html:has(.theme-switch input[value="dark"]:checked){
 }
 html:has(.theme-switch input[value="dark"]:checked) .sidenav .logo svg .b2{fill:#8fb8e8}
 /* 浅色变量：手动选择"浅色"时，覆盖跟随系统的深色 */
-html:has(.theme-switch input[value="light"]:checked){
+html:has(.theme-switch input[value="light"]:checked),html.force-light{
   --primary:#0f2841;
   --accent:#00BEBE;
   --accent-deep:#0a8f8f;
@@ -665,8 +666,8 @@ body{display:flex;flex-direction:column;min-height:100vh}
 html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-light{display:none}
 html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:block}
 @media (prefers-color-scheme:dark){
-  html:has(.theme-switch input[value="auto"]:checked) .tb-logo .logo-light{display:none}
-  html:has(.theme-switch input[value="auto"]:checked) .tb-logo .logo-dark{display:block}
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .tb-logo .logo-light{display:none}
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .tb-logo .logo-dark{display:block}
 }
 /* 滚动后收紧顶栏（v14：收缩更明显，字号/胶囊同步响应） */
 .topbar.tb-compact{height:46px}
@@ -891,6 +892,14 @@ a.dc.has.today{outline-offset:1px}
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;padding:16px 4px}
   .stats .read{margin-left:0;grid-column:1/-1;text-align:right}
 }
+/* ===== v23.2 首屏主题预应用（2026-10-01）：head 内联脚本在 body 解析前给 <html> 加 .force-dark/.force-light，
+   深色变量第一帧即生效，杜绝"先白后深色"闪屏；恢复脚本勾选 radio 后移除此类，无缝交接 ===== */
+html.force-dark .tb-logo .logo-light{display:none}
+html.force-dark .tb-logo .logo-dark{display:block}
+html.force-dark .topbar .theme-switch .thumb{transform:translateX(76px)}
+html.force-light .topbar .tb-logo img.logo-light{display:block}
+html.force-light .topbar .tb-logo img.logo-dark{display:none}
+html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
 
 </style>
@@ -913,7 +922,7 @@ a.dc.has.today{outline-offset:1px}
         <label title="跟随系统"><input type="radio" name="lca-theme" value="auto" checked><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></span></label>
         <label title="深色"><input type="radio" name="lca-theme" value="dark"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8 8 0 0 1 10.5 4 8 8 0 1 0 20 13.5z"/></svg></span></label>
       </div>
-      <script>(function(){try{var m=localStorage.getItem("lca-watch-theme");if(m==="dark"||m==="light"||m==="auto"){var r=document.querySelector('.tb-theme input[value="'+m+'"]');if(r)r.checked=true;}}catch(e){}})();</script></div>
+      <script>(function(){try{var m=localStorage.getItem("lca-watch-theme");if(m==="dark"||m==="light"||m==="auto"){var r=document.querySelector('.tb-theme input[value="'+m+'"]');if(r)r.checked=true;}document.documentElement.classList.remove("force-dark","force-light");}catch(e){}})();</script></div>
 </header>
 <div class="view on" id="view-fav">
   <div class="clog">
