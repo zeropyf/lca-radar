@@ -676,6 +676,8 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
 .tb-nav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);display:flex;gap:2px;
   background:var(--seg-bg);border-radius:999px;padding:3px;transition:transform .3s ease}
 .topbar.tb-compact .tb-nav{transform:translate(-50%,-50%) scale(.87)}
+/* v23.3：收紧时主题开关同步缩小（图标随容器一起缩放） */
+.topbar.tb-compact .tb-theme .theme-switch{transform:scale(.66)}
 .tb-nav a{position:relative;z-index:1;padding:8px 20px;border-radius:999px;font-size:15px;color:var(--gray);
   text-decoration:none;font-weight:500;white-space:nowrap;transition:color .25s}
 .tb-nav a:hover{color:var(--body)}
@@ -685,7 +687,7 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
   transition:transform .34s cubic-bezier(.3,1.25,.5,1),width .34s cubic-bezier(.3,1.25,.5,1)}
 .tb-theme{display:flex;align-items:center;margin-left:auto}
 /* 顶栏主题切换：紧凑三段 */
-.tb-theme .theme-switch{transform:scale(.82);transform-origin:right center;margin:0}
+.tb-theme .theme-switch{transform:scale(.82);transform-origin:right center;margin:0;transition:transform .3s ease}
 /* ===== 往期归档（v14：左侧月份边栏，主列缩窄） ===== */
 .arc-layout{display:flex;gap:36px;max-width:920px;margin:0 auto;padding:56px 20px 90px;align-items:flex-start}
 .arc-side{position:sticky;top:80px;width:168px;flex:none}
@@ -839,10 +841,6 @@ a.dc.has.today{outline-offset:1px}
 .citem .tx h3{font-size:15.5px;margin:0 0 6px;color:var(--ink);font-weight:700}
 .citem .tx p{font-size:14px;line-height:1.85;color:var(--body);margin:0}
 @media(max-width:900px){
-  .psteps{grid-template-columns:repeat(2,1fr);gap:26px 0}
-  .pstep{padding:4px 16px 0}
-  .pstep+.pstep{border-left:0}
-  .pstep:nth-child(even){border-left:1px solid var(--line)}
   .topics3{grid-template-columns:1fr}
   .topbar{gap:12px;padding:0 12px;overflow-x:clip}
   .tb-logo{flex:none}
@@ -857,7 +855,7 @@ a.dc.has.today{outline-offset:1px}
   .pstep{animation:none}
   .tb-pill{transition:none}
   .tb-nav{transition:none}
-  .topbar,.tb-logo img{transition:none}
+  .topbar,.tb-logo img,.tb-theme .theme-switch{transition:none}
 }
 /* ===== v23.1 移动端修复（2026-10-01）：以下规则仅收紧小屏排版，桌面端视觉无变化 ===== */
 /* 日报版头：覆盖窗口日期时间整体不拆散；统计数字与其单位永不拆散 */
@@ -877,9 +875,6 @@ a.dc.has.today{outline-offset:1px}
 @media(max-width:900px){
   /* 顶栏导航可横滑时，右边缘渐隐提示后面还有内容 */
   .tb-nav.hscroll{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
-  /* 关于页四步：纵向弹性布局，脚注沉底对齐，四块结构规整 */
-  .pstep{display:flex;flex-direction:column}
-  .pmeta{margin-top:auto}
 }
 @media(max-width:760px){
   /* 归档月份可横滑时，右边缘渐隐提示后面还有月份 */
@@ -891,6 +886,31 @@ a.dc.has.today{outline-offset:1px}
   /* 统计条改双列网格，数字/单位成对出现，告别参差换行 */
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;padding:16px 4px}
   .stats .read{margin-left:0;grid-column:1/-1;text-align:right}
+}
+/* ===== v23.3 关于页四步移动端改纵向时间线（2026-10-01）：≤900px 由两列网格改为单列时间线，
+   取消偶数列竖线与脚注虚线，圆形序号节点＋连续竖线引导；桌面端四列布局不变 ===== */
+@media(max-width:900px){
+  .psteps{display:block;margin:0 0 44px;counter-reset:pstep}
+  .pstep{padding:0 0 34px 54px;counter-increment:pstep}
+  .pstep+.pstep{border-left:0}
+  .pstep:last-child{padding-bottom:4px}
+  /* 连续竖向引导线：从当前节点底部连到下一个节点顶部 */
+  .pstep::before{content:"";position:absolute;left:17px;top:42px;bottom:0;width:2px;
+    border-radius:2px;background:var(--line)}
+  .pstep:last-child::before{display:none}
+  /* 步骤节点：圆形序号 */
+  .pstep::after{content:"0" counter(pstep);
+    position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;
+    background:var(--card);border:2px solid var(--accent);
+    color:var(--accent-deep);font-size:13px;font-weight:800;letter-spacing:.06em;
+    display:flex;align-items:center;justify-content:center}
+  /* 序号已在节点中呈现，标题行内不再重复 */
+  .pstep-h .pnum{display:none}
+  .pstep-h{margin-bottom:8px}
+  /* 脚注改胶囊标签，取消顶部虚线 */
+  .pmeta{border-top:0;margin-top:12px;display:inline-block;
+    background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;
+    padding:5px 12px}
 }
 /* ===== v23.2 首屏主题预应用（2026-10-01）：head 内联脚本在 body 解析前给 <html> 加 .force-dark/.force-light，
    深色变量第一帧即生效，杜绝"先白后深色"闪屏；恢复脚本勾选 radio 后移除此类，无缝交接 ===== */
@@ -1331,20 +1351,52 @@ document.querySelectorAll('.theme-switch input[name="lca-theme"]').forEach(funct
 </div>
 <footer class="site-foot"><span>LCA瞭望 · LCA RADAR</span><span class="pv">本站总访问 <span id="busuanzi_value_site_pv">…</span> · 访客 <span id="busuanzi_value_site_uv">…</span></span></footer>
 <script>
-function movePill(){
+function movePill(instant){
   var on = document.querySelector('.tb-nav a.on');
   var pill = document.querySelector('.tb-pill');
   if(!on || !pill) return;
+  if(instant) pill.style.transition = 'none';
   pill.style.transform = 'translateX(' + on.offsetLeft + 'px)';
   pill.style.width = on.offsetWidth + 'px';
+  if(instant){ void pill.offsetWidth; pill.style.transition = ''; }
 }
+/* v23.3 跨页滑动：胶囊从上一个页面的 tab 滑过来（整页跳转时用 sessionStorage 记住上一个 tab） */
+var __pillAnimated = (function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.tb-nav a'));
+  var cur = -1;
+  links.forEach(function(a,i){ if(a.classList.contains('on')) cur = i; });
+  if(cur < 0) return false;
+  var prev = -1;
+  try{ prev = parseInt(sessionStorage.getItem('lcaradar-nav-prev')||'-1',10); }catch(e){}
+  try{ sessionStorage.setItem('lcaradar-nav-prev', String(cur)); }catch(e){}
+  var pill = document.querySelector('.tb-pill');
+  if(!pill) return false;
+  var reduced = false;
+  try{ reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+  if(prev >= 0 && prev < links.length && prev !== cur && !reduced){
+    /* 跨页：先无动画摆到上一个 tab；整页载入完成（此时首帧必已绘制）后再滑向当前 tab */
+    pill.style.transition = 'none';
+    pill.style.transform = 'translateX(' + links[prev].offsetLeft + 'px)';
+    pill.style.width = links[prev].offsetWidth + 'px';
+    window.addEventListener('load', function(){
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        pill.style.transition = '';
+        void pill.offsetWidth;
+        movePill();
+      }); });
+    });
+    return true;
+  }
+  movePill(true); /* 首次访问 / 同页刷新：直接定位，不从左边缘飞入 */
+  return false;
+})();
 var tb = document.querySelector('.topbar');
 function onScroll(){
   var c = window.scrollY > 48;
   if(tb.classList.contains('tb-compact') !== c){ tb.classList.toggle('tb-compact', c); document.body.classList.toggle('tb-compact', c); }
 }
 window.addEventListener('scroll', onScroll, {passive:true});
-window.addEventListener('load', movePill);
+window.addEventListener('load', function(){ if(!__pillAnimated) movePill(); });
 window.addEventListener('resize', movePill);
 /* 移动端：把当前 tab 滚到可视区 + 给可横滑的导航/月份加上滚动提示（v23.1） */
 function navScroll(){
@@ -1356,8 +1408,7 @@ function navScroll(){
   });
 }
 window.addEventListener('load', navScroll);
-window.addEventListener('resize', navScroll);
-/* 归档月份边栏滚动高亮（仅归档页生效） */
+window.addEventListener('resize', navScroll);/* 归档月份边栏滚动高亮（仅归档页生效） */
 function arcSpy(){
   var va = document.getElementById('view-archive');
   var links = document.querySelectorAll('.arc-side-a');
@@ -1374,7 +1425,7 @@ arcSpy();
 document.querySelectorAll('.tb-theme input[name="lca-theme"]').forEach(function(r){
   r.addEventListener('change', function(){ try{ localStorage.setItem("lca-watch-theme", r.value); }catch(e){} if(window.__redrawFunnel) window.__redrawFunnel(); });
 });
-movePill();
+if(!__pillAnimated) movePill();
 onScroll();
 navScroll();
 </script>
