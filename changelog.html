@@ -608,10 +608,12 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 /* 右栏：取消独立滚动，随页面自然下铺 */
 .rail{position:static;height:auto;overflow:visible}
 /* 左栏：顶栏为 fixed（64px / 收紧 46px），sticky 顶部偏移避开顶栏下缘，消除与"日报/周报"切换按钮的重叠；
-   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方 */
-.sidenav{top:64px;height:calc(100vh - 128px)}
+   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方；
+   顶部内边距收至 6px：pill 视觉顶部 = 64/46 + 6(padding) + 6(margin) = 76/58，与右栏"本期版面"吸住高度对齐 */
+.sidenav{top:64px;height:calc(100vh - 128px);padding-top:6px}
 body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
-/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题 */
+/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题；
+   吸住高度 76/58 与左栏 pill 视觉顶部对齐 */
 .rail{align-self:stretch}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
@@ -855,6 +857,11 @@ a.dc.has.today{outline-offset:1px}
 .tag.fix{--dot:var(--faint)}
 .citem .tx h3{font-size:15.5px;margin:0 0 6px;color:var(--ink);font-weight:700}
 .citem .tx p{font-size:14px;line-height:1.85;color:var(--body);margin:0}
+/* 更新日志结构化列表：青色圆点 + 加粗引导词 */
+.citem .tx ul{margin:4px 0 0;padding:0;list-style:none;font-size:14px;line-height:1.9;color:var(--body)}
+.citem .tx ul li{position:relative;padding-left:18px;margin:3px 0}
+.citem .tx ul li::before{content:"";position:absolute;left:4px;top:.95em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.citem .tx ul li b{color:var(--ink)}
 @media(max-width:900px){
   .topics3{grid-template-columns:1fr}
   .topbar{gap:12px;padding:0 12px;overflow-x:clip}
@@ -964,9 +971,16 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <h1>更新日志</h1>
     <div class="cday">
       <div class="cday-h">2026 年 10 月 1 日 周四</div>
-      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>体验优化</h3><p>收藏页上线；移动端排版修复（顶栏当前 tab 居中、统计条双列、关于页四步对齐）；深色模式切页闪白修复；顶栏胶囊改为从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放；移动端「关于页四步」改纵向时间线；日报侧栏体验优化（右栏「本期版面」滚动吸住、可跳转子专题并高亮当前位置；左栏「日报/周报」切换避开顶栏重叠）。</p></div></div>
+      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>体验优化</h3><ul>
+<li><b>收藏页上线</b>：日报条目与今日看点均可收藏，数据仅保存在本机浏览器</li>
+<li><b>移动端排版</b>：顶栏当前 tab 自动居中、统计条改为双列、关于页「四步」改纵向时间线并对齐</li>
+<li><b>深色模式</b>：修复切换页面时的闪白</li>
+<li><b>顶栏动效</b>：胶囊从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放</li>
+<li><b>日报侧栏</b>：右栏「本期版面」滚动吸住，可跳转子专题并高亮当前位置；左栏「日报 / 周报」切换避开顶栏重叠，左右吸住高度对齐</li>
+<li><b>专题排序</b>：Ⅲ 产业下「上游基础材料」调整至「电池产业链」之前</li>
+</ul></div></div>
       <div class="citem"><span class="t">11:00</span><span class="tag launch">上线</span><div class="tx"><h3>LCA RADAR 公网正式上线</h3><p>radar.lcarss.uk：GitHub Pages 托管 + 自定义域名，HTTPS 强制开启。首页默认展示最新一期日报。</p></div></div>
-      <div class="citem"><span class="t">10:31</span><span class="tag fix">修复</span><div class="tx"><h3>飞书推送收窄重试条件</h3><p>收到服务端任何响应后即停止重试；连接层彻底失败时仍会重试一次，此时是否已送达无法确认，极端情况下可能重复。如再收到重复卡片请告诉我，继续排查。</p></div></div>
+      <div class="citem"><span class="t">10:31</span><span class="tag fix">修复</span><div class="tx"><h3>飞书推送收窄重试条件</h3><p>重试策略收窄：收到服务端响应后即停止重试；仅在连接层彻底失败时补试一次。极端情况下可能产生重复推送。</p></div></div>
     </div>
     <div class="cday">
       <div class="cday-h">2026 年 9 月 30 日 周三</div>

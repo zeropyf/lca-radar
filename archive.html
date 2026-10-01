@@ -608,10 +608,12 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 /* 右栏：取消独立滚动，随页面自然下铺 */
 .rail{position:static;height:auto;overflow:visible}
 /* 左栏：顶栏为 fixed（64px / 收紧 46px），sticky 顶部偏移避开顶栏下缘，消除与"日报/周报"切换按钮的重叠；
-   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方 */
-.sidenav{top:64px;height:calc(100vh - 128px)}
+   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方；
+   顶部内边距收至 6px：pill 视觉顶部 = 64/46 + 6(padding) + 6(margin) = 76/58，与右栏"本期版面"吸住高度对齐 */
+.sidenav{top:64px;height:calc(100vh - 128px);padding-top:6px}
 body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
-/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题 */
+/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题；
+   吸住高度 76/58 与左栏 pill 视觉顶部对齐 */
 .rail{align-self:stretch}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
@@ -855,6 +857,11 @@ a.dc.has.today{outline-offset:1px}
 .tag.fix{--dot:var(--faint)}
 .citem .tx h3{font-size:15.5px;margin:0 0 6px;color:var(--ink);font-weight:700}
 .citem .tx p{font-size:14px;line-height:1.85;color:var(--body);margin:0}
+/* 更新日志结构化列表：青色圆点 + 加粗引导词 */
+.citem .tx ul{margin:4px 0 0;padding:0;list-style:none;font-size:14px;line-height:1.9;color:var(--body)}
+.citem .tx ul li{position:relative;padding-left:18px;margin:3px 0}
+.citem .tx ul li::before{content:"";position:absolute;left:4px;top:.95em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.citem .tx ul li b{color:var(--ink)}
 @media(max-width:900px){
   .topics3{grid-template-columns:1fr}
   .topbar{gap:12px;padding:0 12px;overflow-x:clip}
