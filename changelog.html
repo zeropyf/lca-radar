@@ -949,6 +949,11 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <h1>更新日志</h1>
     <div class="cday">
       <div class="cday-h">2026 年 10 月 1 日 周四</div>
+      <div class="citem"><span class="t">22:26</span><span class="tag fix">修复</span><div class="tx"><h3>顶栏胶囊跨页滑动</h3><p>切换页面时，白色胶囊从上一个页面的 tab 位置滑向当前 tab，不再从导航左端飞入；首次访问或刷新当前页则直接定位。</p></div></div>
+      <div class="citem"><span class="t">22:26</span><span class="tag fix">修复</span><div class="tx"><h3>顶栏收紧时主题开关同步缩放</h3><p>向下滚动顶栏收紧后，主题切换开关随 Logo、导航一起缩小，过渡动画同步。</p></div></div>
+      <div class="citem"><span class="t">22:26</span><span class="tag opt">优化</span><div class="tx"><h3>移动端「关于页四步」改纵向时间线</h3><p>小屏由两列网格改为单列时间线：圆形序号节点＋连续竖线引导，取消十字分隔线与脚注虚线；桌面端四列布局不变。</p></div></div>
+      <div class="citem"><span class="t">22:05</span><span class="tag fix">修复</span><div class="tx"><h3>深色模式切页闪白修复</h3><p>head 内预置主题，body 解析前即应用深色变量，切换页面不再先白后深色。</p></div></div>
+      <div class="citem"><span class="t">21:52</span><span class="tag fix">修复</span><div class="tx"><h3>移动端排版修复</h3><p>顶栏当前 tab 自动居中＋右缘滑动提示；日报统计条改双列网格；关于页四步脚注沉底对齐、「三级」不拆散；月历居中拉宽。</p></div></div>
       <div class="citem"><span class="t">待定</span><span class="tag launch">上线</span><div class="tx"><h3>收藏页上线</h3><p>日报条目与今日看点详情均可收藏，收藏只保存在本机浏览器。</p></div></div>
       <div class="citem"><span class="t">11:00</span><span class="tag launch">上线</span><div class="tx"><h3>LCA RADAR 公网正式上线</h3><p>radar.lcarss.uk：GitHub Pages 托管 + 自定义域名，HTTPS 强制开启。首页默认展示最新一期日报。</p></div></div>
       <div class="citem"><span class="t">10:31</span><span class="tag fix">修复</span><div class="tx"><h3>飞书推送收窄重试条件</h3><p>收到服务端任何响应后即停止重试；连接层彻底失败时仍会重试一次，此时是否已送达无法确认，极端情况下可能重复。如再收到重复卡片请告诉我，继续排查。</p></div></div>
