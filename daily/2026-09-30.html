@@ -839,6 +839,7 @@ a.dc.has.today{outline-offset:1px}
 .citem .tx p{font-size:14px;line-height:1.85;color:var(--body);margin:0}
 @media(max-width:900px){
   .psteps{grid-template-columns:repeat(2,1fr);gap:26px 0}
+  .pstep{padding:4px 16px 0}
   .pstep+.pstep{border-left:0}
   .pstep:nth-child(even){border-left:1px solid var(--line)}
   .topics3{grid-template-columns:1fr}
@@ -856,6 +857,39 @@ a.dc.has.today{outline-offset:1px}
   .tb-pill{transition:none}
   .tb-nav{transition:none}
   .topbar,.tb-logo img{transition:none}
+}
+/* ===== v23.1 移动端修复（2026-10-01）：以下规则仅收紧小屏排版，桌面端视觉无变化 ===== */
+/* 日报版头：覆盖窗口日期时间整体不拆散；统计数字与其单位永不拆散 */
+.mast-sub2{flex-wrap:wrap;row-gap:8px}
+.mast-sub2 .cov{white-space:nowrap}
+.stats .st{white-space:nowrap}
+/* 关于页四步：大数字不拆散（如"三级"在 iOS 上曾被拆成两行） */
+.pstat b{white-space:nowrap}
+/* 数字与单位行内不换行、基线对齐（窄列下"审定"曾被挤到下一行） */
+.pstat{display:flex;align-items:baseline;flex-wrap:nowrap}
+@media(max-width:1180px){
+  /* 版头纵排时，月历居中拉宽，不再是左侧一小块 */
+  .masthead .dcal{align-self:center;width:100%;max-width:440px;min-width:0}
+  .dcal-grid{gap:8px}
+  .dc{height:30px;font-size:12px;border-radius:8px}
+}
+@media(max-width:900px){
+  /* 顶栏导航可横滑时，右边缘渐隐提示后面还有内容 */
+  .tb-nav.hscroll{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+  /* 关于页四步：纵向弹性布局，脚注沉底对齐，四块结构规整 */
+  .pstep{display:flex;flex-direction:column}
+  .pmeta{margin-top:auto}
+}
+@media(max-width:760px){
+  /* 归档月份可横滑时，右边缘渐隐提示后面还有月份 */
+  .arc-side.hscroll{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent)}
+}
+@media(max-width:640px){
+  /* 小屏隐藏时区后缀，覆盖窗口一行放下 */
+  .mast-sub2 .tz{display:none}
+  /* 统计条改双列网格，数字/单位成对出现，告别参差换行 */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;padding:16px 4px}
+  .stats .read{margin-left:0;grid-column:1/-1;text-align:right}
 }
 
 
@@ -914,7 +948,7 @@ a.dc.has.today{outline-offset:1px}
         </div>
         <h1 class="mast"><span class="lca">LCA</span>瞭望</h1>
         <div class="brand-sub">LCA RADAR</div>
-        <div class="mast-sub2"><span class="kind">早报</span><span>覆盖窗口：9 月 29 日 00:00–24:00</span><span class="pv">阅读 <span id="busuanzi_value_page_pv">…</span></span></div>
+        <div class="mast-sub2"><span class="kind">早报</span><span>覆盖窗口：<span class="cov">9 月 29 日 00:00–24:00</span></span></div>
       </div>
       <div class="dcal">
         <div class="dcal-mhead"><span>九月</span><span class="dcal-c">本月 1 期</span></div>
@@ -1303,6 +1337,17 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, {passive:true});
 window.addEventListener('load', movePill);
 window.addEventListener('resize', movePill);
+/* 移动端：把当前 tab 滚到可视区 + 给可横滑的导航/月份加上滚动提示（v23.1） */
+function navScroll(){
+  var nav = document.querySelector('.tb-nav');
+  var on = document.querySelector('.tb-nav a.on');
+  if(nav && on){ try{ on.scrollIntoView({block:'nearest', inline:'center'}); }catch(e){} }
+  document.querySelectorAll('.tb-nav,.arc-side').forEach(function(el){
+    el.classList.toggle('hscroll', el.scrollWidth > el.clientWidth + 2);
+  });
+}
+window.addEventListener('load', navScroll);
+window.addEventListener('resize', navScroll);
 /* 归档月份边栏滚动高亮（仅归档页生效） */
 function arcSpy(){
   var va = document.getElementById('view-archive');
@@ -1322,6 +1367,7 @@ document.querySelectorAll('.tb-theme input[name="lca-theme"]').forEach(function(
 });
 movePill();
 onScroll();
+navScroll();
 </script>
 <script>
 /* ===== 收藏（localStorage 本机存储） ===== */
