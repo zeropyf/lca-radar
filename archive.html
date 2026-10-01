@@ -607,6 +607,14 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 /* 右栏看点：加宽后的舒适排版 */
 /* 右栏：取消独立滚动，随页面自然下铺 */
 .rail{position:static;height:auto;overflow:visible}
+/* 左栏：顶栏为 fixed（64px / 收紧 46px），sticky 顶部偏移避开顶栏下缘，消除与"日报/周报"切换按钮的重叠；
+   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方 */
+.sidenav{top:64px;height:calc(100vh - 128px)}
+body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
+/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题 */
+.rail{align-self:stretch}
+.rail .toc{position:sticky;top:76px}
+body.tb-compact .rail .toc{top:58px}
 .hl-item{gap:13px;margin-bottom:18px}
 .hl-item .t b{font-size:14px}
 /* 往期：月份分组 + 大数字日期条目（版式逻辑参考 AIHOT 存档，视觉语言保持本刊） */

@@ -607,6 +607,14 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 /* 右栏看点：加宽后的舒适排版 */
 /* 右栏：取消独立滚动，随页面自然下铺 */
 .rail{position:static;height:auto;overflow:visible}
+/* 左栏：顶栏为 fixed（64px / 收紧 46px），sticky 顶部偏移避开顶栏下缘，消除与"日报/周报"切换按钮的重叠；
+   高度再收 64px：滚到页底、侧栏触到行底时，切换按钮仍能留在顶栏下方 */
+.sidenav{top:64px;height:calc(100vh - 128px)}
+body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
+/* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题 */
+.rail{align-self:stretch}
+.rail .toc{position:sticky;top:76px}
+body.tb-compact .rail .toc{top:58px}
 .hl-item{gap:13px;margin-bottom:18px}
 .hl-item .t b{font-size:14px}
 /* 往期：月份分组 + 大数字日期条目（版式逻辑参考 AIHOT 存档，视觉语言保持本刊） */
@@ -949,7 +957,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <h1>更新日志</h1>
     <div class="cday">
       <div class="cday-h">2026 年 10 月 1 日 周四</div>
-      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>公网版首批体验优化</h3><p>收藏页上线；移动端排版修复（顶栏当前 tab 居中、统计条双列、关于页四步对齐）；深色模式切页闪白修复；顶栏胶囊改为从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放；移动端「关于页四步」改纵向时间线。</p></div></div>
+      <div class="citem"><span class="t">22:26</span><span class="tag update">更新</span><div class="tx"><h3>体验优化</h3><p>收藏页上线；移动端排版修复（顶栏当前 tab 居中、统计条双列、关于页四步对齐）；深色模式切页闪白修复；顶栏胶囊改为从上一个 tab 跨页滑入；顶栏收紧时主题开关同步缩放；移动端「关于页四步」改纵向时间线。</p></div></div>
       <div class="citem"><span class="t">11:00</span><span class="tag launch">上线</span><div class="tx"><h3>LCA RADAR 公网正式上线</h3><p>radar.lcarss.uk：GitHub Pages 托管 + 自定义域名，HTTPS 强制开启。首页默认展示最新一期日报。</p></div></div>
       <div class="citem"><span class="t">10:31</span><span class="tag fix">修复</span><div class="tx"><h3>飞书推送收窄重试条件</h3><p>收到服务端任何响应后即停止重试；连接层彻底失败时仍会重试一次，此时是否已送达无法确认，极端情况下可能重复。如再收到重复卡片请告诉我，继续排查。</p></div></div>
     </div>
