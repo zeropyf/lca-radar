@@ -705,7 +705,7 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
 .tb-theme{display:flex;align-items:center;margin-left:auto}
 /* 顶栏主题切换：紧凑三段 */
 .tb-theme .theme-switch{transform:scale(.82);transform-origin:right center;margin:0;transition:transform .3s ease}
-/* ===== 往期归档（v14：左侧月份边栏，主列缩窄） ===== */
+/* ===== 往期归档时间线（v25：纵向时间线，中轴线＋节点圆点） ===== */
 .arc-layout{display:flex;gap:36px;max-width:920px;margin:0 auto;padding:56px 20px 90px;align-items:flex-start}
 .arc-side{position:sticky;top:80px;width:168px;flex:none}
 .arc-side-t{font-size:12.5px;color:var(--gray);margin:0 0 10px;letter-spacing:.1em}
@@ -719,8 +719,45 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
 .arc-sub{color:var(--gray);font-size:13.5px;margin:0 0 30px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .pv{color:var(--faint);font-size:12.5px;white-space:nowrap}
 .pv b,.pv [id^="busuanzi_value_"]{font-weight:600;color:var(--gray);font-style:normal}
-.arc-ym{display:flex;align-items:center;gap:10px;margin:34px 0 16px;scroll-margin-top:84px}
-.arc-ym.first{margin-top:0}
+/* 时间线 */
+.tl{position:relative;margin:2px 0 0;padding:2px 0 8px 34px}
+.tl::before{content:"";position:absolute;left:10px;top:12px;bottom:12px;width:2px;border-radius:2px;
+  background:linear-gradient(to bottom,var(--accent),var(--line))}
+.tl-month{position:relative;margin:22px 0 4px;scroll-margin-top:84px;font-size:15px;font-weight:800;color:var(--primary)}
+.tl-month:first-child{margin-top:4px}
+.tl-month::before{content:"";position:absolute;left:-30px;top:50%;width:14px;height:14px;margin-top:-7px;box-sizing:border-box;
+  border-radius:50%;background:var(--accent);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--accent)}
+.tl-mc{font-size:12px;color:var(--gray);font-weight:400;margin-left:8px}
+.tl-item{position:relative;display:flex;align-items:center;gap:14px;margin:0 0 10px;padding:14px 16px;
+  border:1px solid var(--line);border-radius:14px;background:var(--card);text-decoration:none;color:inherit;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.tl-item::before{content:"";position:absolute;left:-30px;top:50%;width:12px;height:12px;margin-top:-6px;box-sizing:border-box;
+  border-radius:50%;background:var(--paper);border:3px solid var(--accent);transition:background .2s}
+.tl-item:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:var(--accent)}
+.tl-item:hover::before{background:var(--accent)}
+.tl-date{display:flex;flex-direction:column;align-items:center;min-width:54px;flex:none}
+.tl-date b{font-size:32px;font-weight:800;line-height:1;color:var(--primary);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.tl-date i{font-style:normal;font-size:12px;color:var(--gray);margin-top:6px;white-space:nowrap}
+.tl-body{flex:1;min-width:0}
+.tl-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.tl-issue{font-style:normal;font-size:12px;font-weight:700;color:var(--accent-deep);border:1px solid var(--accent);
+  border-radius:999px;padding:2px 11px;white-space:nowrap}
+.tl-meta{font-size:12.5px;color:var(--gray);white-space:nowrap}
+.tl-title{display:block;font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.6;text-wrap:balance;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tl-arrow{color:var(--gray);font-size:20px;transition:transform .22s ease,color .22s ease;flex:none}
+.tl-item:hover .tl-arrow{transform:translateX(5px);color:var(--accent-deep)}
+@media(max-width:640px){
+  .tl{padding-left:26px}
+  .tl::before{left:8px}
+  .tl-month::before{left:-24px}
+  .tl-item::before{left:-24px}
+  .tl-item{gap:10px;padding:12px}
+  .tl-date{min-width:44px}
+  .tl-date b{font-size:26px}
+  .tl-title{font-size:15px}
+  .tl-arrow{display:none}
+}
 /* 站点页脚（含访问量） */
 .site-foot{border-top:1px solid var(--line);padding:18px 28px;display:flex;justify-content:space-between;
   align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--faint)}
@@ -730,32 +767,6 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
   .arc-side-t{display:none}
   .arc-side-a{white-space:nowrap;flex:none}
   .arc-main-col{max-width:none}
-}
-.arc-ym .ym-l{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
-.arc-ym .ym-l::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--accent)}
-.arc-ym .ym-c{font-size:12.5px;color:var(--gray);font-weight:400}
-.arc-card{display:flex;align-items:center;gap:20px;padding:20px 22px;border:1px solid var(--line);
-  border-radius:16px;background:var(--card);text-decoration:none;color:inherit;margin:0 0 12px;
-  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.arc-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:var(--accent)}
-.arc-date{text-align:center;min-width:52px}
-.arc-date b{display:block;font-size:34px;font-weight:800;line-height:1;color:var(--ink);letter-spacing:-.01em}
-.arc-date span{font-size:12px;color:var(--gray)}
-.arc-main{flex:1;min-width:0}
-.arc-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.arc-issue{font-size:12px;font-weight:700;color:var(--accent-deep);border:1px solid var(--accent);
-  border-radius:999px;padding:1px 10px;white-space:nowrap}
-.arc-count{font-size:12.5px;color:var(--gray);white-space:nowrap}
-.arc-head{margin:0;font-size:15.5px;font-weight:600;line-height:1.6;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc-go{color:var(--gray);font-size:20px;transition:transform .22s ease,color .22s ease;flex:none}
-.arc-card:hover .arc-go{transform:translateX(5px);color:var(--accent-deep)}
-@media(max-width:640px){
-  .arc-wrap{padding:40px 16px 70px}
-  .arc-card{gap:14px;padding:16px}
-  .arc-date b{font-size:28px}
-  .arc-go{display:none}
-  .arc-head{font-size:14.5px}
 }
 /* 视图切换 */
 .view{display:none}
@@ -942,6 +953,13 @@ html.force-dark .topbar .theme-switch .thumb{transform:translateX(76px)}
 html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
+/* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
+::selection{background:rgba(0,190,190,.22)}
+.item .sum{text-align:justify;line-height:1.85}
+.item h3{font-size:19px;text-wrap:balance}
+.msum{text-align:justify}
+.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+.srcrow{letter-spacing:.02em}
 
 
 </style>
@@ -982,7 +1000,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-03" href="2026-10-03.html">
       <span class="ad"><b>3</b><i>周六</i></span>
-      <span class="tx"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b></span>
+      <span class="tx"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span>
     </a>
     <a class="arc" id="arc-2026-10-02" href="2026-10-02.html">
       <span class="ad"><b>2</b><i>周五</i></span>
@@ -990,14 +1008,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-01" href="2026-10-01.html">
       <span class="ad"><b>1</b><i>周四</i></span>
-      <span class="tx"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
+      <span class="tx"><b>WTO 争端解决机构设立 DS<b class="num">639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
     </a>
     </div>
     <div class="arc-month open" data-t="arc-daily-2026-09"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 9 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-daily-2026-09">
     <a class="arc" id="arc-2026-09-30" href="2026-09-30.html">
       <span class="ad"><b>30</b><i>周三</i></span>
-      <span class="tx"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span>
+      <span class="tx"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span>
     </a>
     </div>
     </div>
@@ -1045,19 +1063,19 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（N64，一手）</span></div>
           <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html" target="_blank" rel="noopener">商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查<span class="ext">↗</span></a></h3>
-          <p class="sum">商务部新闻发言人 2026-10-03 答记者问：对原产于欧盟的进口对硝基甲苯发起反倾销调查。中欧贸易救济新动作；对硝基甲苯为化工中间体，与汽车/电池价值链无直接关联。</p>
+          <p class="sum">商务部新闻发言人 <b class="num">2026</b>-<b class="num">10</b>-<b class="num">03</b> 答记者问：对原产于欧盟的进口对硝基甲苯发起反倾销调查。中欧贸易救济新动作；对硝基甲苯为化工中间体，与汽车/电池价值链无直接关联。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（CCCEU《周•知》，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener">谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”<span class="ext">↗</span></a></h3>
-          <p class="sum">欧委会贸易和经济安全委员谢夫乔维奇（POLITICO 采访）称 10 月 8–9 日北京 TIC 第二次会议“极其关键”，三项目标为应对中国商品出口激增、扩大欧盟对华出口、就中国稀土出口限制建立长期可预期性；中欧贸易逆差约 10 亿欧元/天；欧盟部分成员国提议研究欧版“301”贸易工具。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener">谢夫乔维奇：<b class="num">10 月</b> <b class="num">8</b>–<b class="num">9 日</b>北京 TIC 第二次会议“极其关键”<span class="ext">↗</span></a></h3>
+          <p class="sum">欧委会贸易和经济安全委员谢夫乔维奇（POLITICO 采访）称 <b class="num">10 月</b> <b class="num">8</b>–<b class="num">9 日</b>北京 TIC 第二次会议“极其关键”，三项目标为应对中国商品出口激增、扩大欧盟对华出口、就中国稀土出口限制建立长期可预期性；中欧贸易逆差约 <b class="num">10</b> 亿欧元/天；欧盟部分成员国提议研究欧版“<b class="num">301</b>”贸易工具。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（聊碳成金，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ" target="_blank" rel="noopener">低碳政策在快速推进，为何市场反应却遇冷？<span class="ext">↗</span></a></h3>
-          <p class="sum">低碳政策在快速推进，为何市场反应却遇冷？KOL 长文提出政策热与市场体感冷之间有 12–36 个月传导时滞，核心主张“谁先把可核查的碳数据做出来，谁就先把价值解冻”。</p>
+          <p class="sum">低碳政策在快速推进，为何市场反应却遇冷？KOL 长文提出政策热与市场体感冷之间有 <b class="num">12</b>–<b class="num">36</b> 个月传导时滞，核心主张“谁先把可核查的碳数据做出来，谁就先把价值解冻”。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1075,7 +1093,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>W 线（废塑料新观察，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q" target="_blank" rel="noopener">英国明确化学回收塑料质量平衡认证要求<span class="ext">↗</span></a></h3>
-          <p class="sum">英国税务海关总署（HMRC）2026-08-28 发布化学回收塑料质量平衡核算准备指南及最低认证要求，明确相关材料如何计入塑料包装税（PPT）的再生含量；新安排 2027 年 4 月 1 日起实施，再生含量达 30% 及以上的包装组件免税。</p>
+          <p class="sum">英国税务海关总署（HMRC）<b class="num">2026</b>-<b class="num">08</b>-<b class="num">28</b> 发布化学回收塑料质量平衡核算准备指南及最低认证要求，明确相关材料如何计入塑料包装税（PPT）的再生含量；新安排 <b class="num">2027 年</b> <b class="num">4 月</b> <b class="num">1 日</b>起实施，再生含量达 <b class="num">30%</b> 及以上的包装组件免税。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1104,20 +1122,20 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Sustainable Business RSS 转 STAT Times</span></div>
-          <h3><a href="https://news.google.com" target="_blank" rel="noopener">Harbinger 拿下 FedEx 3 亿美元电动卡车订单<span class="ext">↗</span></a></h3>
-          <p class="sum">Harbinger 拿下 FedEx 3 亿美元电动卡车订单（商用电动卡车底盘，车队电动化大单）。</p>
+          <h3><a href="https://news.google.com" target="_blank" rel="noopener">Harbinger 拿下 FedEx <b class="num">3</b> 亿美元电动卡车订单<span class="ext">↗</span></a></h3>
+          <p class="sum">Harbinger 拿下 FedEx <b class="num">3</b> 亿美元电动卡车订单（商用电动卡车底盘，车队电动化大单）。</p>
           <a class="golink" href="https://news.google.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（彭博新能源财经，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener">BNEF：2026H1 全球新能源中重卡销量 15.8 万辆创纪录<span class="ext">↗</span></a></h3>
-          <p class="sum">2026 年上半年全球新能源中卡和重卡销量 15.8 万辆创纪录（几乎全部为纯电动车型），同比增长 75%；德国纯电动长途重卡潜在市场规模 25%–50%（取决于能源成本）。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener">BNEF：<b class="num">2026</b>H<b class="num">1</b> 全球新能源中重卡销量 <b class="num">15.8</b> 万辆创纪录<span class="ext">↗</span></a></h3>
+          <p class="sum"><b class="num">2026 年</b>上半年全球新能源中卡和重卡销量 <b class="num">15.8</b> 万辆创纪录（几乎全部为纯电动车型），同比增长 <b class="num">75%</b>；德国纯电动长途重卡潜在市场规模 <b class="num">25%</b>–<b class="num">50%</b>（取决于能源成本）。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>IT之家（N67）</span></div>
-          <h3><a href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener">国庆假期前两天全国高速充电量超 5000 万千瓦时<span class="ext">↗</span></a></h3>
-          <p class="sum">国庆假期前两天全国高速公路充电量超 5000 万千瓦时，同比增长 51.34%（新能源汽车假期出行充电数据）。</p>
+          <h3><a href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener">国庆假期前两天全国高速充电量超 <b class="num">5000</b> 万千瓦时<span class="ext">↗</span></a></h3>
+          <p class="sum">国庆假期前两天全国高速公路充电量超 <b class="num">5000</b> 万千瓦时，同比增长 <b class="num">51.34%</b>（新能源汽车假期出行充电数据）。</p>
           <a class="golink" href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1128,8 +1146,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（有色日鉴，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener">9 月最后一周铝行业热点汇总<span class="ext">↗</span></a></h3>
-          <p class="sum">9 月最后一周铝行业热点：国内铝锭社会库存 63.8 万吨节前连续三周去库；中铝贵州分公司稳定量产 8021 电池铝箔扁锭；SMM 新增四川、湖北 ADC12 压铸铝合金出厂报价；几内亚 CBG 氧化铝精炼厂寻求美国融资。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener"><b class="num">9 月</b>最后一周铝行业热点汇总<span class="ext">↗</span></a></h3>
+          <p class="sum"><b class="num">9 月</b>最后一周铝行业热点：国内铝锭社会库存 <b class="num">63.8 万吨</b>节前连续三周去库；中铝贵州分公司稳定量产 <b class="num">8021</b> 电池铝箔扁锭；SMM 新增四川、湖北 ADC<b class="num">12</b> 压铸铝合金出厂报价；几内亚 CBG 氧化铝精炼厂寻求美国融资。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1141,13 +1159,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>W 线（SMM 新能源，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA" target="_blank" rel="noopener">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停<span class="ext">↗</span></a></h3>
-          <p class="sum">9 月 24 日巴西米纳斯吉拉斯州 FEAM 暂停 Sigma Lithium 旗下 Grota do Cirilo 锂矿 5 项运营许可并将扩建项目纳入禁令，两个月内第二次被暂停。起因是联邦法院 9 月 4 日紧急禁令：Quilombola 社区联合会指控环评申报夸大矿区与传统领地距离、未完成 FPIC 程序。该矿名义产能 27 万吨/年，规划 2027 年底扩至 58 万吨/年。</p>
+          <p class="sum"><b class="num">9 月</b> <b class="num">24 日</b>巴西米纳斯吉拉斯州 FEAM 暂停 Sigma Lithium 旗下 Grota do Cirilo 锂矿 <b class="num">5</b> 项运营许可并将扩建项目纳入禁令，两个月内第二次被暂停。起因是联邦法院 <b class="num">9 月</b> <b class="num">4 日</b>紧急禁令：Quilombola 社区联合会指控环评申报夸大矿区与传统领地距离、未完成 FPIC 程序。该矿名义产能 <b class="num">27 万吨</b>/年，规划 <b class="num">2027 年</b>底扩至 <b class="num">58 万吨</b>/年。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（高工锂电，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA" target="_blank" rel="noopener">高工锂电解读电池产业“十五五”规划：固态电池、AI、出海<span class="ext">↗</span></a></h3>
-          <p class="sum">高工锂电解读《新型电池产业发展“十五五”规划》（工信部等七部门 2026-09-28 联合印发）：五大维度部署 19 项重点任务；AI 赋能的数智化转型列为重中之重；固态电池等新一代前沿技术即将迎来规模化突破。</p>
+          <p class="sum">高工锂电解读《新型电池产业发展“十五五”规划》（工信部等七部门 <b class="num">2026</b>-<b class="num">09</b>-<b class="num">28</b> 联合印发）：五大维度部署 <b class="num">19</b> 项重点任务；AI 赋能的数智化转型列为重中之重；固态电池等新一代前沿技术即将迎来规模化突破。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1159,13 +1177,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>W 线（生态文明实践，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg" target="_blank" rel="noopener">报废车回收行业“反向开票”浅谈<span class="ext">↗</span></a></h3>
-          <p class="sum">报废车回收行业“反向开票”浅谈：自 2024 年 4 月 29 日起资源回收企业向出售报废产品的自然人开票；截至 2025 年底全国约 1.48 万户企业向约 167 万名自然人反向开票近 9000 亿元；《循环经济发展“十五五”规划》提出继续推进。</p>
+          <p class="sum">报废车回收行业“反向开票”浅谈：自 <b class="num">2024 年</b> <b class="num">4 月</b> <b class="num">29 日</b>起资源回收企业向出售报废产品的自然人开票；截至 <b class="num">2025 年</b>底全国约 <b class="num">1.48</b> 万户企业向约 <b class="num">167</b> 万名自然人反向开票近 <b class="num">9000 亿元</b>；《循环经济发展“十五五”规划》提出继续推进。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（生态文明实践，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener">统计局：1–8 月废弃资源综合利用业盈利 174.2 亿元<span class="ext">↗</span></a></h3>
-          <p class="sum">国家统计局：2026 年 1–8 月废弃资源综合利用业实现盈利 174.2 亿元。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener">统计局：<b class="num">1</b>–<b class="num">8 月</b>废弃资源综合利用业盈利 <b class="num">174.2 亿元</b><span class="ext">↗</span></a></h3>
+          <p class="sum">国家统计局：<b class="num">2026 年</b> <b class="num">1</b>–<b class="num">8 月</b>废弃资源综合利用业实现盈利 <b class="num">174.2 亿元</b>。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1181,8 +1199,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
   <aside class="rail">
     <h4>今日看点</h4>
     <a class="hl-item" href="#" data-mi="10"><span class="n">1</span><span class="t"><b>巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b><span>W 线（SMM 新能源）</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”，稀土出口限制可预期性列入三项目标</b><span>W 线（CCCEU《周•知》）</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">3</span><span class="t"><b>英国明确化学回收塑料质量平衡认证要求，2027 年 4 月起适用于塑料包装税再生含量核算</b><span>W 线（废塑料新观察）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>谢夫乔维奇：<b class="num">10 月</b> <b class="num">8</b>–<b class="num">9 日</b>北京 TIC 第二次会议“极其关键”，稀土出口限制可预期性列入三项目标</b><span>W 线（CCCEU《周•知》）</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">3</span><span class="t"><b>英国明确化学回收塑料质量平衡认证要求，<b class="num">2027 年</b> <b class="num">4 月</b>起适用于塑料包装税再生含量核算</b><span>W 线（废塑料新观察）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 

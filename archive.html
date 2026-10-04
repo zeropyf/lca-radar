@@ -705,7 +705,7 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
 .tb-theme{display:flex;align-items:center;margin-left:auto}
 /* 顶栏主题切换：紧凑三段 */
 .tb-theme .theme-switch{transform:scale(.82);transform-origin:right center;margin:0;transition:transform .3s ease}
-/* ===== 往期归档（v14：左侧月份边栏，主列缩窄） ===== */
+/* ===== 往期归档时间线（v25：纵向时间线，中轴线＋节点圆点） ===== */
 .arc-layout{display:flex;gap:36px;max-width:920px;margin:0 auto;padding:56px 20px 90px;align-items:flex-start}
 .arc-side{position:sticky;top:80px;width:168px;flex:none}
 .arc-side-t{font-size:12.5px;color:var(--gray);margin:0 0 10px;letter-spacing:.1em}
@@ -719,8 +719,45 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
 .arc-sub{color:var(--gray);font-size:13.5px;margin:0 0 30px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .pv{color:var(--faint);font-size:12.5px;white-space:nowrap}
 .pv b,.pv [id^="busuanzi_value_"]{font-weight:600;color:var(--gray);font-style:normal}
-.arc-ym{display:flex;align-items:center;gap:10px;margin:34px 0 16px;scroll-margin-top:84px}
-.arc-ym.first{margin-top:0}
+/* 时间线 */
+.tl{position:relative;margin:2px 0 0;padding:2px 0 8px 34px}
+.tl::before{content:"";position:absolute;left:10px;top:12px;bottom:12px;width:2px;border-radius:2px;
+  background:linear-gradient(to bottom,var(--accent),var(--line))}
+.tl-month{position:relative;margin:22px 0 4px;scroll-margin-top:84px;font-size:15px;font-weight:800;color:var(--primary)}
+.tl-month:first-child{margin-top:4px}
+.tl-month::before{content:"";position:absolute;left:-30px;top:50%;width:14px;height:14px;margin-top:-7px;box-sizing:border-box;
+  border-radius:50%;background:var(--accent);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--accent)}
+.tl-mc{font-size:12px;color:var(--gray);font-weight:400;margin-left:8px}
+.tl-item{position:relative;display:flex;align-items:center;gap:14px;margin:0 0 10px;padding:14px 16px;
+  border:1px solid var(--line);border-radius:14px;background:var(--card);text-decoration:none;color:inherit;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.tl-item::before{content:"";position:absolute;left:-30px;top:50%;width:12px;height:12px;margin-top:-6px;box-sizing:border-box;
+  border-radius:50%;background:var(--paper);border:3px solid var(--accent);transition:background .2s}
+.tl-item:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:var(--accent)}
+.tl-item:hover::before{background:var(--accent)}
+.tl-date{display:flex;flex-direction:column;align-items:center;min-width:54px;flex:none}
+.tl-date b{font-size:32px;font-weight:800;line-height:1;color:var(--primary);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.tl-date i{font-style:normal;font-size:12px;color:var(--gray);margin-top:6px;white-space:nowrap}
+.tl-body{flex:1;min-width:0}
+.tl-top{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.tl-issue{font-style:normal;font-size:12px;font-weight:700;color:var(--accent-deep);border:1px solid var(--accent);
+  border-radius:999px;padding:2px 11px;white-space:nowrap}
+.tl-meta{font-size:12.5px;color:var(--gray);white-space:nowrap}
+.tl-title{display:block;font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.6;text-wrap:balance;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tl-arrow{color:var(--gray);font-size:20px;transition:transform .22s ease,color .22s ease;flex:none}
+.tl-item:hover .tl-arrow{transform:translateX(5px);color:var(--accent-deep)}
+@media(max-width:640px){
+  .tl{padding-left:26px}
+  .tl::before{left:8px}
+  .tl-month::before{left:-24px}
+  .tl-item::before{left:-24px}
+  .tl-item{gap:10px;padding:12px}
+  .tl-date{min-width:44px}
+  .tl-date b{font-size:26px}
+  .tl-title{font-size:15px}
+  .tl-arrow{display:none}
+}
 /* 站点页脚（含访问量） */
 .site-foot{border-top:1px solid var(--line);padding:18px 28px;display:flex;justify-content:space-between;
   align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--faint)}
@@ -730,32 +767,6 @@ html:has(.theme-switch input[value="dark"]:checked) .tb-logo .logo-dark{display:
   .arc-side-t{display:none}
   .arc-side-a{white-space:nowrap;flex:none}
   .arc-main-col{max-width:none}
-}
-.arc-ym .ym-l{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
-.arc-ym .ym-l::before{content:"";width:4px;height:15px;border-radius:2px;background:var(--accent)}
-.arc-ym .ym-c{font-size:12.5px;color:var(--gray);font-weight:400}
-.arc-card{display:flex;align-items:center;gap:20px;padding:20px 22px;border:1px solid var(--line);
-  border-radius:16px;background:var(--card);text-decoration:none;color:inherit;margin:0 0 12px;
-  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.arc-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:var(--accent)}
-.arc-date{text-align:center;min-width:52px}
-.arc-date b{display:block;font-size:34px;font-weight:800;line-height:1;color:var(--ink);letter-spacing:-.01em}
-.arc-date span{font-size:12px;color:var(--gray)}
-.arc-main{flex:1;min-width:0}
-.arc-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.arc-issue{font-size:12px;font-weight:700;color:var(--accent-deep);border:1px solid var(--accent);
-  border-radius:999px;padding:1px 10px;white-space:nowrap}
-.arc-count{font-size:12.5px;color:var(--gray);white-space:nowrap}
-.arc-head{margin:0;font-size:15.5px;font-weight:600;line-height:1.6;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc-go{color:var(--gray);font-size:20px;transition:transform .22s ease,color .22s ease;flex:none}
-.arc-card:hover .arc-go{transform:translateX(5px);color:var(--accent-deep)}
-@media(max-width:640px){
-  .arc-wrap{padding:40px 16px 70px}
-  .arc-card{gap:14px;padding:16px}
-  .arc-date b{font-size:28px}
-  .arc-go{display:none}
-  .arc-head{font-size:14.5px}
 }
 /* 视图切换 */
 .view{display:none}
@@ -942,32 +953,16 @@ html.force-dark .topbar .theme-switch .thumb{transform:translateX(76px)}
 html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
+/* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
+::selection{background:rgba(0,190,190,.22)}
+.item .sum{text-align:justify;line-height:1.85}
+.item h3{font-size:19px;text-wrap:balance}
+.msum{text-align:justify}
+.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+.srcrow{letter-spacing:.02em}
 
 
-/* 往期归档卡片（布局/边栏/月份标题规则复用设计稿 CSS） */
-.arc-card{display:flex;align-items:center;gap:22px;background:var(--card);border:1px solid var(--line);
-  border-radius:16px;padding:20px 24px;margin:0 0 14px;text-decoration:none;
-  transition:border-color .2s,box-shadow .2s,transform .2s}
-.arc-card:hover{border-color:var(--accent);box-shadow:0 8px 26px rgba(0,190,190,.12);transform:translateY(-1px)}
-.ac-date{display:flex;flex-direction:column;align-items:center;min-width:66px}
-.ac-date b{font-size:40px;font-weight:800;color:var(--primary);line-height:1;font-variant-numeric:tabular-nums}
-.ac-date i{font-style:normal;font-size:12px;color:var(--gray);margin-top:6px;white-space:nowrap}
-.ac-main{flex:1;min-width:0}
-.ac-top{display:flex;align-items:center;gap:10px;margin-bottom:7px;flex-wrap:wrap}
-.ac-issue{font-style:normal;font-size:12px;font-weight:700;color:var(--accent-deep);
-  border:1px solid var(--accent);border-radius:999px;padding:2px 11px;white-space:nowrap}
-.ac-meta{font-size:12.5px;color:var(--gray)}
-.ac-title{display:block;font-size:17px;font-weight:700;color:var(--ink);line-height:1.55;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ac-arrow{font-size:22px;color:var(--faint);transition:color .2s,transform .2s;flex:none}
-.arc-card:hover .ac-arrow{color:var(--accent-deep);transform:translateX(4px)}
-@media(max-width:640px){
-  .arc-card{gap:14px;padding:16px}
-  .ac-date{min-width:52px}
-  .ac-date b{font-size:30px}
-  .ac-title{font-size:15px}
-  .ac-arrow{display:none}
-}
+/* 往期归档时间线样式来自设计稿主 CSS（构建器整块提取），此处无需重复定义 */
 
 </style>
 </head>
@@ -996,14 +991,15 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <aside class="arc-side"><p class="arc-side-t">月份</p><a class="arc-side-a on" href="#arc-m-2026-10">2026 年 10 月<span>4 期</span></a><a class="arc-side-a" href="#arc-m-2026-09">2026 年 9 月<span>1 期</span></a></aside>
 <div class="arc-main-col"><h1>往期归档</h1>
 <p class="arc-sub"><span>共 5 期 · 自 2026 年 9 月 30 日起</span></p>
-<div class="arc-ym first" id="arc-m-2026-10"><span class="ym-l">2026 年 10 月</span><span class="ym-c">4 期</span></div>
-<a class="arc-card" href="daily/2026-10-04.html"><span class="ac-date"><b>04</b><i>星期日</i></span><span class="ac-main"><span class="ac-top"><em class="ac-issue">第 5 期</em><span class="ac-meta">1 条收录 · 13 条一句话</span></span><b class="ac-title">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b></span><span class="ac-arrow">&rarr;</span></a>
-<a class="arc-card" href="daily/2026-10-03.html"><span class="ac-date"><b>03</b><i>星期六</i></span><span class="ac-main"><span class="ac-top"><em class="ac-issue">第 4 期</em><span class="ac-meta">1 条收录 · 9 条一句话</span></span><b class="ac-title">广州公交 1GWh 退役电池“合伙人”处置模式</b></span><span class="ac-arrow">&rarr;</span></a>
-<a class="arc-card" href="daily/2026-10-02.html"><span class="ac-date"><b>02</b><i>星期五</i></span><span class="ac-main"><span class="ac-top"><em class="ac-issue">第 3 期</em><span class="ac-meta">5 条收录 · 19 条一句话</span></span><b class="ac-title">CBAM 核查机构开始真正进场</b></span><span class="ac-arrow">&rarr;</span></a>
-<a class="arc-card" href="daily/2026-10-01.html"><span class="ac-date"><b>01</b><i>星期四</i></span><span class="ac-main"><span class="ac-top"><em class="ac-issue">第 2 期</em><span class="ac-meta">10 条收录 · 10 条一句话</span></span><b class="ac-title">WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="ac-arrow">&rarr;</span></a>
-<div class="arc-ym" id="arc-m-2026-09"><span class="ym-l">2026 年 9 月</span><span class="ym-c">1 期</span></div>
-<a class="arc-card" href="daily/2026-09-30.html"><span class="ac-date"><b>30</b><i>星期三</i></span><span class="ac-main"><span class="ac-top"><em class="ac-issue">第 1 期</em><span class="ac-meta">6 条收录 · 24 条一句话</span></span><b class="ac-title">七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span><span class="ac-arrow">&rarr;</span></a>
-</div></div>
+<div class="tl">
+<div class="tl-month" id="arc-m-2026-10"><span>2026 年 10 月</span><span class="tl-mc">4 期</span></div>
+<a class="tl-item" href="daily/2026-10-04.html"><span class="tl-date"><b>04</b><i>星期日</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 5 期</em><span class="tl-meta">1 条收录 · 13 条一句话</span></span><b class="tl-title">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-03.html"><span class="tl-date"><b>03</b><i>星期六</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 4 期</em><span class="tl-meta">1 条收录 · 9 条一句话</span></span><b class="tl-title">广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-02.html"><span class="tl-date"><b>02</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 3 期</em><span class="tl-meta">5 条收录 · 19 条一句话</span></span><b class="tl-title">CBAM 核查机构开始真正进场</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-01.html"><span class="tl-date"><b>01</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 2 期</em><span class="tl-meta">10 条收录 · 10 条一句话</span></span><b class="tl-title">WTO 争端解决机构设立 DS<b class="num">639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<div class="tl-month" id="arc-m-2026-09"><span>2026 年 9 月</span><span class="tl-mc">1 期</span></div>
+<a class="tl-item" href="daily/2026-09-30.html"><span class="tl-date"><b>30</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 1 期</em><span class="tl-meta">6 条收录 · 24 条一句话</span></span><b class="tl-title">七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+</div></div></div>
 </div>
 <footer class="site-foot"><span>LCA瞭望 · LCA RADAR</span><span class="pv">本站总访问 <span id="busuanzi_value_site_pv">…</span> · 访客 <span id="busuanzi_value_site_uv">…</span></span></footer>
 <script>
