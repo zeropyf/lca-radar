@@ -954,12 +954,16 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
-/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
+/* v26（2026-10-07）：周报 tab 并入日报页 */
+/* v27（2026-10-07）：移除关键数据高亮的元素包裹——行内元素边界会在 CJK 断行中引入异常断点
+   （G|20 拦腰截断、46100/46 被孤立成独行；keep-all、零宽连接符、inline-block 经 7 轮实测均无效），
+   _num 改为直通；数字等宽改由父级 font-variant-numeric:tabular-nums 统一设置 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
 .msum{text-align:justify}
-.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+/* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
+.tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
 
 
@@ -1001,7 +1005,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-05" href="2026-10-05.html">
       <span class="ad"><b>5</b><i>周一</i></span>
-      <span class="tx"><b>商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
+      <span class="tx"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
     </a>
     <a class="arc" id="arc-2026-10-04" href="2026-10-04.html">
       <span class="ad"><b>4</b><i>周日</i></span>
@@ -1009,7 +1013,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-03" href="2026-10-03.html">
       <span class="ad"><b>3</b><i>周六</i></span>
-      <span class="tx"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span>
+      <span class="tx"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b></span>
     </a>
     <a class="arc" id="arc-2026-10-02" href="2026-10-02.html">
       <span class="ad"><b>2</b><i>周五</i></span>
@@ -1017,14 +1021,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-01" href="2026-10-01.html">
       <span class="ad"><b>1</b><i>周四</i></span>
-      <span class="tx"><b>WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
+      <span class="tx"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
     </a>
     </div>
     <div class="arc-month open" data-t="arc-daily-2026-09"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 9 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-daily-2026-09">
     <a class="arc cur" id="arc-2026-09-30" href="#">
       <span class="ad"><b>30</b><i>周三</i></span>
-      <span class="tx"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span>
+      <span class="tx"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span>
     </a>
     </div>
     </div>
@@ -1076,26 +1080,26 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>工信部等七部门 · 一手 · 跨 电池产业链</span></div>
-          <h3><a href="https://www.miit.gov.cn/gyhxxhb/jgsj/dzxxsnew/zcwj/art/2026/art_6c2161b398414389a1bcc655d2113fa0.html" target="_blank" rel="noopener">七部门印发《新型电池产业发展&quot;十五五&quot;规划》：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b><span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">9 月</b> <b class="num">28 日</b>发布（成文 <b class="num">9 月</b> <b class="num">14 日</b>），工信部、发改委、交通运输部、商务部、市场监管总局、能源局、铁路局七部门联合印发《新型电池产业发展&quot;十五五&quot;规划》（工信部联规〔<b class="num">2026</b>〕<b class="num">220</b> 号）。设 <b class="num">2030 年</b>目标：动力电池能量密度 ≥<b class="num">400Wh/kg</b>、储能电池循环寿命 ≥<b class="num">15000 次</b>；部署建立电池碳足迹数据库、加快动力电池回收利用管理办法出台、落实生产者责任延伸制度。</p>
+          <h3><a href="https://www.miit.gov.cn/gyhxxhb/jgsj/dzxxsnew/zcwj/art/2026/art_6c2161b398414389a1bcc655d2113fa0.html" target="_blank" rel="noopener">七部门印发《新型电池产业发展&quot;十五五&quot;规划》：2030 年动力电池 ≥400Wh/kg<span class="ext">↗</span></a></h3>
+          <p class="sum">9 月 28 日发布（成文 9 月 14 日），工信部、发改委、交通运输部、商务部、市场监管总局、能源局、铁路局七部门联合印发《新型电池产业发展&quot;十五五&quot;规划》（工信部联规〔2026〕220 号）。设 2030 年目标：动力电池能量密度 ≥400Wh/kg、储能电池循环寿命 ≥15000 次；部署建立电池碳足迹数据库、加快动力电池回收利用管理办法出台、落实生产者责任延伸制度。</p>
           <a class="golink" href="https://www.miit.gov.cn/gyhxxhb/jgsj/dzxxsnew/zcwj/art/2026/art_6c2161b398414389a1bcc655d2113fa0.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>工信部节能司 · 一手</span></div>
-          <h3><a href="https://www.miit.gov.cn/jgsj/jns/gzdt/art/2026/art_0e3c4b82b6b544f3adb1b72577d04c64.html" target="_blank" rel="noopener">工信部发布中国 RoHS 信息报送情况（截至 <b class="num">2026</b>-<b class="num">08</b>-<b class="num">31</b>）<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">29</b> 当天发布，统计截至 <b class="num">8 月</b> <b class="num">31 日</b>的电器电子产品有害物质限制使用（中国 RoHS）信息报送情况更新。中国 RoHS 覆盖车用电子电气部件的有害物质管控与信息报送义务，报送口径可作供应链合规基线参考。（已核验列表页标题+日期，正文未通读）</p>
+          <h3><a href="https://www.miit.gov.cn/jgsj/jns/gzdt/art/2026/art_0e3c4b82b6b544f3adb1b72577d04c64.html" target="_blank" rel="noopener">工信部发布中国 RoHS 信息报送情况（截至 2026-08-31）<span class="ext">↗</span></a></h3>
+          <p class="sum">2026-09-29 当天发布，统计截至 8 月 31 日的电器电子产品有害物质限制使用（中国 RoHS）信息报送情况更新。中国 RoHS 覆盖车用电子电气部件的有害物质管控与信息报送义务，报送口径可作供应链合规基线参考。（已核验列表页标题+日期，正文未通读）</p>
           <a class="golink" href="https://www.miit.gov.cn/jgsj/jns/gzdt/art/2026/art_0e3c4b82b6b544f3adb1b72577d04c64.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>工信部 · 一手</span></div>
-          <h3><a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2026/art_00dd9284b8c6479dbba8ec8895d1abec.html" target="_blank" rel="noopener">工信部启动 <b class="num">2026 年</b>度绿色工厂／绿色供应链领航企业推荐（<b class="num">461</b> 号）<span class="ext">↗</span></a></h3>
-          <p class="sum">工信厅节函〔<b class="num">2026</b>〕<b class="num">461</b> 号（<b class="num">9</b>-<b class="num">29</b> 发布、落款 <b class="num">9</b>-<b class="num">24</b>），组织 <b class="num">2026 年</b>度绿色工厂、绿色供应链领航企业、绿色工业园区推荐及动态管理；现有&quot;国家绿色供应链管理企业&quot;名单不再保留，省级推荐截止 <b class="num">10</b>-<b class="num">30</b>。通知明确优先机械、汽车等产业链关联性强的行业，领航企业评价覆盖产品全生命周期绿色管理。一手正文直读已核验。</p>
+          <h3><a href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2026/art_00dd9284b8c6479dbba8ec8895d1abec.html" target="_blank" rel="noopener">工信部启动 2026 年度绿色工厂／绿色供应链领航企业推荐（461 号）<span class="ext">↗</span></a></h3>
+          <p class="sum">工信厅节函〔2026〕461 号（9-29 发布、落款 9-24），组织 2026 年度绿色工厂、绿色供应链领航企业、绿色工业园区推荐及动态管理；现有&quot;国家绿色供应链管理企业&quot;名单不再保留，省级推荐截止 10-30。通知明确优先机械、汽车等产业链关联性强的行业，领航企业评价覆盖产品全生命周期绿色管理。一手正文直读已核验。</p>
           <a class="golink" href="https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2026/art_00dd9284b8c6479dbba8ec8895d1abec.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>商务部 · 一手</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_702ac8398c8c47c79e5da9516cd3fba3.html" target="_blank" rel="noopener">商务部就欧盟酝酿欧版&quot;<b class="num">301</b>&quot;贸易工具答记者问<span class="ext">↗</span></a></h3>
-          <p class="sum">商务部新闻发言人就外媒报道的“欧盟相关成员国推动欧委会打造欧版’<b class="num">301</b>’贸易工具”作出回应，阐明中方立场。所谓欧版“<b class="num">301</b>”意在赋予欧委会类似美国<b class="num">301</b>调查的单边贸易执法权，若进入立法程序，将与欧盟反补贴调查、外国补贴条例等形成政策叠加。对电池与新能源汽车等对欧出口行业而言，意味着贸易合规审查链条进一步拉长，需跟踪欧委会后续立法动向。</p>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_702ac8398c8c47c79e5da9516cd3fba3.html" target="_blank" rel="noopener">商务部就欧盟酝酿欧版&quot;301&quot;贸易工具答记者问<span class="ext">↗</span></a></h3>
+          <p class="sum">商务部新闻发言人就外媒报道的“欧盟相关成员国推动欧委会打造欧版’301’贸易工具”作出回应，阐明中方立场。所谓欧版“301”意在赋予欧委会类似美国301调查的单边贸易执法权，若进入立法程序，将与欧盟反补贴调查、外国补贴条例等形成政策叠加。对电池与新能源汽车等对欧出口行业而言，意味着贸易合规审查链条进一步拉长，需跟踪欧委会后续立法动向。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_702ac8398c8c47c79e5da9516cd3fba3.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1106,14 +1110,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>EUR-Lex · 一手</span></div>
-          <h3><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2102" target="_blank" rel="noopener">欧盟 (EU) <b class="num">2026</b>/<b class="num">2102</b> 修订 EUDR 附件一：轮胎橡胶义务范围收窄<span class="ext">↗</span></a></h3>
-          <p class="sum">欧盟授权条例 (EU) <b class="num">2026</b>/<b class="num">2102</b> 修订零毁林法规 EUDR（(EU) <b class="num">2023</b>/<b class="num">1115</b>）附件一&quot;相关产品&quot;清单：ex <b class="num">4012</b>（翻新/旧充气轮胎）收窄为 ex <b class="num">4012</b> <b class="num">90</b> <b class="num">30</b>（仅新橡胶胎面），删除 ex <b class="num">4010</b>（输送带/传动带）与 ex <b class="num">4016</b>（橡胶杂件）；二手/旧产品与样品检验用途整体排除。<b class="num">2026</b>-<b class="num">09</b>-<b class="num">17</b> OJ 公报、<b class="num">09</b>-<b class="num">18</b> 生效。</p>
+          <h3><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2102" target="_blank" rel="noopener">欧盟 (EU) 2026/2102 修订 EUDR 附件一：轮胎橡胶义务范围收窄<span class="ext">↗</span></a></h3>
+          <p class="sum">欧盟授权条例 (EU) 2026/2102 修订零毁林法规 EUDR（(EU) 2023/1115）附件一&quot;相关产品&quot;清单：ex 4012（翻新/旧充气轮胎）收窄为 ex 4012 90 30（仅新橡胶胎面），删除 ex 4010（输送带/传动带）与 ex 4016（橡胶杂件）；二手/旧产品与样品检验用途整体排除。2026-09-17 OJ 公报、09-18 生效。</p>
           <a class="golink" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R2102" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News · 二手聚合 · 待一手核验</span></div>
           <h3><a href="https://batteriesnews.com/as-the-eu-digital-battery-passport-deadline-nears-carbmee-argues-the-real-test-is-data-not-the-qr-code/" target="_blank" rel="noopener">电池护照期限临近，Carbmee：真正的考验是数据、不是二维码<span class="ext">↗</span></a></h3>
-          <p class="sum">距离欧盟电池护照强制实施（<b class="num">2027年</b><b class="num">2月</b><b class="num">18日</b>）已不足半年，Carbmee撰文指出行业搞错了重点：真正的考验不是二维码载体本身，而是其背后约<b class="num">80</b>个必填数据字段的数据治理。企业需要采集、验证并打通碳足迹、再生含量、材料溯源、尽职调查等多维度数据，且要在供应链上下游之间实现可信流转。文章提醒，与其临近大限突击补作业，不如现在就把数据底座建起来；对正在搭建电池护照体系的企业有直接参考价值。</p>
+          <p class="sum">距离欧盟电池护照强制实施（2027年2月18日）已不足半年，Carbmee撰文指出行业搞错了重点：真正的考验不是二维码载体本身，而是其背后约80个必填数据字段的数据治理。企业需要采集、验证并打通碳足迹、再生含量、材料溯源、尽职调查等多维度数据，且要在供应链上下游之间实现可信流转。文章提醒，与其临近大限突击补作业，不如现在就把数据底座建起来；对正在搭建电池护照体系的企业有直接参考价值。</p>
           <a class="golink" href="https://batteriesnews.com/as-the-eu-digital-battery-passport-deadline-nears-carbmee-argues-the-real-test-is-data-not-the-qr-code/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1130,8 +1134,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>Antara（经 Reuters） · 二手</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX2cxN25wVFNrdEVZRS0wS0Fld3NYQXB2ckVHeHpOdWdackF2a05mTDdtZEQtU1A5cV9XYXdvdEJOQm5XeTRNNXpSZW0wdkJ1MkhrUFhEQXh" target="_blank" rel="noopener">印尼设定 <b class="num">2040 年</b>前低碳领域 <b class="num">6,180</b> 亿美元投资目标<span class="ext">↗</span></a></h3>
-          <p class="sum">印尼设定到<b class="num">2040年</b>在低碳领域吸引<b class="num">6,180</b>亿美元投资的目标，涵盖可再生能源、电网与绿色产业链。印尼作为全球最大镍资源国，其低碳投资布局与镍加工本土化政策直接相关，对动力电池上游供应链的区域格局有指示意义。</p>
+          <h3><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX2cxN25wVFNrdEVZRS0wS0Fld3NYQXB2ckVHeHpOdWdackF2a05mTDdtZEQtU1A5cV9XYXdvdEJOQm5XeTRNNXpSZW0wdkJ1MkhrUFhEQXh" target="_blank" rel="noopener">印尼设定 2040 年前低碳领域 6,180 亿美元投资目标<span class="ext">↗</span></a></h3>
+          <p class="sum">印尼设定到2040年在低碳领域吸引6,180亿美元投资的目标，涵盖可再生能源、电网与绿色产业链。印尼作为全球最大镍资源国，其低碳投资布局与镍加工本土化政策直接相关，对动力电池上游供应链的区域格局有指示意义。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX2cxN25wVFNrdEVZRS0wS0Fld3NYQXB2ckVHeHpOdWdackF2a05mTDdtZEQtU1A5cV9XYXdvdEJOQm5XeTRNNXpSZW0wdkJ1MkhrUFhEQXh" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1181,8 +1185,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>卡克武的电碳笔记（W） · 二手</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/f84X6gcpDoIkNMqzHIVrBA" target="_blank" rel="noopener">一天一个 CCER 案例 <b class="num">03</b>｜胜利油田伴生气利用<span class="ext">↗</span></a></h3>
-          <p class="sum">“一天一个CCER案例”系列第<b class="num">3</b>期，解析胜利油田伴生气回收利用项目的减排量核算逻辑。伴生气回收属于典型的甲烷减排场景，案例拆解了基准线设定与监测要点，对油气行业CCER项目开发有借鉴意义。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/f84X6gcpDoIkNMqzHIVrBA" target="_blank" rel="noopener">一天一个 CCER 案例 03｜胜利油田伴生气利用<span class="ext">↗</span></a></h3>
+          <p class="sum">“一天一个CCER案例”系列第3期，解析胜利油田伴生气回收利用项目的减排量核算逻辑。伴生气回收属于典型的甲烷减排场景，案例拆解了基准线设定与监测要点，对油气行业CCER项目开发有借鉴意义。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/f84X6gcpDoIkNMqzHIVrBA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1206,7 +1210,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>Carnegie · 待核实</span></div>
           <h3><a href="https://carnegieendowment.org/research/2026/09/battery-ecosystems-a-comparative-analysis-of-lithium-ion-tech-policy" target="_blank" rel="noopener">Carnegie《Battery Ecosystems》：锂电池技术政策比较分析<span class="ext">↗</span></a></h3>
-          <p class="sum">对中国、欧盟等主要经济体锂离子电池技术政策生态（技术路线、产业政策、供应链视角）的比较分析。页面结构化元数据显示 <b class="num">2026</b>-<b class="num">09</b>-<b class="num">29</b> 发布，但正文另有一处 &quot;September <b class="num">15,</b> <b class="num">2026</b>&quot; 字样，日期待复核；全文未通读，暂按元数据计入。</p>
+          <p class="sum">对中国、欧盟等主要经济体锂离子电池技术政策生态（技术路线、产业政策、供应链视角）的比较分析。页面结构化元数据显示 2026-09-29 发布，但正文另有一处 &quot;September 15, 2026&quot; 字样，日期待复核；全文未通读，暂按元数据计入。</p>
           <a class="golink" href="https://carnegieendowment.org/research/2026/09/battery-ecosystems-a-comparative-analysis-of-lithium-ion-tech-policy" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1233,7 +1237,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>LG 化学 · 企业披露</span></div>
           <h3><a href="https://www.lgcorp.com/media/release/30607" target="_blank" rel="noopener">LG 化学 × 大众集团 MOU：下一代汽车塑料与 PCR 材料合作<span class="ext">↗</span></a></h3>
-          <p class="sum">LG 化学与大众集团签署谅解备忘录（LG 官方 <b class="num">9</b>-<b class="num">28</b> 发布），合作开发下一代汽车用塑料（ABS、工程塑料、轻量化及新型复合材料），并探索将 PCR（消费后再生）材料用于大众主要品牌车型的内外饰件。MOU 阶段、非采购承诺；PCR 应用仍为&quot;探索&quot;表述。企业披露已核验。</p>
+          <p class="sum">LG 化学与大众集团签署谅解备忘录（LG 官方 9-28 发布），合作开发下一代汽车用塑料（ABS、工程塑料、轻量化及新型复合材料），并探索将 PCR（消费后再生）材料用于大众主要品牌车型的内外饰件。MOU 阶段、非采购承诺；PCR 应用仍为&quot;探索&quot;表述。企业披露已核验。</p>
           <a class="golink" href="https://www.lgcorp.com/media/release/30607" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1251,7 +1255,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>大众集团官网 · 企业披露一手</span></div>
           <h3><a href="https://www.volkswagen-group.com/en/press-releases/volkswagen-group-powerco-and-gotion-deepen-strategic-partnership-20710" target="_blank" rel="noopener">大众 × PowerCo × 国轩深化战略合作：三国三家合资企业量产 LFP 电芯与正极材料<span class="ext">↗</span></a></h3>
-          <p class="sum">大众集团、旗下电池公司PowerCo与国轩高科宣布深化战略合作：在西班牙瓦伦西亚、斯洛伐克Šurany、摩洛哥Kenitra三地设立三家合资企业，分别布局LFP电芯制造与正极材料产能；同时大众将出售所持国轩约<b class="num">5.3%</b>股权，属战略聚焦下的资本层面调整。这是欧洲本土LFP产业链落地的标志性进展——此前欧洲动力电池多押注三元路线；对中国电池企业的欧洲本土化模式（技术输出➕合资➕本地产能）有示范意义。</p>
+          <p class="sum">大众集团、旗下电池公司PowerCo与国轩高科宣布深化战略合作：在西班牙瓦伦西亚、斯洛伐克Šurany、摩洛哥Kenitra三地设立三家合资企业，分别布局LFP电芯制造与正极材料产能；同时大众将出售所持国轩约5.3%股权，属战略聚焦下的资本层面调整。这是欧洲本土LFP产业链落地的标志性进展——此前欧洲动力电池多押注三元路线；对中国电池企业的欧洲本土化模式（技术输出➕合资➕本地产能）有示范意义。</p>
           <a class="golink" href="https://www.volkswagen-group.com/en/press-releases/volkswagen-group-powerco-and-gotion-deepen-strategic-partnership-20710" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1262,14 +1266,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>环球零碳（W） · 二手</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/g1bzJofzK3jU-bDP~weOwQ" target="_blank" rel="noopener">韩国 <b class="num">8.4</b> 万亿韩元押注钠电和全固态<span class="ext">↗</span></a></h3>
-          <p class="sum">据公众号消息，韩国正以<b class="num">8.4</b>万亿韩元量级的投入押注钠离子电池与全固态电池，覆盖研发与产业化环节。韩系电池企业在三元与磷酸铁锂路线之外开辟第二曲线，意在下一代电池技术上抢占先机；具体出资结构与时间表待一手核验。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/g1bzJofzK3jU-bDP~weOwQ" target="_blank" rel="noopener">韩国 8.4 万亿韩元押注钠电和全固态<span class="ext">↗</span></a></h3>
+          <p class="sum">据公众号消息，韩国正以8.4万亿韩元量级的投入押注钠离子电池与全固态电池，覆盖研发与产业化环节。韩系电池企业在三元与磷酸铁锂路线之外开辟第二曲线，意在下一代电池技术上抢占先机；具体出资结构与时间表待一手核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/g1bzJofzK3jU-bDP~weOwQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>彭博新能源财经（W） · 二手</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/MK8lwCVnl3EVKMGOrhlLXQ" target="_blank" rel="noopener"><b class="num">2026 年</b>钠离子电池展望：发展势头增强<span class="ext">↗</span></a></h3>
-          <p class="sum">行业分析展望<b class="num">2026年</b>钠离子电池发展势头，认为在储能与低端动力市场，钠电的商业化进程正在加速。钠电的量产成本曲线与性能边界仍是关键变量，可结合国内钠电企业的装车动态一起跟踪。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/MK8lwCVnl3EVKMGOrhlLXQ" target="_blank" rel="noopener">2026 年钠离子电池展望：发展势头增强<span class="ext">↗</span></a></h3>
+          <p class="sum">行业分析展望2026年钠离子电池发展势头，认为在储能与低端动力市场，钠电的商业化进程正在加速。钠电的量产成本曲线与性能边界仍是关键变量，可结合国内钠电企业的装车动态一起跟踪。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/MK8lwCVnl3EVKMGOrhlLXQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1298,8 +1302,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>退役电池资源与再利用（W） · 二手</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/u~~ojy2A7sb8mp9DkYvJUw" target="_blank" rel="noopener"><b class="num">9 月</b>退役电池招标月报：公交退役持续放量、乘用车拆解加速<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">9月</b>退役动力电池招标月报显示，公交车退役电池持续放量，乘用车拆解也在加速。退役电池供给侧的变化直接决定回收产能利用率与再生料价格走势，是循环再生专题的高频跟踪指标。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/u~~ojy2A7sb8mp9DkYvJUw" target="_blank" rel="noopener">9 月退役电池招标月报：公交退役持续放量、乘用车拆解加速<span class="ext">↗</span></a></h3>
+          <p class="sum">9月退役动力电池招标月报显示，公交车退役电池持续放量，乘用车拆解也在加速。退役电池供给侧的变化直接决定回收产能利用率与再生料价格走势，是循环再生专题的高频跟踪指标。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/u~~ojy2A7sb8mp9DkYvJUw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1656,8 +1660,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b><span>工信部等七部门 · 一手</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>(EU) <b class="num">2026</b>/<b class="num">2102</b> 修订 EUDR 附件一</b><span>EUR-Lex · 一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b><span>工信部等七部门 · 一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>(EU) 2026/2102 修订 EUDR 附件一</b><span>EUR-Lex · 一手</span></span></a>
     <a class="hl-item" href="#" data-mi="22"><span class="n">3</span><span class="t"><b>大众 × PowerCo × 国轩三国三厂深化合作</b><span>大众集团官网 · 一手</span></span></a>
     <a class="hl-item" href="#" data-mi="5"><span class="n">4</span><span class="t"><b>电池护照期限临近：真正的考验是数据、不是二维码</b><span>Batteries News · 二手聚合</span></span></a>
     <a class="hl-item" href="#" data-mi="19"><span class="n">5</span><span class="t"><b>T&amp;E：在欧洲开电动车每公里成本不到柴油车一半</b><span>T&amp;E · 一手</span></span></a>

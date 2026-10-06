@@ -954,12 +954,16 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
-/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
+/* v26（2026-10-07）：周报 tab 并入日报页 */
+/* v27（2026-10-07）：移除关键数据高亮的元素包裹——行内元素边界会在 CJK 断行中引入异常断点
+   （G|20 拦腰截断、46100/46 被孤立成独行；keep-all、零宽连接符、inline-block 经 7 轮实测均无效），
+   _num 改为直通；数字等宽改由父级 font-variant-numeric:tabular-nums 统一设置 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
 .msum{text-align:justify}
-.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+/* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
+.tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
 
 
@@ -1001,7 +1005,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc cur" id="arc-2026-10-05" href="#">
       <span class="ad"><b>5</b><i>周一</i></span>
-      <span class="tx"><b>商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
+      <span class="tx"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
     </a>
     <a class="arc" id="arc-2026-10-04" href="2026-10-04.html">
       <span class="ad"><b>4</b><i>周日</i></span>
@@ -1009,7 +1013,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-03" href="2026-10-03.html">
       <span class="ad"><b>3</b><i>周六</i></span>
-      <span class="tx"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span>
+      <span class="tx"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b></span>
     </a>
     <a class="arc" id="arc-2026-10-02" href="2026-10-02.html">
       <span class="ad"><b>2</b><i>周五</i></span>
@@ -1017,14 +1021,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-01" href="2026-10-01.html">
       <span class="ad"><b>1</b><i>周四</i></span>
-      <span class="tx"><b>WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
+      <span class="tx"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
     </a>
     </div>
     <div class="arc-month open" data-t="arc-daily-2026-09"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 9 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-daily-2026-09">
     <a class="arc" id="arc-2026-09-30" href="2026-09-30.html">
       <span class="ad"><b>30</b><i>周三</i></span>
-      <span class="tx"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span>
+      <span class="tx"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span>
     </a>
     </div>
     </div>
@@ -1076,20 +1080,20 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（N64，一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener">商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问<span class="ext">↗</span></a></h3>
-          <p class="sum">商务部新闻发言人 <b class="num">2026</b>-<b class="num">10</b>-<b class="num">04</b> 就 <b class="num">9 月</b> <b class="num">30 日</b>–<b class="num">10 月</b> <b class="num">1 日</b>密尔沃基 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，产能过剩/强迫劳动/MFN 三议题未形成成果文件，中方强调 MFN 是多边体制基石并将参与 <b class="num">G20</b> 迈阿密峰会。</p>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener">商务部新闻发言人就 G20 贸易部长会议答记者问<span class="ext">↗</span></a></h3>
+          <p class="sum">商务部新闻发言人 2026-10-04 就 9 月 30 日–10 月 1 日密尔沃基 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，产能过剩/强迫劳动/MFN 三议题未形成成果文件，中方强调 MFN 是多边体制基石并将参与 G20 迈阿密峰会。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（青悦 ESG，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener">财政部就企业气候披露准则应用指南及电力钢铁等 <b class="num">9</b> 行业应用指南征求意见<span class="ext">↗</span></a></h3>
-          <p class="sum">财政部就全国范围企业气候披露准则应用指南及电力、钢铁等 <b class="num">9</b> 行业应用指南征求意见；疑为新一轮征求意见，原文未取得。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener">财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见<span class="ext">↗</span></a></h3>
+          <p class="sum">财政部就全国范围企业气候披露准则应用指南及电力、钢铁等 9 行业应用指南征求意见；疑为新一轮征求意见，原文未取得。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（碳究社，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener">绿色供应链领航企业评价：<b class="num">39</b> 项新指标<span class="ext">↗</span></a></h3>
-          <p class="sum">绿色供应链领航企业评价设 <b class="num">39</b> 项新指标，覆盖绿色采购、供应商管理、绿色生产、绿色回收、绿色信息披露等维度。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener">绿色供应链领航企业评价：39 项新指标<span class="ext">↗</span></a></h3>
+          <p class="sum">绿色供应链领航企业评价设 39 项新指标，覆盖绿色采购、供应商管理、绿色生产、绿色回收、绿色信息披露等维度。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1104,7 +1108,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>DOI 一手；W 线（环境能源可持续发展，full 正文转述）</span></div>
           <h3><a href="https://doi.org/10.1038/s41893-026-01931-7" target="_blank" rel="noopener">Nature Sustainability：全球石化行业排放与系统级深度脱碳路径<span class="ext">↗</span></a></h3>
-          <p class="sum">Nature Sustainability：全球石化行业排放与系统级深度脱碳路径（Meng 等）——<b class="num">2020 年</b>行业摇篮到大门排放 <b class="num">1.8</b>±<b class="num">0.7</b> GtCO₂e/年，中国占 <b class="num">37%</b>；石化/塑料上游排放因子对 <b class="num">I3</b> 塑料价值链 LCA 建模有参考价值。</p>
+          <p class="sum">Nature Sustainability：全球石化行业排放与系统级深度脱碳路径（Meng 等）——2020 年行业摇篮到大门排放 1.8±0.7 GtCO₂e/年，中国占 37%；石化/塑料上游排放因子对 I3 塑料价值链 LCA 建模有参考价值。</p>
           <a class="golink" href="https://doi.org/10.1038/s41893-026-01931-7" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1130,8 +1134,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（电池进化论，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener">海辰 <b class="num">587</b>Ah/<b class="num">6.25MWh</b> 系统技术路线与成本拆解<span class="ext">↗</span></a></h3>
-          <p class="sum">海辰 <b class="num">587</b>Ah/<b class="num">6.25MWh</b> 系统技术路线与成本拆解：大电芯化降本路径，企业/券商口径未独立核验。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener">海辰 587Ah/6.25MWh 系统技术路线与成本拆解<span class="ext">↗</span></a></h3>
+          <p class="sum">海辰 587Ah/6.25MWh 系统技术路线与成本拆解：大电芯化降本路径，企业/券商口径未独立核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1500,9 +1504,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b><span>商务部·新闻发布（N64，一手）</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>印度布局大型电解铝基地：安得拉邦划定约 <b class="num">6800</b> 亩备选地块，尚处前期规划</b><span>W 线（有色日鉴）</span></span></a>
-    <a class="hl-item" href="#" data-mi="5"><span class="n">3</span><span class="t"><b>海辰 <b class="num">587</b>Ah/<b class="num">6.25MWh</b> 系统技术路线与成本拆解：电芯成本降约 <b class="num">7.5%</b>、系统集成 BOM 降约 <b class="num">30%</b></b><span>W 线（电池进化论）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b><span>商务部·新闻发布（N64，一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>印度布局大型电解铝基地：安得拉邦划定约 6800 亩备选地块，尚处前期规划</b><span>W 线（有色日鉴）</span></span></a>
+    <a class="hl-item" href="#" data-mi="5"><span class="n">3</span><span class="t"><b>海辰 587Ah/6.25MWh 系统技术路线与成本拆解：电芯成本降约 7.5%、系统集成 BOM 降约 30%</b><span>W 线（电池进化论）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 

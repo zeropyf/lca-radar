@@ -954,12 +954,16 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
-/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
+/* v26（2026-10-07）：周报 tab 并入日报页 */
+/* v27（2026-10-07）：移除关键数据高亮的元素包裹——行内元素边界会在 CJK 断行中引入异常断点
+   （G|20 拦腰截断、46100/46 被孤立成独行；keep-all、零宽连接符、inline-block 经 7 轮实测均无效），
+   _num 改为直通；数字等宽改由父级 font-variant-numeric:tabular-nums 统一设置 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
 .msum{text-align:justify}
-.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+/* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
+.tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
 
 
@@ -1001,7 +1005,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-05" href="2026-10-05.html">
       <span class="ad"><b>5</b><i>周一</i></span>
-      <span class="tx"><b>商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
+      <span class="tx"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
     </a>
     <a class="arc" id="arc-2026-10-04" href="2026-10-04.html">
       <span class="ad"><b>4</b><i>周日</i></span>
@@ -1009,7 +1013,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-03" href="2026-10-03.html">
       <span class="ad"><b>3</b><i>周六</i></span>
-      <span class="tx"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span>
+      <span class="tx"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b></span>
     </a>
     <a class="arc" id="arc-2026-10-02" href="2026-10-02.html">
       <span class="ad"><b>2</b><i>周五</i></span>
@@ -1017,14 +1021,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc cur" id="arc-2026-10-01" href="#">
       <span class="ad"><b>1</b><i>周四</i></span>
-      <span class="tx"><b>WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
+      <span class="tx"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
     </a>
     </div>
     <div class="arc-month open" data-t="arc-daily-2026-09"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 9 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-daily-2026-09">
     <a class="arc" id="arc-2026-09-30" href="2026-09-30.html">
       <span class="ad"><b>30</b><i>周三</i></span>
-      <span class="tx"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span>
+      <span class="tx"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span>
     </a>
     </div>
     </div>
@@ -1077,7 +1081,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>生态环境部官网 · 一手</span></div>
           <h3><a href="https://www.mee.gov.cn/ywgz/ydqhbh/wsqtkz/202609/t20260930_1175605.shtml" target="_blank" rel="noopener">生态环境部召开国家产品碳足迹因子数据库数据入库专家评审会<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">9 月</b> <b class="num">16 日</b>生态环境部应对气候变化司组织召开“国家温室气体排放因子数据库—产品碳足迹模块”（国家产品碳足迹因子数据库）数据入库专家评审会（消息 <b class="num">9 月</b> <b class="num">30 日</b>发布）；<b class="num">20</b> 余位 LCA 与行业专家参会，对上海、浙江、山东、广东、云南等 <b class="num">5</b> 省（市）及有关地市、企业报送的电力、钢铁、水泥、电解铝、污水处理等单元过程数据做专业评审。</p>
+          <p class="sum">9 月 16 日生态环境部应对气候变化司组织召开“国家温室气体排放因子数据库—产品碳足迹模块”（国家产品碳足迹因子数据库）数据入库专家评审会（消息 9 月 30 日发布）；20 余位 LCA 与行业专家参会，对上海、浙江、山东、广东、云南等 5 省（市）及有关地市、企业报送的电力、钢铁、水泥、电解铝、污水处理等单元过程数据做专业评审。</p>
           <a class="golink" href="https://www.mee.gov.cn/ywgz/ydqhbh/wsqtkz/202609/t20260930_1175605.shtml" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1088,20 +1092,20 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>WTO 官网 · 一手</span></div>
-          <h3><a href="https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds639_e.htm" target="_blank" rel="noopener">WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">25</b>，WTO 争端解决机构（DSB）设立 <b class="num">DS639</b> 专家组（WT/<b class="num">DS639</b>/<b class="num">4</b>），审查俄罗斯诉欧盟 CBAM 案。俄方 <b class="num">2026</b>-<b class="num">07</b>-<b class="num">10</b> 首次申请被欧盟否决，第二次申请按规则自动通过。诉由：① CBAM 违反 GATT <b class="num">1994</b> 多项条款（最惠国待遇、关税约束、国民待遇、透明度、数量限制禁令等）及进口许可程序协议；② 欧盟 ETS 下向碳泄漏风险行业免费发放配额构成 SCM 协议下被禁止的出口补贴。阿根廷、巴西、加拿大、印度、印尼、日本、沙特、韩国、英国、美国等 <b class="num">18</b> 个以上成员保留第三方权利。</p>
+          <h3><a href="https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds639_e.htm" target="_blank" rel="noopener">WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序<span class="ext">↗</span></a></h3>
+          <p class="sum">2026-09-25，WTO 争端解决机构（DSB）设立 DS639 专家组（WT/DS639/4），审查俄罗斯诉欧盟 CBAM 案。俄方 2026-07-10 首次申请被欧盟否决，第二次申请按规则自动通过。诉由：① CBAM 违反 GATT 1994 多项条款（最惠国待遇、关税约束、国民待遇、透明度、数量限制禁令等）及进口许可程序协议；② 欧盟 ETS 下向碳泄漏风险行业免费发放配额构成 SCM 协议下被禁止的出口补贴。阿根廷、巴西、加拿大、印度、印尼、日本、沙特、韩国、英国、美国等 18 个以上成员保留第三方权利。</p>
           <a class="golink" href="https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds639_e.htm" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · 汽车海外技术合规联盟</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/xhCRoBdoaNYrLb6KocjLog" target="_blank" rel="noopener">欧盟拟对 &gt;<b class="num">2kWh</b> 可充电工业电池设最低电化学性能与耐久性要求，公众咨询 <b class="num">9</b>-<b class="num">29</b> 至 <b class="num">10</b>-<b class="num">27</b><span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">29</b>（布鲁塞尔时间），欧盟委员会发布授权法规草案，拟补充修订《欧盟电池法规》(EU) <b class="num">2023</b>/<b class="num">1542</b>，为 &gt;<b class="num">2kWh</b> 可充电工业电池建立最低电化学性能与耐久性要求，明确技术参数、测试计算方法及电池护照相关标准；公众咨询 <b class="num">9</b>-<b class="num">29</b> 至 <b class="num">10</b>-<b class="num">27</b>（布鲁塞尔午夜）。草案按住宅储能／重复性供能／按需型三类设指标，并引入“应力系数”（环境温度、放电深度、充放电 C 倍率），明确再使用／梯次利用／再制造电池如何证明达标。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/xhCRoBdoaNYrLb6KocjLog" target="_blank" rel="noopener">欧盟拟对 &gt;2kWh 可充电工业电池设最低电化学性能与耐久性要求，公众咨询 9-29 至 10-27<span class="ext">↗</span></a></h3>
+          <p class="sum">2026-09-29（布鲁塞尔时间），欧盟委员会发布授权法规草案，拟补充修订《欧盟电池法规》(EU) 2023/1542，为 &gt;2kWh 可充电工业电池建立最低电化学性能与耐久性要求，明确技术参数、测试计算方法及电池护照相关标准；公众咨询 9-29 至 10-27（布鲁塞尔午夜）。草案按住宅储能／重复性供能／按需型三类设指标，并引入“应力系数”（环境温度、放电深度、充放电 C 倍率），明确再使用／梯次利用／再制造电池如何证明达标。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/xhCRoBdoaNYrLb6KocjLog" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · climate 科学</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/UtU4oTxtxjH90CKFavgEAg" target="_blank" rel="noopener">意大利、捷克拟推动再度推迟欧盟 <b class="num">ETS2</b>，六国联名反对，<b class="num">10 月</b> <b class="num">9 日</b>部长会议定夺<span class="ext">↗</span></a></h3>
-          <p class="sum">据外交人士消息，意大利总理梅洛尼与捷克总理巴比什计划在布拉格会晤上要求推迟原定 <b class="num">2028 年</b>实施的 <b class="num">ETS2</b>（把建筑供暖和道路交通燃料纳入欧盟排放交易体系；此前已从原定时点推迟一年）。理由：能源价格高企下扩大碳市场将冲击建筑和交通部门、加重居民负担。丹麦、荷兰、西班牙、芬兰、瑞典、卢森堡六国联名文件明确反对再度延期，强调企业和家庭需要政策稳定性与可预期性。欧委会已提出抑制价格剧烈波动的工具，成员国部长预计 <b class="num">10 月</b> <b class="num">9 日</b>在卢森堡会议上决定。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/UtU4oTxtxjH90CKFavgEAg" target="_blank" rel="noopener">意大利、捷克拟推动再度推迟欧盟 ETS2，六国联名反对，10 月 9 日部长会议定夺<span class="ext">↗</span></a></h3>
+          <p class="sum">据外交人士消息，意大利总理梅洛尼与捷克总理巴比什计划在布拉格会晤上要求推迟原定 2028 年实施的 ETS2（把建筑供暖和道路交通燃料纳入欧盟排放交易体系；此前已从原定时点推迟一年）。理由：能源价格高企下扩大碳市场将冲击建筑和交通部门、加重居民负担。丹麦、荷兰、西班牙、芬兰、瑞典、卢森堡六国联名文件明确反对再度延期，强调企业和家庭需要政策稳定性与可预期性。欧委会已提出抑制价格剧烈波动的工具，成员国部长预计 10 月 9 日在卢森堡会议上决定。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/UtU4oTxtxjH90CKFavgEAg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1115,8 +1119,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>IVL DiVA · RSS</span></div>
-          <h3><a href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">IVL 发布 ProScale <b class="num">2.0</b> 方法学指南与实操指南 <b class="num">v1.0</b><span class="ext">↗</span></a></h3>
-          <p class="sum">瑞典环境研究院（IVL）在 DiVA 发布 ProScale <b class="num">2.0</b> 方法学指南 <b class="num">v1.0</b>、实操指南 <b class="num">v1.0</b> 及配套升级版网络工具（<b class="num">D6.3</b>）。ProScale 是基于生命周期的化学品足迹评分方法。</p>
+          <h3><a href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">IVL 发布 ProScale 2.0 方法学指南与实操指南 v1.0<span class="ext">↗</span></a></h3>
+          <p class="sum">瑞典环境研究院（IVL）在 DiVA 发布 ProScale 2.0 方法学指南 v1.0、实操指南 v1.0 及配套升级版网络工具（D6.3）。ProScale 是基于生命周期的化学品足迹评分方法。</p>
           <a class="golink" href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1142,8 +1146,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>CarNewsChina 经 Google News</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS2RtVmhFXzU0QTQzZlJXaTlpaURSSVNwYUtPcGk0NGFXdWxHYTIyLThvOFVKTGt6NDhzUHFzS0d4b" target="_blank" rel="noopener">国轩高科（大众支持）宣称固态电池突破，目标 <b class="num">150 美元</b>/kWh 与 <b class="num">400 Wh/kg</b><span class="ext">↗</span></a></h3>
-          <p class="sum">企业口径宣称，未见第三方验证；<b class="num">400 Wh/kg</b> 与十五五规划 <b class="num">2030 年</b>动力电池目标（≥<b class="num">400Wh/kg</b>）同量级，列为观察项。（仅有线索）</p>
+          <h3><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS2RtVmhFXzU0QTQzZlJXaTlpaURSSVNwYUtPcGk0NGFXdWxHYTIyLThvOFVKTGt6NDhzUHFzS0d4b" target="_blank" rel="noopener">国轩高科（大众支持）宣称固态电池突破，目标 150 美元/kWh 与 400 Wh/kg<span class="ext">↗</span></a></h3>
+          <p class="sum">企业口径宣称，未见第三方验证；400 Wh/kg 与十五五规划 2030 年动力电池目标（≥400Wh/kg）同量级，列为观察项。（仅有线索）</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS2RtVmhFXzU0QTQzZlJXaTlpaURSSVNwYUtPcGk0NGFXdWxHYTIyLThvOFVKTGt6NDhzUHFzS0d4b" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1154,26 +1158,26 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · 鑫椤资讯</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/QotDHM4FhLbow5IGWCjDLg" target="_blank" rel="noopener">美国对华石墨电极反补贴：追溯征税至 <b class="num">5 月</b><span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/QotDHM4FhLbow5IGWCjDLg" target="_blank" rel="noopener">美国对华石墨电极反补贴：追溯征税至 5 月<span class="ext">↗</span></a></h3>
           <p class="sum">涉目标材料的贸易救济程序性事项中唯一涉碳链材料的，直接影响相关供应链成本，终裁待跟踪。（二手，税率与终裁待跟踪）</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/QotDHM4FhLbow5IGWCjDLg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · 有色日鉴</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/glGb0OG72xqVS1u9qwgv2w" target="_blank" rel="noopener"><b class="num">8021</b> 合金扁锭试制突破<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/glGb0OG72xqVS1u9qwgv2w" target="_blank" rel="noopener">8021 合金扁锭试制突破<span class="ext">↗</span></a></h3>
           <p class="sum">软包电池用铝箔核心坯料，材料端技术进展，企业口径。（仅有摘要）</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/glGb0OG72xqVS1u9qwgv2w" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ASI 官网 / W 线</span></div>
-          <h3><a href="https://aluminium-stewardship.org/asi-certifies-amcor-flexibles-espana-s-l-u-against-performance-standard-v3-1-transitional-princi" target="_blank" rel="noopener">ASI 向安姆科西班牙与瑞士 Kreuzlingen 两家软包装工厂颁发绩效标准 <b class="num">V3.1</b> 认证<span class="ext">↗</span></a></h3>
-          <p class="sum">过渡版（准则 <b class="num">1</b>-<b class="num">4</b>），铝价值链认证持续扩围。（W 线 ASI 公众号）</p>
+          <h3><a href="https://aluminium-stewardship.org/asi-certifies-amcor-flexibles-espana-s-l-u-against-performance-standard-v3-1-transitional-princi" target="_blank" rel="noopener">ASI 向安姆科西班牙与瑞士 Kreuzlingen 两家软包装工厂颁发绩效标准 V3.1 认证<span class="ext">↗</span></a></h3>
+          <p class="sum">过渡版（准则 1-4），铝价值链认证持续扩围。（W 线 ASI 公众号）</p>
           <a class="golink" href="https://aluminium-stewardship.org/asi-certifies-amcor-flexibles-espana-s-l-u-against-performance-standard-v3-1-transitional-princi" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>European Aluminium · 协会立场文件</span></div>
           <h3><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">欧洲铝业协会呼吁在 EU-印度/EU-印尼自贸协定中加入有效保障措施<span class="ext">↗</span></a></h3>
-          <p class="sum">欧洲铝业协会 <b class="num">9</b>-<b class="num">30</b> 发布立场文件：EU-印度自贸协定已送欧盟理事会签署、EU-印尼全面经济伙伴关系协定正走欧洲议会批准程序；协会在两份协定生效后将立即取消铝产品进口关税，印度（<b class="num">460 万吨</b>原生铝，超欧盟 <b class="num">3 倍</b>，多用煤电）与印尼（<b class="num">2027 年</b>原生铝产能预计增至 <b class="num">320 万吨</b>）将冲击欧洲铝产业链，呼吁先做累积性行业影响评估并设预防性保障机制。</p>
+          <p class="sum">欧洲铝业协会 9-30 发布立场文件：EU-印度自贸协定已送欧盟理事会签署、EU-印尼全面经济伙伴关系协定正走欧洲议会批准程序；协会在两份协定生效后将立即取消铝产品进口关税，印度（460 万吨原生铝，超欧盟 3 倍，多用煤电）与印尼（2027 年原生铝产能预计增至 320 万吨）将冲击欧洲铝产业链，呼吁先做累积性行业影响评估并设预防性保障机制。</p>
           <a class="golink" href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1185,18 +1189,18 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>Batteries News · 二手 · 跨 循环再生</span></div>
           <h3><a href="https://batteriesnews.com/vianode-and-faam-advance-industrial-scale-closed-loop-recycling-of-battery-grade-graphite/" target="_blank" rel="noopener">Vianode × FAAM 验证电池生产废料石墨闭环回收，性能与原生相当<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">29</b>（奥斯陆），Vianode（先进电池材料公司）与欧洲能源方案商 FAAM 宣布，成功将 FAAM 电池生产废料（anode production scrap）中的石墨回收并转化为高性能负极材料；测试显示电化学性能与原生石墨相当。双方将扩大合作，向工业化部署推进，目标建立电池级石墨闭环价值链。</p>
+          <p class="sum">2026-09-29（奥斯陆），Vianode（先进电池材料公司）与欧洲能源方案商 FAAM 宣布，成功将 FAAM 电池生产废料（anode production scrap）中的石墨回收并转化为高性能负极材料；测试显示电化学性能与原生石墨相当。双方将扩大合作，向工业化部署推进，目标建立电池级石墨闭环价值链。</p>
           <a class="golink" href="https://batteriesnews.com/vianode-and-faam-advance-industrial-scale-closed-loop-recycling-of-battery-grade-graphite/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News · 二手</span></div>
           <h3><a href="https://batteriesnews.com/europes-battery-capacity-wont-meet-iaa-localisation-demand-new-study-shows-acea/" target="_blank" rel="noopener">ACEA 委托研究：欧洲电池产能难满足《工业加速器法案》（IAA）本土化要求<span class="ext">↗</span></a></h3>
-          <p class="sum">ACEA 委托 Mobility Global 的研究评估欧洲电池供应链能否满足 IAA 拟议的本土化要求。IAA 拟分两阶段设限：生效约 <b class="num">6</b> 个月后（约 <b class="num">2027</b>–<b class="num">2028</b>），电池需含 <b class="num">3</b> 个欧盟原产部件（含电芯）；约 <b class="num">3 年</b>后（约 <b class="num">2030</b>–<b class="num">2031</b>）增至 <b class="num">5</b> 个（含电芯、BMS、CAM 正极活性材料）。结论：即使欧洲电芯产能 <b class="num">2032 年</b>增至 <b class="num">306 GWh</b>，所有情景下供给仍追不上需求；若 IAA <b class="num">2028 年</b>生效，约 <b class="num">300</b> 万辆车可能因缺货无法获得“欧盟制造”激励；中重型商用车供需缺口 <b class="num">2032 年</b>达 <b class="num">23 GWh</b>，需求约为欧洲供给的 <b class="num">4 倍</b>。</p>
+          <p class="sum">ACEA 委托 Mobility Global 的研究评估欧洲电池供应链能否满足 IAA 拟议的本土化要求。IAA 拟分两阶段设限：生效约 6 个月后（约 2027–2028），电池需含 3 个欧盟原产部件（含电芯）；约 3 年后（约 2030–2031）增至 5 个（含电芯、BMS、CAM 正极活性材料）。结论：即使欧洲电芯产能 2032 年增至 306 GWh，所有情景下供给仍追不上需求；若 IAA 2028 年生效，约 300 万辆车可能因缺货无法获得“欧盟制造”激励；中重型商用车供需缺口 2032 年达 23 GWh，需求约为欧洲供给的 4 倍。</p>
           <a class="golink" href="https://batteriesnews.com/europes-battery-capacity-wont-meet-iaa-localisation-demand-new-study-shows-acea/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Panasonic · RSS</span></div>
-          <h3><a href="https://news.panasonic.com/global/topics/19034" target="_blank" rel="noopener">松下能源发布 Integrated Report <b class="num">2026</b><span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.panasonic.com/global/topics/19034" target="_blank" rel="noopener">松下能源发布 Integrated Report 2026<span class="ext">↗</span></a></h3>
           <p class="sum">年度综合报告，或含电池业务碳/ESG 披露更新，值得翻阅电池章节。（仅有 RSS 标题）</p>
           <a class="golink" href="https://news.panasonic.com/global/topics/19034" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1209,25 +1213,25 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>T&amp;E · 一手</span></div>
           <h3><a href="https://www.transportenvironment.org/articles/second-hand-evs-retain-their-value-better-than-industry-claims-study" target="_blank" rel="noopener">T&amp;E 研究：二手电动车保值率优于行业宣称，折旧差距被高估约八成<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">30</b>，T&amp;E 发布分析：在德、法、意、西四个最大欧盟市场，<b class="num">2025 年</b>二手交易数据显示燃油与电动车折旧率差为 <b class="num">12.9</b> 个百分点；但行业算法遗漏五个关键变量（补贴压低电动车购置价、燃油车购置税推高原价、通胀、车队构成、新车价格企稳），修正后差距缩小 <b class="num">80%</b> 至 <b class="num">2.6</b> 个百分点。<b class="num">2025 年</b>上下半年电动车折旧波动率已与燃油车持平；德国 <b class="num">2026 年</b>前 <b class="num">7</b> 个月二手 BEV 销量同比 +<b class="num">64%</b>。</p>
+          <p class="sum">2026-09-30，T&amp;E 发布分析：在德、法、意、西四个最大欧盟市场，2025 年二手交易数据显示燃油与电动车折旧率差为 12.9 个百分点；但行业算法遗漏五个关键变量（补贴压低电动车购置价、燃油车购置税推高原价、通胀、车队构成、新车价格企稳），修正后差距缩小 80% 至 2.6 个百分点。2025 年上下半年电动车折旧波动率已与燃油车持平；德国 2026 年前 7 个月二手 BEV 销量同比 +64%。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/second-hand-evs-retain-their-value-better-than-industry-claims-study" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · 鑫椤锂电回收与利用</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/jgujoLy065goZVpwcPbF9A" target="_blank" rel="noopener"><b class="num">R3</b> Lithium 北美首个商业化规模碳酸锂回收工厂投产<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026 年</b> <b class="num">9 月</b>，美国 <b class="num">R3</b> Lithium 位于佐治亚州卡温顿（Covington, GA）的电池回收工厂正式投产——北美首座稳定商业化运行的高纯碳酸锂回收设施，以废旧电池物料为 <b class="num">100%</b> 原料，产出纯度 <b class="num">99%</b> 碳酸锂。工厂具备年 <b class="num">3 万吨</b>电池物料破碎处理能力、碳酸锂年产 <b class="num">2500 吨</b>，并预留同等产能扩建空间；公司规划 <b class="num">2027 年</b>产量占美国本土碳酸锂总产量 <b class="num">50%</b> 以上。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/jgujoLy065goZVpwcPbF9A" target="_blank" rel="noopener">R3 Lithium 北美首个商业化规模碳酸锂回收工厂投产<span class="ext">↗</span></a></h3>
+          <p class="sum">2026 年 9 月，美国 R3 Lithium 位于佐治亚州卡温顿（Covington, GA）的电池回收工厂正式投产——北美首座稳定商业化运行的高纯碳酸锂回收设施，以废旧电池物料为 100% 原料，产出纯度 99% 碳酸锂。工厂具备年 3 万吨电池物料破碎处理能力、碳酸锂年产 2500 吨，并预留同等产能扩建空间；公司规划 2027 年产量占美国本土碳酸锂总产量 50% 以上。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/jgujoLy065goZVpwcPbF9A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>The Samay · PNN 通稿</span></div>
-          <h3><a href="https://thesamay.co.in/index.php/2026/09/30/how-mmcms-cercarbono-approved-methodology-turns-scrapped-vehicles-into-carbon-credits/" target="_blank" rel="noopener">MMCM 报废车碳信用方法学 CM-WM-ELV-<b class="num">01</b> 获 Cercarbono 批准<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">2026</b>-<b class="num">09</b>-<b class="num">30</b>（新德里），Meta Materials Circular Markets（MMCM）宣布其方法学 CM-WM-ELV-<b class="num">01</b>《Recovery and Recycling of Materials from End-of-Life Vehicles》获 Cercarbono 批准。该方法学把报废车回收的金属、塑料等材料替代原生料生产的减排量予以量化，碳信用与实际材料回收量挂钩而非拆解车辆数；项目须经独立验证。印度背景：NITI Aayog 预计报废车从 <b class="num">2020 年</b>约 <b class="num">1000</b> 万辆增至 <b class="num">2030 年</b>近 <b class="num">5000</b> 万辆；截至 <b class="num">2026</b>-<b class="num">01</b> 印度 <b class="num">129</b> 家正规拆解厂累计仅拆解约 <b class="num">43</b> 万辆。</p>
+          <h3><a href="https://thesamay.co.in/index.php/2026/09/30/how-mmcms-cercarbono-approved-methodology-turns-scrapped-vehicles-into-carbon-credits/" target="_blank" rel="noopener">MMCM 报废车碳信用方法学 CM-WM-ELV-01 获 Cercarbono 批准<span class="ext">↗</span></a></h3>
+          <p class="sum">2026-09-30（新德里），Meta Materials Circular Markets（MMCM）宣布其方法学 CM-WM-ELV-01《Recovery and Recycling of Materials from End-of-Life Vehicles》获 Cercarbono 批准。该方法学把报废车回收的金属、塑料等材料替代原生料生产的减排量予以量化，碳信用与实际材料回收量挂钩而非拆解车辆数；项目须经独立验证。印度背景：NITI Aayog 预计报废车从 2020 年约 1000 万辆增至 2030 年近 5000 万辆；截至 2026-01 印度 129 家正规拆解厂累计仅拆解约 43 万辆。</p>
           <a class="golink" href="https://thesamay.co.in/index.php/2026/09/30/how-mmcms-cercarbono-approved-methodology-turns-scrapped-vehicles-into-carbon-credits/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线 · 退役电池资源与再利用</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/wq-Rw-SWwGtkWHjosLeSzA" target="_blank" rel="noopener">湖北锂合环保推进天门市 <b class="num">5 万吨</b>电池回收项目<span class="ext">↗</span></a></h3>
-          <p class="sum">地方回收产能动态，投资/投产时点未见。（仅有摘要；<b class="num">9</b>-<b class="num">30</b> 晚间 pending 事项，今晨合并）</p>
+          <h3><a href="https://mp.weixin.qq.com/s/wq-Rw-SWwGtkWHjosLeSzA" target="_blank" rel="noopener">湖北锂合环保推进天门市 5 万吨电池回收项目<span class="ext">↗</span></a></h3>
+          <p class="sum">地方回收产能动态，投资/投产时点未见。（仅有摘要；9-30 晚间 pending 事项，今晨合并）</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/wq-Rw-SWwGtkWHjosLeSzA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1596,12 +1600,12 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">1</span><span class="t"><b>WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b><span>WTO 官网 · 一手</span></span></a>
-    <a class="hl-item" href="#" data-mi="2"><span class="n">2</span><span class="t"><b>欧盟拟对 &gt;<b class="num">2kWh</b> 工业电池设最低性能耐久性要求，公众咨询 <b class="num">9</b>-<b class="num">29</b> 至 <b class="num">10</b>-<b class="num">27</b></b><span>W 线 · 汽车海外技术合规联盟</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">1</span><span class="t"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b><span>WTO 官网 · 一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">2</span><span class="t"><b>欧盟拟对 &gt;2kWh 工业电池设最低性能耐久性要求，公众咨询 9-29 至 10-27</b><span>W 线 · 汽车海外技术合规联盟</span></span></a>
     <a class="hl-item" href="#" data-mi="0"><span class="n">3</span><span class="t"><b>生态环境部召开国家产品碳足迹因子数据库数据入库专家评审会</b><span>生态环境部官网 · 一手</span></span></a>
     <a class="hl-item" href="#" data-mi="12"><span class="n">4</span><span class="t"><b>ACEA 委托研究：欧洲电池产能难满足《工业加速器法案》本土化要求</b><span>Batteries News · 二手</span></span></a>
     <a class="hl-item" href="#" data-mi="14"><span class="n">5</span><span class="t"><b>T&amp;E：二手电动车保值率优于行业宣称，折旧差距被高估约八成</b><span>T&amp;E · 一手</span></span></a>
-    <a class="hl-item" href="#" data-mi="16"><span class="n">6</span><span class="t"><b>MMCM 报废车碳信用方法学 CM-WM-ELV-<b class="num">01</b> 获 Cercarbono 批准</b><span>The Samay · PNN 通稿</span></span></a>
+    <a class="hl-item" href="#" data-mi="16"><span class="n">6</span><span class="t"><b>MMCM 报废车碳信用方法学 CM-WM-ELV-01 获 Cercarbono 批准</b><span>The Samay · PNN 通稿</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 

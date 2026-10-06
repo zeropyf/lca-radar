@@ -954,12 +954,16 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
-/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
+/* v26（2026-10-07）：周报 tab 并入日报页 */
+/* v27（2026-10-07）：移除关键数据高亮的元素包裹——行内元素边界会在 CJK 断行中引入异常断点
+   （G|20 拦腰截断、46100/46 被孤立成独行；keep-all、零宽连接符、inline-block 经 7 轮实测均无效），
+   _num 改为直通；数字等宽改由父级 font-variant-numeric:tabular-nums 统一设置 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
 .msum{text-align:justify}
-.num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap}
+/* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
+.tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
 
 
@@ -1001,7 +1005,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-05" href="2026-10-05.html">
       <span class="ad"><b>5</b><i>周一</i></span>
-      <span class="tx"><b>商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
+      <span class="tx"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span>
     </a>
     <a class="arc" id="arc-2026-10-04" href="2026-10-04.html">
       <span class="ad"><b>4</b><i>周日</i></span>
@@ -1009,7 +1013,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc cur" id="arc-2026-10-03" href="#">
       <span class="ad"><b>3</b><i>周六</i></span>
-      <span class="tx"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span>
+      <span class="tx"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b></span>
     </a>
     <a class="arc" id="arc-2026-10-02" href="2026-10-02.html">
       <span class="ad"><b>2</b><i>周五</i></span>
@@ -1017,14 +1021,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </a>
     <a class="arc" id="arc-2026-10-01" href="2026-10-01.html">
       <span class="ad"><b>1</b><i>周四</i></span>
-      <span class="tx"><b>WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
+      <span class="tx"><b>WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span>
     </a>
     </div>
     <div class="arc-month open" data-t="arc-daily-2026-09"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 9 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-daily-2026-09">
     <a class="arc" id="arc-2026-09-30" href="2026-09-30.html">
       <span class="ad"><b>30</b><i>周三</i></span>
-      <span class="tx"><b>七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span>
+      <span class="tx"><b>七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span>
     </a>
     </div>
     </div>
@@ -1077,7 +1081,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（一手）</span></div>
           <h3><a href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_4fe7620f820b4ef1a3a053981d79d2ef.html" target="_blank" rel="noopener">二十国集团贸易部长会议在美国密尔沃基举行<span class="ext">↗</span></a></h3>
-          <p class="sum">二十国集团（<b class="num">G20</b>）贸易部长会议在美国密尔沃基举行；商务部新闻发布口径，具体会议成果与双边会晤内容待读原文。</p>
+          <p class="sum">二十国集团（G20）贸易部长会议在美国密尔沃基举行；商务部新闻发布口径，具体会议成果与双边会晤内容待读原文。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_4fe7620f820b4ef1a3a053981d79d2ef.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1104,7 +1108,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>W 线（RCR 资源节约与循环，full 正文转述）</span></div>
           <h3><a href="https://www.sciencedirect.com/science/article/pii/S0921344926004027" target="_blank" rel="noopener">RCR 新文：中国省域电动汽车电池关键材料需求与隐含碳排放的时空分析<span class="ext">↗</span></a></h3>
-          <p class="sum">东北大学等在 Resources, Conservation and Recycling 发文，构建 <b class="num">31</b> 省动态物质流模型，以三种汽车电动化路径×三种电池技术路径形成九类情景，刻画 <b class="num">2023</b>–<b class="num">2050 年</b>新能源汽车保有量、电池材料需求、退役材料回收潜力及原生材料生产隐含碳排放的时空变化；NMC 路线显著推高钴、镍需求，LFP 可降低钴、锰、镍压力，钠离子/固态电池路线或将部分压力转向锰。</p>
+          <p class="sum">东北大学等在 Resources, Conservation and Recycling 发文，构建 31 省动态物质流模型，以三种汽车电动化路径×三种电池技术路径形成九类情景，刻画 2023–2050 年新能源汽车保有量、电池材料需求、退役材料回收潜力及原生材料生产隐含碳排放的时空变化；NMC 路线显著推高钴、镍需求，LFP 可降低钴、锰、镍压力，钠离子/固态电池路线或将部分压力转向锰。</p>
           <a class="golink" href="https://www.sciencedirect.com/science/article/pii/S0921344926004027" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1118,8 +1122,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（高工锂电，行业资讯；partial 仅标题）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/IJQT1eM-~6navPIk6Z1nLw" target="_blank" rel="noopener"><b class="num">800</b> 度电上车，新能源重卡开始抢干线<span class="ext">↗</span></a></h3>
-          <p class="sum">纯电重卡 <b class="num">800kWh</b> 级大电量车型切入干线物流市场；正文缺失，具体车型与运营模式待核验。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/IJQT1eM-~6navPIk6Z1nLw" target="_blank" rel="noopener">800 度电上车，新能源重卡开始抢干线<span class="ext">↗</span></a></h3>
+          <p class="sum">纯电重卡 800kWh 级大电量车型切入干线物流市场；正文缺失，具体车型与运营模式待核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/IJQT1eM-~6navPIk6Z1nLw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1131,13 +1135,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="item">
           <div class="srcrow"><span>W 线（SteelMan 钢铁信息，full 正文）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/2cMDAeF0IYWt1UUWdn2hDg" target="_blank" rel="noopener">欧洲高炉为什么又开始重启了？<span class="ext">↗</span></a></h3>
-          <p class="sum">ArcelorMittal 波兰 Dąbrowa <b class="num">3</b> 号高炉 <b class="num">4 月</b> <b class="num">28 日</b>重新点火（停产 <b class="num">7</b> 个月，投入约 <b class="num">6000</b> 万兹罗提维修炉缸和冷却系统）、法国 Fos-sur-Mer、西班牙 Asturias 高炉恢复生产；EUROFER 预计 <b class="num">2026 年</b>欧盟表观钢材消费仅增长 <b class="num">0.4%</b>，仍比疫情前低约 <b class="num">1000 万吨</b>；<b class="num">2026 年</b> <b class="num">1</b>–<b class="num">7 月</b>欧盟自区外进口板材和长材合计 <b class="num">1361.2 万吨</b>（同比 -<b class="num">12.5%</b>）。政策背景：欧盟 <b class="num">7 月</b> <b class="num">1 日</b>起实施新的钢铁进口制度，年度免税配额降至约 <b class="num">1830 万吨</b>（较此前减少约 <b class="num">47%</b>），超过配额部分征收 <b class="num">50%</b> 关税。</p>
+          <p class="sum">ArcelorMittal 波兰 Dąbrowa 3 号高炉 4 月 28 日重新点火（停产 7 个月，投入约 6000 万兹罗提维修炉缸和冷却系统）、法国 Fos-sur-Mer、西班牙 Asturias 高炉恢复生产；EUROFER 预计 2026 年欧盟表观钢材消费仅增长 0.4%，仍比疫情前低约 1000 万吨；2026 年 1–7 月欧盟自区外进口板材和长材合计 1361.2 万吨（同比 -12.5%）。政策背景：欧盟 7 月 1 日起实施新的钢铁进口制度，年度免税配额降至约 1830 万吨（较此前减少约 47%），超过配额部分征收 50% 关税。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/2cMDAeF0IYWt1UUWdn2hDg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（冶材研报，KOL，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/Hnl2bZoqO9GP5VEMKesOzg" target="_blank" rel="noopener">中天钢铁烧结料面喷天然气试验：吨矿省固体燃料最高 <b class="num">3.77</b>kg、减 CO₂ <b class="num">9.19</b>kg<span class="ext">↗</span></a></h3>
-          <p class="sum">中天钢铁在烧结料面喷吹天然气试验：最佳喷吹量下吨矿节省固体燃料 <b class="num">2.52</b>–<b class="num">3.77</b> 公斤、二氧化碳减排 <b class="num">9.19</b> 公斤；首钢京唐将喷气与烟气循环结合，固体燃耗下降 <b class="num">7.81</b> 公斤。烧结环节燃料替代降碳的企业试验数据。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/Hnl2bZoqO9GP5VEMKesOzg" target="_blank" rel="noopener">中天钢铁烧结料面喷天然气试验：吨矿省固体燃料最高 3.77kg、减 CO₂ 9.19kg<span class="ext">↗</span></a></h3>
+          <p class="sum">中天钢铁在烧结料面喷吹天然气试验：最佳喷吹量下吨矿节省固体燃料 2.52–3.77 公斤、二氧化碳减排 9.19 公斤；首钢京唐将喷气与烟气循环结合，固体燃耗下降 7.81 公斤。烧结环节燃料替代降碳的企业试验数据。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/Hnl2bZoqO9GP5VEMKesOzg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1148,8 +1152,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>CnEVPost（媒体数据，SNE Research 口径）</span></div>
-          <h3><a href="https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/" target="_blank" rel="noopener"><b class="num">2026 年</b> <b class="num">1</b>–<b class="num">8 月</b>全球动力电池装机份额：CATL <b class="num">39.4%</b>、BYD <b class="num">15.1%</b><span class="ext">↗</span></a></h3>
-          <p class="sum">SNE Research 数据经 CnEVPost 整理：<b class="num">2026 年</b> <b class="num">1</b>–<b class="num">8 月</b>全球电动汽车电池市场份额，宁德时代 <b class="num">39.4%</b>、比亚迪 <b class="num">15.1%</b>。</p>
+          <h3><a href="https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/" target="_blank" rel="noopener">2026 年 1–8 月全球动力电池装机份额：CATL 39.4%、BYD 15.1%<span class="ext">↗</span></a></h3>
+          <p class="sum">SNE Research 数据经 CnEVPost 整理：2026 年 1–8 月全球电动汽车电池市场份额，宁德时代 39.4%、比亚迪 15.1%。</p>
           <a class="golink" href="https://cnevpost.com/2026/10/02/global-ev-battery-market-share-jan-aug-2026/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
@@ -1160,8 +1164,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News（企业动态转述）</span></div>
-          <h3><a href="https://batteriesnews.com/arkema-invests-e10-million-in-its-global-battery-rd-center-of-excellence-in-the-lyon-region/" target="_blank" rel="noopener">Arkema 投资 <b class="num">1000</b> 万欧元建设全球电池研发卓越中心<span class="ext">↗</span></a></h3>
-          <p class="sum">阿科玛（Arkema，PVDF 粘结剂供应商）投资 <b class="num">1000</b> 万欧元在里昂地区建设全球电池研发卓越中心；投资计划口径。</p>
+          <h3><a href="https://batteriesnews.com/arkema-invests-e10-million-in-its-global-battery-rd-center-of-excellence-in-the-lyon-region/" target="_blank" rel="noopener">Arkema 投资 1000 万欧元建设全球电池研发卓越中心<span class="ext">↗</span></a></h3>
+          <p class="sum">阿科玛（Arkema，PVDF 粘结剂供应商）投资 1000 万欧元在里昂地区建设全球电池研发卓越中心；投资计划口径。</p>
           <a class="golink" href="https://batteriesnews.com/arkema-invests-e10-million-in-its-global-battery-rd-center-of-excellence-in-the-lyon-region/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1172,8 +1176,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>W 线（退役电池资源与再利用，官方号，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/8Zh99I48xzczezXecOpgtw" target="_blank" rel="noopener">广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式：招合作商做储能产品<span class="ext">↗</span></a></h3>
-          <p class="sum"><b class="num">9 月</b> <b class="num">30 日</b>广州公交集团新能源发展有限责任公司发布废旧动力电池处置合作商库项目招商公告：处置总量不超过 <b class="num">100</b> 万千瓦时（<b class="num">1GWh</b>），招募 <b class="num">3</b>–<b class="num">5</b> 家合作商入库。模式不是竞价出售：广州公交提供退役动力电池作为生产原料，参选人以自有产能、技术及渠道资源投入，研发、生产电池产品（含家庭储能产品），销售后双方据实核算、协商确定收益分成。关键条款：处置中产生的全部专利权归广州公交；入库不等于有订单；参选人须在全国新能源汽车动力电池溯源信息平台拥有综合利用企业账号；不接受联合体。</p>
+          <h3><a href="https://mp.weixin.qq.com/s/8Zh99I48xzczezXecOpgtw" target="_blank" rel="noopener">广州公交 1GWh 退役电池“合伙人”处置模式：招合作商做储能产品<span class="ext">↗</span></a></h3>
+          <p class="sum">9 月 30 日广州公交集团新能源发展有限责任公司发布废旧动力电池处置合作商库项目招商公告：处置总量不超过 100 万千瓦时（1GWh），招募 3–5 家合作商入库。模式不是竞价出售：广州公交提供退役动力电池作为生产原料，参选人以自有产能、技术及渠道资源投入，研发、生产电池产品（含家庭储能产品），销售后双方据实核算、协商确定收益分成。关键条款：处置中产生的全部专利权归广州公交；入库不等于有订单；参选人须在全国新能源汽车动力电池溯源信息平台拥有综合利用企业账号；不接受联合体。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/8Zh99I48xzczezXecOpgtw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
       </div>
@@ -1530,7 +1534,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="9"><span class="n">1</span><span class="t"><b>广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b><span>W 线（退役电池资源与再利用）</span></span></a>
+    <a class="hl-item" href="#" data-mi="9"><span class="n">1</span><span class="t"><b>广州公交 1GWh 退役电池“合伙人”处置模式</b><span>W 线（退役电池资源与再利用）</span></span></a>
     <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>欧洲高炉重启潮：欧盟新钢铁进口配额制度发力</b><span>W 线（SteelMan 钢铁信息）</span></span></a>
     <a class="hl-item" href="#" data-mi="2"><span class="n">3</span><span class="t"><b>RCR：中国省域电池材料需求与隐含碳排放时空分析</b><span>W 线（RCR 资源节约与循环）转述</span></span></a>
     <div class="toc">
