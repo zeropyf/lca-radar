@@ -954,6 +954,7 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
+/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
@@ -994,11 +995,11 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <div class="tl">
 <div class="tl-month" id="arc-m-2026-10"><span>2026 年 10 月</span><span class="tl-mc">6 期</span></div>
 <a class="tl-item" href="daily/2026-10-06.html"><span class="tl-date"><b>06</b><i>星期二</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 7 期</em><span class="tl-meta">1 条收录 · 12 条一句话</span></span><b class="tl-title">《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）纳入全生命周期闭环管理体系</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-05.html"><span class="tl-date"><b>05</b><i>星期一</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 6 期</em><span class="tl-meta">1 条收录 · 6 条一句话</span></span><b class="tl-title">商务部新闻发言人就 G<b class="num">20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-05.html"><span class="tl-date"><b>05</b><i>星期一</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 6 期</em><span class="tl-meta">1 条收录 · 6 条一句话</span></span><b class="tl-title">商务部新闻发言人就 <b class="num">G20</b> 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-04.html"><span class="tl-date"><b>04</b><i>星期日</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 5 期</em><span class="tl-meta">1 条收录 · 13 条一句话</span></span><b class="tl-title">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-03.html"><span class="tl-date"><b>03</b><i>星期六</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 4 期</em><span class="tl-meta">1 条收录 · 9 条一句话</span></span><b class="tl-title">广州公交 <b class="num">1GWh</b> 退役电池“合伙人”处置模式</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-02.html"><span class="tl-date"><b>02</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 3 期</em><span class="tl-meta">5 条收录 · 19 条一句话</span></span><b class="tl-title">CBAM 核查机构开始真正进场</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-01.html"><span class="tl-date"><b>01</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 2 期</em><span class="tl-meta">10 条收录 · 10 条一句话</span></span><b class="tl-title">WTO 争端解决机构设立 DS<b class="num">639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-01.html"><span class="tl-date"><b>01</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 2 期</em><span class="tl-meta">10 条收录 · 10 条一句话</span></span><b class="tl-title">WTO 争端解决机构设立 <b class="num">DS639</b> 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <div class="tl-month" id="arc-m-2026-09"><span>2026 年 9 月</span><span class="tl-mc">1 期</span></div>
 <a class="tl-item" href="daily/2026-09-30.html"><span class="tl-date"><b>30</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 1 期</em><span class="tl-meta">6 条收录 · 24 条一句话</span></span><b class="tl-title">七部门&quot;十五五&quot;规划：<b class="num">2030 年</b>动力电池 ≥<b class="num">400Wh/kg</b></b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 </div></div></div>

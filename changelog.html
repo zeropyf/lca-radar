@@ -954,6 +954,7 @@ html.force-light .topbar .tb-logo img.logo-light{display:block}
 html.force-light .topbar .tb-logo img.logo-dark{display:none}
 html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* ===== v25 排印精修（2026-10-04）：正文两端对齐＋标题均衡换行＋关键数据高亮 ===== */
+/* v26（2026-10-07）：关键数据高亮不再把字母数字串拦腰切断——_num 正则把紧邻的 ASCII 字母并入同一 token（如 G20、DS639），避免 <b class="num"> 元素边界在 CJK 断行中引入异常断点 */
 ::selection{background:rgba(0,190,190,.22)}
 .item .sum{text-align:justify;line-height:1.85}
 .item h3{font-size:19px;text-wrap:balance}
@@ -988,6 +989,10 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
   <div class="clog">
     <h1>更新日志</h1>
     <div class="cday">
+    <div class="cday">
+      <div class="cday-h">2026 年 10 月 7 日 周三</div>
+      <div class="citem"><span class="t">全天</span><span class="tag launch">上线</span><div class="tx"><h3>周报并入日报页面</h3><p>日报页左侧新增「日报 / 周报」切换：周报不再单独成页，并入日报页面的周报 tab，含总览、三层八专题与值得下载的报告和数据；侧栏「往期」同步切换日报 / 周报归档。</p></div></div>
+    </div>
       <div class="cday-h">2026 年 10 月 4 日 周日</div>
       <div class="citem"><span class="t">22:53</span><span class="tag fix">修复</span><div class="tx"><h3>往期日报侧栏不再"丢"条目</h3><p>日报页左侧「往期」此前只列出截至本期的日报，点进旧期后、排在该期之前（更新）的日报条目会从侧栏消失；现改为所有日报页统一列出全部期，导航一致。</p></div></div>
     </div>
