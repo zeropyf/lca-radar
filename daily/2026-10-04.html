@@ -156,15 +156,30 @@ html{scroll-behavior:smooth}
 .typeseg span{cursor:pointer}
 /* v28：移动端日报/周报切换器（≤1180px 时 sidenav 隐藏，改用此入口） */
 .seg.m-typeseg{display:none}
-/* v28：周视图（周报 tab 版头右侧，占据原日报日历位置） */
-.wcal{min-width:236px;padding:2px}
-.wcal-list{display:flex;flex-direction:column;gap:6px;max-height:232px;overflow:auto}
-.wc{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:8px 12px;
-  border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink)}
-.wc b{font-size:13px}
-.wc i{font-style:normal;font-size:11.5px;color:var(--gray)}
-.wc.on{border-color:var(--accent);background:var(--hover)}
-.wc:hover{transform:translateY(-1px)}
+/* v28r4：双栏日历卡（左：期号＋点阵大数字＋日期；右：点阵日历） */
+.dcal-card,.wcal-card{display:flex;background:var(--card);border:1px solid var(--line);
+  border-radius:18px;overflow:hidden;min-width:350px;max-width:430px;flex:none}
+.dc-info{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:18px 16px;min-width:128px;border-right:1px solid var(--line);text-align:center;gap:2px}
+.dc-issue{font-size:12.5px;letter-spacing:5px;color:var(--gray);text-indent:5px}
+.bignum{font-size:72px;font-weight:800;line-height:1.1;letter-spacing:-1px;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.dc-date{font-size:13.5px;margin-top:4px}
+.dc-week{font-size:12px;color:var(--gray)}
+.dc-dots{flex:1;padding:14px 16px 12px;display:flex;flex-direction:column;min-width:0}
+.dc-weekrow{display:grid;grid-template-columns:repeat(7,1fr);font-size:10px;color:var(--faint);text-align:center;margin:6px 0 2px}
+.dc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px 4px;justify-items:center;align-items:center;padding:6px 0}
+.dc-grid.weeks{grid-template-columns:repeat(10,1fr);gap:11px 4px}
+.dd{width:6px;height:6px;border-radius:50%;background:var(--faint);opacity:.32}
+a.dd.has{background:var(--ink);opacity:1;width:9px;height:9px;cursor:pointer}
+a.dd.has:hover{transform:scale(1.3)}
+a.dd.has.cur{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--accent)}
+.dd.today{background:var(--accent);opacity:1;width:9px;height:9px;box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--accent)}
+.dd.future{opacity:.16}
+@media(max-width:1180px){
+  .dcal-card,.wcal-card{min-width:0;max-width:420px;margin:0 auto}
+  .bignum{font-size:72px}
+}
 .seg span{flex:1;text-align:center;font-size:12.5px;padding:5px 0;border-radius:999px;color:var(--gray);cursor:default;
   position:relative;z-index:1}
 .seg span.on{color:var(--primary);font-weight:700}
@@ -185,7 +200,9 @@ html{scroll-behavior:smooth}
 /* ---------- 中：主内容 ---------- */
 .maincol{min-width:0;padding:26px 0 60px}
 /* 刊头：标题左＋日历右，压缩纵向空间 */
-.masthead{display:flex;gap:28px;align-items:flex-start;margin:2px 0 22px}
+.masthead{display:flex;gap:24px;align-items:flex-start;margin:2px 0 22px}
+.masthead .mast-left{flex:1 1 auto;min-width:0}
+.masthead .mast{white-space:nowrap}
 .mast-left{flex:1;min-width:0}
 .mast-meta{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--gray);margin-bottom:4px}
 .mast-meta .issue-no{color:var(--primary);font-weight:700;letter-spacing:.08em}
@@ -468,7 +485,9 @@ html{scroll-behavior:smooth}
 /* ---------- 中：主内容 ---------- */
 .maincol{min-width:0;padding:26px 0 60px}
 /* 刊头：标题左＋日历右，压缩纵向空间 */
-.masthead{display:flex;gap:28px;align-items:flex-start;margin:2px 0 22px}
+.masthead{display:flex;gap:24px;align-items:flex-start;margin:2px 0 22px}
+.masthead .mast-left{flex:1 1 auto;min-width:0}
+.masthead .mast{white-space:nowrap}
 .mast-left{flex:1;min-width:0}
 .mast-meta{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--gray);margin-bottom:4px}
 .mast-meta .issue-no{color:var(--primary);font-weight:700;letter-spacing:.08em}
@@ -1075,10 +1094,18 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="brand-sub">LCA RADAR</div>
         <div class="mast-sub2"><span class="kind">早报</span><span>覆盖窗口：<span class="cov">2026-10-03 00:00–24:00</span><span class="tz">（Asia/Shanghai）</span></span></div>
       </div>
-      <div class="dcal">
-        <div class="dcal-mhead"><span>十月</span><span class="dcal-c">本月 7 期</span></div>
-        <div class="dcal-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
-        <div class="dcal-grid"><span class="dc"></span><span class="dc"></span><span class="dc"></span><a class="dc has" href="2026-10-01.html" title="10 月 1 日早报">1</a><a class="dc has" href="2026-10-02.html" title="10 月 2 日早报">2</a><a class="dc has" href="2026-10-03.html" title="10 月 3 日早报">3</a><a class="dc has today" href="2026-10-04.html" title="10 月 4 日早报">4</a><a class="dc has" href="2026-10-05.html" title="10 月 5 日早报">5</a><a class="dc has" href="2026-10-06.html" title="10 月 6 日早报">6</a><a class="dc has" href="2026-10-07.html" title="10 月 7 日早报">7</a><span class="dc">8</span><span class="dc">9</span><span class="dc">10</span><span class="dc">11</span><span class="dc">12</span><span class="dc">13</span><span class="dc">14</span><span class="dc">15</span><span class="dc">16</span><span class="dc">17</span><span class="dc">18</span><span class="dc">19</span><span class="dc">20</span><span class="dc">21</span><span class="dc">22</span><span class="dc">23</span><span class="dc">24</span><span class="dc">25</span><span class="dc">26</span><span class="dc">27</span><span class="dc">28</span><span class="dc">29</span><span class="dc">30</span><span class="dc">31</span><span class="dc"></span></div>
+      <div class="dcal-card">
+        <div class="dc-info">
+          <span class="dc-issue">第 5 期</span>
+          <span class="bignum">04</span>
+          <span class="dc-date">2026 年 10 月</span>
+          <span class="dc-week">周日</span>
+        </div>
+        <div class="dc-dots">
+          <div class="dcal-mhead"><span>十月</span><span class="dcal-c">本月 7 期</span></div>
+          <div class="dc-weekrow"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+          <div class="dc-grid"><span class="dd"></span><span class="dd"></span><span class="dd"></span><a class="dd has" href="2026-10-01.html" title="10 月 1 日早报"></a><a class="dd has" href="2026-10-02.html" title="10 月 2 日早报"></a><a class="dd has" href="2026-10-03.html" title="10 月 3 日早报"></a><a class="dd has cur" href="2026-10-04.html" title="10 月 4 日早报"></a><a class="dd has" href="2026-10-05.html" title="10 月 5 日早报"></a><a class="dd has" href="2026-10-06.html" title="10 月 6 日早报"></a><a class="dd has" href="2026-10-07.html" title="10 月 7 日早报"></a><span class="dd" title="10 月 8 日"></span><span class="dd" title="10 月 9 日"></span><span class="dd" title="10 月 10 日"></span><span class="dd" title="10 月 11 日"></span><span class="dd" title="10 月 12 日"></span><span class="dd" title="10 月 13 日"></span><span class="dd" title="10 月 14 日"></span><span class="dd" title="10 月 15 日"></span><span class="dd" title="10 月 16 日"></span><span class="dd" title="10 月 17 日"></span><span class="dd" title="10 月 18 日"></span><span class="dd" title="10 月 19 日"></span><span class="dd" title="10 月 20 日"></span><span class="dd" title="10 月 21 日"></span><span class="dd" title="10 月 22 日"></span><span class="dd" title="10 月 23 日"></span><span class="dd" title="10 月 24 日"></span><span class="dd" title="10 月 25 日"></span><span class="dd" title="10 月 26 日"></span><span class="dd" title="10 月 27 日"></span><span class="dd" title="10 月 28 日"></span><span class="dd" title="10 月 29 日"></span><span class="dd" title="10 月 30 日"></span><span class="dd" title="10 月 31 日"></span></div>
+        </div>
       </div>
     </div>
 
@@ -1244,10 +1271,70 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <div class="brand-sub">LCA RADAR</div>
         <div class="mast-sub2"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 2 日</span></div>
       </div>
-      <div class="wcal">
-        <div class="dcal-mhead"><span>周报</span><span class="dcal-c">共 1 期</span></div>
-        <div class="wcal-list">
-          <a class="wc on" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');return false;" title="第 1 期周报"><b>第 1 期</b><i>9/28–10/4</i></a>
+      <div class="wcal-card">
+        <div class="dc-info">
+          <span class="dc-issue">第 1 期</span>
+          <span class="bignum">40</span>
+          <span class="dc-date">2026 年第 40 周</span>
+          <span class="dc-week">09.28 — 10.04</span>
+        </div>
+        <div class="dc-dots">
+          <div class="dcal-mhead"><span>2026 年</span><span class="dcal-c">全年 1 期</span></div>
+          <div class="dc-grid weeks">
+            <span class="dd" title="第 1 周 · 12.29 — 01.04"></span>
+            <span class="dd" title="第 2 周 · 01.05 — 01.11"></span>
+            <span class="dd" title="第 3 周 · 01.12 — 01.18"></span>
+            <span class="dd" title="第 4 周 · 01.19 — 01.25"></span>
+            <span class="dd" title="第 5 周 · 01.26 — 02.01"></span>
+            <span class="dd" title="第 6 周 · 02.02 — 02.08"></span>
+            <span class="dd" title="第 7 周 · 02.09 — 02.15"></span>
+            <span class="dd" title="第 8 周 · 02.16 — 02.22"></span>
+            <span class="dd" title="第 9 周 · 02.23 — 03.01"></span>
+            <span class="dd" title="第 10 周 · 03.02 — 03.08"></span>
+            <span class="dd" title="第 11 周 · 03.09 — 03.15"></span>
+            <span class="dd" title="第 12 周 · 03.16 — 03.22"></span>
+            <span class="dd" title="第 13 周 · 03.23 — 03.29"></span>
+            <span class="dd" title="第 14 周 · 03.30 — 04.05"></span>
+            <span class="dd" title="第 15 周 · 04.06 — 04.12"></span>
+            <span class="dd" title="第 16 周 · 04.13 — 04.19"></span>
+            <span class="dd" title="第 17 周 · 04.20 — 04.26"></span>
+            <span class="dd" title="第 18 周 · 04.27 — 05.03"></span>
+            <span class="dd" title="第 19 周 · 05.04 — 05.10"></span>
+            <span class="dd" title="第 20 周 · 05.11 — 05.17"></span>
+            <span class="dd" title="第 21 周 · 05.18 — 05.24"></span>
+            <span class="dd" title="第 22 周 · 05.25 — 05.31"></span>
+            <span class="dd" title="第 23 周 · 06.01 — 06.07"></span>
+            <span class="dd" title="第 24 周 · 06.08 — 06.14"></span>
+            <span class="dd" title="第 25 周 · 06.15 — 06.21"></span>
+            <span class="dd" title="第 26 周 · 06.22 — 06.28"></span>
+            <span class="dd" title="第 27 周 · 06.29 — 07.05"></span>
+            <span class="dd" title="第 28 周 · 07.06 — 07.12"></span>
+            <span class="dd" title="第 29 周 · 07.13 — 07.19"></span>
+            <span class="dd" title="第 30 周 · 07.20 — 07.26"></span>
+            <span class="dd" title="第 31 周 · 07.27 — 08.02"></span>
+            <span class="dd" title="第 32 周 · 08.03 — 08.09"></span>
+            <span class="dd" title="第 33 周 · 08.10 — 08.16"></span>
+            <span class="dd" title="第 34 周 · 08.17 — 08.23"></span>
+            <span class="dd" title="第 35 周 · 08.24 — 08.30"></span>
+            <span class="dd" title="第 36 周 · 08.31 — 09.06"></span>
+            <span class="dd" title="第 37 周 · 09.07 — 09.13"></span>
+            <span class="dd" title="第 38 周 · 09.14 — 09.20"></span>
+            <span class="dd" title="第 39 周 · 09.21 — 09.27"></span>
+            <a class="dd has cur" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');return false;" title="第 40 周 · 09.28 — 10.04（第 1 期）"></a>
+            <span class="dd today" title="第 41 周（本周）"></span>
+            <span class="dd future" title="第 42 周 · 10.12 — 10.18"></span>
+            <span class="dd future" title="第 43 周 · 10.19 — 10.25"></span>
+            <span class="dd future" title="第 44 周 · 10.26 — 11.01"></span>
+            <span class="dd future" title="第 45 周 · 11.02 — 11.08"></span>
+            <span class="dd future" title="第 46 周 · 11.09 — 11.15"></span>
+            <span class="dd future" title="第 47 周 · 11.16 — 11.22"></span>
+            <span class="dd future" title="第 48 周 · 11.23 — 11.29"></span>
+            <span class="dd future" title="第 49 周 · 11.30 — 12.06"></span>
+            <span class="dd future" title="第 50 周 · 12.07 — 12.13"></span>
+            <span class="dd future" title="第 51 周 · 12.14 — 12.20"></span>
+            <span class="dd future" title="第 52 周 · 12.21 — 12.27"></span>
+            <span class="dd future" title="第 53 周 · 12.28 — 01.03"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -1674,8 +1761,8 @@ function showWeekly(date){
   document.querySelectorAll('.wk-rail').forEach(function(el){
     el.hidden = el.getAttribute('data-wdate') !== date;
   });
-  document.querySelectorAll('.wcal .wc').forEach(function(a){
-    a.classList.toggle('on', a.getAttribute('data-wdate') === date);
+  document.querySelectorAll('.wcal-card .dd').forEach(function(a){
+    a.classList.toggle('cur', a.getAttribute('data-wdate') === date);
   });
   document.querySelectorAll('#arc-weekly .arc').forEach(function(a){
     a.classList.toggle('cur', a.getAttribute('data-wdate') === date);
