@@ -12,8 +12,17 @@
 /* v28r6：周报 rail 内层包裹拉满高度，否则 .toc 被困住吸不住 */
 .wk-rail{min-height:100%}
 /* v28r6：下载清单独立于专题层级——独立卡片区 */
-.wk-downloads{margin:34px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
-.wk-downloads .wk-block-h{margin-bottom:14px}
+/* v28r7：下载清单——去卡片化，与专题区块统一，仅顶部加粗分隔线区隔 */
+.wk-downloads{margin:48px 0 8px;padding:0;background:none;border:none;border-radius:0;border-top:2px solid var(--ink)}
+.wk-downloads .wk-block-h{margin:20px 0 14px}
+.wk-table{table-layout:auto}
+.wk-table th{white-space:nowrap;font-size:13px;color:var(--gray);font-weight:600;text-align:left;padding:10px 12px 10px 0}
+.wk-table th:nth-child(1),.wk-table td:nth-child(1){width:auto}
+.wk-table td{padding:11px 12px 11px 0;vertical-align:top;line-height:1.65}
+.wk-table td:nth-child(2){white-space:nowrap;color:var(--gray);font-size:13px}
+.wk-table td:nth-child(3){white-space:nowrap;text-align:right}
+.wk-table tr{border-bottom:1px dashed var(--line)}
+.wk-table tr:last-child{border-bottom:none}
 /* 品牌色板：主色 Deep Night #0f2841 ｜ 点缀 Teal #00BEBE ｜ 暖 Golden Hour #FAEBDC ｜ 浅蓝 First Blue #DCEAFA */
 :root{
   --primary:#0f2841;          /* 主色：深蓝 */
@@ -162,6 +171,14 @@ html{scroll-behavior:smooth}
 /* v28：移动端日报/周报切换器（≤1180px 时 sidenav 隐藏，改用此入口） */
 .seg.m-typeseg{display:none}
 /* v28r5：结构化总览（修订说明＋数字卡＋口径定义列表＋主线＋证据备注） */
+/* v28r7：本周导读叙事＋周报专题区块强化 */
+.ov-lead{font-size:15px;line-height:1.85;color:var(--body);margin:0 0 18px}
+.ov-lead p{margin:0 0 10px}
+.ov-lead p:last-child{margin-bottom:0}
+/* 周报专题区块：子专题卡片化，与日报的扁平列表形成区隔 */
+#wmain .sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:20px}
+#wmain .sec-head{margin:0 0 12px}
+#wmain .layer-div{margin:40px 0 16px}
 .ov-note{font-size:12.5px;color:var(--gray);background:var(--hover);border-radius:10px;padding:10px 14px;margin:0 0 16px;line-height:1.7}
 .ov-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
 .ov-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center}
@@ -671,7 +688,10 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 /* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题；
    吸住高度 76/58 与左栏 pill 视觉顶部对齐 */
-.rail{align-self:stretch}
+.rail{align-self:stretch;border-left:1px solid var(--line);padding-left:28px}
+/* v28r7：目录中下载清单与产业专题视觉分隔 */
+.toc-sep{height:1px;background:var(--line);margin:10px 2px}
+.toc a.toc-dl{margin-top:2px;font-weight:600}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
 /* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
@@ -1023,6 +1043,36 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
 .tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
+/* ===== 周报（日报页周报 tab，评审稿新增） ===== */
+.wk-lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.wk-lead p{font-size:15px;color:var(--body);line-height:1.8;margin:0 0 12px}
+.wk-lead p:last-child{margin-bottom:0}
+.wk-block{margin:36px 0}
+.wk-block-h{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+.wk-block-h h2{font-size:20px;font-weight:800;margin:0;color:var(--ink)}
+.wk-block-h .en{font-size:12px;letter-spacing:.12em;color:var(--faint)}
+.wk-biz{font-size:14px;color:var(--body);margin:0 0 8px;padding-left:12px;border-left:3px solid var(--accent)}
+.wk-biz b{color:var(--accent-deep);font-size:12.5px;display:block;margin-bottom:2px;letter-spacing:.08em}
+.wk-sub{font-size:13.5px;font-weight:700;color:var(--primary);margin:24px 0 4px;display:flex;align-items:center;gap:8px}
+.wk-one{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px;color:var(--body);line-height:1.65}
+.wk-dot{color:var(--accent);flex:none;font-weight:700}
+.wk-one-tx a{color:var(--link)}
+.wk-one-link{color:var(--accent-deep);text-decoration:none;margin-left:6px;white-space:nowrap}
+.wk-badge{display:inline-block;font-size:11.5px;font-weight:700;color:var(--accent-deep);background:var(--blue-soft);border-radius:6px;padding:1px 7px;margin-right:8px;white-space:nowrap}
+.wk-badge.wk-zen{background:var(--seg-bg);color:var(--gray)}
+.wk-note{font-size:13.5px;color:var(--gray);line-height:1.75;margin:10px 0}
+.wk-note a{color:var(--link)}
+.wk-count{font-size:13px;color:var(--gray);white-space:nowrap}
+.wk-twrap{overflow-x:auto;margin:8px 0 20px;border:1px solid var(--line);border-radius:10px}
+.wk-table{width:100%;border-collapse:collapse;font-size:14px;table-layout:fixed}
+.wk-table th:nth-child(1),.wk-table td:nth-child(1){width:58%}
+.wk-table td{overflow-wrap:anywhere}
+.wk-table th:nth-child(2),.wk-table td:nth-child(2),.wk-table th:nth-child(3),.wk-table td:nth-child(3){white-space:nowrap}
+.wk-table th{background:var(--seg-bg);color:var(--primary);text-align:left;font-size:13px;padding:10px 12px;white-space:nowrap}
+.wk-table td{padding:10px 12px;border-top:1px solid var(--line);color:var(--body);line-height:1.65;vertical-align:top}
+.wk-table td a{color:var(--link)}
+.wk-table td:first-child{color:var(--body)}
+#wmain[hidden],#wrail[hidden]{display:none}
 
 
 </style>
@@ -1097,9 +1147,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <div id="arc-weekly" hidden>
     <div class="arc-month open" data-t="arc-weekly-2026-10"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 10 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-weekly-2026-10">
-    <a class="arc" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');setType(true);return false;">
-      <span class="ad"><b>02</b><i>周五</i></span>
-      <span class="tx"><b>第 1 期 · 9/28–10/2</b></span>
+    <a class="arc" data-wdate="2026-10-04" href="#" onclick="showWeekly('2026-10-04');setType(true);return false;">
+      <span class="ad"><b>04</b><i>周日</i></span>
+      <span class="tx"><b>第 1 期 · 9/28–10/4</b></span>
     </a>
     </div>
     </div>
@@ -1339,16 +1389,16 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       </div>
   </div>
   <div id="wmain" hidden>
-    <section class="wk-issue" data-wdate="2026-10-02">
+    <section class="wk-issue" data-wdate="2026-10-04">
 <div class="masthead">
       <div class="mast-left">
         <div class="mast-meta">
-          <span>2026 年 10 月 2 日 · 星期五</span>
+          <span>2026 年 10 月 4 日 · 星期日</span>
           <span class="issue-no">第 1 期</span>
         </div>
         <h1 class="mast"><span class="lca">LCA</span>瞭望</h1>
         <div class="brand-sub">LCA RADAR</div>
-        <div class="mast-sub2"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 2 日</span></div>
+        <div class="mast-sub2"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 4 日</span></div>
       </div>
       <div class="wcal-card">
         <div class="dc-info">
@@ -1399,7 +1449,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
             <span class="dd" title="第 37 周 · 09.07 — 09.13"></span>
             <span class="dd" title="第 38 周 · 09.14 — 09.20"></span>
             <span class="dd" title="第 39 周 · 09.21 — 09.27"></span>
-            <a class="dd has cur" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');return false;" title="第 40 周 · 09.28 — 10.04（第 1 期）"></a>
+            <a class="dd has cur" data-wdate="2026-10-04" href="#" onclick="showWeekly('2026-10-04');return false;" title="第 40 周 · 09.28 — 10.04（第 1 期）"></a>
             <span class="dd today" title="第 41 周（本周）"></span>
             <span class="dd future" title="第 42 周 · 10.12 — 10.18"></span>
             <span class="dd future" title="第 43 周 · 10.19 — 10.25"></span>
@@ -1423,7 +1473,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       <div class="st"><span class="n">–</span><span class="l">期推送</span></div>
       <div class="read">约 22 分钟读完</div>
     </div>
-<div class="wk-block" id="wk-overview"><div class="wk-block-h"><h2>总览</h2><div class="en">OVERVIEW</div></div><div class="ov-note">2026-10-07 修订：配合“每周一 8:30 发布、覆盖上周一至周日”新节奏，本期覆盖窗口由 9-28～10-02 扩展为 <b>2026-09-28～2026-10-04（周一至周日）</b>；10-03/10-04 周末全量扫描 38 候选逐条复核，新增补漏 2 条（一句话）：I3 Hydro×香奈儿低碳铝战略合作、M1 JIE《The circular economy, explained by AI》。</div><div class="ov-stats"><div class="ov-stat"><b>97</b><span>条正文</span><em>收录 25 · 一句话 72</em></div><div class="ov-stat"><b>7</b><span>期推送</span><em>9-28～10-04 每日早报</em></div><div class="ov-stat"><b>18</b><span>条审定补漏</span><em>收录 1 · 一句话 17</em></div><div class="ov-stat"><b>77</b><span>条去重活跃</span><em>9-28～10-02</em></div></div><dl class="ov-defs"><div><dt>推送</dt><dd>7 期（9-28～10-04 每日早报；另有 10-01 第 2 期完整重跑 1 次，重跑版未推送飞书、未写入 pushed_log）</dd></div><div><dt>活跃条目</dt><dd>77 条（9-28～10-02 去重后；收录 29 条、一句话 48 条；TERI CNG 研究与 JIE 二手车研究已按用户 10-01 晚指示从 10-01 期移除，不计入）</dd></div><div><dt>周末增补</dt><dd>10-03/10-04 国庆假期两天共 2 收录 22 一句话（第 4/5 期）</dd></div><div><dt>正文构成</dt><dd>97 条 ＝ 三层专题正文 70 条（收录 24、一句话 46）＋补漏增补块 27 条（收录 1、一句话 26）；其中 18 条为审定补漏，另 9 条为窗口增补（一句话 9：松下、RMI 系本周已推送条目，NextSource、大众×国轩、IAI、ES&amp;T 系 9-29 回溯已推送，CATL×BME、韩国钠电、钠离子展望系本窗口新增）</dd></div><div><dt>观察</dt><dd>国庆假期国内官方渠道自 10-01 起静默，C1 增量集中在 9-28～9-30</dd></div></dl><div class="ov-mains"><div class="ov-main"><span class="n">1</span><div><b>欧盟电池法规二级立法加速</b><p>Art 10 授权法案草案（&gt;2kWh 工业电池性能与耐久性）发布并进入公众咨询、CBAM 核查机构开始实质进场</p></div></div><div class="ov-main"><span class="n">2</span><div><b>IAA 本土化之争白热化</b><p>ACEA/Mobility Global&quot;产能缺口论&quot;与 T&amp;E 反驳研究直接对冲</p></div></div><div class="ov-main"><span class="n">3</span><div><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><p>七部门《新型电池产业发展&quot;十五五&quot;规划》明确 2030 年目标与回收利用管理办法出台时间表</p></div></div></div><p class="ov-ev">EUR-Lex 一手核验批（9-29）一次性确认了 2026/1778、2026/1736、2025/1561、2025/606 的编号/CELEX/公报/生效日，并纠正了此前性质描述，是本周证据等级提升最大的一项工作。</p><p>---</p></div>
+<div class="wk-block" id="wk-overview"><div class="wk-block-h"><h2>本周导读</h2><div class="en">WEEKLY DIGEST</div></div><div class="ov-lead"><p>本周三件大事勾勒出电池产业链的政策与市场主线：欧盟电池法规二级立法提速，Art 10 授权法案草案（&gt;2kWh 工业电池性能与耐久性）发布并进入公众咨询，CBAM 核查机构开始实质进场，合规时间表进一步收紧；IAA 车展期间本土化之争白热化，ACEA 与 Mobility Global 的&quot;产能缺口论&quot;遭遇 T&amp;E 反驳研究的直接对冲，欧洲电池产业链去风险路径分歧公开化；国内七部门《新型电池产业发展&quot;十五五&quot;规划》落地，明确 2030 年目标与回收利用管理办法出台时间表，&quot;十五五&quot;顶层设计进入执行阶段。国庆假期国内官方渠道自 10-01 起静默，增量集中在上半周。</p></div></div>
 <div class="layer" id="wk-layer-Ⅰ">
 <div class="layer-div"><span class="tick"></span><span class="zh">Ⅰ · 合规</span><span class="en">COMPLIANCE</span><span class="rule"></span><span class="lc">26 条</span></div>
 <div class="sec" id="wsec-c1">
@@ -1769,14 +1819,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </div>
   </aside>
   <aside class="rail" id="wrail" hidden>
-    <div class="wk-rail" data-wdate="2026-10-02">
+    <div class="wk-rail" data-wdate="2026-10-04">
 <h4>本周主线</h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b>欧盟电池法规二级立法加速</b><span>Art 10 授权法案草案发布并进入</span></span></a>
     <a class="hl-item" href="#wsec-i2"><span class="n">2</span><span class="t"><b>IAA 本土化之争白热化</b><span>ACEA/Mobility Glob</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">3</span><span class="t"><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><span>七部门《新型电池产业发展&quot;十五五&quot;规</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
-      <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>总览</a>
+      <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer">Ⅰ 合规</div>
       <a href="#wsec-c1"><span class="tdot" aria-hidden="true">•</span>国内法规与政策<span class="c">8 条</span></a>
       <a href="#wsec-c2"><span class="tdot" aria-hidden="true">•</span>海外法规与政策<span class="c">18 条</span></a>
@@ -1788,7 +1838,8 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       <a href="#wsec-i2"><span class="tdot" aria-hidden="true">•</span>电池产业链<span class="c">24 条</span></a>
       <a href="#wsec-i3"><span class="tdot" aria-hidden="true">•</span>上游基础材料<span class="c">10 条</span></a>
       <a href="#wsec-i4"><span class="tdot" aria-hidden="true">•</span>循环再生<span class="c">17 条</span></a>
-      <a href="#wk-downloads"><span class="tdot" aria-hidden="true">•</span>下载清单<span class="c">9 份</span></a>
+      <div class="toc-sep"></div>
+      <a href="#wk-downloads" class="toc-dl"><span class="tdot" aria-hidden="true">•</span>下载清单<span class="c">9 份</span></a>
     </div>
     </div>
   </aside>

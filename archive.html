@@ -12,8 +12,17 @@
 /* v28r6：周报 rail 内层包裹拉满高度，否则 .toc 被困住吸不住 */
 .wk-rail{min-height:100%}
 /* v28r6：下载清单独立于专题层级——独立卡片区 */
-.wk-downloads{margin:34px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
-.wk-downloads .wk-block-h{margin-bottom:14px}
+/* v28r7：下载清单——去卡片化，与专题区块统一，仅顶部加粗分隔线区隔 */
+.wk-downloads{margin:48px 0 8px;padding:0;background:none;border:none;border-radius:0;border-top:2px solid var(--ink)}
+.wk-downloads .wk-block-h{margin:20px 0 14px}
+.wk-table{table-layout:auto}
+.wk-table th{white-space:nowrap;font-size:13px;color:var(--gray);font-weight:600;text-align:left;padding:10px 12px 10px 0}
+.wk-table th:nth-child(1),.wk-table td:nth-child(1){width:auto}
+.wk-table td{padding:11px 12px 11px 0;vertical-align:top;line-height:1.65}
+.wk-table td:nth-child(2){white-space:nowrap;color:var(--gray);font-size:13px}
+.wk-table td:nth-child(3){white-space:nowrap;text-align:right}
+.wk-table tr{border-bottom:1px dashed var(--line)}
+.wk-table tr:last-child{border-bottom:none}
 /* 品牌色板：主色 Deep Night #0f2841 ｜ 点缀 Teal #00BEBE ｜ 暖 Golden Hour #FAEBDC ｜ 浅蓝 First Blue #DCEAFA */
 :root{
   --primary:#0f2841;          /* 主色：深蓝 */
@@ -162,6 +171,14 @@ html{scroll-behavior:smooth}
 /* v28：移动端日报/周报切换器（≤1180px 时 sidenav 隐藏，改用此入口） */
 .seg.m-typeseg{display:none}
 /* v28r5：结构化总览（修订说明＋数字卡＋口径定义列表＋主线＋证据备注） */
+/* v28r7：本周导读叙事＋周报专题区块强化 */
+.ov-lead{font-size:15px;line-height:1.85;color:var(--body);margin:0 0 18px}
+.ov-lead p{margin:0 0 10px}
+.ov-lead p:last-child{margin-bottom:0}
+/* 周报专题区块：子专题卡片化，与日报的扁平列表形成区隔 */
+#wmain .sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:20px}
+#wmain .sec-head{margin:0 0 12px}
+#wmain .layer-div{margin:40px 0 16px}
 .ov-note{font-size:12.5px;color:var(--gray);background:var(--hover);border-radius:10px;padding:10px 14px;margin:0 0 16px;line-height:1.7}
 .ov-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
 .ov-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center}
@@ -671,7 +688,10 @@ a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 /* 右栏"本期版面"：随页面下铺，滚动到该位置后吸住常驻（左栏式固定），便于跳转专题/子专题；
    吸住高度 76/58 与左栏 pill 视觉顶部对齐 */
-.rail{align-self:stretch}
+.rail{align-self:stretch;border-left:1px solid var(--line);padding-left:28px}
+/* v28r7：目录中下载清单与产业专题视觉分隔 */
+.toc-sep{height:1px;background:var(--line);margin:10px 2px}
+.toc a.toc-dl{margin-top:2px;font-weight:600}
 .rail .toc{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
 /* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
@@ -1023,6 +1043,36 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 /* v27：_num 不再包裹元素；数字等宽改由父级统一设置，无断行副作用 */
 .tx b,.item h3,.item .sum,.hl-item .t b,.tl-title{font-variant-numeric:tabular-nums}
 .srcrow{letter-spacing:.02em}
+/* ===== 周报（日报页周报 tab，评审稿新增） ===== */
+.wk-lead{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.wk-lead p{font-size:15px;color:var(--body);line-height:1.8;margin:0 0 12px}
+.wk-lead p:last-child{margin-bottom:0}
+.wk-block{margin:36px 0}
+.wk-block-h{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+.wk-block-h h2{font-size:20px;font-weight:800;margin:0;color:var(--ink)}
+.wk-block-h .en{font-size:12px;letter-spacing:.12em;color:var(--faint)}
+.wk-biz{font-size:14px;color:var(--body);margin:0 0 8px;padding-left:12px;border-left:3px solid var(--accent)}
+.wk-biz b{color:var(--accent-deep);font-size:12.5px;display:block;margin-bottom:2px;letter-spacing:.08em}
+.wk-sub{font-size:13.5px;font-weight:700;color:var(--primary);margin:24px 0 4px;display:flex;align-items:center;gap:8px}
+.wk-one{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px;color:var(--body);line-height:1.65}
+.wk-dot{color:var(--accent);flex:none;font-weight:700}
+.wk-one-tx a{color:var(--link)}
+.wk-one-link{color:var(--accent-deep);text-decoration:none;margin-left:6px;white-space:nowrap}
+.wk-badge{display:inline-block;font-size:11.5px;font-weight:700;color:var(--accent-deep);background:var(--blue-soft);border-radius:6px;padding:1px 7px;margin-right:8px;white-space:nowrap}
+.wk-badge.wk-zen{background:var(--seg-bg);color:var(--gray)}
+.wk-note{font-size:13.5px;color:var(--gray);line-height:1.75;margin:10px 0}
+.wk-note a{color:var(--link)}
+.wk-count{font-size:13px;color:var(--gray);white-space:nowrap}
+.wk-twrap{overflow-x:auto;margin:8px 0 20px;border:1px solid var(--line);border-radius:10px}
+.wk-table{width:100%;border-collapse:collapse;font-size:14px;table-layout:fixed}
+.wk-table th:nth-child(1),.wk-table td:nth-child(1){width:58%}
+.wk-table td{overflow-wrap:anywhere}
+.wk-table th:nth-child(2),.wk-table td:nth-child(2),.wk-table th:nth-child(3),.wk-table td:nth-child(3){white-space:nowrap}
+.wk-table th{background:var(--seg-bg);color:var(--primary);text-align:left;font-size:13px;padding:10px 12px;white-space:nowrap}
+.wk-table td{padding:10px 12px;border-top:1px solid var(--line);color:var(--body);line-height:1.65;vertical-align:top}
+.wk-table td a{color:var(--link)}
+.wk-table td:first-child{color:var(--body)}
+#wmain[hidden],#wrail[hidden]{display:none}
 
 
 /* 往期归档时间线样式来自设计稿主 CSS（构建器整块提取），此处无需重复定义 */
