@@ -9,6 +9,11 @@
 <title>LCA瞭望 · LCA RADAR · 第 8 期早报</title>
 <style>
 
+/* v28r6：周报 rail 内层包裹拉满高度，否则 .toc 被困住吸不住 */
+.wk-rail{min-height:100%}
+/* v28r6：下载清单独立于专题层级——独立卡片区 */
+.wk-downloads{margin:34px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.wk-downloads .wk-block-h{margin-bottom:14px}
 /* 品牌色板：主色 Deep Night #0f2841 ｜ 点缀 Teal #00BEBE ｜ 暖 Golden Hour #FAEBDC ｜ 浅蓝 First Blue #DCEAFA */
 :root{
   --primary:#0f2841;          /* 主色：深蓝 */
@@ -156,6 +161,26 @@ html{scroll-behavior:smooth}
 .typeseg span{cursor:pointer}
 /* v28：移动端日报/周报切换器（≤1180px 时 sidenav 隐藏，改用此入口） */
 .seg.m-typeseg{display:none}
+/* v28r5：结构化总览（修订说明＋数字卡＋口径定义列表＋主线＋证据备注） */
+.ov-note{font-size:12.5px;color:var(--gray);background:var(--hover);border-radius:10px;padding:10px 14px;margin:0 0 16px;line-height:1.7}
+.ov-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
+.ov-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center}
+.ov-stat b{font-size:26px;display:block;line-height:1.2;font-variant-numeric:tabular-nums}
+.ov-stat span{font-size:12.5px;display:block;margin-top:2px}
+.ov-stat em{font-style:normal;display:block;font-size:11px;color:var(--gray);margin-top:2px}
+.ov-defs{margin:0 0 18px}
+.ov-defs>div{display:flex;gap:12px;padding:9px 2px;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.7}
+.ov-defs>div:last-child{border-bottom:none}
+.ov-defs dt{flex:none;min-width:64px;font-weight:700;color:var(--accent);white-space:nowrap}
+.ov-defs dd{margin:0;color:var(--body)}
+.ov-mains{display:flex;flex-direction:column;gap:10px;margin:0 0 16px}
+.ov-main{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ov-main .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ov-main b{font-size:14px}
+.ov-main p{margin:4px 0 0;font-size:13px;color:var(--body);line-height:1.7}
+.ov-ev{font-size:12.5px;color:var(--gray);border-left:3px solid var(--accent);padding:2px 0 2px 12px;line-height:1.7;margin:0}
+@media(max-width:640px){.ov-stats{grid-template-columns:repeat(2,1fr)}}
 /* v28r4：双栏日历卡（左：期号＋点阵大数字＋日期；右：点阵日历） */
 .dcal-card,.wcal-card{display:flex;background:var(--card);border:1px solid var(--line);
   border-radius:18px;overflow:hidden;min-width:350px;max-width:430px;flex:none}
@@ -1074,7 +1099,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <div class="arclist" id="arc-weekly-2026-10">
     <a class="arc" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');setType(true);return false;">
       <span class="ad"><b>02</b><i>周五</i></span>
-      <span class="tx"><b>第 1 期 · 9/28–10/4</b></span>
+      <span class="tx"><b>第 1 期 · 9/28–10/2</b></span>
     </a>
     </div>
     </div>
@@ -1353,12 +1378,10 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <div class="stats">
       <div class="st"><span class="n">97</span><span class="l">条（收录 25 · 一句话 72）</span></div>
       <div class="st"><span class="n">9</span><span class="l">份值得下载</span></div>
-      <div class="st"><span class="n">7</span><span class="l">期推送</span></div>
+      <div class="st"><span class="n">–</span><span class="l">期推送</span></div>
       <div class="read">约 22 分钟读完</div>
     </div>
-<div class="wk-block" id="wk-overview"><div class="wk-block-h"><h2>总览</h2><div class="en">OVERVIEW</div></div><div class="wk-lead"><p>（2026-10-07 修订：配合“每周一 8:30 发布、覆盖上周一至周日”新节奏，本期覆盖窗口由 9-28～10-02 扩展为 <b>2026-09-28～2026-10-04（周一至周日）</b>；10-03/10-04 周末全量扫描 38 候选逐条复核，新增补漏 2 条（一句话）：I3 Hydro×香奈儿低碳铝战略合作、M1 JIE《The circular economy, explained by AI》。）</p>
-<p>本周共推送 <b>7 期</b>（9-28～10-04 每日早报；另有 10-01 第 2 期完整重跑 1 次，重跑版未推送飞书、未写入 pushed_log），9-28～10-02 去重后活跃条目 <b>77 条</b>（收录 29 条、一句话 48 条；TERI CNG 研究与 JIE 二手车研究已按用户 10-01 晚指示从 10-01 期移除，不计入），10-03/10-04 国庆假期两天共 2 收录 22 一句话（第 4/5 期）。周报全量扫描审定补漏 <b>18 条</b>（收录 1、一句话 17）。本期正文共 <b>97 条</b>（收录 25 条、一句话 72 条）＝三层专题正文 70 条（收录 24、一句话 46）＋补漏增补块 27 条（收录 1、一句话 26）；补漏增补块中 18 条为审定补漏，另 9 条为窗口增补（一句话 9：松下、RMI 系本周已推送条目，NextSource、大众×国轩、IAI、ES&amp;T 系 9-29 回溯已推送，CATL×BME、韩国钠电、钠离子展望系本窗口新增）。国庆假期国内官方渠道自 10-01 起静默，C1 增量集中在 9-28～9-30。本周三条主线：① <b>欧盟电池法规二级立法加速</b>——Art 10 授权法案草案（&gt;2kWh 工业电池性能与耐久性）发布并进入公众咨询、CBAM 核查机构开始实质进场；② <b>IAA 本土化之争白热化</b>——ACEA/Mobility Global&quot;产能缺口论&quot;与 T&amp;E 反驳研究直接对冲；③ <b>中国电池产业&quot;十五五&quot;顶层设计落地</b>——七部门《新型电池产业发展&quot;十五五&quot;规划》明确 2030 年目标与回收利用管理办法出台时间表。EUR-Lex 一手核验批（9-29）一次性确认了 2026/1778、2026/1736、2025/1561、2025/606 的编号/CELEX/公报/生效日，并纠正了此前性质描述，是本周证据等级提升最大的一项工作。</p>
-<p>---</p></div></div>
+<div class="wk-block" id="wk-overview"><div class="wk-block-h"><h2>总览</h2><div class="en">OVERVIEW</div></div><div class="ov-note">2026-10-07 修订：配合“每周一 8:30 发布、覆盖上周一至周日”新节奏，本期覆盖窗口由 9-28～10-02 扩展为 <b>2026-09-28～2026-10-04（周一至周日）</b>；10-03/10-04 周末全量扫描 38 候选逐条复核，新增补漏 2 条（一句话）：I3 Hydro×香奈儿低碳铝战略合作、M1 JIE《The circular economy, explained by AI》。</div><div class="ov-stats"><div class="ov-stat"><b>97</b><span>条正文</span><em>收录 25 · 一句话 72</em></div><div class="ov-stat"><b>7</b><span>期推送</span><em>9-28～10-04 每日早报</em></div><div class="ov-stat"><b>18</b><span>条审定补漏</span><em>收录 1 · 一句话 17</em></div><div class="ov-stat"><b>77</b><span>条去重活跃</span><em>9-28～10-02</em></div></div><dl class="ov-defs"><div><dt>推送</dt><dd>7 期（9-28～10-04 每日早报；另有 10-01 第 2 期完整重跑 1 次，重跑版未推送飞书、未写入 pushed_log）</dd></div><div><dt>活跃条目</dt><dd>77 条（9-28～10-02 去重后；收录 29 条、一句话 48 条；TERI CNG 研究与 JIE 二手车研究已按用户 10-01 晚指示从 10-01 期移除，不计入）</dd></div><div><dt>周末增补</dt><dd>10-03/10-04 国庆假期两天共 2 收录 22 一句话（第 4/5 期）</dd></div><div><dt>正文构成</dt><dd>97 条 ＝ 三层专题正文 70 条（收录 24、一句话 46）＋补漏增补块 27 条（收录 1、一句话 26）；其中 18 条为审定补漏，另 9 条为窗口增补（一句话 9：松下、RMI 系本周已推送条目，NextSource、大众×国轩、IAI、ES&amp;T 系 9-29 回溯已推送，CATL×BME、韩国钠电、钠离子展望系本窗口新增）</dd></div><div><dt>观察</dt><dd>国庆假期国内官方渠道自 10-01 起静默，C1 增量集中在 9-28～9-30</dd></div></dl><div class="ov-mains"><div class="ov-main"><span class="n">1</span><div><b>欧盟电池法规二级立法加速</b><p>Art 10 授权法案草案（&gt;2kWh 工业电池性能与耐久性）发布并进入公众咨询、CBAM 核查机构开始实质进场</p></div></div><div class="ov-main"><span class="n">2</span><div><b>IAA 本土化之争白热化</b><p>ACEA/Mobility Global&quot;产能缺口论&quot;与 T&amp;E 反驳研究直接对冲</p></div></div><div class="ov-main"><span class="n">3</span><div><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><p>七部门《新型电池产业发展&quot;十五五&quot;规划》明确 2030 年目标与回收利用管理办法出台时间表</p></div></div></div><p class="ov-ev">EUR-Lex 一手核验批（9-29）一次性确认了 2026/1778、2026/1736、2025/1561、2025/606 的编号/CELEX/公报/生效日，并纠正了此前性质描述，是本周证据等级提升最大的一项工作。</p><p>---</p></div>
 <div class="layer" id="wk-layer-Ⅰ">
 <div class="layer-div"><span class="tick"></span><span class="zh">Ⅰ · 合规</span><span class="en">COMPLIANCE</span><span class="rule"></span><span class="lc">26 条</span></div>
 <div class="sec" id="wsec-c1">
@@ -1679,7 +1702,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx"><span class="wk-badge">补漏</span>CSEP India《Battery Circularity in India》：印度电动车电池循环的十亿美元级长期机会（9-29，路透 Sustainable；智库报告，二手） <a class="wk-one-link" href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPSjUzNEdqV3J2Z1B5UFN2LXZkSWpWOWhCa1lIQWtYMlptTGlLUTQ1UmdVa0YwZ2dSNTd" target="_blank" rel="noopener">↗</a></div></div>
 </div>
 </div>
-<div class="wk-block" id="wk-downloads"><div class="wk-block-h"><h2>值得下载的报告和数据</h2><div class="en">REPORTS &amp; DATA</div></div><div class="wk-twrap"><table class="wk-table"><thead><tr><th>报告/数据</th><th>出处</th><th>官方获取入口</th></tr></thead><tbody><tr><td>《Battery Ecosystems》锂电池技术政策比较分析（中国/欧盟等）</td><td>Carnegie</td><td><a href="https://carnegieendowment.org/research/2026/09/battery-ecosystems-a-comparative-analysis-of-lithium-ion-tech-policy" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Leveraging the IAA to build Europe&#x27;s battery value chain》＋配套新闻稿《Ready to scale》</td><td>T&amp;E</td><td><a href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>ProScale 2.0 方法学指南 v1.0、实操指南 v1.0</td><td>IVL</td><td><a href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《A Circular Economy Act delivering a strong EU market for secondary raw materials》联合声明（31 家协会，EPR 统一框架 6 项诉求）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>再生含量对外声明透明度要求（与 ISO 14021:2026 挂钩）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/09/26-09-29-European-Aluminium_Transparency-statement-on-recycled-content-.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>EU-印度/EU-印尼自贸协定行业声明</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>2026 全球饮料容器回收数据集</td><td>IAI/全球饮料罐循环联盟</td><td><a href="https://international-aluminium.org/aluminium-cans-lead-global-beverage-recycling-new-international-dataset-shows/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Fair game: Restoring technology neutrality through plug-in hybrid utility factor adjustment》（约 92 万辆插混实测数据；实际排放达认证值 3.5→4.6 倍）</td><td>ICCT</td><td><a href="https://theicct.org/publication/fair-game-restoring-technology-neutrality-through-plug-in-hybrid-utility-factor-adjustment-sept26/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>中国产 LFP 与 NMC811 动力电池包全生命周期碳足迹对比（LFP 300.34 / NMC811 293.49 kgCO₂e/kWh）</td><td>Int J LCA</td><td><a href="https://link.springer.com/article/10.1007/s11367-026-02749-3" target="_blank" rel="noopener">获取 ↗</a></td></tr></tbody></table></div></div>
+<div class="wk-block wk-downloads" id="wk-downloads"><div class="wk-block-h"><h2>值得下载的报告和数据</h2><div class="en">REPORTS &amp; DATA</div></div><div class="wk-twrap"><table class="wk-table"><thead><tr><th>报告/数据</th><th>出处</th><th>官方获取入口</th></tr></thead><tbody><tr><td>《Battery Ecosystems》锂电池技术政策比较分析（中国/欧盟等）</td><td>Carnegie</td><td><a href="https://carnegieendowment.org/research/2026/09/battery-ecosystems-a-comparative-analysis-of-lithium-ion-tech-policy" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Leveraging the IAA to build Europe&#x27;s battery value chain》＋配套新闻稿《Ready to scale》</td><td>T&amp;E</td><td><a href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>ProScale 2.0 方法学指南 v1.0、实操指南 v1.0</td><td>IVL</td><td><a href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《A Circular Economy Act delivering a strong EU market for secondary raw materials》联合声明（31 家协会，EPR 统一框架 6 项诉求）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>再生含量对外声明透明度要求（与 ISO 14021:2026 挂钩）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/09/26-09-29-European-Aluminium_Transparency-statement-on-recycled-content-.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>EU-印度/EU-印尼自贸协定行业声明</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>2026 全球饮料容器回收数据集</td><td>IAI/全球饮料罐循环联盟</td><td><a href="https://international-aluminium.org/aluminium-cans-lead-global-beverage-recycling-new-international-dataset-shows/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Fair game: Restoring technology neutrality through plug-in hybrid utility factor adjustment》（约 92 万辆插混实测数据；实际排放达认证值 3.5→4.6 倍）</td><td>ICCT</td><td><a href="https://theicct.org/publication/fair-game-restoring-technology-neutrality-through-plug-in-hybrid-utility-factor-adjustment-sept26/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>中国产 LFP 与 NMC811 动力电池包全生命周期碳足迹对比（LFP 300.34 / NMC811 293.49 kgCO₂e/kWh）</td><td>Int J LCA</td><td><a href="https://link.springer.com/article/10.1007/s11367-026-02749-3" target="_blank" rel="noopener">获取 ↗</a></td></tr></tbody></table></div></div>
     </section>
   </div>
   </div>
