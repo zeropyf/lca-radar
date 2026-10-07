@@ -154,6 +154,17 @@ html{scroll-behavior:smooth}
 .seg{display:flex;background:var(--seg-bg);border-radius:999px;padding:3px;margin-bottom:10px;position:relative}
 .typeseg{margin:6px 0 4px}
 .typeseg span{cursor:pointer}
+/* v28：移动端日报/周报切换器（≤1180px 时 sidenav 隐藏，改用此入口） */
+.seg.m-typeseg{display:none}
+/* v28：周视图（周报 tab 版头右侧，占据原日报日历位置） */
+.wcal{min-width:236px;padding:2px}
+.wcal-list{display:flex;flex-direction:column;gap:6px;max-height:232px;overflow:auto}
+.wc{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:8px 12px;
+  border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--ink)}
+.wc b{font-size:13px}
+.wc i{font-style:normal;font-size:11.5px;color:var(--gray)}
+.wc.on{border-color:var(--accent);background:var(--hover)}
+.wc:hover{transform:translateY(-1px)}
 .seg span{flex:1;text-align:center;font-size:12.5px;padding:5px 0;border-radius:999px;color:var(--gray);cursor:default;
   position:relative;z-index:1}
 .seg span.on{color:var(--primary);font-weight:700}
@@ -282,6 +293,7 @@ h1.mast .lca{color:var(--accent)}
 @media(max-width:1180px){
   .shell{grid-template-columns:minmax(0,760px);max-width:820px}
   .sidenav,.rail{display:none}
+  .seg.m-typeseg{display:flex;margin:2px 0 12px}
   h1.mast{font-size:46px}
   .masthead{flex-direction:column;gap:16px}
   .masthead .cal{align-self:stretch}
@@ -567,6 +579,7 @@ h1.mast .lca{color:var(--accent)}
 @media(max-width:1180px){
   .shell{grid-template-columns:minmax(0,760px);max-width:820px}
   .sidenav,.rail{display:none}
+  .seg.m-typeseg{display:flex;margin:2px 0 12px}
   h1.mast{font-size:46px}
   .masthead{flex-direction:column;gap:16px}
   .masthead .cal{align-self:stretch}
@@ -902,6 +915,7 @@ a.dc.has.today{outline-offset:1px}
 @media(max-width:1180px){
   /* 版头纵排时，月历居中拉宽，不再是左侧一小块 */
   .masthead .dcal{align-self:center;width:100%;max-width:440px;min-width:0}
+  .masthead .wcal{align-self:center;width:100%;max-width:440px;min-width:0}
   .dcal-grid{gap:8px}
   .dc{height:30px;font-size:12px;border-radius:8px}
 }
@@ -997,8 +1011,12 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 
     <div class="grp">往期</div>
     <div id="arc-daily">
-    <div class="arc-month open" data-t="arc-daily-2026-10"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 10 月</span><span class="c">6 期</span></div>
+    <div class="arc-month open" data-t="arc-daily-2026-10"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 10 月</span><span class="c">7 期</span></div>
     <div class="arclist" id="arc-daily-2026-10">
+    <a class="arc" id="arc-2026-10-07" href="2026-10-07.html">
+      <span class="ad"><b>7</b><i>周三</i></span>
+      <span class="tx"><b>商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</b></span>
+    </a>
     <a class="arc" id="arc-2026-10-06" href="2026-10-06.html">
       <span class="ad"><b>6</b><i>周二</i></span>
       <span class="tx"><b>《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）纳入全生命周期闭环管理体系</b></span>
@@ -1035,9 +1053,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <div id="arc-weekly" hidden>
     <div class="arc-month open" data-t="arc-weekly-2026-10"><span class="am-l"><svg class="chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>2026 年 10 月</span><span class="c">1 期</span></div>
     <div class="arclist" id="arc-weekly-2026-10">
-    <a class="arc" href="#" onclick="setType(true);return false;">
+    <a class="arc" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');setType(true);return false;">
       <span class="ad"><b>02</b><i>周五</i></span>
-      <span class="tx"><b>第 1 期 · 9/28–10/2</b></span>
+      <span class="tx"><b>第 1 期 · 9/28–10/4</b></span>
     </a>
     </div>
     </div>
@@ -1045,6 +1063,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
   </nav>
 
   <div class="maincol">
+  <div class="seg m-typeseg"><span class="thumb" aria-hidden="true"></span><span class="on">日报</span><span>周报</span></div>
   <div id="dmain">
     <div class="masthead">
       <div class="mast-left">
@@ -1059,7 +1078,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       <div class="dcal">
         <div class="dcal-mhead"><span>九月</span><span class="dcal-c">本月 1 期</span></div>
         <div class="dcal-week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
-        <div class="dcal-grid"><span class="dc"></span><span class="dc">1</span><span class="dc">2</span><span class="dc">3</span><span class="dc">4</span><span class="dc">5</span><span class="dc">6</span><span class="dc">7</span><span class="dc">8</span><span class="dc">9</span><span class="dc">10</span><span class="dc">11</span><span class="dc">12</span><span class="dc">13</span><span class="dc">14</span><span class="dc">15</span><span class="dc">16</span><span class="dc">17</span><span class="dc">18</span><span class="dc">19</span><span class="dc">20</span><span class="dc">21</span><span class="dc">22</span><span class="dc">23</span><span class="dc">24</span><span class="dc">25</span><span class="dc">26</span><span class="dc">27</span><span class="dc">28</span><span class="dc">29</span><a class="dc has today" href="#arc-2026-09-30" title="9 月 30 日早报">30</a><span class="dc"></span><span class="dc"></span><span class="dc"></span><span class="dc"></span></div>
+        <div class="dcal-grid"><span class="dc"></span><span class="dc">1</span><span class="dc">2</span><span class="dc">3</span><span class="dc">4</span><span class="dc">5</span><span class="dc">6</span><span class="dc">7</span><span class="dc">8</span><span class="dc">9</span><span class="dc">10</span><span class="dc">11</span><span class="dc">12</span><span class="dc">13</span><span class="dc">14</span><span class="dc">15</span><span class="dc">16</span><span class="dc">17</span><span class="dc">18</span><span class="dc">19</span><span class="dc">20</span><span class="dc">21</span><span class="dc">22</span><span class="dc">23</span><span class="dc">24</span><span class="dc">25</span><span class="dc">26</span><span class="dc">27</span><span class="dc">28</span><span class="dc">29</span><a class="dc has today" href="2026-09-30.html" title="9 月 30 日早报">30</a><span class="dc"></span><span class="dc"></span><span class="dc"></span><span class="dc"></span></div>
       </div>
     </div>
 
@@ -1316,6 +1335,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       </div>
   </div>
   <div id="wmain" hidden>
+    <section class="wk-issue" data-wdate="2026-10-02">
 <div class="masthead">
       <div class="mast-left">
         <div class="mast-meta">
@@ -1325,6 +1345,12 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         <h1 class="mast"><span class="lca">LCA</span>瞭望</h1>
         <div class="brand-sub">LCA RADAR</div>
         <div class="mast-sub2"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 2 日</span></div>
+      </div>
+      <div class="wcal">
+        <div class="dcal-mhead"><span>周报</span><span class="dcal-c">共 1 期</span></div>
+        <div class="wcal-list">
+          <a class="wc on" data-wdate="2026-10-02" href="#" onclick="showWeekly('2026-10-02');return false;" title="第 1 期周报"><b>第 1 期</b><i>9/28–10/4</i></a>
+        </div>
       </div>
     </div>
     <div class="stats">
@@ -1657,6 +1683,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 </div>
 </div>
 <div class="wk-block" id="wk-downloads"><div class="wk-block-h"><h2>值得下载的报告和数据</h2><div class="en">REPORTS &amp; DATA</div></div><div class="wk-twrap"><table class="wk-table"><thead><tr><th>报告/数据</th><th>出处</th><th>官方获取入口</th></tr></thead><tbody><tr><td>《Battery Ecosystems》锂电池技术政策比较分析（中国/欧盟等）</td><td>Carnegie</td><td><a href="https://carnegieendowment.org/research/2026/09/battery-ecosystems-a-comparative-analysis-of-lithium-ion-tech-policy" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Leveraging the IAA to build Europe&#x27;s battery value chain》＋配套新闻稿《Ready to scale》</td><td>T&amp;E</td><td><a href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>ProScale 2.0 方法学指南 v1.0、实操指南 v1.0</td><td>IVL</td><td><a href="http://urn.kb.se/resolve?urn=urn:nbn:se:ivl:diva-4951" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《A Circular Economy Act delivering a strong EU market for secondary raw materials》联合声明（31 家协会，EPR 统一框架 6 项诉求）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>再生含量对外声明透明度要求（与 ISO 14021:2026 挂钩）</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/09/26-09-29-European-Aluminium_Transparency-statement-on-recycled-content-.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>EU-印度/EU-印尼自贸协定行业声明</td><td>European Aluminium</td><td><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>2026 全球饮料容器回收数据集</td><td>IAI/全球饮料罐循环联盟</td><td><a href="https://international-aluminium.org/aluminium-cans-lead-global-beverage-recycling-new-international-dataset-shows/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>《Fair game: Restoring technology neutrality through plug-in hybrid utility factor adjustment》（约 92 万辆插混实测数据；实际排放达认证值 3.5→4.6 倍）</td><td>ICCT</td><td><a href="https://theicct.org/publication/fair-game-restoring-technology-neutrality-through-plug-in-hybrid-utility-factor-adjustment-sept26/" target="_blank" rel="noopener">获取 ↗</a></td></tr><tr><td>中国产 LFP 与 NMC811 动力电池包全生命周期碳足迹对比（LFP 300.34 / NMC811 293.49 kgCO₂e/kWh）</td><td>Int J LCA</td><td><a href="https://link.springer.com/article/10.1007/s11367-026-02749-3" target="_blank" rel="noopener">获取 ↗</a></td></tr></tbody></table></div></div>
+    </section>
   </div>
   </div>
 
@@ -1684,6 +1711,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     </div>
   </aside>
   <aside class="rail" id="wrail" hidden>
+    <div class="wk-rail" data-wdate="2026-10-02">
 <h4>本周主线</h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b>欧盟电池法规二级立法加速</b><span>Art 10 授权法案草案发布并进入</span></span></a>
     <a class="hl-item" href="#wsec-i2"><span class="n">2</span><span class="t"><b>IAA 本土化之争白热化</b><span>ACEA/Mobility Glob</span></span></a>
@@ -1704,16 +1732,18 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       <a href="#wsec-i4"><span class="tdot" aria-hidden="true">•</span>循环再生<span class="c">17 条</span></a>
       <a href="#wk-downloads"><span class="tdot" aria-hidden="true">•</span>下载清单<span class="c">9 份</span></a>
     </div>
+    </div>
   </aside>
 </div>
 
 <script>
 function setType(weekly){
-  document.querySelectorAll('.typeseg span:not(.thumb)').forEach(function(x){
+  document.querySelectorAll('.typeseg span:not(.thumb),.m-typeseg span:not(.thumb)').forEach(function(x){
     x.classList.toggle('on', (x.textContent.trim() === '周报') === weekly);
   });
-  var th = document.querySelector('.typeseg .thumb');
-  if(th) th.classList.toggle('right', weekly);
+  document.querySelectorAll('.typeseg .thumb,.m-typeseg .thumb').forEach(function(th){
+    th.classList.toggle('right', weekly);
+  });
   var ad = document.getElementById('arc-daily'), aw = document.getElementById('arc-weekly');
   if(ad) ad.hidden = weekly;
   if(aw) aw.hidden = !weekly;
@@ -1736,11 +1766,26 @@ document.querySelectorAll('.arc-month').forEach(function(m){
     m.classList.toggle('open', !l.hidden);
   });
 });
-document.querySelectorAll('.typeseg span:not(.thumb)').forEach(function(el){
+document.querySelectorAll('.typeseg span:not(.thumb),.m-typeseg span:not(.thumb)').forEach(function(el){
   el.addEventListener('click', function(){
     setType(el.textContent.trim() === '周报');
   });
 });
+/* v28：周视图切换——显示对应期周报正文与右栏 */
+function showWeekly(date){
+  document.querySelectorAll('.wk-issue').forEach(function(el){
+    el.hidden = el.getAttribute('data-wdate') !== date;
+  });
+  document.querySelectorAll('.wk-rail').forEach(function(el){
+    el.hidden = el.getAttribute('data-wdate') !== date;
+  });
+  document.querySelectorAll('.wcal .wc').forEach(function(a){
+    a.classList.toggle('on', a.getAttribute('data-wdate') === date);
+  });
+  document.querySelectorAll('#arc-weekly .arc').forEach(function(a){
+    a.classList.toggle('cur', a.getAttribute('data-wdate') === date);
+  });
+}
 </script>
 <button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">↑</button>
 
