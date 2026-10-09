@@ -1108,6 +1108,76 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 .golink{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;color:var(--accent-deep);border:none;border-radius:0;padding:0;background:none;text-decoration:none}
 .golink:hover{color:var(--accent);border:none;background:none;transform:none;box-shadow:none;text-decoration:underline}
 .golink .arr{margin-left:3px;font-weight:400}
+/* ===== v29 阅读体验精修（追加覆盖层） ===== */
+/* 正文阅读尺度 */
+.shell{grid-template-columns:200px minmax(0,700px) 240px}
+@media(max-width:1180px){.shell{grid-template-columns:minmax(0,1fr);max-width:720px}}
+.item .sum{font-size:17px;line-height:1.8}
+.item h3{font-size:21px;font-weight:600;line-height:1.45}
+.item h3 a{font-weight:600}
+.item .note{font-size:13.5px}
+.srcrow{font-size:13.5px}
+@media(max-width:1180px){.shell{max-width:760px}}
+
+/* 紧凑刊头（左信息＋右日历卡，保留现有日历窗口） */
+.masthead{flex-direction:row;align-items:flex-start;gap:24px;margin:0 0 16px}
+.mast-left{min-width:0;flex:1 1 auto}
+.mast-dateline{font-size:15.5px;font-weight:700;color:var(--ink)}
+.mast-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mast-name{font-size:26px;font-weight:900;letter-spacing:.03em;color:var(--primary)}
+.mast-name .lca{color:var(--accent)}
+.mast-en{font-size:12px;letter-spacing:.28em;color:var(--faint);font-weight:600}
+.mast-line{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.datepick{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:700;white-space:nowrap;max-width:100%;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:7px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.datepick:hover{border-color:var(--primary)}
+.datepick:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.datepick .dp-arrow{font-size:11px;color:var(--gray);transition:transform .2s}
+.datepick[aria-expanded="true"] .dp-arrow{transform:rotate(180deg)}
+.datepick .dp-issue{color:var(--primary)}
+.mast-cov{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);margin-top:9px;flex-wrap:wrap}
+.mast-cov .kind{background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;
+  border-radius:999px;padding:2px 10px}
+.stats-line{display:flex;align-items:baseline;gap:14px;margin-top:11px;padding-bottom:13px;
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stats-line .st-main{font-size:15px;font-weight:700;color:var(--ink)}
+.stats-line .st-sub{font-size:13px;color:var(--gray)}
+
+/* 日期面板（展开日历） */
+.dcal-panel{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  background:var(--card);max-width:340px}
+.dcal-panel[hidden]{display:none}
+.dcal-panel .dcal-mhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.dcal-panel .dcal-mhead b{font-size:15px}
+.dcal-panel .dcal-c{font-size:12.5px;color:var(--gray)}
+
+/* 旧刊头大字标题与旧统计行在新结构中不再使用 */
+
+/* v29-r2：长文辅助文字（来源/注释）对比度 —— 局部覆盖，不碰全局 --gray
+   （--gray 同时用于日历/图标/边框）。浅色 #707078 在白底 4.91:1 ≥ 4.5；
+   深色沿用 #8b96a5 在 #141e2c 上 5.59:1，已达标、不套用浅色新色。 */
+.srcrow,.item .note,.msrc,.mmeta,.mnote{color:#707078}
+html:has(.theme-switch input[value="dark"]:checked) .srcrow,
+html:has(.theme-switch input[value="dark"]:checked) .item .note,
+html:has(.theme-switch input[value="dark"]:checked) .msrc,
+html:has(.theme-switch input[value="dark"]:checked) .mmeta,
+html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
+@media (prefers-color-scheme:dark){
+  html:not(:has(.theme-switch input[value="light"]:checked)) .srcrow,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .item .note,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .msrc,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mmeta,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mnote{color:#8b96a5}
+}
+@media(max-width:760px){
+  .masthead{flex-direction:column}
+  .item .sum{font-size:16.5px}
+  .item h3{font-size:19px}
+  .shell{padding:0 20px}
+  .mast-name{font-size:23px}
+  .datepick{font-size:14.5px;padding:6px 14px}
+}
 
 
 </style>
@@ -1207,13 +1277,12 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
   <div id="dmain">
     <div class="masthead">
       <div class="mast-left">
-        <div class="mast-meta">
-          <span>2026 年 10 月 9 日 · 星期五</span>
-          <span class="issue-no">第 10 期</span>
+        <div class="mast-top">
+          <span class="mast-name"><span class="lca">LCA</span>瞭望</span>
+          <span class="mast-en">LCA RADAR</span>
         </div>
-        <h1 class="mast"><span class="lca">LCA</span>瞭望</h1>
-        <div class="brand-sub">LCA RADAR</div>
-        <div class="mast-sub2"><span class="kind">早报</span><span>覆盖窗口：<span class="cov">2026-10-08 00:00–24:00</span><span class="tz">（Asia/Shanghai）</span></span></div>
+        <div class="mast-line"><span class="mast-dateline">2026 年 10 月 9 日 · 星期五 · 第 10 期</span></div>
+        <div class="mast-cov"><span class="kind">早报</span><span>覆盖窗口：<span class="cov">2026-10-08 00:00–24:00</span><span class="tz">（Asia/Shanghai）</span></span></div>
       </div>
       <div class="dcal-card">
         <div class="dc-info">
@@ -1230,12 +1299,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
       </div>
     </div>
 
-    <div class="stats">
-      <div class="st"><span class="n">20</span><span class="l">条收录</span></div>
-      <div class="st"><span class="n">266</span><span class="l">个来源</span></div>
-      <div class="st"><span class="n">6</span><span class="l">条一手发布</span></div>
-      <div class="st"><span class="n">7</span><span class="l">个子专题有动态</span></div>
-      <div class="read">约 7 分钟读完</div>
+    <div class="stats-line">
+      <span class="st-main">20 条内容 · 约 7 分钟</span>
+      <span class="st-sub">266 个来源 · 6 条一手发布 · 7 个子专题有动态</span>
     </div>
 
     <div class="layer">
@@ -1253,13 +1319,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>中华人民共和国商务部·新闻发布（一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_c98d6dc6f06f44c1abc49ca63590842b.html" target="_blank" rel="noopener">一句话：王文涛部长会见欧委会贸易和经济安全委员谢夫乔维奇<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_c98d6dc6f06f44c1abc49ca63590842b.html" target="_blank" rel="noopener">王文涛部长会见欧委会贸易和经济安全委员谢夫乔维奇<span class="ext">↗</span></a></h3>
           <p class="sum">商务部网站2026年10月8日发布王文涛部长会见欧委会贸易和经济安全委员谢夫乔维奇的消息；此次会见处在欧盟拟强化贸易工具、中欧贸易再平衡议程升温的背景下，与10月9日卢森堡部长会议及此前法德推动强化贸易防御的动向相呼应。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_c98d6dc6f06f44c1abc49ca63590842b.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>工业和信息化部节能与综合利用司（一手）</span></div>
-          <h3><a href="https://www.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_cae45d26ac0f4caa821049366fd3f8dd.html" target="_blank" rel="noopener">一句话：2026年度工业节能降碳标准研究项目公示<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_cae45d26ac0f4caa821049366fd3f8dd.html" target="_blank" rel="noopener">2026年度工业节能降碳标准研究项目公示<span class="ext">↗</span></a></h3>
           <p class="sum">工业和信息化部节能与综合利用司2026年10月8日公示2026年度工业节能降碳标准研究项目（公示期10月8日至14日，公示征求意见阶段）。清单为节能降碳标准体系的年度研究布局，可能影响后续节能降碳方法标准的制修订方向。</p>
           <a class="golink" href="https://www.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_cae45d26ac0f4caa821049366fd3f8dd.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1271,7 +1337,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>Automotive World（经 Google News RSS 转引）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOWTJoVGRSQzc2Yy1Uem5TOTRkR3h3ZTZBeUxLdzF0MGdfVTJBcHRkUnNveXNFNEx6SF9PZTR2aWMzbEhmOGZrUTQ4VWVzTjJndmI1bFdWdWwwQThEOHFRTzlFTFZkdnBfTFF3WndaMkJteloxUERvVjl6R3dSeS1xOUc1Z1QxRUhsV3FTeUhjTHJEamN0WnJQZw?oc=5" target="_blank" rel="noopener">一句话：TÜV SÜD推出数字电池护照认证服务<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOWTJoVGRSQzc2Yy1Uem5TOTRkR3h3ZTZBeUxLdzF0MGdfVTJBcHRkUnNveXNFNEx6SF9PZTR2aWMzbEhmOGZrUTQ4VWVzTjJndmI1bFdWdWwwQThEOHFRTzlFTFZkdnBfTFF3WndaMkJteloxUERvVjl6R3dSeS1xOUc1Z1QxRUhsV3FTeUhjTHJEamN0WnJQZw?oc=5" target="_blank" rel="noopener">TÜV SÜD推出数字电池护照认证服务<span class="ext">↗</span></a></h3>
           <p class="sum">TÜV SÜD宣布推出数字电池护照认证服务，此举对应2027年2月18日电池护照义务到来的第三方核验需求；认证机构布局护照核验，呼应Minespider/TENWAYS等实施侧的部署进展。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOWTJoVGRSQzc2Yy1Uem5TOTRkR3h3ZTZBeUxLdzF0MGdfVTJBcHRkUnNveXNFNEx6SF9PZTR2aWMzbEhmOGZrUTQ4VWVzTjJndmI1bFdWdWwwQThEOHFRTzlFTFZkdnBfTFF3WndaMkJteloxUERvVjl6R3dSeS1xOUc1Z1QxRUhsV3FTeUhjTHJEamN0WnJQZw?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1286,25 +1352,25 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>SBTi官网（一手）</span></div>
-          <h3><a href="https://sciencebasedtargets.org/news/sbti-issues-call-for-input-to-inform-revision-of-forest-land-and-agriculture-standard" target="_blank" rel="noopener">一句话：SBTi就森林、土地与农业（FLAG）标准修订征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://sciencebasedtargets.org/news/sbti-issues-call-for-input-to-inform-revision-of-forest-land-and-agriculture-standard" target="_blank" rel="noopener">SBTi就森林、土地与农业（FLAG）标准修订征求意见<span class="ext">↗</span></a></h3>
           <p class="sum">SBTi就森林、土地与农业（FLAG）标准第2版的制定启动证据征集，原文显示征集截至10月8日，整体开发周期超过12个月；FLAG与GHG Protocol土地部门、Corporate Net-Zero Standard V2的新概念衔接将被纳入考量，可能影响土地利用与农业供应链的核算与目标口径。</p>
           <a class="golink" href="https://sciencebasedtargets.org/news/sbti-issues-call-for-input-to-inform-revision-of-forest-land-and-agriculture-standard" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ecoinvent官方博客</span></div>
-          <h3><a href="https://ecoinvent.org/blog/ecoinvents-quality-process/" target="_blank" rel="noopener">一句话：ecoinvent介绍LCA数据内在质量流程<span class="ext">↗</span></a></h3>
+          <h3><a href="https://ecoinvent.org/blog/ecoinvents-quality-process/" target="_blank" rel="noopener">ecoinvent介绍LCA数据内在质量流程<span class="ext">↗</span></a></h3>
           <p class="sum">ecoinvent以博客形式说明其LCI数据质量保障的内在流程，涉及数据评审与版本控制逻辑的公开说明；对理解ecoinvent数据选数、评审口径有参考价值。</p>
           <a class="golink" href="https://ecoinvent.org/blog/ecoinvents-quality-process/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ACS ES&amp;T，DOI 10.1021/acs.est.6c07128</span></div>
-          <h3><a href="https://pubs.acs.org/esthag/article/doi/10.1021/acs.est.6c07128/5446574/Natural-Hazard-Risks-in-LCA-for-the-Built" target="_blank" rel="noopener">一句话：ES&amp;T论文：建筑环境LCA中自然灾害风险随机输入管理方法<span class="ext">↗</span></a></h3>
+          <h3><a href="https://pubs.acs.org/esthag/article/doi/10.1021/acs.est.6c07128/5446574/Natural-Hazard-Risks-in-LCA-for-the-Built" target="_blank" rel="noopener">ES&amp;T论文：建筑环境LCA中自然灾害风险随机输入管理方法<span class="ext">↗</span></a></h3>
           <p class="sum">论文讨论建筑环境LCA中自然灾害风险的纳入方法，聚焦随机过程型LCA中随机输入的管理，属于LCA不确定性与情景处理的方法学探索，建成环境案例的方法思路具有可迁移性。</p>
           <a class="golink" href="https://pubs.acs.org/esthag/article/doi/10.1021/acs.est.6c07128/5446574/Natural-Hazard-Risks-in-LCA-for-the-Built" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>WBCSD（一手）</span></div>
-          <h3><a href="https://www.wbcsd.org/resources/a-business-and-regulatory-navigator-to-accelerate-electrification/" target="_blank" rel="noopener">一句话：WBCSD发布加速电气化的商业与监管导航工具<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.wbcsd.org/resources/a-business-and-regulatory-navigator-to-accelerate-electrification/" target="_blank" rel="noopener">WBCSD发布加速电气化的商业与监管导航工具<span class="ext">↗</span></a></h3>
           <p class="sum">WBCSD发布面向企业电气化的商业与监管导航工具，汇总企业电气化面临的相关监管要求；工具定位为政策与商业导航资源，具体内容细节未通读。</p>
           <a class="golink" href="https://www.wbcsd.org/resources/a-business-and-regulatory-navigator-to-accelerate-electrification/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1316,13 +1382,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（蔚蓝地图，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/rkPuGC52aArCMjVQWLH6yQ" target="_blank" rel="noopener">一句话：IPE发布《中国企业温室气体排放核算与报告因子库（2026）》<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/rkPuGC52aArCMjVQWLH6yQ" target="_blank" rel="noopener">IPE发布《中国企业温室气体排放核算与报告因子库（2026）》<span class="ext">↗</span></a></h3>
           <p class="sum">蔚蓝地图（IPE）发布《中国企业温室气体排放核算与报告因子库（2026）》，梳理企业常用排放因子的来源、口径、用法与风险；可作为企业碳核算与LCA本地化因子选用的参考工具。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/rkPuGC52aArCMjVQWLH6yQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（RCR 资源节约与循环，full 正文转述）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/hTXBe3PYRSNdhiExuRQQqQ" target="_blank" rel="noopener">一句话：RCR论文：中国金属出口碳关税省域负担及驱动因素（空间指数分解）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/hTXBe3PYRSNdhiExuRQQqQ" target="_blank" rel="noopener">RCR论文：中国金属出口碳关税省域负担及驱动因素（空间指数分解）<span class="ext">↗</span></a></h3>
           <p class="sum">论文在省域—产品尺度上用空间指数分解评估中国钢铁与铝出口面临的碳关税负担并指出，绝对成本与相对税率存在空间错配，风险集中于少数核心产品；2026基准情景下文中钢铁与铝的全国碳关税税率分别为11.1%和4.1%，省域差异最高分别达35.0%和8.7%。可作为识别材料出口CBAM暴露的分析框架参考，原文链接见页面（doi:10.1016/j.resconrec.2026.109141）。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/hTXBe3PYRSNdhiExuRQQqQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1337,13 +1403,13 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（有色日鉴，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/unqgj2U35T87WWDboWrI2g" target="_blank" rel="noopener">一句话：国庆假期铝累库规模收窄、库存解读逻辑变化（有色日鉴）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/unqgj2U35T87WWDboWrI2g" target="_blank" rel="noopener">国庆假期铝累库规模收窄、库存解读逻辑变化（有色日鉴）<span class="ext">↗</span></a></h3>
           <p class="sum">2026年国庆假期铝锭、铝棒累库的绝对规模较前两年明显收窄，但市场做多热情未随之转强；文章认为以社会库存增减推演铝价的旧经验易误判，提示铝库存与价格的传导逻辑正在变化。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/unqgj2U35T87WWDboWrI2g" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（Kallanish 国际钢铁资讯，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/8mTAM41RWCeSKoXJa1Tgeg" target="_blank" rel="noopener">一句话：Meranti：绿色溢价使泰国钢铁日常产品成本增加约1%—3%<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/8mTAM41RWCeSKoXJa1Tgeg" target="_blank" rel="noopener">Meranti：绿色溢价使泰国钢铁日常产品成本增加约1%—3%<span class="ext">↗</span></a></h3>
           <p class="sum">Meranti Green Steel在研讨会上表示，即使将绿色溢价全额传导，泰国日常钢铁产品成本增幅约为1%—3%。该量化口径可为绿色钢铁溢价的市场接受度判断提供参照。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/8mTAM41RWCeSKoXJa1Tgeg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1355,19 +1421,19 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>LG新能源官方新闻稿（一手）</span></div>
-          <h3><a href="https://news.lgensol.com/company-news/press-releases/5412/" target="_blank" rel="noopener">一句话：LG新能源与Elevra签锂辉石精矿多年包销（24万干吨，4年）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.lgensol.com/company-news/press-releases/5412/" target="_blank" rel="noopener">LG新能源与Elevra签锂辉石精矿多年包销（24万干吨，4年）<span class="ext">↗</span></a></h3>
           <p class="sum">LG新能源官网10月8日宣布与Elevra Lithium签订多年期具约束力的锂辉石精矿承购安排，原文称自今年晚些时候起、4年内供应24万干吨锂辉石精矿，产自魁北克在产的North American Lithium项目。原文将其与北美储能需求增长和区域价值链联系；锂辉石精矿作为可加工为碳酸锂/氢氧化锂的中间原料，提高原料灵活性。</p>
           <a class="golink" href="https://news.lgensol.com/company-news/press-releases/5412/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>东方财富（经 Google News RSS 转引）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5rbGF6LURJeS1DVEtCYnFiZmZrWS1ubF9QalJmekIwdmVGX3FSV3hrQmpRamo0NDhtTk1wRFNNRndvd2Jwd0lnelVDVzhQV1RBdV9jdm9LZVRLM1lUQ1V3cE13NA?oc=5" target="_blank" rel="noopener">一句话：天赐材料通过港交所聆讯<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5rbGF6LURJeS1DVEtCYnFiZmZrWS1ubF9QalJmekIwdmVGX3FSV3hrQmpRamo0NDhtTk1wRFNNRndvd2Jwd0lnelVDVzhQV1RBdV9jdm9LZVRLM1lUQ1V3cE13NA?oc=5" target="_blank" rel="noopener">天赐材料通过港交所聆讯<span class="ext">↗</span></a></h3>
           <p class="sum">天赐材料（电解液龙头）通过港交所上市聆讯，相对于10月6日早报已推的筹资规模线索，此次为同一上市事件的实质进展（聆讯通过阶段）。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5rbGF6LURJeS1DVEtCYnFiZmZrWS1ubF9QalJmekIwdmVGX3FSV3hrQmpRamo0NDhtTk1wRFNNRndvd2Jwd0lnelVDVzhQV1RBdV9jdm9LZVRLM1lUQ1V3cE13NA?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News（WP-JSON 元数据）</span></div>
-          <h3><a href="https://batteriesnews.com/nmg-develops-low-carbon-footprint-anode-material-coating-process-in-collaboration-with-mcgill-university/" target="_blank" rel="noopener">一句话：NMG与麦吉尔大学合作低碳足迹负极材料涂层工艺<span class="ext">↗</span></a></h3>
+          <h3><a href="https://batteriesnews.com/nmg-develops-low-carbon-footprint-anode-material-coating-process-in-collaboration-with-mcgill-university/" target="_blank" rel="noopener">NMG与麦吉尔大学合作低碳足迹负极材料涂层工艺<span class="ext">↗</span></a></h3>
           <p class="sum">Nouveau Monde Graphite（NMG）与麦吉尔大学合作开发低碳足迹负极材料涂层工艺，属于石墨负极低碳化工艺进展（I2上游材料环节）。</p>
           <a class="golink" href="https://batteriesnews.com/nmg-develops-low-carbon-footprint-anode-material-coating-process-in-collaboration-with-mcgill-university/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1379,31 +1445,31 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（生态文明实践，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/2YE~oXM-OaDeND41iC~i1Q" target="_blank" rel="noopener">一句话：废钢“城市矿山”与回收承接（3亿吨量级）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/2YE~oXM-OaDeND41iC~i1Q" target="_blank" rel="noopener">废钢“城市矿山”与回收承接（3亿吨量级）<span class="ext">↗</span></a></h3>
           <p class="sum">条目标题指向废钢“城市矿山”规模与回收承接问题。标题命中“回收”必看关键词已按规则人工复核并收录；但正文缺失（partial），规模与承接细节无法确认。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/2YE~oXM-OaDeND41iC~i1Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/~kMgFje0cDqZLuh2d9IlLw" target="_blank" rel="noopener">一句话：复杂塑料废弃物选择性回收技术综述（机械、热化学、溶剂与解聚）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/~kMgFje0cDqZLuh2d9IlLw" target="_blank" rel="noopener">复杂塑料废弃物选择性回收技术综述（机械、热化学、溶剂与解聚）<span class="ext">↗</span></a></h3>
           <p class="sum">综述梳理复杂塑料废弃物的选择性回收技术路线，涵盖机械、热化学、溶剂法与解聚路径。标题命中“回收”必看关键词已人工复核；正文缺失（partial），技术细节未确认。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/~kMgFje0cDqZLuh2d9IlLw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News（WP-JSON 元数据）</span></div>
-          <h3><a href="https://batteriesnews.com/battery-fires-at-recycling-centres-are-costing-uk-1bn-a-year-figures-show/" target="_blank" rel="noopener">一句话：英国回收中心电池火灾年损失约10亿英镑<span class="ext">↗</span></a></h3>
+          <h3><a href="https://batteriesnews.com/battery-fires-at-recycling-centres-are-costing-uk-1bn-a-year-figures-show/" target="_blank" rel="noopener">英国回收中心电池火灾年损失约10亿英镑<span class="ext">↗</span></a></h3>
           <p class="sum">页面数据称英国回收中心的电池火灾造成每年约10亿英镑量级的损失，提示电池回收环节的火灾风险与处置成本问题。</p>
           <a class="golink" href="https://batteriesnews.com/battery-fires-at-recycling-centres-are-costing-uk-1bn-a-year-figures-show/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News（WP-JSON 元数据）</span></div>
-          <h3><a href="https://batteriesnews.com/nearly-90-battery-listings-on-offer-circunomics-opens-its-marketplace-data-to-the-public/" target="_blank" rel="noopener">一句话：Circunomics开放电池市场数据（约90条电池挂牌）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://batteriesnews.com/nearly-90-battery-listings-on-offer-circunomics-opens-its-marketplace-data-to-the-public/" target="_blank" rel="noopener">Circunomics开放电池市场数据（约90条电池挂牌）<span class="ext">↗</span></a></h3>
           <p class="sum">Circunomics将其电池交易平台数据向公众开放，页面称平台约有近90条电池挂牌；属于电池梯次利用与循环交易市场的基础设施动态。</p>
           <a class="golink" href="https://batteriesnews.com/nearly-90-battery-listings-on-offer-circunomics-opens-its-marketplace-data-to-the-public/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>BIR（国际回收局）新闻列表页（一手）</span></div>
-          <h3><a href="https://www.bir.org/news-press/news" target="_blank" rel="noopener">一句话：BIR发布10月季度报告摘要（黑色金属与回收纸）：欧盟草稿清单引发市场准入担忧<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.bir.org/news-press/news" target="_blank" rel="noopener">BIR发布10月季度报告摘要（黑色金属与回收纸）：欧盟草稿清单引发市场准入担忧<span class="ext">↗</span></a></h3>
           <p class="sum">BIR新闻列表显示2026年10月8日上线两份季度报告摘要：黑色金属季度报告标题提示欧盟委员会草案清单继续加剧对关键海外市场准入的担忧；回收纸季度报告聚焦物流与合规议题对出口商的压力。全文位于会员专区，摘要信息有限。</p>
           <a class="golink" href="https://www.bir.org/news-press/news" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1420,13 +1486,12 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
     <section class="wk-issue" data-wdate="2026-10-04">
 <div class="masthead">
       <div class="mast-left">
-        <div class="mast-meta">
-          <span>2026 年 10 月 4 日 · 星期日</span>
-          <span class="issue-no">第 1 期</span>
+        <div class="mast-top">
+          <span class="mast-name"><span class="lca">LCA</span>瞭望</span>
+          <span class="mast-en">LCA RADAR</span>
         </div>
-        <h1 class="mast"><span class="lca">LCA</span>瞭望</h1>
-        <div class="brand-sub">LCA RADAR</div>
-        <div class="mast-sub2"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 4 日</span></div>
+        <div class="mast-line"><span class="mast-dateline">2026 年 10 月 4 日 · 星期日 · 第 1 期</span></div>
+        <div class="mast-cov"><span class="kind">周报</span><span>覆盖窗口：9 月 28 日–10 月 4 日</span></div>
       </div>
       <div class="wcal-card">
         <div class="dc-info">
@@ -1495,11 +1560,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
         </div>
       </div>
     </div>
-    <div class="stats">
-      <div class="st"><span class="n">97</span><span class="l">条（收录 25 · 一句话 72）</span></div>
-      <div class="st"><span class="n">9</span><span class="l">份值得下载</span></div>
-      <div class="st"><span class="n">–</span><span class="l">期推送</span></div>
-      <div class="read">约 22 分钟读完</div>
+    <div class="stats-line">
+      <span class="st-main">97 条内容（收录 25 · 一句话 72） · 约 22 分钟</span>
+      <span class="st-sub">9 份值得下载 · – 期推送</span>
     </div>
 <div class="wk-block" id="wk-overview"><div class="wk-block-h"><h2>本周导读</h2><div class="en">WEEKLY DIGEST</div></div><div class="ov-lead"><p>本周三件大事勾勒出电池产业链的政策与市场主线：欧盟电池法规二级立法提速，Art 10 授权法案草案（&gt;2kWh 工业电池性能与耐久性）发布并进入公众咨询，CBAM 核查机构开始实质进场，合规时间表进一步收紧；IAA 车展期间本土化之争白热化，ACEA 与 Mobility Global 的&quot;产能缺口论&quot;遭遇 T&amp;E 反驳研究的直接对冲，欧洲电池产业链去风险路径分歧公开化；国内七部门《新型电池产业发展&quot;十五五&quot;规划》落地，明确 2030 年目标与回收利用管理办法出台时间表，&quot;十五五&quot;顶层设计进入执行阶段。国庆假期国内官方渠道自 10-01 起静默，增量集中在上半周。</p></div></div>
 <div class="layer" id="wk-layer-Ⅰ">
@@ -1531,9 +1594,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://www.mee.gov.cn/ywgz/ydqhbh/wsqtkz/202609/t20260930_1175605.shtml" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · 生态文明实践 · 待一手核验（涉政策口径，打标「待一手核验」）</span></div>
+<div class="srcrow"><span>W 线 · 生态文明实践 · 待一手核验（涉政策口径，打标「待一手核验」）</span></div>
 <h3>发改委《循环经济发展&quot;十五五&quot;规划》（2026-06 印发）——新政策锚</h3>
-<p class="sum">据 微信公众号长文引用，到 2030 年我国资源循环利用产业产值达到 8 万亿元。</p>
+<p class="sum">据 W 线长文引用，到 2030 年我国资源循环利用产业产值达到 8 万亿元。</p>
 <p class="wk-biz"><b>业务含义</b>国内循环经济顶层规划，此前未入库跟踪；8 万亿产值目标是 I4 赛道规模判断的政策锚。已记入待核验清单。</p>
 </div>
 <div class="wk-sub">一句话速览</div>
@@ -1554,9 +1617,9 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <p class="wk-biz"><b>业务含义</b>O1/O2/O3/O4/O5 义务基线一次性夯实；Art 7、Art 8 草案→通过的瞬间仍是最高优先级预警点，继续靠 EUR-Lex 通道被动覆盖。</p>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · 汽车海外技术合规联盟 · 待一手核验（草案文本与 Have Your Say 倡议页未一手核验；10-02 尝试定位倡议页未果）</span></div>
+<div class="srcrow"><span>W 线 · 汽车海外技术合规联盟 · 待一手核验（草案文本与 Have Your Say 倡议页未一手核验；10-02 尝试定位倡议页未果）</span></div>
 <h3><a href="https://mp.weixin.qq.com/s/xhCRoBdoaNYrLb6KocjLog" target="_blank" rel="noopener">欧盟 Art 10 授权法案草案：&gt;2kWh 可充电工业电池最低电化学性能与耐久性要求<span class="ext">↗</span></a></h3>
-<p class="sum">草案 9-29 发布，公众咨询期 9-29 至 10-27（布鲁塞尔时间）。要点（微信公众号转述）：住宅储能非铅基衰减&lt;4%、&gt;3000 FEqC、效率&gt;93%；重复性供能衰减&lt;10%/&gt;1000 FEqC（铅基&lt;15%/&gt;500）；按需型衰减&lt;5%/&gt;10 年；引入应力系数；再使用/梯次利用/再制造电池达标方式另行规定。</p>
+<p class="sum">草案 9-29 发布，公众咨询期 9-29 至 10-27（布鲁塞尔时间）。要点（W 线转述）：住宅储能非铅基衰减&lt;4%、&gt;3000 FEqC、效率&gt;93%；重复性供能衰减&lt;10%/&gt;1000 FEqC（铅基&lt;15%/&gt;500）；按需型衰减&lt;5%/&gt;10 年；引入应力系数；再使用/梯次利用/再制造电池达标方式另行规定。</p>
 <p class="wk-biz"><b>业务含义</b>O1 义务域新增跟踪项（台账 B11）；工业/储能电池性能门槛立法启动，直接影响储能与工业电池产品设计。</p>
 <a class="golink" href="https://mp.weixin.qq.com/s/xhCRoBdoaNYrLb6KocjLog" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
@@ -1575,14 +1638,14 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds639_e.htm；路透交叉。" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · SteelMan 钢铁信息 · 待一手核验（微信公众号口径；认可状态以各国国家认可机构/EUR-Lex 为准）</span></div>
+<div class="srcrow"><span>W 线 · SteelMan 钢铁信息 · 待一手核验（W 线口径；认可状态以各国国家认可机构/EUR-Lex 为准）</span></div>
 <h3><a href="https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA" target="_blank" rel="noopener">CBAM 核查机构开始实质进场<span class="ext">↗</span></a></h3>
 <p class="sum">希腊 EMICERT 9-14 获 ESYD 的 CBAM 认可（覆盖全部 CBAM 活动组）、Bureau Veritas 9-29 宣布取得 CBAM 核查认可、TÜV Rheinland 9 月中旬更新服务页；欧委会 8-31 起陆续公布核查操作程序，9-28 新一批材料覆盖核查机构注册、系统操作与 O3CI 协作。CBAM 采用单独认可制度——原 EU ETS 核查机构须向国家认可机构申请扩项至相应活动组后才能出具正式核查报告。</p>
 <p class="wk-biz"><b>业务含义</b>O9 核心义务：过渡期→正式期的核查机制正在实质性落地；BV、TÜV 在中国有长期业务网络，中国钢铝出口商的核查路径开始明确。统一认可名单尚未完整发布，持续跟踪。</p>
 <a class="golink" href="https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · climate 科学 · 待一手核验（欧盟官方表态与会议议程未一手核验）</span></div>
+<div class="srcrow"><span>W 线 · climate 科学 · 待一手核验（欧盟官方表态与会议议程未一手核验）</span></div>
 <h3><a href="https://mp.weixin.qq.com/s/UtU4oTxtxjH90CKFavgEAg" target="_blank" rel="noopener">意大利、捷克拟推动再度推迟欧盟 ETS2，六国联名反对，10 月 9 日卢森堡部长会议定夺<span class="ext">↗</span></a></h3>
 <p class="sum">意/捷拟再度推迟 ETS2，丹/荷/西/芬/瑞/卢六国联名反对。</p>
 <p class="wk-biz"><b>业务含义</b>ETS2 时间表争议直接影响建筑/道路交通燃料碳成本预期，10-09 部长会是关键节点。</p>
@@ -1692,7 +1755,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://batteriesnews.com/europes-battery-capacity-wont-meet-iaa-localisation-demand-new-study-shows-acea/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · 深圳市电池行业协会 · 微信公众号 full 正文（行业协会转述 SMM/SNE 数据）</span></div>
+<div class="srcrow"><span>W 线 · 深圳市电池行业协会 · W 线 full 正文（行业协会转述 SMM/SNE 数据）</span></div>
 <h3><a href="https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ" target="_blank" rel="noopener">铜箔短缺成电池排产瓶颈<span class="ext">↗</span></a></h3>
 <p class="sum">SMM 数据：2026 年国内锂电铜箔需求约 137.32 万吨、供应约 135 万吨，缺口 2.32 万吨；3μm/4.5μm 超薄铜箔结构性短缺，包括宁德时代在内的电池厂主动调整排产（储能电芯优先）；万吨级产线投资 4–8 亿元、建设爬产 18–24 个月，扩产慢；SMM 预测 2027 年缺口扩大至 3.89 万吨；加工费 Q4 上调 1000–2000 元/吨。</p>
 <p class="wk-biz"><b>业务含义</b>铜箔是电池集流体关键材料，短缺与加工费上调直接推高电芯成本；储能电芯优先排产可能挤压动力电芯交付节奏。企业排产调整为&quot;有消息透露&quot;，未一手核验。</p>
@@ -1706,7 +1769,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://batteriesnews.com/vianode-and-faam-advance-industrial-scale-closed-loop-recycling-of-battery-grade-graphite/（转述" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · 鑫椤锂电回收与利用 · 微信公众号 full 正文（企业口径）</span></div>
+<div class="srcrow"><span>W 线 · 鑫椤锂电回收与利用 · W 线 full 正文（企业口径）</span></div>
 <h3><a href="https://mp.weixin.qq.com/s/jgujoLy065goZVpwcPbF9A" target="_blank" rel="noopener">R3 Lithium 佐治亚 Covington 工厂投产<span class="ext">↗</span></a></h3>
 <p class="sum">北美首个商业化规模高纯碳酸锂回收（纯度 99%，年破碎 3 万吨、碳酸锂 2500 吨，目标 2027 年占美国本土产量 50%+）。</p>
 <p class="wk-biz"><b>业务含义</b>O2/O5 交叉：北美锂回收产能实质性落地。</p>
@@ -1718,11 +1781,11 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">奔驰 × 台湾 ProLogium 签署联合测试协议（9-24 台北），测试其 Gen4 锂陶瓷电池技术（ProLogium 官方；已核验） <a class="wk-one-link" href="https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">Ultium Cells 宣布追加 10 亿美元升级田纳西 Spring Hill 工厂——首个大规模量产棱柱形 LMR 电芯＋LFP 储能电芯，2028 年完成改造（WardsAuto；已核验；事件 9-30，10-01 发现） <a class="wk-one-link" href="https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">我国川西锂矿找矿突破，新增碳酸锂当量约 104.68 万吨（IT之家；仅有标题，官方通报待取）。</div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">9 月 19 款新车全选宁德时代电池（微信公众号宁德时代账号；仅有标题）。</div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">上市公司锂资源量排行榜——第一梯队赣锋/天齐/紫金；宁德时代权益资源 730.47 万吨 LCE 新晋重量级玩家（微信公众号锂书房 full 正文；媒体梳理口径）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">9 月 19 款新车全选宁德时代电池（W 线宁德时代账号；仅有标题）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">上市公司锂资源量排行榜——第一梯队赣锋/天齐/紫金；宁德时代权益资源 730.47 万吨 LCE 新晋重量级玩家（W 线锂书房 full 正文；媒体梳理口径）。</div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">ILA 宣布铅电池创新联盟（CBI）自 2027 年起重组为多技术预竞争研究组织——维也纳欧洲铅电池大会 120 名成员投票支持；保留铅电池核心研发，同时扩展至锂电池及其他新电池技术（ILA；已核验；2026-10-01） <a class="wk-one-link" href="https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/" target="_blank" rel="noopener">↗</a></div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">美国对华石墨电极反补贴：追溯征税至 5 月（鑫椤资讯 微信公众号；二手；税率/终裁待跟踪）。</div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">8021 合金扁锭试制突破（软包电池铝箔核心坯料）（有色日鉴 微信公众号；企业口径）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">美国对华石墨电极反补贴：追溯征税至 5 月（鑫椤资讯 W 线；二手；税率/终裁待跟踪）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">8021 合金扁锭试制突破（软包电池铝箔核心坯料）（有色日鉴 W 线；企业口径）。</div></div>
 <div class="wk-sub">本周补漏 <span class="wk-badge">补漏</span></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx"><span class="wk-badge">补漏</span>宝马 Gen6 电池在巴伐利亚新工厂投产（10-02，Automotive Powertrain Technology International 经路透；媒体转述） <a class="wk-one-link" href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUUdfN0U2dVBsSXhFTGw4SVd6MkxlNXlCektHSEI3TU5IM0VGeW05T1V1aGVUTTdkZWp" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx"><span class="wk-badge">补漏</span>韩国 Sebang 锂电池公司将在美国 Jeffersonville 建厂（9-30，Columbus Dispatch 经路透；地方媒体） <a class="wk-one-link" href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZWp0bHlpQi0wTzk2LXlPYmRvb3h4NXBzQS1Sdll3Y0ZhU3VEZ1djTG82d2FMUnNWV3l" target="_blank" rel="noopener">↗</a></div></div>
@@ -1759,7 +1822,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">欧洲铝业协会呼吁在 EU-印度/EU-印尼自贸协定中加入有效保障措施——EU-印度协定已送理事会签署、EU-印尼协定正走议会批准；生效后立即取消铝产品进口关税（协会立场文件，一手 PDF 已读；行业游说口径） <a class="wk-one-link" href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-09-30-European-Aluminium-Industry-statement-on-the-EU-India-and-EU-Indonesia-FTAs.pdf" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">worldsteel 公布第 17 届 Steelie Awards 决赛名单，新增&quot;卓越生命周期评估&quot;奖项——获奖者 10 月 12 日公布（worldsteel；已核验） <a class="wk-one-link" href="https://worldsteel.org/media/press-releases/2026/17th-steelie-awards-finalists-announced/" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">Copper Mark 推进单一统一采矿标准 CMSI，董事会扩至 17 人（MINING.COM；尚待核实，仅媒体报道） <a class="wk-one-link" href="https://www.mining.com/copper-mark-to-unify-esg-standards-for-metal-producers/" target="_blank" rel="noopener">↗</a></div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">碳加铁深度综述——氨还原炼铁&quot;十五年，四条路&quot;（微信公众号碳加铁 full 正文；KOL 技术综述，属分析梳理非新事件；10-01 晚间 pending 并入） <a class="wk-one-link" href="https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg" target="_blank" rel="noopener">↗</a></div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">碳加铁深度综述——氨还原炼铁&quot;十五年，四条路&quot;（W 线碳加铁 full 正文；KOL 技术综述，属分析梳理非新事件；10-01 晚间 pending 并入） <a class="wk-one-link" href="https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-sub">本周补漏 <span class="wk-badge">补漏</span></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx"><span class="wk-badge">补漏</span>首钢与力拓合作建设高炉煤气碳捕集工业试验装置（10-02，W-AGG；钢铁 CCUS 工业试验，企业口径） <a class="wk-one-link" href="https://mp.weixin.qq.com/s/jBK~VuZYXS-zk2uaX~fUrg" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx"><span class="wk-badge">补漏</span>立中集团（铸造铝合金龙头）进入镁合金赛道（10-01，W-AGG；企业动态） <a class="wk-one-link" href="https://mp.weixin.qq.com/s/EbGiTfOzsFfgI-yTEgNtZg" target="_blank" rel="noopener">↗</a></div></div>
@@ -1786,7 +1849,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://thesamay.co.in/index.php/2026/09/30/how-mmcms-cercarbono-approved-methodology-turns-scrapped-vehicles-into-carbon-credits/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="item">
-<div class="srcrow"><span>微信公众号 · 生态文明实践 · 微信公众号 full 正文；规划原文尚未一手取得，打标「待一手核验」</span></div>
+<div class="srcrow"><span>W 线 · 生态文明实践 · W 线 full 正文；规划原文尚未一手取得，打标「待一手核验」</span></div>
 <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">&quot;往复&quot;之间——一座再循环工厂里的全球制造业博弈<span class="ext">↗</span></a></h3>
 <p class="sum">记者蹲点海尔再循环互联工厂，追踪废旧家电&quot;重生&quot;为汽车零部件之路；引用 2026 年 6 月发改委《循环经济发展&quot;十五五&quot;规划》（到 2030 年我国资源循环利用产业产值 8 万亿元）。</p>
 <p class="wk-biz"><b>业务含义</b>见 C1&quot;循环经济发展&#x27;十五五&#x27;规划&quot;条。</p>
@@ -1807,11 +1870,11 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <a class="golink" href="https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
 </div>
 <div class="wk-sub">一句话速览</div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">湖北锂合环保推进天门市 5 万吨电池回收项目（微信公众号退役电池资源与再利用；仅有摘要；9-30 晚间 pending 并入）。</div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">湖北省发文，废塑料列入固废规划重点品类（微信公众号废塑料新观察；仅有摘要；命中&quot;规划&quot;关键词故收录一句话；10-01 晚间 pending 并入；&quot;155&quot;疑为&quot;十五五&quot;笔误）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">湖北锂合环保推进天门市 5 万吨电池回收项目（W 线退役电池资源与再利用；仅有摘要；9-30 晚间 pending 并入）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">湖北省发文，废塑料列入固废规划重点品类（W 线废塑料新观察；仅有摘要；命中&quot;规划&quot;关键词故收录一句话；10-01 晚间 pending 并入；&quot;155&quot;疑为&quot;十五五&quot;笔误）。</div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">JCP 论文——废旧 NCM 电池盐酸浸出液镍钴无碱回收（吡啶甲酰胺萃取剂、连续逆流萃取；Journal of Cleaner Production；仅有标题/DOI；10-01 晚间 pending 并入） <a class="wk-one-link" href="https://doi.org/10.1016/j.jclepro.2026.149558" target="_blank" rel="noopener">↗</a></div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">JCP 论文——低价值可回收物回收的治理机制研究（Journal of Cleaner Production；仅有标题/DOI） <a class="wk-one-link" href="https://doi.org/10.1016/j.jclepro.2026.149422" target="_blank" rel="noopener">↗</a></div></div>
-<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">人民日报评论：让再生塑料不再谈&quot;杂&quot;色变（微信公众号生态文明实践）。</div></div>
+<div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">人民日报评论：让再生塑料不再谈&quot;杂&quot;色变（W 线生态文明实践）。</div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">印尼国家研究创新署（BRIN）开发可持续电动车电池废弃物管理模型（Google News 线索；细节待取）。</div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">GM 新款电动车开始使用再生电池材料（9-29，Reuters；媒体）。</div></div>
 <div class="wk-one"><span class="wk-dot" aria-hidden="true">•</span><div class="wk-one-tx">报废机动车回收拆解行业治理现状与优化路径浅析（9-29，W-AGG）。</div></div>
@@ -1944,12 +2007,13 @@ function showWeekly(date){
 </div>
 
 <script>
+var ISSUE_DATE = "2026-10-09";
 var BRIEF_DATA = [{"t": "工信部公示《工业产品碳足迹核算规则团体标准推荐清单（第四批）》征求意见", "u": "https://www.miit.gov.cn/jgsj/jns/gzdt/art/2026/art_a580efbbcb3147929c1b527156e2c726.html", "s": "工业和信息化部节能与综合利用司（一手）", "sec": "国内法规与政策", "sum": "工业和信息化部节能与综合利用司于2026年10月8日公示第四批工业产品碳足迹核算规则团体标准推荐清单（公示期10月8日至14日，公示征求意见阶段、非正式发布）。清单落实加快产品碳足迹管理体系建设的部署，经机构推荐与专家评审形成；产品碳足迹核算规则的团体标准布局直接影响国内PCF/LCA核算口径的统一进程。", "points": [], "note": "已核验（一手正文通读；公示阶段，非正式发布）；10-08晚间浏览器轮换发现并入早报"}, {"t": "一句话：王文涛部长会见欧委会贸易和经济安全委员谢夫乔维奇", "u": "https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_c98d6dc6f06f44c1abc49ca63590842b.html", "s": "中华人民共和国商务部·新闻发布（一手）", "sec": "国内法规与政策", "sum": "商务部网站2026年10月8日发布王文涛部长会见欧委会贸易和经济安全委员谢夫乔维奇的消息；此次会见处在欧盟拟强化贸易工具、中欧贸易再平衡议程升温的背景下，与10月9日卢森堡部长会议及此前法德推动强化贸易防御的动向相呼应。", "points": [], "note": "一手标题已核验；会见要点正文待浏览器完整报告补全，不做法规状态断言"}, {"t": "一句话：2026年度工业节能降碳标准研究项目公示", "u": "https://www.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_cae45d26ac0f4caa821049366fd3f8dd.html", "s": "工业和信息化部节能与综合利用司（一手）", "sec": "国内法规与政策", "sum": "工业和信息化部节能与综合利用司2026年10月8日公示2026年度工业节能降碳标准研究项目（公示期10月8日至14日，公示征求意见阶段）。清单为节能降碳标准体系的年度研究布局，可能影响后续节能降碳方法标准的制修订方向。", "points": [], "note": "已核验（一手正文通读；公示阶段，非正式发布）；10-08晚间浏览器轮换发现并入早报"}, {"t": "一句话：TÜV SÜD推出数字电池护照认证服务", "u": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOWTJoVGRSQzc2Yy1Uem5TOTRkR3h3ZTZBeUxLdzF0MGdfVTJBcHRkUnNveXNFNEx6SF9PZTR2aWMzbEhmOGZrUTQ4VWVzTjJndmI1bFdWdWwwQThEOHFRTzlFTFZkdnBfTFF3WndaMkJteloxUERvVjl6R3dSeS1xOUc1Z1QxRUhsV3FTeUhjTHJEamN0WnJQZw?oc=5", "s": "Automotive World（经 Google News RSS 转引）", "sec": "海外法规与政策", "sum": "TÜV SÜD宣布推出数字电池护照认证服务，此举对应2027年2月18日电池护照义务到来的第三方核验需求；认证机构布局护照核验，呼应Minespider/TENWAYS等实施侧的部署进展。", "points": [], "note": "仅有标题/摘要（原文未读）"}, {"t": "一句话：SBTi就森林、土地与农业（FLAG）标准修订征求意见", "u": "https://sciencebasedtargets.org/news/sbti-issues-call-for-input-to-inform-revision-of-forest-land-and-agriculture-standard", "s": "SBTi官网（一手）", "sec": "LCA与方法学", "sum": "SBTi就森林、土地与农业（FLAG）标准第2版的制定启动证据征集，原文显示征集截至10月8日，整体开发周期超过12个月；FLAG与GHG Protocol土地部门、Corporate Net-Zero Standard V2的新概念衔接将被纳入考量，可能影响土地利用与农业供应链的核算与目标口径。", "points": [], "note": "一手原文已读（发布稿）；10-08晚间pending并入早报"}, {"t": "一句话：ecoinvent介绍LCA数据内在质量流程", "u": "https://ecoinvent.org/blog/ecoinvents-quality-process/", "s": "ecoinvent官方博客", "sec": "LCA与方法学", "sum": "ecoinvent以博客形式说明其LCI数据质量保障的内在流程，涉及数据评审与版本控制逻辑的公开说明；对理解ecoinvent数据选数、评审口径有参考价值。", "points": [], "note": "仅有标题（正文未读）"}, {"t": "一句话：ES&T论文：建筑环境LCA中自然灾害风险随机输入管理方法", "u": "https://pubs.acs.org/esthag/article/doi/10.1021/acs.est.6c07128/5446574/Natural-Hazard-Risks-in-LCA-for-the-Built", "s": "ACS ES&T，DOI 10.1021/acs.est.6c07128", "sec": "LCA与方法学", "sum": "论文讨论建筑环境LCA中自然灾害风险的纳入方法，聚焦随机过程型LCA中随机输入的管理，属于LCA不确定性与情景处理的方法学探索，建成环境案例的方法思路具有可迁移性。", "points": [], "note": "仅有标题/DOI（全文未读）"}, {"t": "一句话：WBCSD发布加速电气化的商业与监管导航工具", "u": "https://www.wbcsd.org/resources/a-business-and-regulatory-navigator-to-accelerate-electrification/", "s": "WBCSD（一手）", "sec": "LCA与方法学", "sum": "WBCSD发布面向企业电气化的商业与监管导航工具，汇总企业电气化面临的相关监管要求；工具定位为政策与商业导航资源，具体内容细节未通读。", "points": [], "note": "仅有标题（原文未读；内容细节待复核）"}, {"t": "一句话：IPE发布《中国企业温室气体排放核算与报告因子库（2026）》", "u": "https://mp.weixin.qq.com/s/rkPuGC52aArCMjVQWLH6yQ", "s": "微信公众号（蔚蓝地图，full 正文）", "sec": "数据与知识", "sum": "蔚蓝地图（IPE）发布《中国企业温室气体排放核算与报告因子库（2026）》，梳理企业常用排放因子的来源、口径、用法与风险；可作为企业碳核算与LCA本地化因子选用的参考工具。", "points": [], "note": "微信公众号 full 正文（因子库原文未独立核验）"}, {"t": "一句话：RCR论文：中国金属出口碳关税省域负担及驱动因素（空间指数分解）", "u": "https://mp.weixin.qq.com/s/hTXBe3PYRSNdhiExuRQQqQ", "s": "微信公众号（RCR 资源节约与循环，full 正文转述）", "sec": "数据与知识", "sum": "论文在省域—产品尺度上用空间指数分解评估中国钢铁与铝出口面临的碳关税负担并指出，绝对成本与相对税率存在空间错配，风险集中于少数核心产品；2026基准情景下文中钢铁与铝的全国碳关税税率分别为11.1%和4.1%，省域差异最高分别达35.0%和8.7%。可作为识别材料出口CBAM暴露的分析框架参考，原文链接见页面（doi:10.1016/j.resconrec.2026.109141）。", "points": [], "note": "微信公众号 full 正文转述；期刊论文原文（DOI）未独立通读"}, {"t": "一句话：国庆假期铝累库规模收窄、库存解读逻辑变化（有色日鉴）", "u": "https://mp.weixin.qq.com/s/unqgj2U35T87WWDboWrI2g", "s": "微信公众号（有色日鉴，full 正文）", "sec": "上游基础材料", "sum": "2026年国庆假期铝锭、铝棒累库的绝对规模较前两年明显收窄，但市场做多热情未随之转强；文章认为以社会库存增减推演铝价的旧经验易误判，提示铝库存与价格的传导逻辑正在变化。", "points": [], "note": "微信公众号 full 正文（行业媒体分析口径）"}, {"t": "一句话：Meranti：绿色溢价使泰国钢铁日常产品成本增加约1%—3%", "u": "https://mp.weixin.qq.com/s/8mTAM41RWCeSKoXJa1Tgeg", "s": "微信公众号（Kallanish 国际钢铁资讯，full 正文）", "sec": "上游基础材料", "sum": "Meranti Green Steel在研讨会上表示，即使将绿色溢价全额传导，泰国日常钢铁产品成本增幅约为1%—3%。该量化口径可为绿色钢铁溢价的市场接受度判断提供参照。", "points": [], "note": "微信公众号 full 正文（企业口径转述）"}, {"t": "一句话：LG新能源与Elevra签锂辉石精矿多年包销（24万干吨，4年）", "u": "https://news.lgensol.com/company-news/press-releases/5412/", "s": "LG新能源官方新闻稿（一手）", "sec": "电池产业链", "sum": "LG新能源官网10月8日宣布与Elevra Lithium签订多年期具约束力的锂辉石精矿承购安排，原文称自今年晚些时候起、4年内供应24万干吨锂辉石精矿，产自魁北克在产的North American Lithium项目。原文将其与北美储能需求增长和区域价值链联系；锂辉石精矿作为可加工为碳酸锂/氢氧化锂的中间原料，提高原料灵活性。", "points": [], "note": "已核验（一手原文已读；企业披露）"}, {"t": "一句话：天赐材料通过港交所聆讯", "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5rbGF6LURJeS1DVEtCYnFiZmZrWS1ubF9QalJmekIwdmVGX3FSV3hrQmpRamo0NDhtTk1wRFNNRndvd2Jwd0lnelVDVzhQV1RBdV9jdm9LZVRLM1lUQ1V3cE13NA?oc=5", "s": "东方财富（经 Google News RSS 转引）", "sec": "电池产业链", "sum": "天赐材料（电解液龙头）通过港交所上市聆讯，相对于10月6日早报已推的筹资规模线索，此次为同一上市事件的实质进展（聆讯通过阶段）。", "points": [], "note": "仅有标题（媒体转述）"}, {"t": "一句话：NMG与麦吉尔大学合作低碳足迹负极材料涂层工艺", "u": "https://batteriesnews.com/nmg-develops-low-carbon-footprint-anode-material-coating-process-in-collaboration-with-mcgill-university/", "s": "Batteries News（WP-JSON 元数据）", "sec": "电池产业链", "sum": "Nouveau Monde Graphite（NMG）与麦吉尔大学合作开发低碳足迹负极材料涂层工艺，属于石墨负极低碳化工艺进展（I2上游材料环节）。", "points": [], "note": "仅有标题（WP-JSON 元数据；原文未读；N81补捞）"}, {"t": "一句话：废钢“城市矿山”与回收承接（3亿吨量级）", "u": "https://mp.weixin.qq.com/s/2YE~oXM-OaDeND41iC~i1Q", "s": "微信公众号（生态文明实践，partial）", "sec": "循环再生", "sum": "条目标题指向废钢“城市矿山”规模与回收承接问题。标题命中“回收”必看关键词已按规则人工复核并收录；但正文缺失（partial），规模与承接细节无法确认。", "points": [], "note": "微信公众号 partial（仅标题，正文缺失）"}, {"t": "一句话：复杂塑料废弃物选择性回收技术综述（机械、热化学、溶剂与解聚）", "u": "https://mp.weixin.qq.com/s/~kMgFje0cDqZLuh2d9IlLw", "s": "微信公众号（废塑料新观察，partial）", "sec": "循环再生", "sum": "综述梳理复杂塑料废弃物的选择性回收技术路线，涵盖机械、热化学、溶剂法与解聚路径。标题命中“回收”必看关键词已人工复核；正文缺失（partial），技术细节未确认。", "points": [], "note": "微信公众号 partial（仅标题，正文缺失）"}, {"t": "一句话：英国回收中心电池火灾年损失约10亿英镑", "u": "https://batteriesnews.com/battery-fires-at-recycling-centres-are-costing-uk-1bn-a-year-figures-show/", "s": "Batteries News（WP-JSON 元数据）", "sec": "循环再生", "sum": "页面数据称英国回收中心的电池火灾造成每年约10亿英镑量级的损失，提示电池回收环节的火灾风险与处置成本问题。", "points": [], "note": "仅有标题（WP-JSON 元数据；原文未读；N81补捞）"}, {"t": "一句话：Circunomics开放电池市场数据（约90条电池挂牌）", "u": "https://batteriesnews.com/nearly-90-battery-listings-on-offer-circunomics-opens-its-marketplace-data-to-the-public/", "s": "Batteries News（WP-JSON 元数据）", "sec": "循环再生", "sum": "Circunomics将其电池交易平台数据向公众开放，页面称平台约有近90条电池挂牌；属于电池梯次利用与循环交易市场的基础设施动态。", "points": [], "note": "仅有标题（WP-JSON 元数据；原文未读；N81补捞）"}, {"t": "一句话：BIR发布10月季度报告摘要（黑色金属与回收纸）：欧盟草稿清单引发市场准入担忧", "u": "https://www.bir.org/news-press/news", "s": "BIR（国际回收局）新闻列表页（一手）", "sec": "循环再生", "sum": "BIR新闻列表显示2026年10月8日上线两份季度报告摘要：黑色金属季度报告标题提示欧盟委员会草案清单继续加剧对关键海外市场准入的担忧；回收纸季度报告聚焦物流与合规议题对出口商的压力。全文位于会员专区，摘要信息有限。", "points": [], "note": "仅有列表页标题与摘要（全文会员专区未读）；浏览器轮换复核中，具体原文直达链接待回填"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;
   document.getElementById('mTitle').textContent = d.t;
-  document.getElementById('mMeta').textContent = d.sec + ' · 2026-09-29';
+  document.getElementById('mMeta').textContent = d.sec + (ISSUE_DATE ? ' · 本期日期：' + ISSUE_DATE : '');
   document.getElementById('mSum').textContent = d.sum;
   var pw = document.getElementById('mPoints'), ul = pw.querySelector('ul');
   ul.innerHTML = '';
@@ -2155,34 +2219,123 @@ if(mgo){
 renderFav();
 })();
 
-/* v28r8：全站搜索 */
+/* v29-r3：全站搜索（根路径索引 / 失败可重试 / 加载后按最新关键词 / 焦点恢复） */
 (function(){
   var btn = document.getElementById('tbSearchBtn'), ov = document.getElementById('searchOv'),
       inp = document.getElementById('searchInput'), res = document.getElementById('searchRes');
   if(!btn || !ov) return;
-  var idx = null;
-  function open(){ ov.classList.add('on'); inp.value=''; res.innerHTML=''; setTimeout(function(){inp.focus()},50);
-    if(!idx){ fetch('search-index.json').then(function(r){return r.json()}).then(function(j){idx=j}).catch(function(){}); } }
-  function close(){ ov.classList.remove('on'); }
+  /* 索引位于站点根目录：无论当前页在根下还是 /daily/ 下，都按根路径解析，不复制索引 */
+  var SITE_BASE = (function(){
+    var p = location.pathname;
+    var i = p.lastIndexOf('/daily/');
+    if(i >= 0) return p.slice(0, i + 1);
+    return p.slice(0, p.lastIndexOf('/') + 1);
+  })();
+  var INDEX_URL = SITE_BASE + 'search-index.json';
+  var idx = null, idxState = 'idle';   /* idle | loading | ready | failed：同时最多一个在途请求 */
+  var returnFocusTo = null;            /* 打开前获得焦点的元素 */
+  var isOpen = false;
+
+  function isRestorable(el){
+    return !!el && el !== document.body && document.contains(el)
+      && typeof el.focus === 'function' && el.tabIndex >= 0
+      && el.getClientRects().length > 0;
+  }
+  function focusNoScroll(el){
+    if(!el) return;
+    try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); }
+  }
+  function dispTitle(t){
+    return String(t || '').replace(/^一句话（[^）]*）：/, '').replace(/^一句话：/, '');
+  }
+
+  function render(){
+    var q = inp.value.trim().toLowerCase();
+    if(!q){ res.innerHTML = ''; return; }
+    if(idxState === 'failed'){ res.innerHTML = '<div class="empty">索引加载失败，请关闭后重新打开搜索重试</div>'; return; }
+    if(!idx){ res.innerHTML = '<div class="empty">索引加载中…</div>'; return; }
+    var hits = idx.filter(function(it){
+      return (it.t + ' ' + it.s).toLowerCase().indexOf(q) >= 0;
+    }).slice(0, 20);
+    if(!hits.length){ res.innerHTML = '<div class="empty">没有找到相关内容</div>'; return; }
+    res.innerHTML = hits.map(function(it){
+      var u = it.u || (SITE_BASE + 'daily/' + it.d + '.html');
+      return '<a href="' + u + '" target="_blank" rel="noopener"><div class="rt">' + dispTitle(it.t) + '</div>' +
+        '<div class="rm">' + it.d + ' · ' + it.c + '</div></a>';
+    }).join('');
+  }
+
+  function loadIndex(){
+    if(idxState === 'loading' || idxState === 'ready') return;
+    idxState = 'loading';
+    fetch(INDEX_URL).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      return r.json();
+    }).then(function(j){
+      idx = j; idxState = 'ready';
+      if(isOpen) render();            /* 加载完成：按输入框当时的最新关键词渲染 */
+    }).catch(function(){
+      idxState = 'failed';
+      if(isOpen) render();
+    });
+  }
+
+  function open(){
+    if(isOpen) return;                       /* 重复触发：不覆盖原记录 */
+    returnFocusTo = document.activeElement || null;
+    isOpen = true;
+    ov.classList.add('on'); inp.value=''; res.innerHTML='';
+    setTimeout(function(){ focusNoScroll(inp); },50);
+    if(idxState === 'idle' || idxState === 'failed') loadIndex();  /* 重新打开即重试（仅用户动作触发，不自动轮询） */
+    else if(idxState === 'loading') render();
+  }
+
+  function close(){
+    if(!isOpen) return;
+    isOpen = false;
+    ov.classList.remove('on');
+    var target = isRestorable(returnFocusTo) ? returnFocusTo : btn;
+    returnFocusTo = null;
+    focusNoScroll(target);                   /* preventScroll：阅读位置不跳 */
+  }
+
   btn.addEventListener('click', open);
   ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
   document.addEventListener('keydown', function(e){
     if(e.key==='/' && !/input|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); open(); }
-    if(e.key==='Escape') close();
+    if(e.key==='Escape' && isOpen) close();
   });
-  inp.addEventListener('input', function(){
-    var q = inp.value.trim().toLowerCase();
-    if(!q || !idx){ res.innerHTML = q ? '<div class="empty">索引加载中…</div>' : ''; return; }
-    var hits = idx.filter(function(it){
-      return (it.t+' '+it.s).toLowerCase().indexOf(q) >= 0;
-    }).slice(0, 20);
-    if(!hits.length){ res.innerHTML = '<div class="empty">没有找到相关内容</div>'; return; }
-    res.innerHTML = hits.map(function(it){
-      var u = it.u || ('daily/'+it.d+'.html');
-      return '<a href="'+u+'" target="_blank" rel="noopener"><div class="rt">'+it.t+'</div>'+
-        '<div class="rm">'+it.d+' · '+it.c+'</div></a>';
-    }).join('');
-  });
+  inp.addEventListener('input', render);
+})();
+
+/* v29：刊头日期选择（展开/收起日历面板，键盘可达；日报/周报通用） */
+(function(){
+  function bind(btnId, panelId){
+    var btn = document.getElementById(btnId), panel = document.getElementById(panelId);
+    if(!btn || !panel) return;
+    function setOpen(open){
+      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open){
+        var cur = panel.querySelector('.dd.cur') || panel.querySelector('a.dd');
+        if(cur) cur.focus();
+      }
+    }
+    btn.addEventListener('click', function(){ setOpen(panel.hidden); });
+    panel.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ setOpen(false); btn.focus(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && !panel.hidden){ setOpen(false); btn.focus(); }
+    });
+    document.addEventListener('click', function(e){
+      if(!panel.hidden && !panel.contains(e.target) && !btn.contains(e.target)){
+        setOpen(false);
+      }
+    });
+  }
+  bind('dpBtn', 'dcalPanel');
+  bind('wdpBtn', 'wcalPanel');
 })();
 
 /* v28r8：scrollspy — 滚动时高亮右侧目录当前章节 */

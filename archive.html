@@ -1108,6 +1108,76 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 .golink{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;color:var(--accent-deep);border:none;border-radius:0;padding:0;background:none;text-decoration:none}
 .golink:hover{color:var(--accent);border:none;background:none;transform:none;box-shadow:none;text-decoration:underline}
 .golink .arr{margin-left:3px;font-weight:400}
+/* ===== v29 阅读体验精修（追加覆盖层） ===== */
+/* 正文阅读尺度 */
+.shell{grid-template-columns:200px minmax(0,700px) 240px}
+@media(max-width:1180px){.shell{grid-template-columns:minmax(0,1fr);max-width:720px}}
+.item .sum{font-size:17px;line-height:1.8}
+.item h3{font-size:21px;font-weight:600;line-height:1.45}
+.item h3 a{font-weight:600}
+.item .note{font-size:13.5px}
+.srcrow{font-size:13.5px}
+@media(max-width:1180px){.shell{max-width:760px}}
+
+/* 紧凑刊头（左信息＋右日历卡，保留现有日历窗口） */
+.masthead{flex-direction:row;align-items:flex-start;gap:24px;margin:0 0 16px}
+.mast-left{min-width:0;flex:1 1 auto}
+.mast-dateline{font-size:15.5px;font-weight:700;color:var(--ink)}
+.mast-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mast-name{font-size:26px;font-weight:900;letter-spacing:.03em;color:var(--primary)}
+.mast-name .lca{color:var(--accent)}
+.mast-en{font-size:12px;letter-spacing:.28em;color:var(--faint);font-weight:600}
+.mast-line{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.datepick{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:700;white-space:nowrap;max-width:100%;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:7px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.datepick:hover{border-color:var(--primary)}
+.datepick:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.datepick .dp-arrow{font-size:11px;color:var(--gray);transition:transform .2s}
+.datepick[aria-expanded="true"] .dp-arrow{transform:rotate(180deg)}
+.datepick .dp-issue{color:var(--primary)}
+.mast-cov{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);margin-top:9px;flex-wrap:wrap}
+.mast-cov .kind{background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;
+  border-radius:999px;padding:2px 10px}
+.stats-line{display:flex;align-items:baseline;gap:14px;margin-top:11px;padding-bottom:13px;
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stats-line .st-main{font-size:15px;font-weight:700;color:var(--ink)}
+.stats-line .st-sub{font-size:13px;color:var(--gray)}
+
+/* 日期面板（展开日历） */
+.dcal-panel{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  background:var(--card);max-width:340px}
+.dcal-panel[hidden]{display:none}
+.dcal-panel .dcal-mhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.dcal-panel .dcal-mhead b{font-size:15px}
+.dcal-panel .dcal-c{font-size:12.5px;color:var(--gray)}
+
+/* 旧刊头大字标题与旧统计行在新结构中不再使用 */
+
+/* v29-r2：长文辅助文字（来源/注释）对比度 —— 局部覆盖，不碰全局 --gray
+   （--gray 同时用于日历/图标/边框）。浅色 #707078 在白底 4.91:1 ≥ 4.5；
+   深色沿用 #8b96a5 在 #141e2c 上 5.59:1，已达标、不套用浅色新色。 */
+.srcrow,.item .note,.msrc,.mmeta,.mnote{color:#707078}
+html:has(.theme-switch input[value="dark"]:checked) .srcrow,
+html:has(.theme-switch input[value="dark"]:checked) .item .note,
+html:has(.theme-switch input[value="dark"]:checked) .msrc,
+html:has(.theme-switch input[value="dark"]:checked) .mmeta,
+html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
+@media (prefers-color-scheme:dark){
+  html:not(:has(.theme-switch input[value="light"]:checked)) .srcrow,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .item .note,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .msrc,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mmeta,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mnote{color:#8b96a5}
+}
+@media(max-width:760px){
+  .masthead{flex-direction:column}
+  .item .sum{font-size:16.5px}
+  .item h3{font-size:19px}
+  .shell{padding:0 20px}
+  .mast-name{font-size:23px}
+  .datepick{font-size:14.5px;padding:6px 14px}
+}
 
 
 /* 往期归档时间线样式来自设计稿主 CSS（构建器整块提取），此处无需重复定义 */
@@ -1144,17 +1214,17 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 <p class="arc-sub"><span>共 10 期 · 自 2026 年 9 月 30 日起</span></p>
 <div class="tl">
 <div class="tl-month" id="arc-m-2026-10"><span>2026 年 10 月</span><span class="tl-mc">9 期</span></div>
-<a class="tl-item" href="daily/2026-10-09.html"><span class="tl-date"><b>09</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 10 期</em><span class="tl-meta">1 条收录 · 19 条一句话</span></span><b class="tl-title">工信部公示产品碳足迹团体标准推荐清单（第四批）</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-08.html"><span class="tl-date"><b>08</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 9 期</em><span class="tl-meta">1 条收录 · 19 条一句话</span></span><b class="tl-title">欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-07.html"><span class="tl-date"><b>07</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 8 期</em><span class="tl-meta">4 条收录 · 11 条一句话</span></span><b class="tl-title">商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-06.html"><span class="tl-date"><b>06</b><i>星期二</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 7 期</em><span class="tl-meta">1 条收录 · 12 条一句话</span></span><b class="tl-title">《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）纳入全生命周期闭环管理体系</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-05.html"><span class="tl-date"><b>05</b><i>星期一</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 6 期</em><span class="tl-meta">1 条收录 · 6 条一句话</span></span><b class="tl-title">商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-04.html"><span class="tl-date"><b>04</b><i>星期日</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 5 期</em><span class="tl-meta">1 条收录 · 13 条一句话</span></span><b class="tl-title">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-03.html"><span class="tl-date"><b>03</b><i>星期六</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 4 期</em><span class="tl-meta">1 条收录 · 9 条一句话</span></span><b class="tl-title">广州公交 1GWh 退役电池“合伙人”处置模式</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-02.html"><span class="tl-date"><b>02</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 3 期</em><span class="tl-meta">5 条收录 · 19 条一句话</span></span><b class="tl-title">CBAM 核查机构开始真正进场</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
-<a class="tl-item" href="daily/2026-10-01.html"><span class="tl-date"><b>01</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 2 期</em><span class="tl-meta">10 条收录 · 10 条一句话</span></span><b class="tl-title">WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-09.html"><span class="tl-date"><b>09</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 10 期</em><span class="tl-meta">20 条内容（收录 1 · 一句话 19）</span></span><b class="tl-title">工信部公示产品碳足迹团体标准推荐清单（第四批）</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-08.html"><span class="tl-date"><b>08</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 9 期</em><span class="tl-meta">20 条内容（收录 1 · 一句话 19）</span></span><b class="tl-title">欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-07.html"><span class="tl-date"><b>07</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 8 期</em><span class="tl-meta">15 条内容（收录 4 · 一句话 11）</span></span><b class="tl-title">商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-06.html"><span class="tl-date"><b>06</b><i>星期二</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 7 期</em><span class="tl-meta">13 条内容（收录 1 · 一句话 12）</span></span><b class="tl-title">《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）纳入全生命周期闭环管理体系</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-05.html"><span class="tl-date"><b>05</b><i>星期一</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 6 期</em><span class="tl-meta">7 条内容（收录 1 · 一句话 6）</span></span><b class="tl-title">商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-04.html"><span class="tl-date"><b>04</b><i>星期日</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 5 期</em><span class="tl-meta">14 条内容（收录 1 · 一句话 13）</span></span><b class="tl-title">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-03.html"><span class="tl-date"><b>03</b><i>星期六</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 4 期</em><span class="tl-meta">10 条内容（收录 1 · 一句话 9）</span></span><b class="tl-title">广州公交 1GWh 退役电池“合伙人”处置模式</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-02.html"><span class="tl-date"><b>02</b><i>星期五</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 3 期</em><span class="tl-meta">24 条内容（收录 5 · 一句话 19）</span></span><b class="tl-title">CBAM 核查机构开始真正进场</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-01.html"><span class="tl-date"><b>01</b><i>星期四</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 2 期</em><span class="tl-meta">20 条内容（收录 10 · 一句话 10）</span></span><b class="tl-title">WTO 争端解决机构设立 DS639 专家组，首次将欧盟 CBAM 送入争端解决程序</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <div class="tl-month" id="arc-m-2026-09"><span>2026 年 9 月</span><span class="tl-mc">1 期</span></div>
-<a class="tl-item" href="daily/2026-09-30.html"><span class="tl-date"><b>30</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 1 期</em><span class="tl-meta">6 条收录 · 24 条一句话</span></span><b class="tl-title">七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-09-30.html"><span class="tl-date"><b>30</b><i>星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue">第 1 期</em><span class="tl-meta">30 条内容（收录 6 · 一句话 24）</span></span><b class="tl-title">七部门&quot;十五五&quot;规划：2030 年动力电池 ≥400Wh/kg</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 </div></div></div>
 </div>
 <footer class="site-foot"><span>LCA瞭望 · LCA RADAR</span><span class="pv">本站总访问 <span id="busuanzi_value_site_pv">…</span> · 访客 <span id="busuanzi_value_site_uv">…</span></span></footer>
@@ -1257,7 +1327,96 @@ if(!__pillAnimated) movePill();
 onScroll();
 navScroll();
 </script>
+<script>
+/* v29-r3：全站搜索（根路径索引 / 失败可重试 / 加载后按最新关键词 / 焦点恢复） */
+(function(){
+  var btn = document.getElementById('tbSearchBtn'), ov = document.getElementById('searchOv'),
+      inp = document.getElementById('searchInput'), res = document.getElementById('searchRes');
+  if(!btn || !ov) return;
+  /* 索引位于站点根目录：无论当前页在根下还是 /daily/ 下，都按根路径解析，不复制索引 */
+  var SITE_BASE = (function(){
+    var p = location.pathname;
+    var i = p.lastIndexOf('/daily/');
+    if(i >= 0) return p.slice(0, i + 1);
+    return p.slice(0, p.lastIndexOf('/') + 1);
+  })();
+  var INDEX_URL = SITE_BASE + 'search-index.json';
+  var idx = null, idxState = 'idle';   /* idle | loading | ready | failed：同时最多一个在途请求 */
+  var returnFocusTo = null;            /* 打开前获得焦点的元素 */
+  var isOpen = false;
 
+  function isRestorable(el){
+    return !!el && el !== document.body && document.contains(el)
+      && typeof el.focus === 'function' && el.tabIndex >= 0
+      && el.getClientRects().length > 0;
+  }
+  function focusNoScroll(el){
+    if(!el) return;
+    try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); }
+  }
+  function dispTitle(t){
+    return String(t || '').replace(/^一句话（[^）]*）：/, '').replace(/^一句话：/, '');
+  }
+
+  function render(){
+    var q = inp.value.trim().toLowerCase();
+    if(!q){ res.innerHTML = ''; return; }
+    if(idxState === 'failed'){ res.innerHTML = '<div class="empty">索引加载失败，请关闭后重新打开搜索重试</div>'; return; }
+    if(!idx){ res.innerHTML = '<div class="empty">索引加载中…</div>'; return; }
+    var hits = idx.filter(function(it){
+      return (it.t + ' ' + it.s).toLowerCase().indexOf(q) >= 0;
+    }).slice(0, 20);
+    if(!hits.length){ res.innerHTML = '<div class="empty">没有找到相关内容</div>'; return; }
+    res.innerHTML = hits.map(function(it){
+      var u = it.u || (SITE_BASE + 'daily/' + it.d + '.html');
+      return '<a href="' + u + '" target="_blank" rel="noopener"><div class="rt">' + dispTitle(it.t) + '</div>' +
+        '<div class="rm">' + it.d + ' · ' + it.c + '</div></a>';
+    }).join('');
+  }
+
+  function loadIndex(){
+    if(idxState === 'loading' || idxState === 'ready') return;
+    idxState = 'loading';
+    fetch(INDEX_URL).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      return r.json();
+    }).then(function(j){
+      idx = j; idxState = 'ready';
+      if(isOpen) render();            /* 加载完成：按输入框当时的最新关键词渲染 */
+    }).catch(function(){
+      idxState = 'failed';
+      if(isOpen) render();
+    });
+  }
+
+  function open(){
+    if(isOpen) return;                       /* 重复触发：不覆盖原记录 */
+    returnFocusTo = document.activeElement || null;
+    isOpen = true;
+    ov.classList.add('on'); inp.value=''; res.innerHTML='';
+    setTimeout(function(){ focusNoScroll(inp); },50);
+    if(idxState === 'idle' || idxState === 'failed') loadIndex();  /* 重新打开即重试（仅用户动作触发，不自动轮询） */
+    else if(idxState === 'loading') render();
+  }
+
+  function close(){
+    if(!isOpen) return;
+    isOpen = false;
+    ov.classList.remove('on');
+    var target = isRestorable(returnFocusTo) ? returnFocusTo : btn;
+    returnFocusTo = null;
+    focusNoScroll(target);                   /* preventScroll：阅读位置不跳 */
+  }
+
+  btn.addEventListener('click', open);
+  ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='/' && !/input|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); open(); }
+    if(e.key==='Escape' && isOpen) close();
+  });
+  inp.addEventListener('input', render);
+})();
+</script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
 setTimeout(function(){

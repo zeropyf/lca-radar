@@ -1108,6 +1108,76 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 .golink{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;color:var(--accent-deep);border:none;border-radius:0;padding:0;background:none;text-decoration:none}
 .golink:hover{color:var(--accent);border:none;background:none;transform:none;box-shadow:none;text-decoration:underline}
 .golink .arr{margin-left:3px;font-weight:400}
+/* ===== v29 阅读体验精修（追加覆盖层） ===== */
+/* 正文阅读尺度 */
+.shell{grid-template-columns:200px minmax(0,700px) 240px}
+@media(max-width:1180px){.shell{grid-template-columns:minmax(0,1fr);max-width:720px}}
+.item .sum{font-size:17px;line-height:1.8}
+.item h3{font-size:21px;font-weight:600;line-height:1.45}
+.item h3 a{font-weight:600}
+.item .note{font-size:13.5px}
+.srcrow{font-size:13.5px}
+@media(max-width:1180px){.shell{max-width:760px}}
+
+/* 紧凑刊头（左信息＋右日历卡，保留现有日历窗口） */
+.masthead{flex-direction:row;align-items:flex-start;gap:24px;margin:0 0 16px}
+.mast-left{min-width:0;flex:1 1 auto}
+.mast-dateline{font-size:15.5px;font-weight:700;color:var(--ink)}
+.mast-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mast-name{font-size:26px;font-weight:900;letter-spacing:.03em;color:var(--primary)}
+.mast-name .lca{color:var(--accent)}
+.mast-en{font-size:12px;letter-spacing:.28em;color:var(--faint);font-weight:600}
+.mast-line{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.datepick{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:700;white-space:nowrap;max-width:100%;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:7px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.datepick:hover{border-color:var(--primary)}
+.datepick:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.datepick .dp-arrow{font-size:11px;color:var(--gray);transition:transform .2s}
+.datepick[aria-expanded="true"] .dp-arrow{transform:rotate(180deg)}
+.datepick .dp-issue{color:var(--primary)}
+.mast-cov{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);margin-top:9px;flex-wrap:wrap}
+.mast-cov .kind{background:var(--accent);color:#fff;font-size:11.5px;font-weight:700;
+  border-radius:999px;padding:2px 10px}
+.stats-line{display:flex;align-items:baseline;gap:14px;margin-top:11px;padding-bottom:13px;
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stats-line .st-main{font-size:15px;font-weight:700;color:var(--ink)}
+.stats-line .st-sub{font-size:13px;color:var(--gray)}
+
+/* 日期面板（展开日历） */
+.dcal-panel{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  background:var(--card);max-width:340px}
+.dcal-panel[hidden]{display:none}
+.dcal-panel .dcal-mhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.dcal-panel .dcal-mhead b{font-size:15px}
+.dcal-panel .dcal-c{font-size:12.5px;color:var(--gray)}
+
+/* 旧刊头大字标题与旧统计行在新结构中不再使用 */
+
+/* v29-r2：长文辅助文字（来源/注释）对比度 —— 局部覆盖，不碰全局 --gray
+   （--gray 同时用于日历/图标/边框）。浅色 #707078 在白底 4.91:1 ≥ 4.5；
+   深色沿用 #8b96a5 在 #141e2c 上 5.59:1，已达标、不套用浅色新色。 */
+.srcrow,.item .note,.msrc,.mmeta,.mnote{color:#707078}
+html:has(.theme-switch input[value="dark"]:checked) .srcrow,
+html:has(.theme-switch input[value="dark"]:checked) .item .note,
+html:has(.theme-switch input[value="dark"]:checked) .msrc,
+html:has(.theme-switch input[value="dark"]:checked) .mmeta,
+html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
+@media (prefers-color-scheme:dark){
+  html:not(:has(.theme-switch input[value="light"]:checked)) .srcrow,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .item .note,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .msrc,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mmeta,
+  html:not(:has(.theme-switch input[value="light"]:checked)) .mnote{color:#8b96a5}
+}
+@media(max-width:760px){
+  .masthead{flex-direction:column}
+  .item .sum{font-size:16.5px}
+  .item h3{font-size:19px}
+  .shell{padding:0 20px}
+  .mast-name{font-size:23px}
+  .datepick{font-size:14.5px;padding:6px 14px}
+}
 
 
 </style>
@@ -1139,6 +1209,10 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
   <div class="clog">
     <h1>更新日志</h1>
     <div class="cday">
+      <div class="cday-h">2026 年 10 月 9 日 周五</div>
+      <div class="citem"><span class="t">全天</span><span class="tag launch">上线</span><div class="tx"><h3>阅读精修</h3><p>刊头更紧凑，日期、期号与阅读统计各归一行；正文 17px、行距 1.8，标题 21px，阅读列约 700px，一屏能读到更多。条目标题去掉「一句话：」前缀，今日看点弹窗注明本期日期，辅助文字对比度提升，搜索关闭后焦点回到原位置。</p></div></div>
+      <div class="citem"><span class="t">全天</span><span class="tag fix">修复</span><div class="tx"><h3>全站搜索打通</h3><p>历史日报页此前加载不到搜索索引，现已统一读取；索引补齐 9 月 30 日第 1 期，全站共 173 条。往期归档、关于、更新日志页现在也能搜索；索引加载失败会明确提示区分于「没有找到」，关闭重开即可重试。</p></div></div>
+    </div>
     <div class="cday">
       <div class="cday-h">2026 年 10 月 7 日 周三</div>
       <div class="citem"><span class="t">全天</span><span class="tag launch">上线</span><div class="tx"><h3>周报并入日报页面</h3><p>日报页左侧新增「日报 / 周报」切换：周报不再单独成页，并入日报页面的周报 tab，含总览、三层八专题与值得下载的报告和数据；侧栏「往期」同步切换日报 / 周报归档。</p></div></div>
@@ -1274,7 +1348,96 @@ if(!__pillAnimated) movePill();
 onScroll();
 navScroll();
 </script>
+<script>
+/* v29-r3：全站搜索（根路径索引 / 失败可重试 / 加载后按最新关键词 / 焦点恢复） */
+(function(){
+  var btn = document.getElementById('tbSearchBtn'), ov = document.getElementById('searchOv'),
+      inp = document.getElementById('searchInput'), res = document.getElementById('searchRes');
+  if(!btn || !ov) return;
+  /* 索引位于站点根目录：无论当前页在根下还是 /daily/ 下，都按根路径解析，不复制索引 */
+  var SITE_BASE = (function(){
+    var p = location.pathname;
+    var i = p.lastIndexOf('/daily/');
+    if(i >= 0) return p.slice(0, i + 1);
+    return p.slice(0, p.lastIndexOf('/') + 1);
+  })();
+  var INDEX_URL = SITE_BASE + 'search-index.json';
+  var idx = null, idxState = 'idle';   /* idle | loading | ready | failed：同时最多一个在途请求 */
+  var returnFocusTo = null;            /* 打开前获得焦点的元素 */
+  var isOpen = false;
 
+  function isRestorable(el){
+    return !!el && el !== document.body && document.contains(el)
+      && typeof el.focus === 'function' && el.tabIndex >= 0
+      && el.getClientRects().length > 0;
+  }
+  function focusNoScroll(el){
+    if(!el) return;
+    try{ el.focus({preventScroll:true}); }catch(e){ el.focus(); }
+  }
+  function dispTitle(t){
+    return String(t || '').replace(/^一句话（[^）]*）：/, '').replace(/^一句话：/, '');
+  }
+
+  function render(){
+    var q = inp.value.trim().toLowerCase();
+    if(!q){ res.innerHTML = ''; return; }
+    if(idxState === 'failed'){ res.innerHTML = '<div class="empty">索引加载失败，请关闭后重新打开搜索重试</div>'; return; }
+    if(!idx){ res.innerHTML = '<div class="empty">索引加载中…</div>'; return; }
+    var hits = idx.filter(function(it){
+      return (it.t + ' ' + it.s).toLowerCase().indexOf(q) >= 0;
+    }).slice(0, 20);
+    if(!hits.length){ res.innerHTML = '<div class="empty">没有找到相关内容</div>'; return; }
+    res.innerHTML = hits.map(function(it){
+      var u = it.u || (SITE_BASE + 'daily/' + it.d + '.html');
+      return '<a href="' + u + '" target="_blank" rel="noopener"><div class="rt">' + dispTitle(it.t) + '</div>' +
+        '<div class="rm">' + it.d + ' · ' + it.c + '</div></a>';
+    }).join('');
+  }
+
+  function loadIndex(){
+    if(idxState === 'loading' || idxState === 'ready') return;
+    idxState = 'loading';
+    fetch(INDEX_URL).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      return r.json();
+    }).then(function(j){
+      idx = j; idxState = 'ready';
+      if(isOpen) render();            /* 加载完成：按输入框当时的最新关键词渲染 */
+    }).catch(function(){
+      idxState = 'failed';
+      if(isOpen) render();
+    });
+  }
+
+  function open(){
+    if(isOpen) return;                       /* 重复触发：不覆盖原记录 */
+    returnFocusTo = document.activeElement || null;
+    isOpen = true;
+    ov.classList.add('on'); inp.value=''; res.innerHTML='';
+    setTimeout(function(){ focusNoScroll(inp); },50);
+    if(idxState === 'idle' || idxState === 'failed') loadIndex();  /* 重新打开即重试（仅用户动作触发，不自动轮询） */
+    else if(idxState === 'loading') render();
+  }
+
+  function close(){
+    if(!isOpen) return;
+    isOpen = false;
+    ov.classList.remove('on');
+    var target = isRestorable(returnFocusTo) ? returnFocusTo : btn;
+    returnFocusTo = null;
+    focusNoScroll(target);                   /* preventScroll：阅读位置不跳 */
+  }
+
+  btn.addEventListener('click', open);
+  ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='/' && !/input|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); open(); }
+    if(e.key==='Escape' && isOpen) close();
+  });
+  inp.addEventListener('input', render);
+})();
+</script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
 setTimeout(function(){
