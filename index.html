@@ -698,7 +698,7 @@ a.dc.has{background:var(--accent);color:#fff;font-weight:700;font-size:11.5px}
 a.dc.has:hover{transform:translateY(-1px)}
 a.dc.has.today{outline:2px solid var(--accent);outline-offset:2px}
 /* 页面重规划：左右栏等宽 300px，主栏居中，栏间距放宽（仅 ≥1181px 三栏；小屏沿用上方单列响应式） */
-@media(min-width:1181px){.shell{max-width:1500px;grid-template-columns:300px minmax(0,1fr) 300px;gap:40px}}
+@media(min-width:1360px){.shell{max-width:1340px;grid-template-columns:260px minmax(0,700px) 260px;gap:32px}}
 /* 右栏看点：加宽后的舒适排版 */
 /* 右栏：取消独立滚动，随页面自然下铺 */
 .rail{position:static;height:auto;overflow:visible}
@@ -1110,14 +1110,33 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 .golink .arr{margin-left:3px;font-weight:400}
 /* ===== v29 阅读体验精修（追加覆盖层） ===== */
 /* 正文阅读尺度 */
-.shell{grid-template-columns:200px minmax(0,700px) 240px}
-@media(max-width:1180px){.shell{grid-template-columns:minmax(0,1fr);max-width:720px}}
+.shell{grid-template-columns:260px minmax(0,700px) 260px}
+@media(max-width:1359px){.shell{grid-template-columns:minmax(0,1fr);max-width:720px}}
 .item .sum{font-size:17px;line-height:1.8}
 .item h3{font-size:21px;font-weight:600;line-height:1.45}
 .item h3 a{font-weight:600}
 .item .note{font-size:13.5px}
 .srcrow{font-size:13.5px}
-@media(max-width:1180px){.shell{max-width:760px}}
+@media(max-width:1359px){.shell{max-width:760px}}
+
+/* v29-r4：左栏历史导航轻量滚动条（仅 .sidenav，不动全站与右栏）
+   轨道透明、无底槽；滑块细窄半透明，悬停/焦点进入时加深；预留 gutter 防挤动标题 */
+.sidenav{scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:rgba(105,105,115,.30) transparent}
+.sidenav:hover,.sidenav:focus-within{scrollbar-color:rgba(105,105,115,.55) transparent}
+.sidenav::-webkit-scrollbar{width:8px}
+.sidenav::-webkit-scrollbar-track{background:transparent}
+.sidenav::-webkit-scrollbar-thumb{background:rgba(105,105,115,.24);border-radius:99px;border:2px solid transparent;background-clip:padding-box}
+.sidenav:hover::-webkit-scrollbar-thumb,.sidenav:focus-within::-webkit-scrollbar-thumb{background:rgba(105,105,115,.50);border:2px solid transparent;background-clip:padding-box}
+html:has(.theme-switch input[value="dark"]:checked) .sidenav{scrollbar-color:rgba(190,200,215,.28) transparent}
+html:has(.theme-switch input[value="dark"]:checked) .sidenav:hover,html:has(.theme-switch input[value="dark"]:checked) .sidenav:focus-within{scrollbar-color:rgba(190,200,215,.50) transparent}
+html:has(.theme-switch input[value="dark"]:checked) .sidenav::-webkit-scrollbar-thumb{background:rgba(190,200,215,.22);border:2px solid transparent;background-clip:padding-box}
+html:has(.theme-switch input[value="dark"]:checked) .sidenav:hover::-webkit-scrollbar-thumb,html:has(.theme-switch input[value="dark"]:checked) .sidenav:focus-within::-webkit-scrollbar-thumb{background:rgba(190,200,215,.45);border:2px solid transparent;background-clip:padding-box}
+@media (prefers-color-scheme:dark){
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav{scrollbar-color:rgba(190,200,215,.28) transparent}
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav:hover,html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav:focus-within{scrollbar-color:rgba(190,200,215,.50) transparent}
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav::-webkit-scrollbar-thumb{background:rgba(190,200,215,.22);border:2px solid transparent;background-clip:padding-box}
+  html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav:hover::-webkit-scrollbar-thumb,html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .sidenav:focus-within::-webkit-scrollbar-thumb{background:rgba(190,200,215,.45);border:2px solid transparent;background-clip:padding-box}
+}
 
 /* 紧凑刊头（左信息＋右日历卡，保留现有日历窗口） */
 .masthead{flex-direction:row;align-items:flex-start;gap:24px;margin:0 0 16px}
