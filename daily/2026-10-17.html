@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,13 +1406,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>新闻发布</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_4a897e118ecb4691b13f27cb65d22e07.html" target="_blank" rel="noopener">商务部就欧盟峰会对华&quot;双轨&quot;思路答记者问<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_4a897e118ecb4691b13f27cb65d22e07.html" target="_blank" rel="noopener"><span>商务部就欧盟峰会对华&quot;双轨&quot;思路答记者问</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部新闻发言人就欧盟峰会提出对华&quot;双轨&quot;思路答记者问，涉及中欧经贸关系与对华政策走向的官方表态。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_4a897e118ecb4691b13f27cb65d22e07.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>新闻发布</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d7661dbf62794345a221404f82a25959.html" target="_blank" rel="noopener">商务部就修订《中国禁止出口限制出口技术目录》答记者问<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d7661dbf62794345a221404f82a25959.html" target="_blank" rel="noopener"><span>商务部就修订《中国禁止出口限制出口技术目录》答记者问</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部新闻发言人就修订《中国禁止出口限制出口技术目录》答记者问，技术出口管制目录调整进入公开说明阶段。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d7661dbf62794345a221404f82a25959.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1374,43 +1424,43 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>新闻列表</span></div>
-          <h3><a href="https://www.efrag.org/en/news-and-calendar/news/efrag-launches-public-consultation-on-its-sustainability-reporting-agenda-for-20272029" target="_blank" rel="noopener">EFRAG启动2027–2029可持续披露议程公众咨询<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.efrag.org/en/news-and-calendar/news/efrag-launches-public-consultation-on-its-sustainability-reporting-agenda-for-20272029" target="_blank" rel="noopener"><span>EFRAG启动2027–2029可持续披露议程公众咨询</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧洲财务报告咨询组（EFRAG）启动2027–2029可持续报告议程公开征求意见，涉及欧盟可持续披露准则的后续工作计划。</p>
           <a class="golink" href="https://www.efrag.org/en/news-and-calendar/news/efrag-launches-public-consultation-on-its-sustainability-reporting-agenda-for-20272029" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos &amp; Transportation</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxNQmx4QUJWdUdWbE9oNkNSS0h2aGR1bGROQ0Z1X2pCQlRoeFd2SDhtczBLZFBkOW5qTU1tS1F6RlZZendIN3RseUI0MVJGNzlYaHUzZWJkUGk4VkNOVjBTYzVVbGRrdFBtVGZqdG12TlFuR2FObm8yaVhFd3ViUkx4aFVDWnhFZmUtbmFZS0M4WkJpSGRCQUxZOGQxTXk1UjczemJlbzh5YXJtTWc2VXhjUHc3NUdDQzBaOGxpYnVsN0Jvb0tYeFZzcHJ4Z2VZUXU1ZkZLeGQ0S21sWkR0UHBrRdIB5wFBVV95cUxNaXNNZC1zbVJNbktKM2ZMOE42ZjRjOTlKaVpQUEg0cXE0Zmx2QWZfZ2o2Z0djUHp2N210VGw0RnBjdEZLZk5rVkZ2WHQ3TVhaVEt3MkRyd09lVnFqTU5zVm9Cby1lVGZ0RXJsbUdnbWRHTXFmRUJ3djZYeW1XelBrdExDaFpobHdwOUQ1SFlBTVBDVUVnY0Nid29LRThGeTI4emFtYUhSeWRmcXAxRmU1MUFrYk0yNUROX1lEX1JGanB6WFVxSzBNTlN5Ykx1NVhoZm1qbzFNX1BjbVhIeTJlZzcyUWhXWUk?oc=5" target="_blank" rel="noopener">印度BS VII草案提出电池耐久性规范<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxNQmx4QUJWdUdWbE9oNkNSS0h2aGR1bGROQ0Z1X2pCQlRoeFd2SDhtczBLZFBkOW5qTU1tS1F6RlZZendIN3RseUI0MVJGNzlYaHUzZWJkUGk4VkNOVjBTYzVVbGRrdFBtVGZqdG12TlFuR2FObm8yaVhFd3ViUkx4aFVDWnhFZmUtbmFZS0M4WkJpSGRCQUxZOGQxTXk1UjczemJlbzh5YXJtTWc2VXhjUHc3NUdDQzBaOGxpYnVsN0Jvb0tYeFZzcHJ4Z2VZUXU1ZkZLeGQ0S21sWkR0UHBrRdIB5wFBVV95cUxNaXNNZC1zbVJNbktKM2ZMOE42ZjRjOTlKaVpQUEg0cXE0Zmx2QWZfZ2o2Z0djUHp2N210VGw0RnBjdEZLZk5rVkZ2WHQ3TVhaVEt3MkRyd09lVnFqTU5zVm9Cby1lVGZ0RXJsbUdnbWRHTXFmRUJ3djZYeW1XelBrdExDaFpobHdwOUQ1SFlBTVBDVUVnY0Nid29LRThGeTI4emFtYUhSeWRmcXAxRmU1MUFrYk0yNUROX1lEX1JGanB6WFVxSzBNTlN5Ykx1NVhoZm1qbzFNX1BjbVhIeTJlZzcyUWhXWUk?oc=5" target="_blank" rel="noopener"><span>印度BS VII草案提出电池耐久性规范</span><span class="ext">↗</span></a></h3>
           <p class="sum">印度BS VII排放标准草案提出电池耐久性要求，涉及电动车电池寿命的法规门槛。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxNQmx4QUJWdUdWbE9oNkNSS0h2aGR1bGROQ0Z1X2pCQlRoeFd2SDhtczBLZFBkOW5qTU1tS1F6RlZZendIN3RseUI0MVJGNzlYaHUzZWJkUGk4VkNOVjBTYzVVbGRrdFBtVGZqdG12TlFuR2FObm8yaVhFd3ViUkx4aFVDWnhFZmUtbmFZS0M4WkJpSGRCQUxZOGQxTXk1UjczemJlbzh5YXJtTWc2VXhjUHc3NUdDQzBaOGxpYnVsN0Jvb0tYeFZzcHJ4Z2VZUXU1ZkZLeGQ0S21sWkR0UHBrRdIB5wFBVV95cUxNaXNNZC1zbVJNbktKM2ZMOE42ZjRjOTlKaVpQUEg0cXE0Zmx2QWZfZ2o2Z0djUHp2N210VGw0RnBjdEZLZk5rVkZ2WHQ3TVhaVEt3MkRyd09lVnFqTU5zVm9Cby1lVGZ0RXJsbUdnbWRHTXFmRUJ3djZYeW1XelBrdExDaFpobHdwOUQ1SFlBTVBDVUVnY0Nid29LRThGeTI4emFtYUhSeWRmcXAxRmU1MUFrYk0yNUROX1lEX1JGanB6WFVxSzBNTlN5Ykx1NVhoZm1qbzFNX1BjbVhIeTJlZzcyUWhXWUk?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Sustainable Business</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNN2Y4QjZmZXdPb044S194MFJHdTJWNjNDaTF3T3QxUHNEUnp3X2lTOVhPNEtwOW9tLXVpZVZoV0J4b1F3TGwtRV9WTWU1UnpmZF9sT0MxUk9HX3NFMnVUWXJXdlZibGEtREhyVDA4b0c4dHhTcUdFQS1kQldncXQ3WVJQN3VBb0l2U0xTNXBBT0N4QWtabkt0UzdBRGpXdVg2R2JkZFBHbjJENTlhUS1nWEhjbEJCR3c4eEhSZWZB?oc=5" target="_blank" rel="noopener">印度暂无强制电池回收计划<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNN2Y4QjZmZXdPb044S194MFJHdTJWNjNDaTF3T3QxUHNEUnp3X2lTOVhPNEtwOW9tLXVpZVZoV0J4b1F3TGwtRV9WTWU1UnpmZF9sT0MxUk9HX3NFMnVUWXJXdlZibGEtREhyVDA4b0c4dHhTcUdFQS1kQldncXQ3WVJQN3VBb0l2U0xTNXBBT0N4QWtabkt0UzdBRGpXdVg2R2JkZFBHbjJENTlhUS1nWEhjbEJCR3c4eEhSZWZB?oc=5" target="_blank" rel="noopener"><span>印度暂无强制电池回收计划</span><span class="ext">↗</span></a></h3>
           <p class="sum">印度政策层面暂未推出针对电动车制造商的强制电池回收计划，生产者责任延伸制度尚未落地。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNN2Y4QjZmZXdPb044S194MFJHdTJWNjNDaTF3T3QxUHNEUnp3X2lTOVhPNEtwOW9tLXVpZVZoV0J4b1F3TGwtRV9WTWU1UnpmZF9sT0MxUk9HX3NFMnVUWXJXdlZibGEtREhyVDA4b0c4dHhTcUdFQS1kQldncXQ3WVJQN3VBb0l2U0xTNXBBT0N4QWtabkt0UzdBRGpXdVg2R2JkZFBHbjJENTlhUS1nWEhjbEJCR3c4eEhSZWZB?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/nvHl~GXXs22U-Fr6GG7NXg" target="_blank" rel="noopener">商务部明确中欧混动汽车谅解对等互利<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/nvHl~GXXs22U-Fr6GG7NXg" target="_blank" rel="noopener"><span>商务部明确中欧混动汽车谅解对等互利</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部再明确中欧在混动汽车领域达成的谅解是对等互利的，涉及混动汽车贸易安排的官方口径。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/nvHl~GXXs22U-Fr6GG7NXg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/KFIfqoeB4B0w~UNQqnx0Zg" target="_blank" rel="noopener">上海发布&quot;十五五&quot;废塑料化学回收与再生材料规划<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/KFIfqoeB4B0w~UNQqnx0Zg" target="_blank" rel="noopener"><span>上海发布&quot;十五五&quot;废塑料化学回收与再生材料规划</span><span class="ext">↗</span></a></h3>
           <p class="sum">上海发布&quot;155&quot;规划，提出攻关废塑料化学回收、推广再生材料，循环再生进入地方&quot;十五五&quot;规划。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/KFIfqoeB4B0w~UNQqnx0Zg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/GgHL854ryOjpCxT3oqkgvA" target="_blank" rel="noopener">Intertek获得CBAM核查机构资质<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/GgHL854ryOjpCxT3oqkgvA" target="_blank" rel="noopener"><span>Intertek获得CBAM核查机构资质</span><span class="ext">↗</span></a></h3>
           <p class="sum">Intertek集团获得欧盟CBAM核查机构资质，可为出口企业提供碳边境调节机制的核查服务。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/GgHL854ryOjpCxT3oqkgvA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/3BKsqaKjyBm8oEVJFhpPyw" target="_blank" rel="noopener">新CCER方法学解读：碳市场互认<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/3BKsqaKjyBm8oEVJFhpPyw" target="_blank" rel="noopener"><span>新CCER方法学解读：碳市场互认</span><span class="ext">↗</span></a></h3>
           <p class="sum">新CCER方法学将关上碳市场互认（跨境监管）的大门，涉及国内自愿减排市场与国际碳市场衔接的实务解读。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/3BKsqaKjyBm8oEVJFhpPyw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1425,31 +1475,31 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Crossref期刊API</span></div>
-          <h3><a href="https://doi.org/10.1038/s41893-026-01950-4" target="_blank" rel="noopener">AI赋能生命周期可持续材料研究（论文）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1038/s41893-026-01950-4" target="_blank" rel="noopener"><span>AI赋能生命周期可持续材料研究（论文）</span><span class="ext">↗</span></a></h3>
           <p class="sum">发表AI for life-cycle-aware sustainable materials研究，探索人工智能在生命周期可持续材料设计中的应用，属AI for LCA方向。</p>
           <a class="golink" href="https://doi.org/10.1038/s41893-026-01950-4" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Crossref期刊API</span></div>
-          <h3><a href="https://doi.org/10.1038/s41893-026-01969-7" target="_blank" rel="noopener">电池退化对材料循环影响研究（论文）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1038/s41893-026-01969-7" target="_blank" rel="noopener"><span>电池退化对材料循环影响研究（论文）</span><span class="ext">↗</span></a></h3>
           <p class="sum">发表Material circularity implications of battery degradation研究，分析电池退化过程对材料循环利用的影响。</p>
           <a class="golink" href="https://doi.org/10.1038/s41893-026-01969-7" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>WBCSD 新闻</span></div>
-          <h3><a href="https://www.wbcsd.org/news/the-missing-translator-how-labs-investment-readiness-tool-enables-regenag-leaders-to-speak-the-language-of-capital/" target="_blank" rel="noopener">WBCSD发布投资就绪度工具<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.wbcsd.org/news/the-missing-translator-how-labs-investment-readiness-tool-enables-regenag-leaders-to-speak-the-language-of-capital/" target="_blank" rel="noopener"><span>WBCSD发布投资就绪度工具</span><span class="ext">↗</span></a></h3>
           <p class="sum">WBCSD发布LAB投资就绪度工具（The Missing Translator），帮助项目方对接投资人的实务工具资源。</p>
           <a class="golink" href="https://www.wbcsd.org/news/the-missing-translator-how-labs-investment-readiness-tool-enables-regenag-leaders-to-speak-the-language-of-capital/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/vX15HLuHv235j97Yf6316Q" target="_blank" rel="noopener">《自然·气候变化》：政策组合与气候公平权衡<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/vX15HLuHv235j97Yf6316Q" target="_blank" rel="noopener"><span>《自然·气候变化》：政策组合与气候公平权衡</span><span class="ext">↗</span></a></h3>
           <p class="sum">《自然·气候变化》发表论文，通过政策组合缓解气候行动中的横向与纵向公平权衡问题。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/vX15HLuHv235j97Yf6316Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Crossref期刊API</span></div>
-          <h3><a href="https://doi.org/10.1038/s41893-026-01967-9" target="_blank" rel="noopener">小分子键合生物聚合物网络研究（论文）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1038/s41893-026-01967-9" target="_blank" rel="noopener"><span>小分子键合生物聚合物网络研究（论文）</span><span class="ext">↗</span></a></h3>
           <p class="sum">发表小分子键合生物聚合物网络用于可持续材料的研究，涉及生物基材料的方法学进展。</p>
           <a class="golink" href="https://doi.org/10.1038/s41893-026-01967-9" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1461,19 +1511,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/NR3X6fyHFN6d44A2RPQ7YQ" target="_blank" rel="noopener">供应商碳披露327万吨，立讯精密推进零碳供应链<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/NR3X6fyHFN6d44A2RPQ7YQ" target="_blank" rel="noopener"><span>供应商碳披露327万吨，立讯精密推进零碳供应链</span><span class="ext">↗</span></a></h3>
           <p class="sum">中外企业供应商碳披露达327万吨，立讯精密积极推进零碳供应链建设，供应链碳数据披露的产业实践。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/NR3X6fyHFN6d44A2RPQ7YQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/2oM72BbZMc4bysZYNkNRLQ" target="_blank" rel="noopener">中国企业温室气体排放核算与报告因子库（2026）上线<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/2oM72BbZMc4bysZYNkNRLQ" target="_blank" rel="noopener"><span>中国企业温室气体排放核算与报告因子库（2026）上线</span><span class="ext">↗</span></a></h3>
           <p class="sum">中国企业温室气体排放核算与报告因子库（2026）上线，提供本土化的排放因子数据工具。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/2oM72BbZMc4bysZYNkNRLQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ICCT 新闻发布 RSS</span></div>
-          <h3><a href="https://theicct.org/building-resilience-and-energy-security-through-road-transport-electrification-oct26/" target="_blank" rel="noopener">ICCT道路交通电气化韧性报告<span class="ext">↗</span></a></h3>
+          <h3><a href="https://theicct.org/building-resilience-and-energy-security-through-road-transport-electrification-oct26/" target="_blank" rel="noopener"><span>ICCT道路交通电气化韧性报告</span><span class="ext">↗</span></a></h3>
           <p class="sum">ICCT发布通过道路交通电气化构建韧性与能源安全的研究报告。</p>
           <a class="golink" href="https://theicct.org/building-resilience-and-energy-security-through-road-transport-electrification-oct26/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1488,19 +1538,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos &amp; Transportation</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSVZLXzQtWjZWYW1oU2FHMW1BN0NwSXVhSEMwSU9HQnVLUFRPVEluSGhUS2dDRzNzb0FEb1FJQXdnNFJkRUZZb2JzcERCdmxGS1F6WFNFVU0tSXpmOENabGxZcGZxTDFHV1FRUjBtd3daUW5YQWJPV2tOa2ZBZ21pUmZqTEcwa05HWVpQc2JsdWZfYUNMN1Fpb1hRMjFRZDc2b3AwT2REcVFmRHgtMWRHS3cxYTRqNy1PeVdNRVhYaVpyTUhtUUd5OGlTdWtqUHNmbzZxamh4bHFkbXJDZDh2UnRTOEHSAeoBQVVfeXFMTVBxTm9aQlU2dG5faVJiZjF0QWRIdTQ1bHljMnVGX2x4TGRyTHpLenVueGhCS2JyU0RicE1MWlZIMDQxeEp2OVl5eF9fM1dEMlVJSGxsRU85QTF1WWVnUWZGT19TZHlMSGZaZzJTQ2R1SUE2ZW9QWkEtQUFna0dhcllNbkJsSlJQeVYxVDhwemFLU2lCZjhlSTVzYXhSOURna3phdUViWDZWbldWVkxFT1czSU0zMjlDd2o3Z3dpOS1nX1NNZi12ODhxX1lCTUkyQ3dlXzhDTlZBbFF0eFhBdzU2V09ETVZORVlR?oc=5" target="_blank" rel="noopener">Varroc收购Forsee Power印度45%股权<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSVZLXzQtWjZWYW1oU2FHMW1BN0NwSXVhSEMwSU9HQnVLUFRPVEluSGhUS2dDRzNzb0FEb1FJQXdnNFJkRUZZb2JzcERCdmxGS1F6WFNFVU0tSXpmOENabGxZcGZxTDFHV1FRUjBtd3daUW5YQWJPV2tOa2ZBZ21pUmZqTEcwa05HWVpQc2JsdWZfYUNMN1Fpb1hRMjFRZDc2b3AwT2REcVFmRHgtMWRHS3cxYTRqNy1PeVdNRVhYaVpyTUhtUUd5OGlTdWtqUHNmbzZxamh4bHFkbXJDZDh2UnRTOEHSAeoBQVVfeXFMTVBxTm9aQlU2dG5faVJiZjF0QWRIdTQ1bHljMnVGX2x4TGRyTHpLenVueGhCS2JyU0RicE1MWlZIMDQxeEp2OVl5eF9fM1dEMlVJSGxsRU85QTF1WWVnUWZGT19TZHlMSGZaZzJTQ2R1SUE2ZW9QWkEtQUFna0dhcllNbkJsSlJQeVYxVDhwemFLU2lCZjhlSTVzYXhSOURna3phdUViWDZWbldWVkxFT1czSU0zMjlDd2o3Z3dpOS1nX1NNZi12ODhxX1lCTUkyQ3dlXzhDTlZBbFF0eFhBdzU2V09ETVZORVlR?oc=5" target="_blank" rel="noopener"><span>Varroc收购Forsee Power印度45%股权</span><span class="ext">↗</span></a></h3>
           <p class="sum">Varroc将收购Forsee Power印度公司45%股权，布局印度电动汽车电池市场，属价值链合作。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSVZLXzQtWjZWYW1oU2FHMW1BN0NwSXVhSEMwSU9HQnVLUFRPVEluSGhUS2dDRzNzb0FEb1FJQXdnNFJkRUZZb2JzcERCdmxGS1F6WFNFVU0tSXpmOENabGxZcGZxTDFHV1FRUjBtd3daUW5YQWJPV2tOa2ZBZ21pUmZqTEcwa05HWVpQc2JsdWZfYUNMN1Fpb1hRMjFRZDc2b3AwT2REcVFmRHgtMWRHS3cxYTRqNy1PeVdNRVhYaVpyTUhtUUd5OGlTdWtqUHNmbzZxamh4bHFkbXJDZDh2UnRTOEHSAeoBQVVfeXFMTVBxTm9aQlU2dG5faVJiZjF0QWRIdTQ1bHljMnVGX2x4TGRyTHpLenVueGhCS2JyU0RicE1MWlZIMDQxeEp2OVl5eF9fM1dEMlVJSGxsRU85QTF1WWVnUWZGT19TZHlMSGZaZzJTQ2R1SUE2ZW9QWkEtQUFna0dhcllNbkJsSlJQeVYxVDhwemFLU2lCZjhlSTVzYXhSOURna3phdUViWDZWbldWVkxFT1czSU0zMjlDd2o3Z3dpOS1nX1NNZi12ODhxX1lCTUkyQ3dlXzhDTlZBbFF0eFhBdzU2V09ETVZORVlR?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos &amp; Transportation</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPajZfZndaODl1dDhOTklHUjIwS2YzTDh2M2lBOHkwQ3A3Qi1ndGRPNHNjZExrREZYX0RlTjJHdkxudHNfUl81N1UwdDE3eXNKc01jN2pPaWw1Ykk2VWRGdDlkY3JDVmFVS3JsOVhsc1Fmb3VUejhJRTZ4Wm9EcGFzR3pmTG4xU1FhZXc?oc=5" target="_blank" rel="noopener">Clarios扩大与Piaxo电池研发合作<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPajZfZndaODl1dDhOTklHUjIwS2YzTDh2M2lBOHkwQ3A3Qi1ndGRPNHNjZExrREZYX0RlTjJHdkxudHNfUl81N1UwdDE3eXNKc01jN2pPaWw1Ykk2VWRGdDlkY3JDVmFVS3JsOVhsc1Fmb3VUejhJRTZ4Wm9EcGFzR3pmTG4xU1FhZXc?oc=5" target="_blank" rel="noopener"><span>Clarios扩大与Piaxo电池研发合作</span><span class="ext">↗</span></a></h3>
           <p class="sum">Clarios扩大与Piaxo的电池研发合作，深化电池技术协同。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPajZfZndaODl1dDhOTklHUjIwS2YzTDh2M2lBOHkwQ3A3Qi1ndGRPNHNjZExrREZYX0RlTjJHdkxudHNfUl81N1UwdDE3eXNKc01jN2pPaWw1Ykk2VWRGdDlkY3JDVmFVS3JsOVhsc1Fmb3VUejhJRTZ4Wm9EcGFzR3pmTG4xU1FhZXc?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/r0kyfzIkUFvSgF8XTfND-Q" target="_blank" rel="noopener">鸿蒙智行电池供应链调整<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/r0kyfzIkUFvSgF8XTfND-Q" target="_blank" rel="noopener"><span>鸿蒙智行电池供应链调整</span><span class="ext">↗</span></a></h3>
           <p class="sum">鸿蒙智行电池供应链调整，宁德时代不再独享，国轩、中创新航、欣旺达加入，供应安全升级。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/r0kyfzIkUFvSgF8XTfND-Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1512,25 +1562,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>天赐资讯</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE8xaWJ1THl1eDVNTi1qSnlka2lYNnFvVnZqRUgyNkFVdTMxQUlabVhtUWRMS3RLbk5MTGtMWUM2SDBacUlQdWJyX183d2loTDR1S1B3WnRUdWttcWl5N2tNZQ?oc=5" target="_blank" rel="noopener">天赐材料固态电池中试产线进入试生产<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE8xaWJ1THl1eDVNTi1qSnlka2lYNnFvVnZqRUgyNkFVdTMxQUlabVhtUWRMS3RLbk5MTGtMWUM2SDBacUlQdWJyX183d2loTDR1S1B3WnRUdWttcWl5N2tNZQ?oc=5" target="_blank" rel="noopener"><span>天赐材料固态电池中试产线进入试生产</span><span class="ext">↗</span></a></h3>
           <p class="sum">天赐材料回应固态电池话题：百吨级硫化锂及固态电解质中试产线已进入试生产，固态电池产业化提速。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE8xaWJ1THl1eDVNTi1qSnlka2lYNnFvVnZqRUgyNkFVdTMxQUlabVhtUWRMS3RLbk5MTGtMWUM2SDBacUlQdWJyX183d2loTDR1S1B3WnRUdWttcWl5N2tNZQ?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>矿业新闻全站 RSS</span></div>
-          <h3><a href="https://www.mining.com/exiro-led-group-takes-control-of-vales-manitoba-nickel-complex/" target="_blank" rel="noopener">Vale曼尼托巴镍矿易主<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/exiro-led-group-takes-control-of-vales-manitoba-nickel-complex/" target="_blank" rel="noopener"><span>Vale曼尼托巴镍矿易主</span><span class="ext">↗</span></a></h3>
           <p class="sum">Exiro牵头的财团获得Vale曼尼托巴镍矿控制权，镍矿资产易主影响电池级镍供应。</p>
           <a class="golink" href="https://www.mining.com/exiro-led-group-takes-control-of-vales-manitoba-nickel-complex/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>矿业新闻全站 RSS</span></div>
-          <h3><a href="https://www.mining.com/us-project-vault-readies-1b-loan-blitz-for-industry/" target="_blank" rel="noopener">美国矿业10亿美元贷款计划<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/us-project-vault-readies-1b-loan-blitz-for-industry/" target="_blank" rel="noopener"><span>美国矿业10亿美元贷款计划</span><span class="ext">↗</span></a></h3>
           <p class="sum">美国Project Vault计划为矿业提供10亿美元贷款，支持关键矿产供应链。</p>
           <a class="golink" href="https://www.mining.com/us-project-vault-readies-1b-loan-blitz-for-industry/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>矿业新闻全站 RSS</span></div>
-          <h3><a href="https://www.mining.com/tech-giants-come-knocking-for-a-piece-of-anglo-american-as-copper-scarcity-bites-wanblad-tells-ft/" target="_blank" rel="noopener">科技巨头竞购英美资源资产<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/tech-giants-come-knocking-for-a-piece-of-anglo-american-as-copper-scarcity-bites-wanblad-tells-ft/" target="_blank" rel="noopener"><span>科技巨头竞购英美资源资产</span><span class="ext">↗</span></a></h3>
           <p class="sum">科技巨头竞购英美资源（Anglo American）资产，矿产资源争夺升温。</p>
           <a class="golink" href="https://www.mining.com/tech-giants-come-knocking-for-a-piece-of-anglo-american-as-copper-scarcity-bites-wanblad-tells-ft/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1542,25 +1592,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/41nWLGhKEwI~q1zD3QVY8A" target="_blank" rel="noopener">《报废机动车回收管理办法实施细则》修改建议<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/41nWLGhKEwI~q1zD3QVY8A" target="_blank" rel="noopener"><span>《报废机动车回收管理办法实施细则》修改建议</span><span class="ext">↗</span></a></h3>
           <p class="sum">关于《报废机动车回收管理办法实施细则》的修改建议，涉及报废车回收的法规完善。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/41nWLGhKEwI~q1zD3QVY8A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/RXWxEsu5Ok~EkgaCfb-TWA" target="_blank" rel="noopener">唐山10万辆报废车/10万吨电池回收项目公示<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/RXWxEsu5Ok~EkgaCfb-TWA" target="_blank" rel="noopener"><span>唐山10万辆报废车/10万吨电池回收项目公示</span><span class="ext">↗</span></a></h3>
           <p class="sum">唐山鼎业10万辆新能源报废车、10万吨电池回收项目二次公示，电池回收产能扩张。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/RXWxEsu5Ok~EkgaCfb-TWA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/tcdcjNuXZ3zKxtOEW9lRGg" target="_blank" rel="noopener">科茂环境废塑料化学循环制丙烯中试启动<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/tcdcjNuXZ3zKxtOEW9lRGg" target="_blank" rel="noopener"><span>科茂环境废塑料化学循环制丙烯中试启动</span><span class="ext">↗</span></a></h3>
           <p class="sum">科茂环境废塑料化学循环制丙烯（PTP）中试项目正式启动，化学回收产业化推进。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/tcdcjNuXZ3zKxtOEW9lRGg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/jnvDStsZu0BquyFb76MoPg" target="_blank" rel="noopener">聚酯化学回收迎来&quot;十五五&quot;政策窗口<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/jnvDStsZu0BquyFb76MoPg" target="_blank" rel="noopener"><span>聚酯化学回收迎来&quot;十五五&quot;政策窗口</span><span class="ext">↗</span></a></h3>
           <p class="sum">伍德麦肯兹分析：聚酯化学回收从试点走向法定工业化，迎来&quot;十五五&quot;政策窗口期。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/jnvDStsZu0BquyFb76MoPg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2315,6 +2365,10 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
     <a class="hl-item" href="#" data-mi="14"><span class="n">1</span><span class="t"><b>供应商碳披露327万吨，立讯精密推进零碳供应链</b><span>微信公众号（全账号聚合扫（116账号），full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="9"><span class="n">2</span><span class="t"><b>AI赋能生命周期可持续材料研究（论文）</b><span>Crossref期刊API</span></span></a>
+    <a class="hl-item" href="#" data-mi="10"><span class="n">3</span><span class="t"><b>电池退化对材料循环影响研究（论文）</b><span>Crossref期刊API</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">4</span><span class="t"><b>商务部就欧盟峰会对华&quot;双轨&quot;思路答记者问</b><span>新闻发布</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">5</span><span class="t"><b>印度BS VII草案提出电池耐久性规范</b><span>路透 Autos &amp; Transportation</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2451,7 +2505,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-17";
-var BRIEF_DATA = [{"t": "商务部就欧盟峰会对华\"双轨\"思路答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_4a897e118ecb4691b13f27cb65d22e07.html", "s": "新闻发布", "sec": "国内法规与政策", "sum": "商务部新闻发言人就欧盟峰会提出对华\"双轨\"思路答记者问，涉及中欧经贸关系与对华政策走向的官方表态。", "points": [5, 1, 10, 7, 6], "note": "问答全文经转载核验"}, {"t": "商务部就修订《中国禁止出口限制出口技术目录》答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d7661dbf62794345a221404f82a25959.html", "s": "新闻发布", "sec": "国内法规与政策", "sum": "商务部新闻发言人就修订《中国禁止出口限制出口技术目录》答记者问，技术出口管制目录调整进入公开说明阶段。", "points": [4, 1, 10, 5, 5], "note": "问答全文经转载核验"}, {"t": "EFRAG启动2027–2029可持续披露议程公众咨询", "u": "https://www.efrag.org/en/news-and-calendar/news/efrag-launches-public-consultation-on-its-sustainability-reporting-agenda-for-20272029", "s": "新闻列表", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "欧洲财务报告咨询组（EFRAG）启动2027–2029可持续报告议程公开征求意见，涉及欧盟可持续披露准则的后续工作计划。", "points": [5, 1, 9, 6, 6], "note": "一手来源"}, {"t": "印度BS VII草案提出电池耐久性规范", "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNQmx4QUJWdUdWbE9oNkNSS0h2aGR1bGROQ0Z1X2pCQlRoeFd2SDhtczBLZFBkOW5qTU1tS1F6RlZZendIN3RseUI0MVJGNzlYaHUzZWJkUGk4VkNOVjBTYzVVbGRrdFBtVGZqdG12TlFuR2FObm8yaVhFd3ViUkx4aFVDWnhFZmUtbmFZS0M4WkJpSGRCQUxZOGQxTXk1UjczemJlbzh5YXJtTWc2VXhjUHc3NUdDQzBaOGxpYnVsN0Jvb0tYeFZzcHJ4Z2VZUXU1ZkZLeGQ0S21sWkR0UHBrRdIB5wFBVV95cUxNaXNNZC1zbVJNbktKM2ZMOE42ZjRjOTlKaVpQUEg0cXE0Zmx2QWZfZ2o2Z0djUHp2N210VGw0RnBjdEZLZk5rVkZ2WHQ3TVhaVEt3MkRyd09lVnFqTU5zVm9Cby1lVGZ0RXJsbUdnbWRHTXFmRUJ3djZYeW1XelBrdExDaFpobHdwOUQ1SFlBTVBDVUVnY0Nid29LRThGeTI4emFtYUhSeWRmcXAxRmU1MUFrYk0yNUROX1lEX1JGanB6WFVxSzBNTlN5Ykx1NVhoZm1qbzFNX1BjbVhIeTJlZzcyUWhXWUk?oc=5", "s": "路透 Autos & Transportation", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "印度BS VII排放标准草案提出电池耐久性要求，涉及电动车电池寿命的法规门槛。", "points": [6, 1, 5, 8, 7], "note": ""}, {"t": "印度暂无强制电池回收计划", "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNN2Y4QjZmZXdPb044S194MFJHdTJWNjNDaTF3T3QxUHNEUnp3X2lTOVhPNEtwOW9tLXVpZVZoV0J4b1F3TGwtRV9WTWU1UnpmZF9sT0MxUk9HX3NFMnVUWXJXdlZibGEtREhyVDA4b0c4dHhTcUdFQS1kQldncXQ3WVJQN3VBb0l2U0xTNXBBT0N4QWtabkt0UzdBRGpXdVg2R2JkZFBHbjJENTlhUS1nWEhjbEJCR3c4eEhSZWZB?oc=5", "s": "路透 Sustainable Business", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "印度政策层面暂未推出针对电动车制造商的强制电池回收计划，生产者责任延伸制度尚未落地。", "points": [5, 1, 5, 7, 6], "note": ""}, {"t": "商务部明确中欧混动汽车谅解对等互利", "u": "https://mp.weixin.qq.com/s/nvHl~GXXs22U-Fr6GG7NXg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "商务部再明确中欧在混动汽车领域达成的谅解是对等互利的，涉及混动汽车贸易安排的官方口径。", "points": [4, 1, 5, 7, 6], "note": "问答全文经转载核验"}, {"t": "上海发布\"十五五\"废塑料化学回收与再生材料规划", "u": "https://mp.weixin.qq.com/s/KFIfqoeB4B0w~UNQqnx0Zg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "上海发布\"155\"规划，提出攻关废塑料化学回收、推广再生材料，循环再生进入地方\"十五五\"规划。", "points": [4, 1, 4, 7, 6], "note": ""}, {"t": "Intertek获得CBAM核查机构资质", "u": "https://mp.weixin.qq.com/s/GgHL854ryOjpCxT3oqkgvA", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Intertek集团获得欧盟CBAM核查机构资质，可为出口企业提供碳边境调节机制的核查服务。", "points": [3, 1, 4, 8, 6], "note": ""}, {"t": "新CCER方法学解读：碳市场互认", "u": "https://mp.weixin.qq.com/s/3BKsqaKjyBm8oEVJFhpPyw", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "新CCER方法学将关上碳市场互认（跨境监管）的大门，涉及国内自愿减排市场与国际碳市场衔接的实务解读。", "points": [3, 2, 6, 5, 5], "note": "用户特批保留；媒体解读"}, {"t": "AI赋能生命周期可持续材料研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01950-4", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表AI for life-cycle-aware sustainable materials研究，探索人工智能在生命周期可持续材料设计中的应用，属AI for LCA方向。", "points": [2, 7, 9, 6, 6], "note": "期刊论文"}, {"t": "电池退化对材料循环影响研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01969-7", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表Material circularity implications of battery degradation研究，分析电池退化过程对材料循环利用的影响。", "points": [2, 6, 9, 7, 6], "note": "期刊论文"}, {"t": "WBCSD发布投资就绪度工具", "u": "https://www.wbcsd.org/news/the-missing-translator-how-labs-investment-readiness-tool-enables-regenag-leaders-to-speak-the-language-of-capital/", "s": "WBCSD 新闻", "sec": "LCA 与方法学", "sum": "WBCSD发布LAB投资就绪度工具（The Missing Translator），帮助项目方对接投资人的实务工具资源。", "points": [3, 5, 8, 6, 6], "note": "实务工具保留"}, {"t": "《自然·气候变化》：政策组合与气候公平权衡", "u": "https://mp.weixin.qq.com/s/vX15HLuHv235j97Yf6316Q", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "LCA 与方法学", "sum": "《自然·气候变化》发表论文，通过政策组合缓解气候行动中的横向与纵向公平权衡问题。", "points": [2, 7, 5, 5, 6], "note": "期刊论文"}, {"t": "小分子键合生物聚合物网络研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01967-9", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表小分子键合生物聚合物网络用于可持续材料的研究，涉及生物基材料的方法学进展。", "points": [2, 6, 9, 3, 5], "note": "期刊论文"}, {"t": "供应商碳披露327万吨，立讯精密推进零碳供应链", "u": "https://mp.weixin.qq.com/s/NR3X6fyHFN6d44A2RPQ7YQ", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "数据与知识", "sum": "中外企业供应商碳披露达327万吨，立讯精密积极推进零碳供应链建设，供应链碳数据披露的产业实践。", "points": [2, 6, 6, 8, 7], "note": ""}, {"t": "中国企业温室气体排放核算与报告因子库（2026）上线", "u": "https://mp.weixin.qq.com/s/2oM72BbZMc4bysZYNkNRLQ", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "数据与知识", "sum": "中国企业温室气体排放核算与报告因子库（2026）上线，提供本土化的排放因子数据工具。", "points": [2, 6, 4, 7, 7], "note": "实务工具保留"}, {"t": "ICCT道路交通电气化韧性报告", "u": "https://theicct.org/building-resilience-and-energy-security-through-road-transport-electrification-oct26/", "s": "ICCT 新闻发布 RSS", "sec": "数据与知识", "sum": "ICCT发布通过道路交通电气化构建韧性与能源安全的研究报告。", "points": [3, 4, 8, 6, 5], "note": ""}, {"t": "Varroc收购Forsee Power印度45%股权", "u": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSVZLXzQtWjZWYW1oU2FHMW1BN0NwSXVhSEMwSU9HQnVLUFRPVEluSGhUS2dDRzNzb0FEb1FJQXdnNFJkRUZZb2JzcERCdmxGS1F6WFNFVU0tSXpmOENabGxZcGZxTDFHV1FRUjBtd3daUW5YQWJPV2tOa2ZBZ21pUmZqTEcwa05HWVpQc2JsdWZfYUNMN1Fpb1hRMjFRZDc2b3AwT2REcVFmRHgtMWRHS3cxYTRqNy1PeVdNRVhYaVpyTUhtUUd5OGlTdWtqUHNmbzZxamh4bHFkbXJDZDh2UnRTOEHSAeoBQVVfeXFMTVBxTm9aQlU2dG5faVJiZjF0QWRIdTQ1bHljMnVGX2x4TGRyTHpLenVueGhCS2JyU0RicE1MWlZIMDQxeEp2OVl5eF9fM1dEMlVJSGxsRU85QTF1WWVnUWZGT19TZHlMSGZaZzJTQ2R1SUE2ZW9QWkEtQUFna0dhcllNbkJsSlJQeVYxVDhwemFLU2lCZjhlSTVzYXhSOURna3phdUViWDZWbldWVkxFT1czSU0zMjlDd2o3Z3dpOS1nX1NNZi12ODhxX1lCTUkyQ3dlXzhDTlZBbFF0eFhBdzU2V09ETVZORVlR?oc=5", "s": "路透 Autos & Transportation", "sec": "整车企业", "sum": "Varroc将收购Forsee Power印度公司45%股权，布局印度电动汽车电池市场，属价值链合作。", "points": [2, 1, 6, 7, 6], "note": "价值链合作保留"}, {"t": "Clarios扩大与Piaxo电池研发合作", "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPajZfZndaODl1dDhOTklHUjIwS2YzTDh2M2lBOHkwQ3A3Qi1ndGRPNHNjZExrREZYX0RlTjJHdkxudHNfUl81N1UwdDE3eXNKc01jN2pPaWw1Ykk2VWRGdDlkY3JDVmFVS3JsOVhsc1Fmb3VUejhJRTZ4Wm9EcGFzR3pmTG4xU1FhZXc?oc=5", "s": "路透 Autos & Transportation", "sec": "整车企业", "sum": "Clarios扩大与Piaxo的电池研发合作，深化电池技术协同。", "points": [2, 2, 5, 6, 5], "note": "价值链合作保留"}, {"t": "鸿蒙智行电池供应链调整", "u": "https://mp.weixin.qq.com/s/r0kyfzIkUFvSgF8XTfND-Q", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "整车企业", "sum": "鸿蒙智行电池供应链调整，宁德时代不再独享，国轩、中创新航、欣旺达加入，供应安全升级。", "points": [2, 1, 4, 8, 6], "note": ""}, {"t": "天赐材料固态电池中试产线进入试生产", "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8xaWJ1THl1eDVNTi1qSnlka2lYNnFvVnZqRUgyNkFVdTMxQUlabVhtUWRMS3RLbk5MTGtMWUM2SDBacUlQdWJyX183d2loTDR1S1B3WnRUdWttcWl5N2tNZQ?oc=5", "s": "天赐资讯", "sec": "电池产业链", "sum": "天赐材料回应固态电池话题：百吨级硫化锂及固态电解质中试产线已进入试生产，固态电池产业化提速。", "points": [2, 3, 6, 8, 6], "note": ""}, {"t": "Vale曼尼托巴镍矿易主", "u": "https://www.mining.com/exiro-led-group-takes-control-of-vales-manitoba-nickel-complex/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "Exiro牵头的财团获得Vale曼尼托巴镍矿控制权，镍矿资产易主影响电池级镍供应。", "points": [2, 1, 5, 8, 6], "note": ""}, {"t": "美国矿业10亿美元贷款计划", "u": "https://www.mining.com/us-project-vault-readies-1b-loan-blitz-for-industry/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "美国Project Vault计划为矿业提供10亿美元贷款，支持关键矿产供应链。", "points": [2, 1, 5, 7, 5], "note": ""}, {"t": "科技巨头竞购英美资源资产", "u": "https://www.mining.com/tech-giants-come-knocking-for-a-piece-of-anglo-american-as-copper-scarcity-bites-wanblad-tells-ft/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "科技巨头竞购英美资源（Anglo American）资产，矿产资源争夺升温。", "points": [2, 1, 5, 6, 5], "note": ""}, {"t": "《报废机动车回收管理办法实施细则》修改建议", "u": "https://mp.weixin.qq.com/s/41nWLGhKEwI~q1zD3QVY8A", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "关于《报废机动车回收管理办法实施细则》的修改建议，涉及报废车回收的法规完善。", "points": [4, 2, 5, 8, 6], "note": ""}, {"t": "唐山10万辆报废车/10万吨电池回收项目公示", "u": "https://mp.weixin.qq.com/s/RXWxEsu5Ok~EkgaCfb-TWA", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "唐山鼎业10万辆新能源报废车、10万吨电池回收项目二次公示，电池回收产能扩张。", "points": [2, 1, 4, 8, 6], "note": ""}, {"t": "科茂环境废塑料化学循环制丙烯中试启动", "u": "https://mp.weixin.qq.com/s/tcdcjNuXZ3zKxtOEW9lRGg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "科茂环境废塑料化学循环制丙烯（PTP）中试项目正式启动，化学回收产业化推进。", "points": [2, 2, 4, 7, 6], "note": ""}, {"t": "聚酯化学回收迎来\"十五五\"政策窗口", "u": "https://mp.weixin.qq.com/s/jnvDStsZu0BquyFb76MoPg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "伍德麦肯兹分析：聚酯化学回收从试点走向法定工业化，迎来\"十五五\"政策窗口期。", "points": [2, 2, 4, 7, 6], "note": ""}];
+var BRIEF_DATA = [{"t": "商务部就欧盟峰会对华\"双轨\"思路答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_4a897e118ecb4691b13f27cb65d22e07.html", "s": "新闻发布", "sec": "国内法规与政策", "sum": "商务部新闻发言人就欧盟峰会提出对华\"双轨\"思路答记者问，涉及中欧经贸关系与对华政策走向的官方表态。", "points": [5, 1, 10, 7, 6], "note": "问答全文经转载核验", "score": 62, "level": "brief"}, {"t": "商务部就修订《中国禁止出口限制出口技术目录》答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d7661dbf62794345a221404f82a25959.html", "s": "新闻发布", "sec": "国内法规与政策", "sum": "商务部新闻发言人就修订《中国禁止出口限制出口技术目录》答记者问，技术出口管制目录调整进入公开说明阶段。", "points": [4, 1, 10, 5, 5], "note": "问答全文经转载核验", "score": 53, "level": "brief"}, {"t": "EFRAG启动2027–2029可持续披露议程公众咨询", "u": "https://www.efrag.org/en/news-and-calendar/news/efrag-launches-public-consultation-on-its-sustainability-reporting-agenda-for-20272029", "s": "新闻列表", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "欧洲财务报告咨询组（EFRAG）启动2027–2029可持续报告议程公开征求意见，涉及欧盟可持续披露准则的后续工作计划。", "points": [5, 1, 9, 6, 6], "note": "一手来源", "score": 58, "level": "brief"}, {"t": "印度BS VII草案提出电池耐久性规范", "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNQmx4QUJWdUdWbE9oNkNSS0h2aGR1bGROQ0Z1X2pCQlRoeFd2SDhtczBLZFBkOW5qTU1tS1F6RlZZendIN3RseUI0MVJGNzlYaHUzZWJkUGk4VkNOVjBTYzVVbGRrdFBtVGZqdG12TlFuR2FObm8yaVhFd3ViUkx4aFVDWnhFZmUtbmFZS0M4WkJpSGRCQUxZOGQxTXk1UjczemJlbzh5YXJtTWc2VXhjUHc3NUdDQzBaOGxpYnVsN0Jvb0tYeFZzcHJ4Z2VZUXU1ZkZLeGQ0S21sWkR0UHBrRdIB5wFBVV95cUxNaXNNZC1zbVJNbktKM2ZMOE42ZjRjOTlKaVpQUEg0cXE0Zmx2QWZfZ2o2Z0djUHp2N210VGw0RnBjdEZLZk5rVkZ2WHQ3TVhaVEt3MkRyd09lVnFqTU5zVm9Cby1lVGZ0RXJsbUdnbWRHTXFmRUJ3djZYeW1XelBrdExDaFpobHdwOUQ1SFlBTVBDVUVnY0Nid29LRThGeTI4emFtYUhSeWRmcXAxRmU1MUFrYk0yNUROX1lEX1JGanB6WFVxSzBNTlN5Ykx1NVhoZm1qbzFNX1BjbVhIeTJlZzcyUWhXWUk?oc=5", "s": "路透 Autos & Transportation", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "印度BS VII排放标准草案提出电池耐久性要求，涉及电动车电池寿命的法规门槛。", "points": [6, 1, 5, 8, 7], "note": "", "score": 59, "level": "brief"}, {"t": "印度暂无强制电池回收计划", "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNN2Y4QjZmZXdPb044S194MFJHdTJWNjNDaTF3T3QxUHNEUnp3X2lTOVhPNEtwOW9tLXVpZVZoV0J4b1F3TGwtRV9WTWU1UnpmZF9sT0MxUk9HX3NFMnVUWXJXdlZibGEtREhyVDA4b0c4dHhTcUdFQS1kQldncXQ3WVJQN3VBb0l2U0xTNXBBT0N4QWtabkt0UzdBRGpXdVg2R2JkZFBHbjJENTlhUS1nWEhjbEJCR3c4eEhSZWZB?oc=5", "s": "路透 Sustainable Business", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "印度政策层面暂未推出针对电动车制造商的强制电池回收计划，生产者责任延伸制度尚未落地。", "points": [5, 1, 5, 7, 6], "note": "", "score": 52, "level": "brief"}, {"t": "商务部明确中欧混动汽车谅解对等互利", "u": "https://mp.weixin.qq.com/s/nvHl~GXXs22U-Fr6GG7NXg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "商务部再明确中欧在混动汽车领域达成的谅解是对等互利的，涉及混动汽车贸易安排的官方口径。", "points": [4, 1, 5, 7, 6], "note": "问答全文经转载核验", "score": 49, "level": "brief"}, {"t": "上海发布\"十五五\"废塑料化学回收与再生材料规划", "u": "https://mp.weixin.qq.com/s/KFIfqoeB4B0w~UNQqnx0Zg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "上海发布\"155\"规划，提出攻关废塑料化学回收、推广再生材料，循环再生进入地方\"十五五\"规划。", "points": [4, 1, 4, 7, 6], "note": "", "score": 47, "level": "brief"}, {"t": "Intertek获得CBAM核查机构资质", "u": "https://mp.weixin.qq.com/s/GgHL854ryOjpCxT3oqkgvA", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Intertek集团获得欧盟CBAM核查机构资质，可为出口企业提供碳边境调节机制的核查服务。", "points": [3, 1, 4, 8, 6], "note": "", "score": 46, "level": "brief"}, {"t": "新CCER方法学解读：碳市场互认", "u": "https://mp.weixin.qq.com/s/3BKsqaKjyBm8oEVJFhpPyw", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "新CCER方法学将关上碳市场互认（跨境监管）的大门，涉及国内自愿减排市场与国际碳市场衔接的实务解读。", "points": [3, 2, 6, 5, 5], "note": "用户特批保留；媒体解读", "score": 43, "level": "brief"}, {"t": "AI赋能生命周期可持续材料研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01950-4", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表AI for life-cycle-aware sustainable materials研究，探索人工智能在生命周期可持续材料设计中的应用，属AI for LCA方向。", "points": [2, 7, 9, 6, 6], "note": "期刊论文", "score": 65, "level": "brief"}, {"t": "电池退化对材料循环影响研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01969-7", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表Material circularity implications of battery degradation研究，分析电池退化过程对材料循环利用的影响。", "points": [2, 6, 9, 7, 6], "note": "期刊论文", "score": 64, "level": "brief"}, {"t": "WBCSD发布投资就绪度工具", "u": "https://www.wbcsd.org/news/the-missing-translator-how-labs-investment-readiness-tool-enables-regenag-leaders-to-speak-the-language-of-capital/", "s": "WBCSD 新闻", "sec": "LCA 与方法学", "sum": "WBCSD发布LAB投资就绪度工具（The Missing Translator），帮助项目方对接投资人的实务工具资源。", "points": [3, 5, 8, 6, 6], "note": "实务工具保留", "score": 58, "level": "brief"}, {"t": "《自然·气候变化》：政策组合与气候公平权衡", "u": "https://mp.weixin.qq.com/s/vX15HLuHv235j97Yf6316Q", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "LCA 与方法学", "sum": "《自然·气候变化》发表论文，通过政策组合缓解气候行动中的横向与纵向公平权衡问题。", "points": [2, 7, 5, 5, 6], "note": "期刊论文", "score": 55, "level": "brief"}, {"t": "小分子键合生物聚合物网络研究（论文）", "u": "https://doi.org/10.1038/s41893-026-01967-9", "s": "Crossref期刊API", "sec": "LCA 与方法学", "sum": "发表小分子键合生物聚合物网络用于可持续材料的研究，涉及生物基材料的方法学进展。", "points": [2, 6, 9, 3, 5], "note": "期刊论文", "score": 54, "level": "brief"}, {"t": "供应商碳披露327万吨，立讯精密推进零碳供应链", "u": "https://mp.weixin.qq.com/s/NR3X6fyHFN6d44A2RPQ7YQ", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "数据与知识", "sum": "中外企业供应商碳披露达327万吨，立讯精密积极推进零碳供应链建设，供应链碳数据披露的产业实践。", "points": [2, 6, 6, 8, 7], "note": "", "score": 62, "level": "full"}, {"t": "中国企业温室气体排放核算与报告因子库（2026）上线", "u": "https://mp.weixin.qq.com/s/2oM72BbZMc4bysZYNkNRLQ", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "数据与知识", "sum": "中国企业温室气体排放核算与报告因子库（2026）上线，提供本土化的排放因子数据工具。", "points": [2, 6, 4, 7, 7], "note": "实务工具保留", "score": 56, "level": "brief"}, {"t": "ICCT道路交通电气化韧性报告", "u": "https://theicct.org/building-resilience-and-energy-security-through-road-transport-electrification-oct26/", "s": "ICCT 新闻发布 RSS", "sec": "数据与知识", "sum": "ICCT发布通过道路交通电气化构建韧性与能源安全的研究报告。", "points": [3, 4, 8, 6, 5], "note": "", "score": 53, "level": "brief"}, {"t": "Varroc收购Forsee Power印度45%股权", "u": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSVZLXzQtWjZWYW1oU2FHMW1BN0NwSXVhSEMwSU9HQnVLUFRPVEluSGhUS2dDRzNzb0FEb1FJQXdnNFJkRUZZb2JzcERCdmxGS1F6WFNFVU0tSXpmOENabGxZcGZxTDFHV1FRUjBtd3daUW5YQWJPV2tOa2ZBZ21pUmZqTEcwa05HWVpQc2JsdWZfYUNMN1Fpb1hRMjFRZDc2b3AwT2REcVFmRHgtMWRHS3cxYTRqNy1PeVdNRVhYaVpyTUhtUUd5OGlTdWtqUHNmbzZxamh4bHFkbXJDZDh2UnRTOEHSAeoBQVVfeXFMTVBxTm9aQlU2dG5faVJiZjF0QWRIdTQ1bHljMnVGX2x4TGRyTHpLenVueGhCS2JyU0RicE1MWlZIMDQxeEp2OVl5eF9fM1dEMlVJSGxsRU85QTF1WWVnUWZGT19TZHlMSGZaZzJTQ2R1SUE2ZW9QWkEtQUFna0dhcllNbkJsSlJQeVYxVDhwemFLU2lCZjhlSTVzYXhSOURna3phdUViWDZWbldWVkxFT1czSU0zMjlDd2o3Z3dpOS1nX1NNZi12ODhxX1lCTUkyQ3dlXzhDTlZBbFF0eFhBdzU2V09ETVZORVlR?oc=5", "s": "路透 Autos & Transportation", "sec": "整车企业", "sum": "Varroc将收购Forsee Power印度公司45%股权，布局印度电动汽车电池市场，属价值链合作。", "points": [2, 1, 6, 7, 6], "note": "价值链合作保留", "score": 54, "level": "brief"}, {"t": "Clarios扩大与Piaxo电池研发合作", "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPajZfZndaODl1dDhOTklHUjIwS2YzTDh2M2lBOHkwQ3A3Qi1ndGRPNHNjZExrREZYX0RlTjJHdkxudHNfUl81N1UwdDE3eXNKc01jN2pPaWw1Ykk2VWRGdDlkY3JDVmFVS3JsOVhsc1Fmb3VUejhJRTZ4Wm9EcGFzR3pmTG4xU1FhZXc?oc=5", "s": "路透 Autos & Transportation", "sec": "整车企业", "sum": "Clarios扩大与Piaxo的电池研发合作，深化电池技术协同。", "points": [2, 2, 5, 6, 5], "note": "价值链合作保留", "score": 47, "level": "brief"}, {"t": "鸿蒙智行电池供应链调整", "u": "https://mp.weixin.qq.com/s/r0kyfzIkUFvSgF8XTfND-Q", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "整车企业", "sum": "鸿蒙智行电池供应链调整，宁德时代不再独享，国轩、中创新航、欣旺达加入，供应安全升级。", "points": [2, 1, 4, 8, 6], "note": "", "score": 53, "level": "brief"}, {"t": "天赐材料固态电池中试产线进入试生产", "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8xaWJ1THl1eDVNTi1qSnlka2lYNnFvVnZqRUgyNkFVdTMxQUlabVhtUWRMS3RLbk5MTGtMWUM2SDBacUlQdWJyX183d2loTDR1S1B3WnRUdWttcWl5N2tNZQ?oc=5", "s": "天赐资讯", "sec": "电池产业链", "sum": "天赐材料回应固态电池话题：百吨级硫化锂及固态电解质中试产线已进入试生产，固态电池产业化提速。", "points": [2, 3, 6, 8, 6], "note": "", "score": 59, "level": "brief"}, {"t": "Vale曼尼托巴镍矿易主", "u": "https://www.mining.com/exiro-led-group-takes-control-of-vales-manitoba-nickel-complex/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "Exiro牵头的财团获得Vale曼尼托巴镍矿控制权，镍矿资产易主影响电池级镍供应。", "points": [2, 1, 5, 8, 6], "note": "", "score": 55, "level": "brief"}, {"t": "美国矿业10亿美元贷款计划", "u": "https://www.mining.com/us-project-vault-readies-1b-loan-blitz-for-industry/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "美国Project Vault计划为矿业提供10亿美元贷款，支持关键矿产供应链。", "points": [2, 1, 5, 7, 5], "note": "", "score": 49, "level": "brief"}, {"t": "科技巨头竞购英美资源资产", "u": "https://www.mining.com/tech-giants-come-knocking-for-a-piece-of-anglo-american-as-copper-scarcity-bites-wanblad-tells-ft/", "s": "矿业新闻全站 RSS", "sec": "电池产业链", "sum": "科技巨头竞购英美资源（Anglo American）资产，矿产资源争夺升温。", "points": [2, 1, 5, 6, 5], "note": "", "score": 46, "level": "brief"}, {"t": "《报废机动车回收管理办法实施细则》修改建议", "u": "https://mp.weixin.qq.com/s/41nWLGhKEwI~q1zD3QVY8A", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "关于《报废机动车回收管理办法实施细则》的修改建议，涉及报废车回收的法规完善。", "points": [4, 2, 5, 8, 6], "note": "", "score": 58, "level": "brief"}, {"t": "唐山10万辆报废车/10万吨电池回收项目公示", "u": "https://mp.weixin.qq.com/s/RXWxEsu5Ok~EkgaCfb-TWA", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "唐山鼎业10万辆新能源报废车、10万吨电池回收项目二次公示，电池回收产能扩张。", "points": [2, 1, 4, 8, 6], "note": "", "score": 53, "level": "brief"}, {"t": "科茂环境废塑料化学循环制丙烯中试启动", "u": "https://mp.weixin.qq.com/s/tcdcjNuXZ3zKxtOEW9lRGg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "科茂环境废塑料化学循环制丙烯（PTP）中试项目正式启动，化学回收产业化推进。", "points": [2, 2, 4, 7, 6], "note": "", "score": 51, "level": "brief"}, {"t": "聚酯化学回收迎来\"十五五\"政策窗口", "u": "https://mp.weixin.qq.com/s/jnvDStsZu0BquyFb76MoPg", "s": "微信公众号（全账号聚合扫（116账号），full 正文）", "sec": "循环再生", "sum": "伍德麦肯兹分析：聚酯化学回收从试点走向法定工业化，迎来\"十五五\"政策窗口期。", "points": [2, 2, 4, 7, 6], "note": "", "score": 51, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

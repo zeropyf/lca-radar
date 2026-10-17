@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,7 +1406,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg" target="_blank" rel="noopener">《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;纳入全生命周期闭环管理<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg" target="_blank" rel="noopener"><span>《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;纳入全生命周期闭环管理</span><span class="ext">↗</span></a></h3>
           <p class="sum">生态环境部会同发改委、工信部等部门印发《固体废物污染防治&quot;十五五&quot;规划》，聚焦五大突出问题组织 5 个专项整治；针对&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）已出台回收利用政策、初步建立全生命周期闭环管理体系，生态环境部牵头制定污染防治标准。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1368,37 +1418,37 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>CLEPA 官方一手</span></div>
-          <h3><a href="https://www.clepa.eu/insights-updates/news/clepa-joins-call-for-workable-cbam-rules-that-protect-the-entire-automotive-value-chain/" target="_blank" rel="noopener">CLEPA 呼吁制定可行的 CBAM 规则，保护整个汽车价值链<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.clepa.eu/insights-updates/news/clepa-joins-call-for-workable-cbam-rules-that-protect-the-entire-automotive-value-chain/" target="_blank" rel="noopener"><span>CLEPA 呼吁制定可行的 CBAM 规则，保护整个汽车价值链</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧洲汽车零部件供应商协会（CLEPA）10 月 5 日官网发布声明，加入呼吁为汽车价值链制定&quot;可行 CBAM 规则&quot;的联合行动；行业立场口径，其他参与方与具体条款诉求待通读原文。关联 O9（CBAM）。</p>
           <a class="golink" href="https://www.clepa.eu/insights-updates/news/clepa-joins-call-for-workable-cbam-rules-that-protect-the-entire-automotive-value-chain/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（汽车海外技术合规联盟，官方，full 正文；艾科森环境技术消息）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/qRoa7pXb38UsYgdie-jAuQ" target="_blank" rel="noopener">欧盟 902 类进口产品进入&quot;进口晴雨表&quot;监测筛选（汽车/电池/化工/机械；非征税清单）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/qRoa7pXb38UsYgdie-jAuQ" target="_blank" rel="noopener"><span>欧盟 902 类进口产品进入&quot;进口晴雨表&quot;监测筛选（汽车/电池/化工/机械；非征税清单）</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧盟委员会进口监测数据显示，2025 年 7 月至 2026 年 6 月统计周期内共有 902 个 CN8 产品编码符合欧盟设定的筛选条件，涉及汽车、电池、化工、机械等领域。这是进口监测筛选结果，不是已决定征收关税的产品清单；筛选标准与后续措施待 DG TRADE 官方一手核验。关联 O15。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/qRoa7pXb38UsYgdie-jAuQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E 文章一手</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/wave-of-affordable-electric-cars-is-boosting-consumers-choice-sales-of-sub-eur25-000-models-set-to-rise-sevenfold" target="_blank" rel="noopener">T&amp;E：平价电动车浪潮将至，2.5 万欧元以下车型销量预计增至七倍<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/wave-of-affordable-electric-cars-is-boosting-consumers-choice-sales-of-sub-eur25-000-models-set-to-rise-sevenfold" target="_blank" rel="noopener"><span>T&amp;E：平价电动车浪潮将至，2.5 万欧元以下车型销量预计增至七倍</span><span class="ext">↗</span></a></h3>
           <p class="sum">T&amp;E 10 月 5 日发布市场分析，主张平价电动车供给扩张将显著提振消费者选择；NGO 立场分析，方法与数据口径待通读。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/wave-of-affordable-electric-cars-is-boosting-consumers-choice-sales-of-sub-eur25-000-models-set-to-rise-sevenfold" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E 文章一手</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/ev-progress-report-dont-stop-me-now-the-ev-transition-is-delivering" target="_blank" rel="noopener">T&amp;E《EV progress report: &#x27;Don&#x27;t stop me now&#x27;》：电动化转型正在兑现<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/ev-progress-report-dont-stop-me-now-the-ev-transition-is-delivering" target="_blank" rel="noopener"><span>T&amp;E《EV progress report: &#x27;Don&#x27;t stop me now&#x27;》：电动化转型正在兑现</span><span class="ext">↗</span></a></h3>
           <p class="sum">T&amp;E 10 月 5 日发布进展报告，论证欧洲电动化转型按计划推进；NGO 立场分析，待通读核验数据口径。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/ev-progress-report-dont-stop-me-now-the-ev-transition-is-delivering" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E 文章一手</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/t-e-european-metals-and-recharge-call-on-co-decision-makers-to-strengthen-battery-supply-chain" target="_blank" rel="noopener">T&amp;E 联合 European Metals 与 RECHARGE 致函共同立法者，呼吁在 IAA 框架下强化电池供应链<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/t-e-european-metals-and-recharge-call-on-co-decision-makers-to-strengthen-battery-supply-chain" target="_blank" rel="noopener"><span>T&amp;E 联合 European Metals 与 RECHARGE 致函共同立法者，呼吁在 IAA 框架下强化电池供应链</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧洲运输环保组织、欧洲金属协会与电池产业协会 RECHARGE 联名向欧盟共同立法者喊话，要求强化电池供应链政策；此前 ACEA/T&amp;E 关于 IAA 本土化缺口的争论（10-01/10-02 已推）延续。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/t-e-european-metals-and-recharge-call-on-co-decision-makers-to-strengthen-battery-supply-chain" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Tyres Europe 官方一手（浏览器轮换发现）</span></div>
-          <h3><a href="https://tyreseurope.org/towards-a-more-effective-eu-trade-defence-policy/" target="_blank" rel="noopener">Tyres Europe 发布欧盟贸易救济立场文件《Towards a more effective EU Trade Defence Policy》<span class="ext">↗</span></a></h3>
+          <h3><a href="https://tyreseurope.org/towards-a-more-effective-eu-trade-defence-policy/" target="_blank" rel="noopener"><span>Tyres Europe 发布欧盟贸易救济立场文件《Towards a more effective EU Trade Defence Policy》</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧洲轮胎橡胶制造商协会 10 月 5 日（北京时间 22:47，RSS 时间）发布立场文件，呼吁欧委会在贸易救济上更快行动、保持措施持续有效；文中提及中国产乘用车/轻卡轮胎反倾销调查（2025-05 立案、2026-07-08 终裁征税生效）及卡客车轮胎贸易转移（中国占比下降、泰越占比上升）。行业立场文件口径，关联 O15（贸易救济）。</p>
           <a class="golink" href="https://tyreseurope.org/towards-a-more-effective-eu-trade-defence-policy/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1413,7 +1463,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>DOI 一手（Crossref N5）</span></div>
-          <h3><a href="https://doi.org/10.1007/s44498-026-00183-0" target="_blank" rel="noopener">&quot;Re-evaluating ecoinvent&#x27;s suitability for direct product material footprint calculation&quot;<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1007/s44498-026-00183-0" target="_blank" rel="noopener"><span>&quot;Re-evaluating ecoinvent&#x27;s suitability for direct product material footprint calculation&quot;</span><span class="ext">↗</span></a></h3>
           <p class="sum">期刊论文：重新评估 ecoinvent 数据库直接用于产品材料足迹（material footprint）核算的适用性；仅有标题/DOI，无摘要，结论与方法细节待原文。</p>
           <a class="golink" href="https://doi.org/10.1007/s44498-026-00183-0" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1428,7 +1478,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Honda Global Newsroom 一手标题</span></div>
-          <h3><a href="https://global.honda/en/topics/2026/c_2026-10-05beng.html" target="_blank" rel="noopener">本田研发行驶中无线充电道路技术（含大型商用车），后续开展高速公路实测<span class="ext">↗</span></a></h3>
+          <h3><a href="https://global.honda/en/topics/2026/c_2026-10-05beng.html" target="_blank" rel="noopener"><span>本田研发行驶中无线充电道路技术（含大型商用车），后续开展高速公路实测</span><span class="ext">↗</span></a></h3>
           <p class="sum">本田 10 月 5 日官方发布：开发面向行驶中 EV 的非接触充电底层技术（含大型商用车场景），计划推进高速公路实测；技术路线与实测时间表仅见标题/摘要。</p>
           <a class="golink" href="https://global.honda/en/topics/2026/c_2026-10-05beng.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,7 +1490,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SteelMan 钢铁信息，full 正文转述）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/U0ZEm2PdZE28OBpKnMhEiQ" target="_blank" rel="noopener">OECD 最新研究《全球产能过剩背景下的钢铁转型》（46 页）：产能过剩与钢铁脱碳统一框架<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/U0ZEm2PdZE28OBpKnMhEiQ" target="_blank" rel="noopener"><span>OECD 最新研究《全球产能过剩背景下的钢铁转型》（46 页）：产能过剩与钢铁脱碳统一框架</span><span class="ext">↗</span></a></h3>
           <p class="sum">OECD 9 月 22 日发布 46 页研究报告《全球产能过剩背景下的钢铁转型》，将产能过剩与钢铁脱碳放进同一分析框架：产能过剩影响钢价、企业利润与融资能力，进而改变低排放钢的价格竞争力与脱碳项目投资决策。与 CBAM/钢铁碳成本议题相关。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/U0ZEm2PdZE28OBpKnMhEiQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1452,19 +1502,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Retail News Asia 转述（仅有标题/摘要）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQWU5iY0pWaE91aEo0V29HM0tWR1ZFUF9Ob18tbFA4NlBQTm5nb1ZPSVE5T0dpcGloblBYa1RKY3djdWQ5NWtPZVY" target="_blank" rel="noopener">LG Energy Solution 将向 Mercedes-Benz 供应 46100 电池（46 系圆柱）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQWU5iY0pWaE91aEo0V29HM0tWR1ZFUF9Ob18tbFA4NlBQTm5nb1ZPSVE5T0dpcGloblBYa1RKY3djdWQ5NWtPZVY" target="_blank" rel="noopener"><span>LG Energy Solution 将向 Mercedes-Benz 供应 46100 电池（46 系圆柱）</span><span class="ext">↗</span></a></h3>
           <p class="sum">46 系大圆柱电池又一整车厂订单动向，继 LG×indiGOtech（10-01 已推，对象不同非重复）之后 LGES 的第二笔 46 系合作线索；供应商口径与供应规模/时间表均未核验。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQWU5iY0pWaE91aEo0V29HM0tWR1ZFUF9Ob18tbFA4NlBQTm5nb1ZPSVE5T0dpcGloblBYa1RKY3djdWQ5NWtPZVY" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>caiwennews.com 转述（仅有标题）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8" target="_blank" rel="noopener">天赐材料香港上市料筹资不超过 5 亿美元<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8" target="_blank" rel="noopener"><span>天赐材料香港上市料筹资不超过 5 亿美元</span><span class="ext">↗</span></a></h3>
           <p class="sum">电解液龙头天赐材料赴港上市融资动向，筹资上限约 5 亿美元；上市主体/时间表/募资用途未核验。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（高工锂电，行业资讯；partial，仅标题）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg" target="_blank" rel="noopener">高工锂电：16GWh 投产、1.1 万座闪充站铺开，比亚迪二代刀片电池走出比亚迪<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg" target="_blank" rel="noopener"><span>高工锂电：16GWh 投产、1.1 万座闪充站铺开，比亚迪二代刀片电池走出比亚迪</span><span class="ext">↗</span></a></h3>
           <p class="sum">标题信息显示：16GWh 产能投产、1.1 万座闪充站铺开、比亚迪二代刀片电池对外供应动向；文章链接打开返回参数错误、正文缺失，细节待正文核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2218,9 +2268,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）纳入全生命周期闭环管理体系</b><span>微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;纳入全生命周期闭环管理</b><span>微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）</span></span></a>
     <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>CLEPA 呼吁制定可行的 CBAM 规则，保护整个汽车价值链</b><span>CLEPA 官方一手</span></span></a>
-    <a class="hl-item" href="#" data-mi="10"><span class="n">3</span><span class="t"><b>LG Energy Solution 将向 Mercedes-Benz 供应 46100 电池（46 系圆柱）</b><span>Retail News Asia 转述（仅有标题/摘要）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">3</span><span class="t"><b>欧盟 902 类进口产品进入&quot;进口晴雨表&quot;监测筛选（汽车/电池/化工/机械；非征税清单）</b><span>微信公众号（汽车海外技术合规联盟，官方，full 正文；艾科森环境技术消息）</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">4</span><span class="t"><b>T&amp;E：平价电动车浪潮将至，2.5 万欧元以下车型销量预计增至七倍</b><span>T&amp;E 文章一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">5</span><span class="t"><b>T&amp;E《EV progress report: &#x27;Don&#x27;t stop me now&#x27;》：电动化转型正在兑现</b><span>T&amp;E 文章一手</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2356,7 +2408,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-06";
-var BRIEF_DATA = [{"t": "《固体废物污染防治\"十五五\"规划》印发，\"新三样\"纳入全生命周期闭环管理", "u": "https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg", "s": "微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）", "sec": "国内法规与政策", "sum": "生态环境部会同发改委、工信部等部门印发《固体废物污染防治\"十五五\"规划》，聚焦五大突出问题组织 5 个专项整治；针对\"新三样\"（退役光伏组件、风电设备、动力电池）已出台回收利用政策、初步建立全生命周期闭环管理体系，生态环境部牵头制定污染防治标准。", "points": ["生态环境部会同国家发展改革委、工业和信息化部等部门印发《固体废物污染防治\"十五五\"规划》，聚焦非法倾倒处置、溶洞垃圾污染、重金属环境安全隐患、磷石膏库、生活垃圾填埋场五大突出问题开展 5 个专项整治行动。", "针对\"新三样\"固体废物（退役光伏组件、风电设备、动力电池）：已制定出台回收利用相关政策，初步建立全生命周期闭环管理体系；生态环境部牵头制定污染防治相关标准；加大非法处理监管执法力度。", "2025 年选择江苏、安徽、四川等 12 省份开展危险废物全过程信息化监管试点（\"五即\"规范化、\"一码贯通\"）；固废年产生量超 110 亿吨，截至 8 月底非法倾倒专项整治排查问题 6.2 万余个、清理固废 6000 余万吨。"], "note": "微信公众号 full 正文；规划原文与发布会实录未独立一手核验。"}, {"t": "CLEPA 呼吁制定可行的 CBAM 规则，保护整个汽车价值链", "u": "https://www.clepa.eu/insights-updates/news/clepa-joins-call-for-workable-cbam-rules-that-protect-the-entire-automotive-value-chain/", "s": "CLEPA 官方一手", "sec": "海外法规与政策", "sum": "欧洲汽车零部件供应商协会（CLEPA）10 月 5 日官网发布声明，加入呼吁为汽车价值链制定\"可行 CBAM 规则\"的联合行动；行业立场口径，其他参与方与具体条款诉求待通读原文。关联 O9（CBAM）。", "points": [], "note": "CLEPA 官方一手；4 个登记表入口去重为一。"}, {"t": "欧盟 902 类进口产品进入\"进口晴雨表\"监测筛选（汽车/电池/化工/机械；非征税清单）", "u": "https://mp.weixin.qq.com/s/qRoa7pXb38UsYgdie-jAuQ", "s": "微信公众号（汽车海外技术合规联盟，官方，full 正文；艾科森环境技术消息）", "sec": "海外法规与政策", "sum": "欧盟委员会进口监测数据显示，2025 年 7 月至 2026 年 6 月统计周期内共有 902 个 CN8 产品编码符合欧盟设定的筛选条件，涉及汽车、电池、化工、机械等领域。这是进口监测筛选结果，不是已决定征收关税的产品清单；筛选标准与后续措施待 DG TRADE 官方一手核验。关联 O15。", "points": [], "note": "微信公众号 full 正文；行业解读口径，待一手核验。"}, {"t": "T&E：平价电动车浪潮将至，2.5 万欧元以下车型销量预计增至七倍", "u": "https://www.transportenvironment.org/articles/wave-of-affordable-electric-cars-is-boosting-consumers-choice-sales-of-sub-eur25-000-models-set-to-rise-sevenfold", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "T&E 10 月 5 日发布市场分析，主张平价电动车供给扩张将显著提振消费者选择；NGO 立场分析，方法与数据口径待通读。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。"}, {"t": "T&E《EV progress report: 'Don't stop me now'》：电动化转型正在兑现", "u": "https://www.transportenvironment.org/articles/ev-progress-report-dont-stop-me-now-the-ev-transition-is-delivering", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "T&E 10 月 5 日发布进展报告，论证欧洲电动化转型按计划推进；NGO 立场分析，待通读核验数据口径。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。"}, {"t": "T&E 联合 European Metals 与 RECHARGE 致函共同立法者，呼吁在 IAA 框架下强化电池供应链", "u": "https://www.transportenvironment.org/articles/t-e-european-metals-and-recharge-call-on-co-decision-makers-to-strengthen-battery-supply-chain", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "欧洲运输环保组织、欧洲金属协会与电池产业协会 RECHARGE 联名向欧盟共同立法者喊话，要求强化电池供应链政策；此前 ACEA/T&E 关于 IAA 本土化缺口的争论（10-01/10-02 已推）延续。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。"}, {"t": "Tyres Europe 发布欧盟贸易救济立场文件《Towards a more effective EU Trade Defence Policy》", "u": "https://tyreseurope.org/towards-a-more-effective-eu-trade-defence-policy/", "s": "Tyres Europe 官方一手（浏览器轮换发现）", "sec": "海外法规与政策", "sum": "欧洲轮胎橡胶制造商协会 10 月 5 日（北京时间 22:47，RSS 时间）发布立场文件，呼吁欧委会在贸易救济上更快行动、保持措施持续有效；文中提及中国产乘用车/轻卡轮胎反倾销调查（2025-05 立案、2026-07-08 终裁征税生效）及卡客车轮胎贸易转移（中国占比下降、泰越占比上升）。行业立场文件口径，关联 O15（贸易救济）。", "points": [], "note": "浏览器轮换 C 级…A 级核验发现（Tyres Europe 为 A 级）；真实浏览器一手确认。"}, {"t": "\"Re-evaluating ecoinvent's suitability for direct product material footprint calculation\"", "u": "https://doi.org/10.1007/s44498-026-00183-0", "s": "DOI 一手（Crossref N5）", "sec": "数据与知识", "sum": "期刊论文：重新评估 ecoinvent 数据库直接用于产品材料足迹（material footprint）核算的适用性；仅有标题/DOI，无摘要，结论与方法细节待原文。", "points": [], "note": "仅有标题/DOI，无摘要。"}, {"t": "本田研发行驶中无线充电道路技术（含大型商用车），后续开展高速公路实测", "u": "https://global.honda/en/topics/2026/c_2026-10-05beng.html", "s": "Honda Global Newsroom 一手标题", "sec": "整车企业", "sum": "本田 10 月 5 日官方发布：开发面向行驶中 EV 的非接触充电底层技术（含大型商用车场景），计划推进高速公路实测；技术路线与实测时间表仅见标题/摘要。", "points": [], "note": "官方一手标题已核验（正文未读）；10-05 晚间 pending 并入早报。"}, {"t": "OECD 最新研究《全球产能过剩背景下的钢铁转型》（46 页）：产能过剩与钢铁脱碳统一框架", "u": "https://mp.weixin.qq.com/s/U0ZEm2PdZE28OBpKnMhEiQ", "s": "微信公众号（SteelMan 钢铁信息，full 正文转述）", "sec": "上游基础材料", "sum": "OECD 9 月 22 日发布 46 页研究报告《全球产能过剩背景下的钢铁转型》，将产能过剩与钢铁脱碳放进同一分析框架：产能过剩影响钢价、企业利润与融资能力，进而改变低排放钢的价格竞争力与脱碳项目投资决策。与 CBAM/钢铁碳成本议题相关。", "points": [], "note": "微信公众号 full 正文转述；报告原文待 OECD 官网一手核验。10-05 晚间 pending 并入早报。"}, {"t": "LG Energy Solution 将向 Mercedes-Benz 供应 46100 电池（46 系圆柱）", "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWU5iY0pWaE91aEo0V29HM0tWR1ZFUF9Ob18tbFA4NlBQTm5nb1ZPSVE5T0dpcGloblBYa1RKY3djdWQ5NWtPZVY", "s": "Retail News Asia 转述（仅有标题/摘要）", "sec": "电池产业链", "sum": "46 系大圆柱电池又一整车厂订单动向，继 LG×indiGOtech（10-01 已推，对象不同非重复）之后 LGES 的第二笔 46 系合作线索；供应商口径与供应规模/时间表均未核验。", "points": [], "note": "仅有标题/摘要；10-05 晚间 pending 并入早报。"}, {"t": "天赐材料香港上市料筹资不超过 5 亿美元", "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8", "s": "caiwennews.com 转述（仅有标题）", "sec": "电池产业链", "sum": "电解液龙头天赐材料赴港上市融资动向，筹资上限约 5 亿美元；上市主体/时间表/募资用途未核验。", "points": [], "note": "仅有标题；10-05 晚间 pending 并入早报。"}, {"t": "高工锂电：16GWh 投产、1.1 万座闪充站铺开，比亚迪二代刀片电池走出比亚迪", "u": "https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg", "s": "微信公众号（高工锂电，行业资讯；partial，仅标题）", "sec": "电池产业链", "sum": "标题信息显示：16GWh 产能投产、1.1 万座闪充站铺开、比亚迪二代刀片电池对外供应动向；文章链接打开返回参数错误、正文缺失，细节待正文核验。", "points": [], "note": "微信公众号 partial（仅标题）；标题命中动力电池必看关键词，强制人工复核后收录。"}];
+var BRIEF_DATA = [{"t": "《固体废物污染防治\"十五五\"规划》印发，\"新三样\"纳入全生命周期闭环管理", "u": "https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg", "s": "微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）", "sec": "国内法规与政策", "sum": "生态环境部会同发改委、工信部等部门印发《固体废物污染防治\"十五五\"规划》，聚焦五大突出问题组织 5 个专项整治；针对\"新三样\"（退役光伏组件、风电设备、动力电池）已出台回收利用政策、初步建立全生命周期闭环管理体系，生态环境部牵头制定污染防治标准。", "points": ["生态环境部会同国家发展改革委、工业和信息化部等部门印发《固体废物污染防治\"十五五\"规划》，聚焦非法倾倒处置、溶洞垃圾污染、重金属环境安全隐患、磷石膏库、生活垃圾填埋场五大突出问题开展 5 个专项整治行动。", "针对\"新三样\"固体废物（退役光伏组件、风电设备、动力电池）：已制定出台回收利用相关政策，初步建立全生命周期闭环管理体系；生态环境部牵头制定污染防治相关标准；加大非法处理监管执法力度。", "2025 年选择江苏、安徽、四川等 12 省份开展危险废物全过程信息化监管试点（\"五即\"规范化、\"一码贯通\"）；固废年产生量超 110 亿吨，截至 8 月底非法倾倒专项整治排查问题 6.2 万余个、清理固废 6000 余万吨。"], "note": "微信公众号 full 正文；规划原文与发布会实录未独立一手核验。", "score": 0, "level": "full"}, {"t": "CLEPA 呼吁制定可行的 CBAM 规则，保护整个汽车价值链", "u": "https://www.clepa.eu/insights-updates/news/clepa-joins-call-for-workable-cbam-rules-that-protect-the-entire-automotive-value-chain/", "s": "CLEPA 官方一手", "sec": "海外法规与政策", "sum": "欧洲汽车零部件供应商协会（CLEPA）10 月 5 日官网发布声明，加入呼吁为汽车价值链制定\"可行 CBAM 规则\"的联合行动；行业立场口径，其他参与方与具体条款诉求待通读原文。关联 O9（CBAM）。", "points": [], "note": "CLEPA 官方一手；4 个登记表入口去重为一。", "score": 0, "level": "brief"}, {"t": "欧盟 902 类进口产品进入\"进口晴雨表\"监测筛选（汽车/电池/化工/机械；非征税清单）", "u": "https://mp.weixin.qq.com/s/qRoa7pXb38UsYgdie-jAuQ", "s": "微信公众号（汽车海外技术合规联盟，官方，full 正文；艾科森环境技术消息）", "sec": "海外法规与政策", "sum": "欧盟委员会进口监测数据显示，2025 年 7 月至 2026 年 6 月统计周期内共有 902 个 CN8 产品编码符合欧盟设定的筛选条件，涉及汽车、电池、化工、机械等领域。这是进口监测筛选结果，不是已决定征收关税的产品清单；筛选标准与后续措施待 DG TRADE 官方一手核验。关联 O15。", "points": [], "note": "微信公众号 full 正文；行业解读口径，待一手核验。", "score": 0, "level": "brief"}, {"t": "T&E：平价电动车浪潮将至，2.5 万欧元以下车型销量预计增至七倍", "u": "https://www.transportenvironment.org/articles/wave-of-affordable-electric-cars-is-boosting-consumers-choice-sales-of-sub-eur25-000-models-set-to-rise-sevenfold", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "T&E 10 月 5 日发布市场分析，主张平价电动车供给扩张将显著提振消费者选择；NGO 立场分析，方法与数据口径待通读。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。", "score": 0, "level": "brief"}, {"t": "T&E《EV progress report: 'Don't stop me now'》：电动化转型正在兑现", "u": "https://www.transportenvironment.org/articles/ev-progress-report-dont-stop-me-now-the-ev-transition-is-delivering", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "T&E 10 月 5 日发布进展报告，论证欧洲电动化转型按计划推进；NGO 立场分析，待通读核验数据口径。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。", "score": 0, "level": "brief"}, {"t": "T&E 联合 European Metals 与 RECHARGE 致函共同立法者，呼吁在 IAA 框架下强化电池供应链", "u": "https://www.transportenvironment.org/articles/t-e-european-metals-and-recharge-call-on-co-decision-makers-to-strengthen-battery-supply-chain", "s": "T&E 文章一手", "sec": "海外法规与政策", "sum": "欧洲运输环保组织、欧洲金属协会与电池产业协会 RECHARGE 联名向欧盟共同立法者喊话，要求强化电池供应链政策；此前 ACEA/T&E 关于 IAA 本土化缺口的争论（10-01/10-02 已推）延续。", "points": [], "note": "10-05 晚间 pending 并入早报；T&E 三入口去重。", "score": 0, "level": "brief"}, {"t": "Tyres Europe 发布欧盟贸易救济立场文件《Towards a more effective EU Trade Defence Policy》", "u": "https://tyreseurope.org/towards-a-more-effective-eu-trade-defence-policy/", "s": "Tyres Europe 官方一手（浏览器轮换发现）", "sec": "海外法规与政策", "sum": "欧洲轮胎橡胶制造商协会 10 月 5 日（北京时间 22:47，RSS 时间）发布立场文件，呼吁欧委会在贸易救济上更快行动、保持措施持续有效；文中提及中国产乘用车/轻卡轮胎反倾销调查（2025-05 立案、2026-07-08 终裁征税生效）及卡客车轮胎贸易转移（中国占比下降、泰越占比上升）。行业立场文件口径，关联 O15（贸易救济）。", "points": [], "note": "浏览器轮换 C 级…A 级核验发现（Tyres Europe 为 A 级）；真实浏览器一手确认。", "score": 0, "level": "brief"}, {"t": "\"Re-evaluating ecoinvent's suitability for direct product material footprint calculation\"", "u": "https://doi.org/10.1007/s44498-026-00183-0", "s": "DOI 一手（Crossref N5）", "sec": "数据与知识", "sum": "期刊论文：重新评估 ecoinvent 数据库直接用于产品材料足迹（material footprint）核算的适用性；仅有标题/DOI，无摘要，结论与方法细节待原文。", "points": [], "note": "仅有标题/DOI，无摘要。", "score": 0, "level": "brief"}, {"t": "本田研发行驶中无线充电道路技术（含大型商用车），后续开展高速公路实测", "u": "https://global.honda/en/topics/2026/c_2026-10-05beng.html", "s": "Honda Global Newsroom 一手标题", "sec": "整车企业", "sum": "本田 10 月 5 日官方发布：开发面向行驶中 EV 的非接触充电底层技术（含大型商用车场景），计划推进高速公路实测；技术路线与实测时间表仅见标题/摘要。", "points": [], "note": "官方一手标题已核验（正文未读）；10-05 晚间 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "OECD 最新研究《全球产能过剩背景下的钢铁转型》（46 页）：产能过剩与钢铁脱碳统一框架", "u": "https://mp.weixin.qq.com/s/U0ZEm2PdZE28OBpKnMhEiQ", "s": "微信公众号（SteelMan 钢铁信息，full 正文转述）", "sec": "上游基础材料", "sum": "OECD 9 月 22 日发布 46 页研究报告《全球产能过剩背景下的钢铁转型》，将产能过剩与钢铁脱碳放进同一分析框架：产能过剩影响钢价、企业利润与融资能力，进而改变低排放钢的价格竞争力与脱碳项目投资决策。与 CBAM/钢铁碳成本议题相关。", "points": [], "note": "微信公众号 full 正文转述；报告原文待 OECD 官网一手核验。10-05 晚间 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "LG Energy Solution 将向 Mercedes-Benz 供应 46100 电池（46 系圆柱）", "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWU5iY0pWaE91aEo0V29HM0tWR1ZFUF9Ob18tbFA4NlBQTm5nb1ZPSVE5T0dpcGloblBYa1RKY3djdWQ5NWtPZVY", "s": "Retail News Asia 转述（仅有标题/摘要）", "sec": "电池产业链", "sum": "46 系大圆柱电池又一整车厂订单动向，继 LG×indiGOtech（10-01 已推，对象不同非重复）之后 LGES 的第二笔 46 系合作线索；供应商口径与供应规模/时间表均未核验。", "points": [], "note": "仅有标题/摘要；10-05 晚间 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "天赐材料香港上市料筹资不超过 5 亿美元", "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8", "s": "caiwennews.com 转述（仅有标题）", "sec": "电池产业链", "sum": "电解液龙头天赐材料赴港上市融资动向，筹资上限约 5 亿美元；上市主体/时间表/募资用途未核验。", "points": [], "note": "仅有标题；10-05 晚间 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "高工锂电：16GWh 投产、1.1 万座闪充站铺开，比亚迪二代刀片电池走出比亚迪", "u": "https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg", "s": "微信公众号（高工锂电，行业资讯；partial，仅标题）", "sec": "电池产业链", "sum": "标题信息显示：16GWh 产能投产、1.1 万座闪充站铺开、比亚迪二代刀片电池对外供应动向；文章链接打开返回参数错误、正文缺失，细节待正文核验。", "points": [], "note": "微信公众号 partial（仅标题）；标题命中动力电池必看关键词，强制人工复核后收录。", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

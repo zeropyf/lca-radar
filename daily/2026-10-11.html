@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,31 +1406,31 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>工业和信息化部装备工业一司（一手）</span></div>
-          <h3><a href="https://www.miit.gov.cn/jgsj/zbys/gzdt/art/2026/art_b52c27a35e12496d984cea37872b4339.html" target="_blank" rel="noopener">四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.miit.gov.cn/jgsj/zbys/gzdt/art/2026/art_b52c27a35e12496d984cea37872b4339.html" target="_blank" rel="noopener"><span>四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">工信部会同公安部、生态环境部、市场监管总局起草《关于进一步加强汽车产品创新设计和研发测试验证有关管理工作的通知（征求意见稿）》，2026-10-10 17:00 公示，公示期至 2026-11-10。附件技术指南明确禁止全隐藏式门把手、虚拟操纵须配实体操纵件、升顶座舱行车时不可使用；主通知含宣传规范与安全事件调查机制。</p>
           <a class="golink" href="https://www.miit.gov.cn/jgsj/zbys/gzdt/art/2026/art_b52c27a35e12496d984cea37872b4339.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM 再生金属，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/AEZabWERhxYxomrmtqt48A" target="_blank" rel="noopener">财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/AEZabWERhxYxomrmtqt48A" target="_blank" rel="noopener"><span>财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架</span><span class="ext">↗</span></a></h3>
           <p class="sum">财政部办公厅发布《铝冶炼企业（氧化铝-电解铝-再生铝）气候可持续披露应用指南（征求意见稿）》，将再生铝纳入国家气候信息披露框架，&quot;气候相关机遇&quot;列出扩大废铝保级回收利用比例；反馈截止 2026-10-26。为 10-07 已推 9 行业指南中铝子指南的细化增量。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/AEZabWERhxYxomrmtqt48A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>IT 之家（全文通读）</span></div>
-          <h3><a href="https://www.ithome.com/1/011/497.htm" target="_blank" rel="noopener">国家发改委就《汽车零部件再制造规范管理办法》公开征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.ithome.com/1/011/497.htm" target="_blank" rel="noopener"><span>国家发改委就《汽车零部件再制造规范管理办法》公开征求意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">发改委 2026-10-10 发布《汽车零部件再制造规范管理办法（公开征求意见稿）》，含企业规范管理、旧件回收管理等六部分；鼓励整车企业通过售后服务体系回收旧件用于再制造；&quot;五大总成&quot;须与再制造类型一致，不得回收尾气后处理装置。发改委原文待一手核验。</p>
           <a class="golink" href="https://www.ithome.com/1/011/497.htm" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（同济大学碳中和研究院，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/16dmvQdysoqBUI7W~pn2bw" target="_blank" rel="noopener">全国碳市场配额机制再优化：强化效率导向，衔接总量控制<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/16dmvQdysoqBUI7W~pn2bw" target="_blank" rel="noopener"><span>全国碳市场配额机制再优化：强化效率导向，衔接总量控制</span><span class="ext">↗</span></a></h3>
           <p class="sum">双碳资讯称全国碳市场配额机制再优化，强化效率导向并衔接总量控制；配额分配方法、覆盖行业与生效安排无法确认，需补生态环境部/上海环交所一手来源再作状态表述。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/16dmvQdysoqBUI7W~pn2bw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>全国汽车标准化技术委员会·征求意见（一手） · 轮换补录</span></div>
-          <h3><a href="https://zxd.catarc.org.cn/zxd/portal/detail/zqyj/938" target="_blank" rel="noopener">全国汽车标准化技术委员会公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://zxd.catarc.org.cn/zxd/portal/detail/zqyj/938" target="_blank" rel="noopener"><span>全国汽车标准化技术委员会公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">www.catarc.org.cn（现展示汽标委内容）征求意见栏目 2026-10-10 新增：公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见，征求意见开始日期 2026-10-10、截止 2026-11-09（浏览器轮换一手确认；标准文本细节未通读）。</p>
           <a class="golink" href="https://zxd.catarc.org.cn/zxd/portal/detail/zqyj/938" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1392,13 +1442,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（欧盟法研究，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/jHH4lGIqGU4H9Ndo6foU3A" target="_blank" rel="noopener">欧盟综合法院 Prestige Rijwielen 案（T-529/25）：分批进口零部件仍可按整机归类征税<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/jHH4lGIqGU4H9Ndo6foU3A" target="_blank" rel="noopener"><span>欧盟综合法院 Prestige Rijwielen 案（T-529/25）：分批进口零部件仍可按整机归类征税</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧盟综合法院 2026-10-07 判决：相隔数月分批进口的零部件有客观证据构成整体且含全部基本部件，仍可按未组装完整产品归类，防拆分运输规避整机反倾销/反补贴税（涉中国产电动自行车税令）。判决原文（CURIA）未一手核验。补录三要素：判决 2026-10-07 / 发现 2026-10-10 / 迟到发现。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/jHH4lGIqGU4H9Ndo6foU3A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>中国贸易救济信息网·出口案件公告（一手列表页）</span></div>
-          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/view/notice/ckys" target="_blank" rel="noopener">贸易救济信息网 10-10 批量更新 14 条涉华贸易救济案件（轮换补录）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/view/notice/ckys" target="_blank" rel="noopener"><span>贸易救济信息网 10-10 批量更新 14 条涉华贸易救济案件（轮换补录）</span><span class="ext">↗</span></a></h3>
           <p class="sum">出口案件公告栏目 2026-10-10 当日更新 14 条（浏览器轮换一手确认）：与汽车材料链相关的有泰国对华热镀锌冷轧板卷反规避终裁、泰国对华热轧钢板反规避及期中复审终裁、韩国延长对华镀锌冷轧钢临时反倾销税期限、美国对金属镁发起第四次反倾销日落复审调查；其余 10 条为化工/纸张/设备类程序性事项，按口径过滤。</p>
           <a class="golink" href="https://cacs.mofcom.gov.cn/cacscms/view/notice/ckys" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1413,7 +1463,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（国际 EPD 体系，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/YSff6UbaVtndphChTgdXnA" target="_blank" rel="noopener">国际 EPD 体系近期 PCR 动态：电动摩托车/微出行 PCR 1.0.0、巴士 PCR 3.0.0 发布<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/YSff6UbaVtndphChTgdXnA" target="_blank" rel="noopener"><span>国际 EPD 体系近期 PCR 动态：电动摩托车/微出行 PCR 1.0.0、巴士 PCR 3.0.0 发布</span><span class="ext">↗</span></a></h3>
           <p class="sum">国际 EPD 体系发布电动摩托车和电动微型出行车辆 PCR 1.0.0（注册 2026:03，2026-10-02 发布，有效期至 2030-10-02，覆盖电动摩托车/电动自行车/低速滑板车）与公共/私人巴士 PCR 3.0.0；风机叶片 PCR 进入公开征求意见。PCR 是 LCA/EPD 的技术基础。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/YSff6UbaVtndphChTgdXnA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1428,7 +1478,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（绿电铝，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/PgUxXHn03beHvfBf78-FbA" target="_blank" rel="noopener">绿电铝 9 月简报：4 家企业获《绿电铝产品采购证书》，转让额度约 2.48 万吨<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/PgUxXHn03beHvfBf78-FbA" target="_blank" rel="noopener"><span>绿电铝 9 月简报：4 家企业获《绿电铝产品采购证书》，转让额度约 2.48 万吨</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026 年 9 月绿电铝采购企业完成交易确认 4 家、签发采购证书 4 张，合计转让额度 24786.27 吨，品种均为绿电铝-电解原铝液（内蒙古天硕、内蒙古锦泰、内蒙古超今、青海银河新能源材料）。可作 I3 绿铝采购跟踪基线。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/PgUxXHn03beHvfBf78-FbA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,19 +1490,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>华友钴业官网（企业披露）</span></div>
-          <h3><a href="https://www.huayou.com/news/corporate-news/768" target="_blank" rel="noopener">华友钴业 IWIP 镍下游项目开工运营，印尼电动汽车电池首次出口<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.huayou.com/news/corporate-news/768" target="_blank" rel="noopener"><span>华友钴业 IWIP 镍下游项目开工运营，印尼电动汽车电池首次出口</span><span class="ext">↗</span></a></h3>
           <p class="sum">印尼总统普拉博沃 10-08（当地时间）赴北马鲁古省纬达贝工业园（IWIP）考察，出席镍下游产业项目开工及商业化运营暨电动汽车电池首次出口仪式。印尼镍—电池价值链本土化节点；产能、出口规模与碳足迹口径未披露。</p>
           <a class="golink" href="https://www.huayou.com/news/corporate-news/768" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（国际能源研究中心，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/QdvNzty9HtGVzEwdRXzobA" target="_blank" rel="noopener">津巴布韦确认锂精矿出口禁令 2027 年 1 月实施，不再延期<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/QdvNzty9HtGVzEwdRXzobA" target="_blank" rel="noopener"><span>津巴布韦确认锂精矿出口禁令 2027 年 1 月实施，不再延期</span><span class="ext">↗</span></a></h3>
           <p class="sum">津巴布韦政府发言人 10-09（当地时间）表态：2027 年 1 月实施的锂精矿出口禁令&quot;没有理由再给予延期&quot;，驳回生产商协会推迟至 2027 年 6 月的请愿。2026 年 5 月《矿产分类与宣言》已将锂列为关键矿产。政府表态细节未独立一手核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/QdvNzty9HtGVzEwdRXzobA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM 新能源，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/9KpuZ-asXB3exELnlhUCVQ" target="_blank" rel="noopener">SMM 假期锂矿回顾：Sigma 扰动缓解、供应无结构性收缩<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/9KpuZ-asXB3exELnlhUCVQ" target="_blank" rel="noopener"><span>SMM 假期锂矿回顾：Sigma 扰动缓解、供应无结构性收缩</span><span class="ext">↗</span></a></h3>
           <p class="sum">国庆假期全球锂矿无新的结构性供应收缩：巴西 Sigma Lithium 许可/司法扰动较快缓解并恢复运行，澳洲成熟矿山继续扩产/爬坡。相对 10-04 早报&quot;Sigma 两月两停&quot;为停产风险解除；发运与产量数据未独立核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/9KpuZ-asXB3exELnlhUCVQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1464,7 +1514,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（鑫椤锂电回收与利用，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/rz5PwETLzr9UfAJBQsaTQw" target="_blank" rel="noopener">欣旺达滕州废旧锂电池回收综合利用项目（实验室）竣工环保验收公示<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/rz5PwETLzr9UfAJBQsaTQw" target="_blank" rel="noopener"><span>欣旺达滕州废旧锂电池回收综合利用项目（实验室）竣工环保验收公示</span><span class="ext">↗</span></a></h3>
           <p class="sum">滕州欣旺达再生资源有限公司废旧锂电池回收综合利用项目（实验室）10-09 发布竣工环保验收公示（公示期至 2026-11-04）。规划自动化拆解、热解、破碎分选与有价金属再生线，再生材料回供欣旺达电芯体系；当前为实验室环节验收，非产线投产。补录三要素：发布 2026-10-09 / 发现 2026-10-10 / 跨窗补录。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/rz5PwETLzr9UfAJBQsaTQw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2218,9 +2268,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见</b><span>工业和信息化部装备工业一司（一手）</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架</b><span>微信公众号（SMM 再生金属，full 正文）</span></span></a>
-    <a class="hl-item" href="#" data-mi="2"><span class="n">3</span><span class="t"><b>国家发改委就《汽车零部件再制造规范管理办法》公开征求意见</b><span>IT 之家（全文通读）</span></span></a>
+    <a class="hl-item" href="#" data-mi="7"><span class="n">1</span><span class="t"><b>国际 EPD 体系近期 PCR 动态：电动摩托车/微出行 PCR 1.0.0、巴士 PCR 3.0.0 发布</b><span>微信公众号（国际 EPD 体系，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见</b><span>工业和信息化部装备工业一司（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">3</span><span class="t"><b>财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架</b><span>微信公众号（SMM 再生金属，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>国家发改委就《汽车零部件再制造规范管理办法》公开征求意见</b><span>IT 之家（全文通读）</span></span></a>
+    <a class="hl-item" href="#" data-mi="6"><span class="n">5</span><span class="t"><b>贸易救济信息网 10-10 批量更新 14 条涉华贸易救济案件（轮换补录）</b><span>中国贸易救济信息网·出口案件公告（一手列表页）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2356,7 +2408,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-11";
-var BRIEF_DATA = [{"t": "四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见", "u": "https://www.miit.gov.cn/jgsj/zbys/gzdt/art/2026/art_b52c27a35e12496d984cea37872b4339.html", "s": "工业和信息化部装备工业一司（一手）", "sec": "国内法规与政策", "sum": "工信部会同公安部、生态环境部、市场监管总局起草《关于进一步加强汽车产品创新设计和研发测试验证有关管理工作的通知（征求意见稿）》，2026-10-10 17:00 公示，公示期至 2026-11-10。附件技术指南明确禁止全隐藏式门把手、虚拟操纵须配实体操纵件、升顶座舱行车时不可使用；主通知含宣传规范与安全事件调查机制。", "points": [], "note": "已核验（一手公示页+征求意见稿；10-10 晚间浏览器轮换补核闭环）"}, {"t": "财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架", "u": "https://mp.weixin.qq.com/s/AEZabWERhxYxomrmtqt48A", "s": "微信公众号（SMM 再生金属，full 正文）", "sec": "国内法规与政策", "sum": "财政部办公厅发布《铝冶炼企业（氧化铝-电解铝-再生铝）气候可持续披露应用指南（征求意见稿）》，将再生铝纳入国家气候信息披露框架，\"气候相关机遇\"列出扩大废铝保级回收利用比例；反馈截止 2026-10-26。为 10-07 已推 9 行业指南中铝子指南的细化增量。", "points": [], "note": "W 线 full 正文（财政部原文待一手核验）"}, {"t": "一句话：国家发改委就《汽车零部件再制造规范管理办法》公开征求意见", "u": "https://www.ithome.com/1/011/497.htm", "s": "IT 之家（全文通读）", "sec": "国内法规与政策", "sum": "发改委 2026-10-10 发布《汽车零部件再制造规范管理办法（公开征求意见稿）》，含企业规范管理、旧件回收管理等六部分；鼓励整车企业通过售后服务体系回收旧件用于再制造；\"五大总成\"须与再制造类型一致，不得回收尾气后处理装置。发改委原文待一手核验。", "points": [], "note": "媒体全文通读（发改委原文待一手核验）"}, {"t": "一句话：全国碳市场配额机制再优化：强化效率导向，衔接总量控制", "u": "https://mp.weixin.qq.com/s/16dmvQdysoqBUI7W~pn2bw", "s": "微信公众号（同济大学碳中和研究院，partial）", "sec": "国内法规与政策", "sum": "双碳资讯称全国碳市场配额机制再优化，强化效率导向并衔接总量控制；配额分配方法、覆盖行业与生效安排无法确认，需补生态环境部/上海环交所一手来源再作状态表述。", "points": [], "note": "W 线 partial（正文缺失）"}, {"t": "一句话（轮换补录）：全国汽车标准化技术委员会公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见", "u": "https://zxd.catarc.org.cn/zxd/portal/detail/zqyj/938", "s": "全国汽车标准化技术委员会·征求意见（一手）", "sec": "国内法规与政策", "sum": "www.catarc.org.cn（现展示汽标委内容）征求意见栏目 2026-10-10 新增：公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见，征求意见开始日期 2026-10-10、截止 2026-11-09（浏览器轮换一手确认；标准文本细节未通读）。", "points": [], "note": "浏览器轮换一手确认（标准文本未通读）"}, {"t": "一句话：欧盟综合法院 Prestige Rijwielen 案（T-529/25）：分批进口零部件仍可按整机归类征税", "u": "https://mp.weixin.qq.com/s/jHH4lGIqGU4H9Ndo6foU3A", "s": "微信公众号（欧盟法研究，full 正文）", "sec": "海外法规与政策", "sum": "欧盟综合法院 2026-10-07 判决：相隔数月分批进口的零部件有客观证据构成整体且含全部基本部件，仍可按未组装完整产品归类，防拆分运输规避整机反倾销/反补贴税（涉中国产电动自行车税令）。判决原文（CURIA）未一手核验。补录三要素：判决 2026-10-07 / 发现 2026-10-10 / 迟到发现。", "points": [], "note": "W 线 full 正文（判例解读，CURIA 原文待核验）"}, {"t": "一句话：贸易救济信息网 10-10 批量更新 14 条涉华贸易救济案件（轮换补录）", "u": "https://cacs.mofcom.gov.cn/cacscms/view/notice/ckys", "s": "中国贸易救济信息网·出口案件公告（一手列表页）", "sec": "海外法规与政策", "sum": "出口案件公告栏目 2026-10-10 当日更新 14 条（浏览器轮换一手确认）：与汽车材料链相关的有泰国对华热镀锌冷轧板卷反规避终裁、泰国对华热轧钢板反规避及期中复审终裁、韩国延长对华镀锌冷轧钢临时反倾销税期限、美国对金属镁发起第四次反倾销日落复审调查；其余 10 条为化工/纸张/设备类程序性事项，按口径过滤。", "points": [], "note": "浏览器轮换一手确认列表页（单条细节未通读）"}, {"t": "国际 EPD 体系近期 PCR 动态：电动摩托车/微出行 PCR 1.0.0、巴士 PCR 3.0.0 发布", "u": "https://mp.weixin.qq.com/s/YSff6UbaVtndphChTgdXnA", "s": "微信公众号（国际 EPD 体系，full 正文）", "sec": "LCA 与方法学", "sum": "国际 EPD 体系发布电动摩托车和电动微型出行车辆 PCR 1.0.0（注册 2026:03，2026-10-02 发布，有效期至 2030-10-02，覆盖电动摩托车/电动自行车/低速滑板车）与公共/私人巴士 PCR 3.0.0；风机叶片 PCR 进入公开征求意见。PCR 是 LCA/EPD 的技术基础。", "points": [], "note": "W 线 full 正文（国际 EPD 体系官方号；体系官网未独立核验）"}, {"t": "一句话：绿电铝 9 月简报：4 家企业获《绿电铝产品采购证书》，转让额度约 2.48 万吨", "u": "https://mp.weixin.qq.com/s/PgUxXHn03beHvfBf78-FbA", "s": "微信公众号（绿电铝，partial）", "sec": "上游基础材料", "sum": "2026 年 9 月绿电铝采购企业完成交易确认 4 家、签发采购证书 4 张，合计转让额度 24786.27 吨，品种均为绿电铝-电解原铝液（内蒙古天硕、内蒙古锦泰、内蒙古超今、青海银河新能源材料）。可作 I3 绿铝采购跟踪基线。", "points": [], "note": "W 线 partial（正文要点已提取，证书口径为评价中心发布）"}, {"t": "一句话：华友钴业 IWIP 镍下游项目开工运营，印尼电动汽车电池首次出口", "u": "https://www.huayou.com/news/corporate-news/768", "s": "华友钴业官网（企业披露）", "sec": "电池产业链", "sum": "印尼总统普拉博沃 10-08（当地时间）赴北马鲁古省纬达贝工业园（IWIP）考察，出席镍下游产业项目开工及商业化运营暨电动汽车电池首次出口仪式。印尼镍—电池价值链本土化节点；产能、出口规模与碳足迹口径未披露。", "points": [], "note": "企业披露（官网标题；正文未通读，细节待补）"}, {"t": "一句话：津巴布韦确认锂精矿出口禁令 2027 年 1 月实施，不再延期", "u": "https://mp.weixin.qq.com/s/QdvNzty9HtGVzEwdRXzobA", "s": "微信公众号（国际能源研究中心，full 正文）", "sec": "电池产业链", "sum": "津巴布韦政府发言人 10-09（当地时间）表态：2027 年 1 月实施的锂精矿出口禁令\"没有理由再给予延期\"，驳回生产商协会推迟至 2027 年 6 月的请愿。2026 年 5 月《矿产分类与宣言》已将锂列为关键矿产。政府表态细节未独立一手核验。", "points": [], "note": "W 线 full 正文（政府表态转述，待一手核验）"}, {"t": "一句话：SMM 假期锂矿回顾：Sigma 扰动缓解、供应无结构性收缩", "u": "https://mp.weixin.qq.com/s/9KpuZ-asXB3exELnlhUCVQ", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "国庆假期全球锂矿无新的结构性供应收缩：巴西 Sigma Lithium 许可/司法扰动较快缓解并恢复运行，澳洲成熟矿山继续扩产/爬坡。相对 10-04 早报\"Sigma 两月两停\"为停产风险解除；发运与产量数据未独立核验。", "points": [], "note": "W 线 full 正文（行业媒体分析口径）"}, {"t": "一句话：欣旺达滕州废旧锂电池回收综合利用项目（实验室）竣工环保验收公示", "u": "https://mp.weixin.qq.com/s/rz5PwETLzr9UfAJBQsaTQw", "s": "微信公众号（鑫椤锂电回收与利用，full 正文）", "sec": "循环再生", "sum": "滕州欣旺达再生资源有限公司废旧锂电池回收综合利用项目（实验室）10-09 发布竣工环保验收公示（公示期至 2026-11-04）。规划自动化拆解、热解、破碎分选与有价金属再生线，再生材料回供欣旺达电芯体系；当前为实验室环节验收，非产线投产。补录三要素：发布 2026-10-09 / 发现 2026-10-10 / 跨窗补录。", "points": [], "note": "W 线 full 正文（企业/公示口径，公示原文未独立直读）"}];
+var BRIEF_DATA = [{"t": "四部门就加强汽车产品创新设计与研发测试验证管理公开征求意见", "u": "https://www.miit.gov.cn/jgsj/zbys/gzdt/art/2026/art_b52c27a35e12496d984cea37872b4339.html", "s": "工业和信息化部装备工业一司（一手）", "sec": "国内法规与政策", "sum": "工信部会同公安部、生态环境部、市场监管总局起草《关于进一步加强汽车产品创新设计和研发测试验证有关管理工作的通知（征求意见稿）》，2026-10-10 17:00 公示，公示期至 2026-11-10。附件技术指南明确禁止全隐藏式门把手、虚拟操纵须配实体操纵件、升顶座舱行车时不可使用；主通知含宣传规范与安全事件调查机制。", "points": [], "note": "已核验（一手公示页+征求意见稿；10-10 晚间浏览器轮换补核闭环）", "score": 67, "level": "full"}, {"t": "财政部发布铝冶炼企业气候披露应用指南征求意见稿，再生铝保级回收纳入披露框架", "u": "https://mp.weixin.qq.com/s/AEZabWERhxYxomrmtqt48A", "s": "微信公众号（SMM 再生金属，full 正文）", "sec": "国内法规与政策", "sum": "财政部办公厅发布《铝冶炼企业（氧化铝-电解铝-再生铝）气候可持续披露应用指南（征求意见稿）》，将再生铝纳入国家气候信息披露框架，\"气候相关机遇\"列出扩大废铝保级回收利用比例；反馈截止 2026-10-26。为 10-07 已推 9 行业指南中铝子指南的细化增量。", "points": [], "note": "W 线 full 正文（财政部原文待一手核验）", "score": 65, "level": "full"}, {"t": "一句话：国家发改委就《汽车零部件再制造规范管理办法》公开征求意见", "u": "https://www.ithome.com/1/011/497.htm", "s": "IT 之家（全文通读）", "sec": "国内法规与政策", "sum": "发改委 2026-10-10 发布《汽车零部件再制造规范管理办法（公开征求意见稿）》，含企业规范管理、旧件回收管理等六部分；鼓励整车企业通过售后服务体系回收旧件用于再制造；\"五大总成\"须与再制造类型一致，不得回收尾气后处理装置。发改委原文待一手核验。", "points": [], "note": "媒体全文通读（发改委原文待一手核验）", "score": 66, "level": "brief"}, {"t": "一句话：全国碳市场配额机制再优化：强化效率导向，衔接总量控制", "u": "https://mp.weixin.qq.com/s/16dmvQdysoqBUI7W~pn2bw", "s": "微信公众号（同济大学碳中和研究院，partial）", "sec": "国内法规与政策", "sum": "双碳资讯称全国碳市场配额机制再优化，强化效率导向并衔接总量控制；配额分配方法、覆盖行业与生效安排无法确认，需补生态环境部/上海环交所一手来源再作状态表述。", "points": [], "note": "W 线 partial（正文缺失）", "score": 53, "level": "brief"}, {"t": "一句话（轮换补录）：全国汽车标准化技术委员会公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见", "u": "https://zxd.catarc.org.cn/zxd/portal/detail/zqyj/938", "s": "全国汽车标准化技术委员会·征求意见（一手）", "sec": "国内法规与政策", "sum": "www.catarc.org.cn（现展示汽标委内容）征求意见栏目 2026-10-10 新增：公开征求《摩托车和轻便摩托车轮辋》等 3 项汽车行业标准意见，征求意见开始日期 2026-10-10、截止 2026-11-09（浏览器轮换一手确认；标准文本细节未通读）。", "points": [], "note": "浏览器轮换一手确认（标准文本未通读）", "score": 56, "level": "brief"}, {"t": "一句话：欧盟综合法院 Prestige Rijwielen 案（T-529/25）：分批进口零部件仍可按整机归类征税", "u": "https://mp.weixin.qq.com/s/jHH4lGIqGU4H9Ndo6foU3A", "s": "微信公众号（欧盟法研究，full 正文）", "sec": "海外法规与政策", "sum": "欧盟综合法院 2026-10-07 判决：相隔数月分批进口的零部件有客观证据构成整体且含全部基本部件，仍可按未组装完整产品归类，防拆分运输规避整机反倾销/反补贴税（涉中国产电动自行车税令）。判决原文（CURIA）未一手核验。补录三要素：判决 2026-10-07 / 发现 2026-10-10 / 迟到发现。", "points": [], "note": "W 线 full 正文（判例解读，CURIA 原文待核验）", "score": 59, "level": "brief"}, {"t": "一句话：贸易救济信息网 10-10 批量更新 14 条涉华贸易救济案件（轮换补录）", "u": "https://cacs.mofcom.gov.cn/cacscms/view/notice/ckys", "s": "中国贸易救济信息网·出口案件公告（一手列表页）", "sec": "海外法规与政策", "sum": "出口案件公告栏目 2026-10-10 当日更新 14 条（浏览器轮换一手确认）：与汽车材料链相关的有泰国对华热镀锌冷轧板卷反规避终裁、泰国对华热轧钢板反规避及期中复审终裁、韩国延长对华镀锌冷轧钢临时反倾销税期限、美国对金属镁发起第四次反倾销日落复审调查；其余 10 条为化工/纸张/设备类程序性事项，按口径过滤。", "points": [], "note": "浏览器轮换一手确认列表页（单条细节未通读）", "score": 62, "level": "brief"}, {"t": "国际 EPD 体系近期 PCR 动态：电动摩托车/微出行 PCR 1.0.0、巴士 PCR 3.0.0 发布", "u": "https://mp.weixin.qq.com/s/YSff6UbaVtndphChTgdXnA", "s": "微信公众号（国际 EPD 体系，full 正文）", "sec": "LCA 与方法学", "sum": "国际 EPD 体系发布电动摩托车和电动微型出行车辆 PCR 1.0.0（注册 2026:03，2026-10-02 发布，有效期至 2030-10-02，覆盖电动摩托车/电动自行车/低速滑板车）与公共/私人巴士 PCR 3.0.0；风机叶片 PCR 进入公开征求意见。PCR 是 LCA/EPD 的技术基础。", "points": [], "note": "W 线 full 正文（国际 EPD 体系官方号；体系官网未独立核验）", "score": 69, "level": "full"}, {"t": "一句话：绿电铝 9 月简报：4 家企业获《绿电铝产品采购证书》，转让额度约 2.48 万吨", "u": "https://mp.weixin.qq.com/s/PgUxXHn03beHvfBf78-FbA", "s": "微信公众号（绿电铝，partial）", "sec": "上游基础材料", "sum": "2026 年 9 月绿电铝采购企业完成交易确认 4 家、签发采购证书 4 张，合计转让额度 24786.27 吨，品种均为绿电铝-电解原铝液（内蒙古天硕、内蒙古锦泰、内蒙古超今、青海银河新能源材料）。可作 I3 绿铝采购跟踪基线。", "points": [], "note": "W 线 partial（正文要点已提取，证书口径为评价中心发布）", "score": 52, "level": "brief"}, {"t": "一句话：华友钴业 IWIP 镍下游项目开工运营，印尼电动汽车电池首次出口", "u": "https://www.huayou.com/news/corporate-news/768", "s": "华友钴业官网（企业披露）", "sec": "电池产业链", "sum": "印尼总统普拉博沃 10-08（当地时间）赴北马鲁古省纬达贝工业园（IWIP）考察，出席镍下游产业项目开工及商业化运营暨电动汽车电池首次出口仪式。印尼镍—电池价值链本土化节点；产能、出口规模与碳足迹口径未披露。", "points": [], "note": "企业披露（官网标题；正文未通读，细节待补）", "score": 58, "level": "brief"}, {"t": "一句话：津巴布韦确认锂精矿出口禁令 2027 年 1 月实施，不再延期", "u": "https://mp.weixin.qq.com/s/QdvNzty9HtGVzEwdRXzobA", "s": "微信公众号（国际能源研究中心，full 正文）", "sec": "电池产业链", "sum": "津巴布韦政府发言人 10-09（当地时间）表态：2027 年 1 月实施的锂精矿出口禁令\"没有理由再给予延期\"，驳回生产商协会推迟至 2027 年 6 月的请愿。2026 年 5 月《矿产分类与宣言》已将锂列为关键矿产。政府表态细节未独立一手核验。", "points": [], "note": "W 线 full 正文（政府表态转述，待一手核验）", "score": 60, "level": "brief"}, {"t": "一句话：SMM 假期锂矿回顾：Sigma 扰动缓解、供应无结构性收缩", "u": "https://mp.weixin.qq.com/s/9KpuZ-asXB3exELnlhUCVQ", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "国庆假期全球锂矿无新的结构性供应收缩：巴西 Sigma Lithium 许可/司法扰动较快缓解并恢复运行，澳洲成熟矿山继续扩产/爬坡。相对 10-04 早报\"Sigma 两月两停\"为停产风险解除；发运与产量数据未独立核验。", "points": [], "note": "W 线 full 正文（行业媒体分析口径）", "score": 54, "level": "brief"}, {"t": "一句话：欣旺达滕州废旧锂电池回收综合利用项目（实验室）竣工环保验收公示", "u": "https://mp.weixin.qq.com/s/rz5PwETLzr9UfAJBQsaTQw", "s": "微信公众号（鑫椤锂电回收与利用，full 正文）", "sec": "循环再生", "sum": "滕州欣旺达再生资源有限公司废旧锂电池回收综合利用项目（实验室）10-09 发布竣工环保验收公示（公示期至 2026-11-04）。规划自动化拆解、热解、破碎分选与有价金属再生线，再生材料回供欣旺达电芯体系；当前为实验室环节验收，非产线投产。补录三要素：发布 2026-10-09 / 发现 2026-10-10 / 跨窗补录。", "points": [], "note": "W 线 full 正文（企业/公示口径，公示原文未独立直读）", "score": 57, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

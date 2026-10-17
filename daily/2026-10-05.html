@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,19 +1406,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（N64，一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener">商务部新闻发言人就 G20 贸易部长会议答记者问<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener"><span>商务部新闻发言人就 G20 贸易部长会议答记者问</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部新闻发言人 2026-10-04 就 9 月 30 日–10 月 1 日密尔沃基 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，产能过剩/强迫劳动/MFN 三议题未形成成果文件，中方强调 MFN 是多边体制基石并将参与 G20 迈阿密峰会。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（青悦 ESG，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener">财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener"><span>财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">财政部就全国范围企业气候披露准则应用指南及电力、钢铁等 9 行业应用指南征求意见；疑为新一轮征求意见，原文未取得。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（碳究社，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener">绿色供应链领航企业评价：39 项新指标<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener"><span>绿色供应链领航企业评价：39 项新指标</span><span class="ext">↗</span></a></h3>
           <p class="sum">绿色供应链领航企业评价设 39 项新指标，覆盖绿色采购、供应商管理、绿色生产、绿色回收、绿色信息披露等维度。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1383,7 +1433,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>DOI 一手；微信公众号（环境能源可持续发展，full 正文转述）</span></div>
-          <h3><a href="https://doi.org/10.1038/s41893-026-01931-7" target="_blank" rel="noopener">Nature Sustainability：全球石化行业排放与系统级深度脱碳路径<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1038/s41893-026-01931-7" target="_blank" rel="noopener"><span>Nature Sustainability：全球石化行业排放与系统级深度脱碳路径</span><span class="ext">↗</span></a></h3>
           <p class="sum">Nature Sustainability：全球石化行业排放与系统级深度脱碳路径（Meng 等）——2020 年行业摇篮到大门排放 1.8±0.7 GtCO₂e/年，中国占 37%；石化/塑料上游排放因子对 I3 塑料价值链 LCA 建模有参考价值。</p>
           <a class="golink" href="https://doi.org/10.1038/s41893-026-01931-7" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1398,7 +1448,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（有色日鉴，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/HOowxxuPhCVWZ8F80EASCQ" target="_blank" rel="noopener">印度布局大型电解铝基地：南亚扩产信号释放<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/HOowxxuPhCVWZ8F80EASCQ" target="_blank" rel="noopener"><span>印度布局大型电解铝基地：南亚扩产信号释放</span><span class="ext">↗</span></a></h3>
           <p class="sum">印度布局大型电解铝基地：前期规划选址，信号意义大于短期实质；南亚产能扩张持续。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/HOowxxuPhCVWZ8F80EASCQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1410,7 +1460,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（电池进化论，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener">海辰 587Ah/6.25MWh 系统技术路线与成本拆解<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener"><span>海辰 587Ah/6.25MWh 系统技术路线与成本拆解</span><span class="ext">↗</span></a></h3>
           <p class="sum">海辰 587Ah/6.25MWh 系统技术路线与成本拆解：大电芯化降本路径，企业/券商口径未独立核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1422,7 +1472,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（退役电池资源与再利用，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/xVyNmXV8Zd0HkDyZdc09xg" target="_blank" rel="noopener">Redwood 电池回收关键转折：进入“商业化深水区”<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/xVyNmXV8Zd0HkDyZdc09xg" target="_blank" rel="noopener"><span>Redwood 电池回收关键转折：进入“商业化深水区”</span><span class="ext">↗</span></a></h3>
           <p class="sum">Redwood 电池回收关键转折：从“明星创企”进入“商业化深水区”、战略转向储能。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/xVyNmXV8Zd0HkDyZdc09xg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2176,9 +2226,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，中方强调 MFN 是多边体制基石</b><span>商务部·新闻发布（N64，一手）</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">2</span><span class="t"><b>印度布局大型电解铝基地：安得拉邦划定约 6800 亩备选地块，尚处前期规划</b><span>微信公众号（有色日鉴）</span></span></a>
-    <a class="hl-item" href="#" data-mi="5"><span class="n">3</span><span class="t"><b>海辰 587Ah/6.25MWh 系统技术路线与成本拆解：电芯成本降约 7.5%、系统集成 BOM 降约 30%</b><span>微信公众号（电池进化论）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就 G20 贸易部长会议答记者问</b><span>商务部·新闻发布（N64，一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见</b><span>微信公众号（青悦 ESG，partial）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">3</span><span class="t"><b>绿色供应链领航企业评价：39 项新指标</b><span>微信公众号（碳究社，partial）</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">4</span><span class="t"><b>Nature Sustainability：全球石化行业排放与系统级深度脱碳路径</b><span>DOI 一手；微信公众号（环境能源可持续发展，full 正文转述）</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">5</span><span class="t"><b>印度布局大型电解铝基地：南亚扩产信号释放</b><span>微信公众号（有色日鉴，full 正文）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2313,7 +2365,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-05";
-var BRIEF_DATA = [{"t": "商务部新闻发言人就 G20 贸易部长会议答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html", "s": "商务部·新闻发布（N64，一手）", "sec": "国内法规与政策", "sum": "商务部新闻发言人 2026-10-04 就 9 月 30 日–10 月 1 日密尔沃基 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，产能过剩/强迫劳动/MFN 三议题未形成成果文件，中方强调 MFN 是多边体制基石并将参与 G20 迈阿密峰会。", "points": ["9 月 30 日至 10 月 1 日 G20 贸易部长会议在美国威斯康星州密尔沃基举行，仅“反对粮食武器化”议题达成联合声明。", "应对产能过剩、消除强迫劳动、调整最惠国待遇（MFN）原则三个议题未形成成果文件；中方强调 MFN 原则是多边贸易体制的基石。", "中方表示将建设性参与即将召开的 G20 迈阿密峰会。"], "note": "O15 中欧贸易政策跟踪；一手全文已核验。"}, {"t": "财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见", "u": "https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA", "s": "微信公众号（青悦 ESG，partial）", "sec": "国内法规与政策", "sum": "财政部就全国范围企业气候披露准则应用指南及电力、钢铁等 9 行业应用指南征求意见；疑为新一轮征求意见，原文未取得。", "points": [], "note": "微信公众号 partial，仅标题；原文未取得，待财政部官网一手核验。"}, {"t": "绿色供应链领航企业评价：39 项新指标", "u": "https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ", "s": "微信公众号（碳究社，partial）", "sec": "国内法规与政策", "sum": "绿色供应链领航企业评价设 39 项新指标，覆盖绿色采购、供应商管理、绿色生产、绿色回收、绿色信息披露等维度。", "points": [], "note": "微信公众号 partial，仅标题；指标原文未取得，待一手核验。"}, {"t": "Nature Sustainability：全球石化行业排放与系统级深度脱碳路径", "u": "https://doi.org/10.1038/s41893-026-01931-7", "s": "DOI 一手；微信公众号（环境能源可持续发展，full 正文转述）", "sec": "数据与知识", "sum": "Nature Sustainability：全球石化行业排放与系统级深度脱碳路径（Meng 等）——2020 年行业摇篮到大门排放 1.8±0.7 GtCO₂e/年，中国占 37%；石化/塑料上游排放因子对 I3 塑料价值链 LCA 建模有参考价值。", "points": ["覆盖全球 37,379 家石化设施、81 种大宗化学品、2,043 种制造工艺的自下而上核算。", "2020 年行业摇篮到大门 GHG 排放 1.8±0.7 GtCO₂e/年，中国占 37%（660±260 MtCO₂e）；10% 的设施贡献 53% 的排放。", "交互仪表板：https://www.c-thru.org/emissions-dashboard。"], "note": "DOI 一手已核验；微信公众号转述摘要。"}, {"t": "印度布局大型电解铝基地：南亚扩产信号释放", "u": "https://mp.weixin.qq.com/s/HOowxxuPhCVWZ8F80EASCQ", "s": "微信公众号（有色日鉴，full 正文）", "sec": "上游基础材料", "sum": "印度布局大型电解铝基地：前期规划选址，信号意义大于短期实质；南亚产能扩张持续。", "points": ["安得拉邦斯里卡库拉姆划定约 6800 亩备选地块，联动奥里萨邦氧化铝产能与沿海港口。", "尚处前期规划：无确定投资主体，电力/土地/环评/资金均未落实，无投产时间表。", "CBAM 下火电电解铝出口欧盟将面临额外碳成本；中长期或挤压中国铝材对印出口及第三方市场。"], "note": "微信公众号 full 正文；行业媒体分析。"}, {"t": "海辰 587Ah/6.25MWh 系统技术路线与成本拆解", "u": "https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q", "s": "微信公众号（电池进化论，full 正文）", "sec": "电池产业链", "sum": "海辰 587Ah/6.25MWh 系统技术路线与成本拆解：大电芯化降本路径，企业/券商口径未独立核验。", "points": ["587Ah 为 20 尺集装箱/50 吨海运/1500V 平台等五重边界下的 2 小时系统最优平衡点；能量密度 415Wh/L 保超万次循环寿命。", "4 列 8 簇架构，零部件总数降幅约 40%；电芯成本降约 7.5%、系统集成 BOM 降约 30%、综合最高 15%。", "DC 侧系统价格 0.47–0.50 元/Wh。"], "note": "微信公众号 full 正文；媒体分析，引海通国际报告与企业口径，未独立核验。"}, {"t": "Redwood 电池回收关键转折：进入“商业化深水区”", "u": "https://mp.weixin.qq.com/s/xVyNmXV8Zd0HkDyZdc09xg", "s": "微信公众号（退役电池资源与再利用，full 正文）", "sec": "循环再生", "sum": "Redwood 电池回收关键转折：从“明星创企”进入“商业化深水区”、战略转向储能。", "points": ["估值超 60 亿美元、占美国约 70% 电池回收市场份额、处理北美近 90% 锂电池、年产超 6 万吨关键矿物材料。", "2026 年以来裁员约 10%、COO 离职、引入前特斯拉 CFO、大举进军储能。"], "note": "微信公众号 full 正文；行业解读口径，企业数据未独立核验。"}];
+var BRIEF_DATA = [{"t": "商务部新闻发言人就 G20 贸易部长会议答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_d0215379bb2c493d9a05e205e9ab8f93.html", "s": "商务部·新闻发布（N64，一手）", "sec": "国内法规与政策", "sum": "商务部新闻发言人 2026-10-04 就 9 月 30 日–10 月 1 日密尔沃基 G20 贸易部长会议答记者问：仅粮食议题达成联合声明，产能过剩/强迫劳动/MFN 三议题未形成成果文件，中方强调 MFN 是多边体制基石并将参与 G20 迈阿密峰会。", "points": ["9 月 30 日至 10 月 1 日 G20 贸易部长会议在美国威斯康星州密尔沃基举行，仅“反对粮食武器化”议题达成联合声明。", "应对产能过剩、消除强迫劳动、调整最惠国待遇（MFN）原则三个议题未形成成果文件；中方强调 MFN 原则是多边贸易体制的基石。", "中方表示将建设性参与即将召开的 G20 迈阿密峰会。"], "note": "O15 中欧贸易政策跟踪；一手全文已核验。", "score": 0, "level": "full"}, {"t": "财政部就企业气候披露准则应用指南及电力钢铁等 9 行业应用指南征求意见", "u": "https://mp.weixin.qq.com/s/IDXNWeb39uhFUlL~iPvTrA", "s": "微信公众号（青悦 ESG，partial）", "sec": "国内法规与政策", "sum": "财政部就全国范围企业气候披露准则应用指南及电力、钢铁等 9 行业应用指南征求意见；疑为新一轮征求意见，原文未取得。", "points": [], "note": "微信公众号 partial，仅标题；原文未取得，待财政部官网一手核验。", "score": 0, "level": "brief"}, {"t": "绿色供应链领航企业评价：39 项新指标", "u": "https://mp.weixin.qq.com/s/oxUKSz~NU~i4whEd1-VkPQ", "s": "微信公众号（碳究社，partial）", "sec": "国内法规与政策", "sum": "绿色供应链领航企业评价设 39 项新指标，覆盖绿色采购、供应商管理、绿色生产、绿色回收、绿色信息披露等维度。", "points": [], "note": "微信公众号 partial，仅标题；指标原文未取得，待一手核验。", "score": 0, "level": "brief"}, {"t": "Nature Sustainability：全球石化行业排放与系统级深度脱碳路径", "u": "https://doi.org/10.1038/s41893-026-01931-7", "s": "DOI 一手；微信公众号（环境能源可持续发展，full 正文转述）", "sec": "数据与知识", "sum": "Nature Sustainability：全球石化行业排放与系统级深度脱碳路径（Meng 等）——2020 年行业摇篮到大门排放 1.8±0.7 GtCO₂e/年，中国占 37%；石化/塑料上游排放因子对 I3 塑料价值链 LCA 建模有参考价值。", "points": ["覆盖全球 37,379 家石化设施、81 种大宗化学品、2,043 种制造工艺的自下而上核算。", "2020 年行业摇篮到大门 GHG 排放 1.8±0.7 GtCO₂e/年，中国占 37%（660±260 MtCO₂e）；10% 的设施贡献 53% 的排放。", "交互仪表板：https://www.c-thru.org/emissions-dashboard。"], "note": "DOI 一手已核验；微信公众号转述摘要。", "score": 0, "level": "brief"}, {"t": "印度布局大型电解铝基地：南亚扩产信号释放", "u": "https://mp.weixin.qq.com/s/HOowxxuPhCVWZ8F80EASCQ", "s": "微信公众号（有色日鉴，full 正文）", "sec": "上游基础材料", "sum": "印度布局大型电解铝基地：前期规划选址，信号意义大于短期实质；南亚产能扩张持续。", "points": ["安得拉邦斯里卡库拉姆划定约 6800 亩备选地块，联动奥里萨邦氧化铝产能与沿海港口。", "尚处前期规划：无确定投资主体，电力/土地/环评/资金均未落实，无投产时间表。", "CBAM 下火电电解铝出口欧盟将面临额外碳成本；中长期或挤压中国铝材对印出口及第三方市场。"], "note": "微信公众号 full 正文；行业媒体分析。", "score": 0, "level": "brief"}, {"t": "海辰 587Ah/6.25MWh 系统技术路线与成本拆解", "u": "https://mp.weixin.qq.com/s/gOclVGg6rq6jgf2SgHci9Q", "s": "微信公众号（电池进化论，full 正文）", "sec": "电池产业链", "sum": "海辰 587Ah/6.25MWh 系统技术路线与成本拆解：大电芯化降本路径，企业/券商口径未独立核验。", "points": ["587Ah 为 20 尺集装箱/50 吨海运/1500V 平台等五重边界下的 2 小时系统最优平衡点；能量密度 415Wh/L 保超万次循环寿命。", "4 列 8 簇架构，零部件总数降幅约 40%；电芯成本降约 7.5%、系统集成 BOM 降约 30%、综合最高 15%。", "DC 侧系统价格 0.47–0.50 元/Wh。"], "note": "微信公众号 full 正文；媒体分析，引海通国际报告与企业口径，未独立核验。", "score": 0, "level": "brief"}, {"t": "Redwood 电池回收关键转折：进入“商业化深水区”", "u": "https://mp.weixin.qq.com/s/xVyNmXV8Zd0HkDyZdc09xg", "s": "微信公众号（退役电池资源与再利用，full 正文）", "sec": "循环再生", "sum": "Redwood 电池回收关键转折：从“明星创企”进入“商业化深水区”、战略转向储能。", "points": ["估值超 60 亿美元、占美国约 70% 电池回收市场份额、处理北美近 90% 锂电池、年产超 6 万吨关键矿物材料。", "2026 年以来裁员约 10%、COO 离职、引入前特斯拉 CFO、大举进军储能。"], "note": "微信公众号 full 正文；行业解读口径，企业数据未独立核验。", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,13 +1406,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（深圳市电池行业协会，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/DxdLacM4ZGSqJ5REPYs4Ag" target="_blank" rel="noopener">中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/DxdLacM4ZGSqJ5REPYs4Ag" target="_blank" rel="noopener"><span>中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）</span><span class="ext">↗</span></a></h3>
           <p class="sum">10月9日印发，部署19项重点举措；“着力推进发展方式创新”部分提出构建绿色低碳循环发展经济体系、完善绿色发展政策工具箱、积极推进能源革命；属中央层面综合性政策文件，是后续部委细则的政策基线。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/DxdLacM4ZGSqJ5REPYs4Ag" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（青悦 ESG，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/MwVsDF81QOBcdsIq-AebjA" target="_blank" rel="noopener">修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/MwVsDF81QOBcdsIq-AebjA" target="_blank" rel="noopener"><span>修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）</span><span class="ext">↗</span></a></h3>
           <p class="sum">修订后全文10月10日公布，系2024年5月1日施行以来首次修订；实质内容来自国务院令第843号，本次仅修改第24条（未足额清缴配额100万–500万元罚款）、第26条（罚款下限2万提至5万，新增直接负责人员罚款）两处罚则；10月10日为全文公布，非新通过/生效节点。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/MwVsDF81QOBcdsIq-AebjA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1374,7 +1424,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（高工锂电，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/uwAlo1qsf--tOQPcsaaAZQ" target="_blank" rel="noopener">欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/uwAlo1qsf--tOQPcsaaAZQ" target="_blank" rel="noopener"><span>欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）</span><span class="ext">↗</span></a></h3>
           <p class="sum">继10-09中欧混动“谅解”后，披露显示未来四年中国混动车对欧出口或较原预测减半；欧盟正考虑临时贸易保障措施，通过进口配额管理对超配额车辆征附加关税，最快12月实施；具体配额/税率未定。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/uwAlo1qsf--tOQPcsaaAZQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1389,7 +1439,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（果冻的合规笔记，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/RGaGmDB-ZqjPjUVR6MN5cQ" target="_blank" rel="noopener">电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/RGaGmDB-ZqjPjUVR6MN5cQ" target="_blank" rel="noopener"><span>电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026</span><span class="ext">↗</span></a></h3>
           <p class="sum">DPP实务连载第二篇，讨论电池QR码尺寸/纠错等级/URL长度与成本权衡；引述欧委会9月29日Art 10授权法案草案Article 2(1)，拟将电池法第77(3)条标准引用调整为QR码符合EN 18220:2026、唯一标识符符合EN 18219:2026。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/RGaGmDB-ZqjPjUVR6MN5cQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1404,7 +1454,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>InsideEVs（经Google News）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPV2VYVzRuc3QzSVNnbHd5aWF2OVZmM1FkRXYydk5iNUkzTHZVUVRIVTFrSlRfZXhBdzdDUkxubEtRREhxQ0hOQ3FMMWE0U0xMTEZpTU5UcTB0NExVUWxXR29DZUlfdTlzZFR6TjBNa3c0MDRVTHJfOERSOE5zQVl1QmN6VFYtUGF3dFJF?oc=5" target="_blank" rel="noopener">InsideEVs：欧洲本土电池生产面临现实挑战<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPV2VYVzRuc3QzSVNnbHd5aWF2OVZmM1FkRXYydk5iNUkzTHZVUVRIVTFrSlRfZXhBdzdDUkxubEtRREhxQ0hOQ3FMMWE0U0xMTEZpTU5UcTB0NExVUWxXR29DZUlfdTlzZFR6TjBNa3c0MDRVTHJfOERSOE5zQVl1QmN6VFYtUGF3dFJF?oc=5" target="_blank" rel="noopener"><span>InsideEVs：欧洲本土电池生产面临现实挑战</span><span class="ext">↗</span></a></h3>
           <p class="sum">标题口径，细节待补；欧洲电池本土化产能挑战。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPV2VYVzRuc3QzSVNnbHd5aWF2OVZmM1FkRXYydk5iNUkzTHZVUVRIVTFrSlRfZXhBdzdDUkxubEtRREhxQ0hOQ3FMMWE0U0xMTEZpTU5UcTB0NExVUWxXR29DZUlfdTlzZFR6TjBNa3c0MDRVTHJfOERSOE5zQVl1QmN6VFYtUGF3dFJF?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1416,13 +1466,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（有色日鉴，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/1dS5SjV5YV35UJX3CbP~aA" target="_blank" rel="noopener">四季度铝市核心主线：云南枯水+CBAM落地，两大变量重塑行情<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/1dS5SjV5YV35UJX3CbP~aA" target="_blank" rel="noopener"><span>四季度铝市核心主线：云南枯水+CBAM落地，两大变量重塑行情</span><span class="ext">↗</span></a></h3>
           <p class="sum">行业分析：四季度铝市关注云南枯水期减产与CBAM落地两大变量；10-09“国庆假期铝累库”的延续跟踪。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/1dS5SjV5YV35UJX3CbP~aA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（有色日鉴，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/WAPNii~aj3SLnUK~EuZFPg" target="_blank" rel="noopener">对比近三年国庆：今年铝库存的最大不同不在累库幅度<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/WAPNii~aj3SLnUK~EuZFPg" target="_blank" rel="noopener"><span>对比近三年国庆：今年铝库存的最大不同不在累库幅度</span><span class="ext">↗</span></a></h3>
           <p class="sum">国庆假期铝库存解读：今年的最大不同不在累库幅度，而在库存解读逻辑变化；行业分析口径。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/WAPNii~aj3SLnUK~EuZFPg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1434,25 +1484,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>CnEVPost；微信公众号（宁德时代，企业官方，partial）</span></div>
-          <h3><a href="https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/" target="_blank" rel="noopener">宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/" target="_blank" rel="noopener"><span>宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能</span><span class="ext">↗</span></a></h3>
           <p class="sum">宁德时代与赛力斯签署长期战略合作协议，扩大问界（Aito）车型电池产能配套；协议细节（产能规模、期限）未披露，属战略合作框架阶段。</p>
           <a class="golink" href="https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（中汽数据，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/rmwdrDwrDLe-5eskB~PFvg" target="_blank" rel="noopener">中汽数据与德国GRS电池基金会签署战略合作备忘录<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/rmwdrDwrDLe-5eskB~PFvg" target="_blank" rel="noopener"><span>中汽数据与德国GRS电池基金会签署战略合作备忘录</span><span class="ext">↗</span></a></h3>
           <p class="sum">中汽数据官方号发布快讯，称与德国GRS电池基金会（Stiftung GRS Batterien）签署战略合作备忘录；签署时间、合作范围待补，正文缺失。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/rmwdrDwrDLe-5eskB~PFvg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Nikkei Asia（经Google News）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOT3RVRFZ1dXRTaUE3MUpBVERISk9uaUNJNTZ3Q" target="_blank" rel="noopener">日经：固态电池厂商ProLogium战略拓展至AI与航空领域<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOT3RVRFZ1dXRTaUE3MUpBVERISk9uaUNJNTZ3Q" target="_blank" rel="noopener"><span>日经：固态电池厂商ProLogium战略拓展至AI与航空领域</span><span class="ext">↗</span></a></h3>
           <p class="sum">日经亚洲报道固态电池厂商辉能科技（ProLogium）将电池技术应用从电动车拓展至AI与航空领域；与10-02奔驰×ProLogium联合测试为不同事件；仅有标题摘要。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOT3RVRFZ1dXRTaUE3MUpBVERISk9uaUNJNTZ3Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>tech-insider.org（经Google News）</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9zVF9PTy03QUZpMmZiVUJsc3E0V1hVNHBGOGFHalVZNFM5dlV4MnZnUTBPUVUzeWRCUjRKUGhPcGt0Rjh5SWpVdzFza2llVVdveXk3UWpSRVN5Z3B4eG1wUnhJSFJqa0RuYnphV1duU3ZJTWJsakpROThCZXN3dw?oc=5" target="_blank" rel="noopener">ProLogium 381Wh/kg固态电池瞄准AI数据中心<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9zVF9PTy03QUZpMmZiVUJsc3E0V1hVNHBGOGFHalVZNFM5dlV4MnZnUTBPUVUzeWRCUjRKUGhPcGt0Rjh5SWpVdzFza2llVVdveXk3UWpSRVN5Z3B4eG1wUnhJSFJqa0RuYnphV1duU3ZJTWJsakpROThCZXN3dw?oc=5" target="_blank" rel="noopener"><span>ProLogium 381Wh/kg固态电池瞄准AI数据中心</span><span class="ext">↗</span></a></h3>
           <p class="sum">ProLogium 381Wh/kg固态电池瞄准AI数据中心应用；与上述战略拓展相关，技术细节待补；仅有标题。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9zVF9PTy03QUZpMmZiVUJsc3E0V1hVNHBGOGFHalVZNFM5dlV4MnZnUTBPUVUzeWRCUjRKUGhPcGt0Rjh5SWpVdzFza2llVVdveXk3UWpSRVN5Z3B4eG1wUnhJSFJqa0RuYnphV1duU3ZJTWJsakpROThCZXN3dw?oc=5" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1464,7 +1514,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/UAsof2VndKF3hBDU3tCRSA" target="_blank" rel="noopener">ChemRePlas化学循环周报（10-04—10-10）：惠城环保满负荷连续运行超40天，INC-5.4定于2027年3月<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/UAsof2VndKF3hBDU3tCRSA" target="_blank" rel="noopener"><span>ChemRePlas化学循环周报（10-04—10-10）：惠城环保满负荷连续运行超40天，INC-5.4定于2027年3月</span><span class="ext">↗</span></a></h3>
           <p class="sum">本周废塑料化学循环动态：惠城环保化学循环装置满负荷连续运行超40天；华润获国内首张PET化学回收NOL；万华化学（蓬莱）将建3.6万吨/年绿色多元醇项目；Circ与华峰集团共建T2T工厂；INC-5.4定于2027年3月；日本东丽开发溶剂型PPS回收技术。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/UAsof2VndKF3hBDU3tCRSA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2218,9 +2268,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>中共中央、国务院印发《关于发展新质生产力的意见》</b><span>微信公众号（深圳市电池行业协会，full 正文）</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>修订后《碳排放权交易管理暂行条例》全文10月10日公布</b><span>微信公众号（青悦 ESG，full 正文）</span></span></a>
-    <a class="hl-item" href="#" data-mi="2"><span class="n">3</span><span class="t"><b>欧盟据称考虑对中国汽车实施临时贸易保障措施</b><span>微信公众号（高工锂电，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">1</span><span class="t"><b>修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）</b><span>微信公众号（青悦 ESG，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）</b><span>微信公众号（深圳市电池行业协会，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">3</span><span class="t"><b>电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026</b><span>微信公众号（果冻的合规笔记，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）</b><span>微信公众号（高工锂电，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="7"><span class="n">5</span><span class="t"><b>宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能</b><span>CnEVPost；微信公众号（宁德时代，企业官方，partial）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2357,7 +2409,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-12";
-var BRIEF_DATA = [{"t": "中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）", "u": "https://mp.weixin.qq.com/s/DxdLacM4ZGSqJ5REPYs4Ag", "s": "微信公众号（深圳市电池行业协会，full 正文）", "sec": "国内法规与政策", "sum": "10月9日印发，部署19项重点举措；“着力推进发展方式创新”部分提出构建绿色低碳循环发展经济体系、完善绿色发展政策工具箱、积极推进能源革命；属中央层面综合性政策文件，是后续部委细则的政策基线。", "points": {"REG": 8, "MET": 3, "EVD": 7, "REL": 7, "TIM": 9}, "note": "10-11晚间pending并入；中国政府网原文待补一手核验"}, {"t": "修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）", "u": "https://mp.weixin.qq.com/s/MwVsDF81QOBcdsIq-AebjA", "s": "微信公众号（青悦 ESG，full 正文）", "sec": "国内法规与政策", "sum": "修订后全文10月10日公布，系2024年5月1日施行以来首次修订；实质内容来自国务院令第843号，本次仅修改第24条（未足额清缴配额100万–500万元罚款）、第26条（罚款下限2万提至5万，新增直接负责人员罚款）两处罚则；10月10日为全文公布，非新通过/生效节点。", "points": {"REG": 8, "MET": 2, "EVD": 7, "REL": 8, "TIM": 10}, "note": "10-11晚间pending并入；公布页待一手核验"}, {"t": "欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）", "u": "https://mp.weixin.qq.com/s/uwAlo1qsf--tOQPcsaaAZQ", "s": "微信公众号（高工锂电，full 正文）", "sec": "海外法规与政策", "sum": "继10-09中欧混动“谅解”后，披露显示未来四年中国混动车对欧出口或较原预测减半；欧盟正考虑临时贸易保障措施，通过进口配额管理对超配额车辆征附加关税，最快12月实施；具体配额/税率未定。", "points": {"REG": 6, "MET": 1, "EVD": 4, "REL": 8, "TIM": 9}, "note": "待一手核验；相对10-10早报“混动谅解”的实质增量；O15"}, {"t": "电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026", "u": "https://mp.weixin.qq.com/s/RGaGmDB-ZqjPjUVR6MN5cQ", "s": "微信公众号（果冻的合规笔记，full 正文）", "sec": "LCA与方法学", "sum": "DPP实务连载第二篇，讨论电池QR码尺寸/纠错等级/URL长度与成本权衡；引述欧委会9月29日Art 10授权法案草案Article 2(1)，拟将电池法第77(3)条标准引用调整为QR码符合EN 18220:2026、唯一标识符符合EN 18219:2026。", "points": {"REG": 5, "MET": 6, "EVD": 5, "REL": 7, "TIM": 9}, "note": "跨C2；草案条文待一手核验；10-11晚间pending并入"}, {"t": "InsideEVs：欧洲本土电池生产面临现实挑战", "u": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPV2VYVzRuc3QzSVNnbHd5aWF2OVZmM1FkRXYydk5iNUkzTHZVUVRIVTFrSlRfZXhBdzdDUkxubEtRREhxQ0hOQ3FMMWE0U0xMTEZpTU5UcTB0NExVUWxXR29DZUlfdTlzZFR6TjBNa3c0MDRVTHJfOERSOE5zQVl1QmN6VFYtUGF3dFJF?oc=5", "s": "InsideEVs（经Google News）", "sec": "整车企业", "sum": "标题口径，细节待补；欧洲电池本土化产能挑战。", "points": {"REG": 3, "MET": 2, "EVD": 3, "REL": 6, "TIM": 9}, "note": "仅有标题"}, {"t": "四季度铝市核心主线：云南枯水+CBAM落地，两大变量重塑行情", "u": "https://mp.weixin.qq.com/s/1dS5SjV5YV35UJX3CbP~aA", "s": "微信公众号（有色日鉴，partial）", "sec": "上游基础材料", "sum": "行业分析：四季度铝市关注云南枯水期减产与CBAM落地两大变量；10-09“国庆假期铝累库”的延续跟踪。", "points": {"REG": 5, "MET": 1, "EVD": 3, "REL": 6, "TIM": 9}, "note": "partial仅标题；CBAM为O9交叉"}, {"t": "对比近三年国庆：今年铝库存的最大不同不在累库幅度", "u": "https://mp.weixin.qq.com/s/WAPNii~aj3SLnUK~EuZFPg", "s": "微信公众号（有色日鉴，partial）", "sec": "上游基础材料", "sum": "国庆假期铝库存解读：今年的最大不同不在累库幅度，而在库存解读逻辑变化；行业分析口径。", "points": {"REG": 2, "MET": 1, "EVD": 3, "REL": 5, "TIM": 9}, "note": "partial仅标题"}, {"t": "宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能", "u": "https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/", "s": "CnEVPost；微信公众号（宁德时代，企业官方，partial）", "sec": "电池产业链", "sum": "宁德时代与赛力斯签署长期战略合作协议，扩大问界（Aito）车型电池产能配套；协议细节（产能规模、期限）未披露，属战略合作框架阶段。", "points": {"REG": 2, "MET": 1, "EVD": 5, "REL": 8, "TIM": 9}, "note": "10-11晚间pending并入"}, {"t": "中汽数据与德国GRS电池基金会签署战略合作备忘录", "u": "https://mp.weixin.qq.com/s/rmwdrDwrDLe-5eskB~PFvg", "s": "微信公众号（中汽数据，partial）", "sec": "电池产业链", "sum": "中汽数据官方号发布快讯，称与德国GRS电池基金会（Stiftung GRS Batterien）签署战略合作备忘录；签署时间、合作范围待补，正文缺失。", "points": {"REG": 4, "MET": 1, "EVD": 3, "REL": 7, "TIM": 9}, "note": "跨C2；标题命中“电池”关键词强制复核；10-11晚间pending并入"}, {"t": "日经：固态电池厂商ProLogium战略拓展至AI与航空领域", "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOT3RVRFZ1dXRTaUE3MUpBVERISk9uaUNJNTZ3Q", "s": "Nikkei Asia（经Google News）", "sec": "电池产业链", "sum": "日经亚洲报道固态电池厂商辉能科技（ProLogium）将电池技术应用从电动车拓展至AI与航空领域；与10-02奔驰×ProLogium联合测试为不同事件；仅有标题摘要。", "points": {"REG": 2, "MET": 3, "EVD": 4, "REL": 6, "TIM": 9}, "note": "10-11晚间pending并入"}, {"t": "ProLogium 381Wh/kg固态电池瞄准AI数据中心", "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9zVF9PTy03QUZpMmZiVUJsc3E0V1hVNHBGOGFHalVZNFM5dlV4MnZnUTBPUVUzeWRCUjRKUGhPcGt0Rjh5SWpVdzFza2llVVdveXk3UWpSRVN5Z3B4eG1wUnhJSFJqa0RuYnphV1duU3ZJTWJsakpROThCZXN3dw?oc=5", "s": "tech-insider.org（经Google News）", "sec": "电池产业链", "sum": "ProLogium 381Wh/kg固态电池瞄准AI数据中心应用；与上述战略拓展相关，技术细节待补；仅有标题。", "points": {"REG": 2, "MET": 4, "EVD": 3, "REL": 6, "TIM": 9}, "note": "仅有标题"}, {"t": "ChemRePlas化学循环周报（10-04—10-10）：惠城环保满负荷连续运行超40天，INC-5.4定于2027年3月", "u": "https://mp.weixin.qq.com/s/UAsof2VndKF3hBDU3tCRSA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "循环再生", "sum": "本周废塑料化学循环动态：惠城环保化学循环装置满负荷连续运行超40天；华润获国内首张PET化学回收NOL；万华化学（蓬莱）将建3.6万吨/年绿色多元醇项目；Circ与华峰集团共建T2T工厂；INC-5.4定于2027年3月；日本东丽开发溶剂型PPS回收技术。", "points": {"REG": 4, "MET": 2, "EVD": 5, "REL": 6, "TIM": 8}, "note": "行业媒体汇总口径；10-11晚间pending并入"}];
+var BRIEF_DATA = [{"t": "中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）", "u": "https://mp.weixin.qq.com/s/DxdLacM4ZGSqJ5REPYs4Ag", "s": "微信公众号（深圳市电池行业协会，full 正文）", "sec": "国内法规与政策", "sum": "10月9日印发，部署19项重点举措；“着力推进发展方式创新”部分提出构建绿色低碳循环发展经济体系、完善绿色发展政策工具箱、积极推进能源革命；属中央层面综合性政策文件，是后续部委细则的政策基线。", "points": {"REG": 8, "MET": 3, "EVD": 7, "REL": 7, "TIM": 9}, "note": "10-11晚间pending并入；中国政府网原文待补一手核验", "score": 73, "level": "full"}, {"t": "修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）", "u": "https://mp.weixin.qq.com/s/MwVsDF81QOBcdsIq-AebjA", "s": "微信公众号（青悦 ESG，full 正文）", "sec": "国内法规与政策", "sum": "修订后全文10月10日公布，系2024年5月1日施行以来首次修订；实质内容来自国务院令第843号，本次仅修改第24条（未足额清缴配额100万–500万元罚款）、第26条（罚款下限2万提至5万，新增直接负责人员罚款）两处罚则；10月10日为全文公布，非新通过/生效节点。", "points": {"REG": 8, "MET": 2, "EVD": 7, "REL": 8, "TIM": 10}, "note": "10-11晚间pending并入；公布页待一手核验", "score": 76, "level": "full"}, {"t": "欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）", "u": "https://mp.weixin.qq.com/s/uwAlo1qsf--tOQPcsaaAZQ", "s": "微信公众号（高工锂电，full 正文）", "sec": "海外法规与政策", "sum": "继10-09中欧混动“谅解”后，披露显示未来四年中国混动车对欧出口或较原预测减半；欧盟正考虑临时贸易保障措施，通过进口配额管理对超配额车辆征附加关税，最快12月实施；具体配额/税率未定。", "points": {"REG": 6, "MET": 1, "EVD": 4, "REL": 8, "TIM": 9}, "note": "待一手核验；相对10-10早报“混动谅解”的实质增量；O15", "score": 61, "level": "brief"}, {"t": "电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026", "u": "https://mp.weixin.qq.com/s/RGaGmDB-ZqjPjUVR6MN5cQ", "s": "微信公众号（果冻的合规笔记，full 正文）", "sec": "LCA与方法学", "sum": "DPP实务连载第二篇，讨论电池QR码尺寸/纠错等级/URL长度与成本权衡；引述欧委会9月29日Art 10授权法案草案Article 2(1)，拟将电池法第77(3)条标准引用调整为QR码符合EN 18220:2026、唯一标识符符合EN 18219:2026。", "points": {"REG": 5, "MET": 6, "EVD": 5, "REL": 7, "TIM": 9}, "note": "跨C2；草案条文待一手核验；10-11晚间pending并入", "score": 62, "level": "brief"}, {"t": "InsideEVs：欧洲本土电池生产面临现实挑战", "u": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPV2VYVzRuc3QzSVNnbHd5aWF2OVZmM1FkRXYydk5iNUkzTHZVUVRIVTFrSlRfZXhBdzdDUkxubEtRREhxQ0hOQ3FMMWE0U0xMTEZpTU5UcTB0NExVUWxXR29DZUlfdTlzZFR6TjBNa3c0MDRVTHJfOERSOE5zQVl1QmN6VFYtUGF3dFJF?oc=5", "s": "InsideEVs（经Google News）", "sec": "整车企业", "sum": "标题口径，细节待补；欧洲电池本土化产能挑战。", "points": {"REG": 3, "MET": 2, "EVD": 3, "REL": 6, "TIM": 9}, "note": "仅有标题", "score": 52, "level": "brief"}, {"t": "四季度铝市核心主线：云南枯水+CBAM落地，两大变量重塑行情", "u": "https://mp.weixin.qq.com/s/1dS5SjV5YV35UJX3CbP~aA", "s": "微信公众号（有色日鉴，partial）", "sec": "上游基础材料", "sum": "行业分析：四季度铝市关注云南枯水期减产与CBAM落地两大变量；10-09“国庆假期铝累库”的延续跟踪。", "points": {"REG": 5, "MET": 1, "EVD": 3, "REL": 6, "TIM": 9}, "note": "partial仅标题；CBAM为O9交叉", "score": 56, "level": "brief"}, {"t": "对比近三年国庆：今年铝库存的最大不同不在累库幅度", "u": "https://mp.weixin.qq.com/s/WAPNii~aj3SLnUK~EuZFPg", "s": "微信公众号（有色日鉴，partial）", "sec": "上游基础材料", "sum": "国庆假期铝库存解读：今年的最大不同不在累库幅度，而在库存解读逻辑变化；行业分析口径。", "points": {"REG": 2, "MET": 1, "EVD": 3, "REL": 5, "TIM": 9}, "note": "partial仅标题", "score": 48, "level": "brief"}, {"t": "宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能", "u": "https://cnevpost.com/2026/10/11/catl-deal-seres-expand-aito-battery-capacity/", "s": "CnEVPost；微信公众号（宁德时代，企业官方，partial）", "sec": "电池产业链", "sum": "宁德时代与赛力斯签署长期战略合作协议，扩大问界（Aito）车型电池产能配套；协议细节（产能规模、期限）未披露，属战略合作框架阶段。", "points": {"REG": 2, "MET": 1, "EVD": 5, "REL": 8, "TIM": 9}, "note": "10-11晚间pending并入", "score": 60, "level": "brief"}, {"t": "中汽数据与德国GRS电池基金会签署战略合作备忘录", "u": "https://mp.weixin.qq.com/s/rmwdrDwrDLe-5eskB~PFvg", "s": "微信公众号（中汽数据，partial）", "sec": "电池产业链", "sum": "中汽数据官方号发布快讯，称与德国GRS电池基金会（Stiftung GRS Batterien）签署战略合作备忘录；签署时间、合作范围待补，正文缺失。", "points": {"REG": 4, "MET": 1, "EVD": 3, "REL": 7, "TIM": 9}, "note": "跨C2；标题命中“电池”关键词强制复核；10-11晚间pending并入", "score": 55, "level": "brief"}, {"t": "日经：固态电池厂商ProLogium战略拓展至AI与航空领域", "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOT3RVRFZ1dXRTaUE3MUpBVERISk9uaUNJNTZ3Q", "s": "Nikkei Asia（经Google News）", "sec": "电池产业链", "sum": "日经亚洲报道固态电池厂商辉能科技（ProLogium）将电池技术应用从电动车拓展至AI与航空领域；与10-02奔驰×ProLogium联合测试为不同事件；仅有标题摘要。", "points": {"REG": 2, "MET": 3, "EVD": 4, "REL": 6, "TIM": 9}, "note": "10-11晚间pending并入", "score": 57, "level": "brief"}, {"t": "ProLogium 381Wh/kg固态电池瞄准AI数据中心", "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9zVF9PTy03QUZpMmZiVUJsc3E0V1hVNHBGOGFHalVZNFM5dlV4MnZnUTBPUVUzeWRCUjRKUGhPcGt0Rjh5SWpVdzFza2llVVdveXk3UWpSRVN5Z3B4eG1wUnhJSFJqa0RuYnphV1duU3ZJTWJsakpROThCZXN3dw?oc=5", "s": "tech-insider.org（经Google News）", "sec": "电池产业链", "sum": "ProLogium 381Wh/kg固态电池瞄准AI数据中心应用；与上述战略拓展相关，技术细节待补；仅有标题。", "points": {"REG": 2, "MET": 4, "EVD": 3, "REL": 6, "TIM": 9}, "note": "仅有标题", "score": 54, "level": "brief"}, {"t": "ChemRePlas化学循环周报（10-04—10-10）：惠城环保满负荷连续运行超40天，INC-5.4定于2027年3月", "u": "https://mp.weixin.qq.com/s/UAsof2VndKF3hBDU3tCRSA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "循环再生", "sum": "本周废塑料化学循环动态：惠城环保化学循环装置满负荷连续运行超40天；华润获国内首张PET化学回收NOL；万华化学（蓬莱）将建3.6万吨/年绿色多元醇项目；Circ与华峰集团共建T2T工厂；INC-5.4定于2027年3月；日本东丽开发溶剂型PPS回收技术。", "points": {"REG": 4, "MET": 2, "EVD": 5, "REL": 6, "TIM": 8}, "note": "行业媒体汇总口径；10-11晚间pending并入", "score": 59, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

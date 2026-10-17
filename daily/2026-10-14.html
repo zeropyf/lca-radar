@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,49 +1406,49 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>欧盟理事会新闻稿（一手）</span></div>
-          <h3><a href="https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/ets2-council-signs-off-on-rules-strengthening-the-market-stability-reserve/" target="_blank" rel="noopener">欧盟理事会正式通过 ETS2 市场稳定储备（MSR）针对性修正案（一手闭环）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/ets2-council-signs-off-on-rules-strengthening-the-market-stability-reserve/" target="_blank" rel="noopener"><span>欧盟理事会正式通过 ETS2 市场稳定储备（MSR）针对性修正案（一手闭环）</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026-10-09 ECOFIN 通过 ETS2 MSR 针对性修正案：MSR 延长至 2030 年后；碳价超 45 欧元/吨（2020 年价格）时释放配额 2000 万→4000 万；流通配额低于 2.6 亿启动更渐进释放机制；随 2028 年 ETS2 全面启动生效。修正案源于 2025 年 7 月 19 国倡议。</p>
           <a class="golink" href="https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/ets2-council-signs-off-on-rules-strengthening-the-market-stability-reserve/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ICCT（一手，正文已通读）</span></div>
-          <h3><a href="https://theicct.org/electrifying-road-transport-for-35-by-35-oct26/" target="_blank" rel="noopener">ICCT《Electrifying road transport for &quot;35 by 35&quot;》<span class="ext">↗</span></a></h3>
+          <h3><a href="https://theicct.org/electrifying-road-transport-for-35-by-35-oct26/" target="_blank" rel="noopener"><span>ICCT《Electrifying road transport for &quot;35 by 35&quot;》</span><span class="ext">↗</span></a></h3>
           <p class="sum">支撑 COP31 主席国“35 by 35”行动议程的道路交通电气化建模：基准情景 2035 年道路交通电力占比仅 6%、2050 年 18%；雄心情景 2035 年达 11%、2050 年 62%，至 2050 年累计替代 601 EJ 化石燃料；每辆在售燃油车锁定 2030–2040 年代化石燃料需求。</p>
           <a class="golink" href="https://theicct.org/electrifying-road-transport-for-35-by-35-oct26/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>欧盟 ESPR 家具产品组官方预备研究页（一手，Circular Data 抓取）</span></div>
-          <h3><a href="https://espr-euecolabel-furniture.eu/preparatory-study" target="_blank" rel="noopener">ESPR 家具预备研究：DPP 内容潜在评估草案首次发布<span class="ext">↗</span></a></h3>
+          <h3><a href="https://espr-euecolabel-furniture.eu/preparatory-study" target="_blank" rel="noopener"><span>ESPR 家具预备研究：DPP 内容潜在评估草案首次发布</span><span class="ext">↗</span></a></h3>
           <p class="sum">ESPR 家具产品组预备研究发布首份 DPP 潜在内容评估草案；属各产品组 DPP 内容定义的方法性文件，可作电池/汽车产品组 DPP 内容定义的参照。</p>
           <a class="golink" href="https://espr-euecolabel-furniture.eu/preparatory-study" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）</span></div>
-          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189491&amp;type=1" target="_blank" rel="noopener">美国对定尺碳素钢板作出第五次反倾销日落复审终裁<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189491&amp;type=1" target="_blank" rel="noopener"><span>美国对定尺碳素钢板作出第五次反倾销日落复审终裁</span><span class="ext">↗</span></a></h3>
           <p class="sum">美国对进口定尺碳素钢板作出第五次反倾销日落复审终裁；涉华钢铁类贸易救济实质事项。</p>
           <a class="golink" href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189491&amp;type=1" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）</span></div>
-          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189490&amp;type=1" target="_blank" rel="noopener">美国对钾磷酸盐作出第三次双反日落复审终裁<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189490&amp;type=1" target="_blank" rel="noopener"><span>美国对钾磷酸盐作出第三次双反日落复审终裁</span><span class="ext">↗</span></a></h3>
           <p class="sum">美国对进口钾磷酸盐作出第三次反倾销/反补贴日落复审终裁；化工类贸易救济事项，与汽车价值链直接关联弱，按 O15 跟踪口径收录。</p>
           <a class="golink" href="https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189490&amp;type=1" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>mining.com（行业媒体，2026-10-13）</span></div>
-          <h3><a href="https://www.mining.com/eldorados-skouries-mine-wins-eu-strategic-status/" target="_blank" rel="noopener">Eldorado Skouries 铜矿获欧盟 CRMA 战略地位<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/eldorados-skouries-mine-wins-eu-strategic-status/" target="_blank" rel="noopener"><span>Eldorado Skouries 铜矿获欧盟 CRMA 战略地位</span><span class="ext">↗</span></a></h3>
           <p class="sum">Eldorado Gold 旗下希腊 Skouries 铜矿获欧盟关键原材料法案（CRMA）战略项目地位；欧盟本土铜供应链布局进展。</p>
           <a class="golink" href="https://www.mining.com/eldorados-skouries-mine-wins-eu-strategic-status/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>BIR（国际回收局，一手协会页面）</span></div>
-          <h3><a href="https://www.bir.org/news-press/news/1000043053-important-update-bir-action-update-on-eu-waste-shipment-regulation" target="_blank" rel="noopener">BIR 发布欧盟废物运输法规行动更新<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.bir.org/news-press/news/1000043053-important-update-bir-action-update-on-eu-waste-shipment-regulation" target="_blank" rel="noopener"><span>BIR 发布欧盟废物运输法规行动更新</span><span class="ext">↗</span></a></h3>
           <p class="sum">BIR 发布《IMPORTANT UPDATE – BIR ACTION UPDATE ON EU WASTE SHIPMENT REGULATION》（2026-10-13），涉欧盟废物运输法规（WSR）执行层面的行业行动更新；回收物跨境贸易管制口径。</p>
           <a class="golink" href="https://www.bir.org/news-press/news/1000043053-important-update-bir-action-update-on-eu-waste-shipment-regulation" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Project Blue（API 标题级，无公开文章 URL，文章 id 1689）</span></div>
-          <h3><a href="https://www.projectblue.com/api/articles/api/article/GetPublicBlueArticles?page=1&amp;pageSize=10&amp;types=NEWS%2COPINION&amp;includeMetadata=true" target="_blank" rel="noopener">Project Blue 称欧盟拟堵住中国混动车关税漏洞<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.projectblue.com/api/articles/api/article/GetPublicBlueArticles?page=1&amp;pageSize=10&amp;types=NEWS%2COPINION&amp;includeMetadata=true" target="_blank" rel="noopener"><span>Project Blue 称欧盟拟堵住中国混动车关税漏洞</span><span class="ext">↗</span></a></h3>
           <p class="sum">Project Blue 2026-10-13 报道《EU moves to close tariff loophole on Chinese hybrids》；欧盟拟针对中国混动汽车关税漏洞采取措施。</p>
           <a class="golink" href="https://www.projectblue.com/api/articles/api/article/GetPublicBlueArticles?page=1&amp;pageSize=10&amp;types=NEWS%2COPINION&amp;includeMetadata=true" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1413,13 +1463,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（蔚蓝地图，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/G7nxUdr0zSCyoiglm-GlfQ" target="_blank" rel="noopener">蔚蓝地图《供应链要你交碳足迹，但你确定交对了吗？》<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/G7nxUdr0zSCyoiglm-GlfQ" target="_blank" rel="noopener"><span>蔚蓝地图《供应链要你交碳足迹，但你确定交对了吗？》</span><span class="ext">↗</span></a></h3>
           <p class="sum">PCF 字段实务科普：同一产品碳足迹可因口径不同算出 1.25 或 −0.30；梳理客户 PCF 模板中“两个 PCF 总值、化石/生物源/土地利用变化、产品碳含量”等字段定义与正负号规则，对照 PACT、TfS 与 ecoinvent IPCC 方法的子类别映射；供应商交付数据的常见混淆点。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/G7nxUdr0zSCyoiglm-GlfQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（百思韬，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/cuv-AL1sZE94Ue5zoIHrgw" target="_blank" rel="noopener">CEN-CENELEC 发布第二批支持欧盟 DPP 的欧洲标准<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/cuv-AL1sZE94Ue5zoIHrgw" target="_blank" rel="noopener"><span>CEN-CENELEC 发布第二批支持欧盟 DPP 的欧洲标准</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026-09-16 CEN 与 CENELEC 发布第二批 DPP 欧洲标准：EN 18239:2026（访问权限管理、信息系统安全与商业保密）、EN 18246:2026（数据认证、可靠性与完整性），由 CEN-CLC/JTC 24 制定，是对已列入 OJEU 的六项协调标准的补充；预计很快被列入 OJEU 获符合性推定。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/cuv-AL1sZE94Ue5zoIHrgw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1434,7 +1484,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>现代汽车官方新闻中心（一手标题，2026-10-13）</span></div>
-          <h3><a href="https://www.hyundai.com/worldwide/en/newsroom/detail/0000001288" target="_blank" rel="noopener">现代汽车集团宣布 155 亿美元印度汽车生态系统投资<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.hyundai.com/worldwide/en/newsroom/detail/0000001288" target="_blank" rel="noopener"><span>现代汽车集团宣布 155 亿美元印度汽车生态系统投资</span><span class="ext">↗</span></a></h3>
           <p class="sum">现代汽车集团宣布加速印度增长的 155 亿美元汽车生态系统投资计划；印度本土化产业链布局。</p>
           <a class="golink" href="https://www.hyundai.com/worldwide/en/newsroom/detail/0000001288" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1446,19 +1496,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>mining.com（行业媒体，2026-10-13）</span></div>
-          <h3><a href="https://www.mining.com/energyx-inks-10-year-2b-lithium-offtake-deal-with-trafigura/" target="_blank" rel="noopener">EnergyX 与 Trafigura 签署 10 年期、约 20 亿美元锂承购协议<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/energyx-inks-10-year-2b-lithium-offtake-deal-with-trafigura/" target="_blank" rel="noopener"><span>EnergyX 与 Trafigura 签署 10 年期、约 20 亿美元锂承购协议</span><span class="ext">↗</span></a></h3>
           <p class="sum">美国锂提取公司 EnergyX 与大宗商品贸易商 Trafigura 签署 10 年期、总价值约 20 亿美元的锂承购协议；锂价下行周期中上游长约锁定信号。</p>
           <a class="golink" href="https://www.mining.com/energyx-inks-10-year-2b-lithium-offtake-deal-with-trafigura/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>POSCO 新闻室（企业一手，2026-10-13）</span></div>
-          <h3><a href="https://newsroom.posco.com/en/posco-future-m-signs-krw-6-trillion-lfp-supply-contract-with-samsung-sdi-builds-strategic-partnership-as-key-supplier-of-non-pfe-materials/" target="_blank" rel="noopener">POSCO Future M 与 Samsung SDI 签署约 6 万亿韩元 LFP 供应合同<span class="ext">↗</span></a></h3>
+          <h3><a href="https://newsroom.posco.com/en/posco-future-m-signs-krw-6-trillion-lfp-supply-contract-with-samsung-sdi-builds-strategic-partnership-as-key-supplier-of-non-pfe-materials/" target="_blank" rel="noopener"><span>POSCO Future M 与 Samsung SDI 签署约 6 万亿韩元 LFP 供应合同</span><span class="ext">↗</span></a></h3>
           <p class="sum">双方签署价值约 6 万亿韩元的磷酸铁锂（LFP）供应合同并建立战略伙伴关系，POSCO Future M 定位为“非 PFE 材料”关键供应商；韩系 LFP 供应链加速布局信号。</p>
           <a class="golink" href="https://newsroom.posco.com/en/posco-future-m-signs-krw-6-trillion-lfp-supply-contract-with-samsung-sdi-builds-strategic-partnership-as-key-supplier-of-non-pfe-materials/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>mining.com（行业媒体，2026-10-13）</span></div>
-          <h3><a href="https://www.mining.com/hertha-metals-breaks-ground-on-100m-us-commercial-plant-for-magnet-grade-iron/" target="_blank" rel="noopener">Hertha Metals 在美国为磁铁级铁 1 亿美元商业工厂破土动工<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/hertha-metals-breaks-ground-on-100m-us-commercial-plant-for-magnet-grade-iron/" target="_blank" rel="noopener"><span>Hertha Metals 在美国为磁铁级铁 1 亿美元商业工厂破土动工</span><span class="ext">↗</span></a></h3>
           <p class="sum">Hertha Metals 在美国启动其磁铁级铁（magnet-grade iron）1 亿美元商业工厂建设；稀土永磁供应链美国本土化动向。</p>
           <a class="golink" href="https://www.mining.com/hertha-metals-breaks-ground-on-100m-us-commercial-plant-for-magnet-grade-iron/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2213,7 +2263,10 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
     <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>欧盟理事会正式通过 ETS2 市场稳定储备（MSR）针对性修正案（一手闭环）</b><span>欧盟理事会新闻稿（一手）</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>ICCT《Electrifying road transport for &quot;35 by 35&quot;》</b><span>ICCT（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>ICCT《Electrifying road transport for &quot;35 by 35&quot;》</b><span>ICCT（一手，正文已通读）</span></span></a>
+    <a class="hl-item" href="#" data-mi="7"><span class="n">3</span><span class="t"><b>Project Blue 称欧盟拟堵住中国混动车关税漏洞</b><span>Project Blue（API 标题级，无公开文章 URL，文章 id 1689）</span></span></a>
+    <a class="hl-item" href="#" data-mi="9"><span class="n">4</span><span class="t"><b>CEN-CENELEC 发布第二批支持欧盟 DPP 的欧洲标准</b><span>微信公众号（百思韬，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="12"><span class="n">5</span><span class="t"><b>POSCO Future M 与 Samsung SDI 签署约 6 万亿韩元 LFP 供应合同</b><span>POSCO 新闻室（企业一手，2026-10-13）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2347,7 +2400,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-14";
-var BRIEF_DATA = [{"t": "欧盟理事会正式通过 ETS2 市场稳定储备（MSR）针对性修正案（一手闭环）", "u": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/ets2-council-signs-off-on-rules-strengthening-the-market-stability-reserve/", "s": "欧盟理事会新闻稿（一手）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "2026-10-09 ECOFIN 通过 ETS2 MSR 针对性修正案：MSR 延长至 2030 年后；碳价超 45 欧元/吨（2020 年价格）时释放配额 2000 万→4000 万；流通配额低于 2.6 亿启动更渐进释放机制；随 2028 年 ETS2 全面启动生效。修正案源于 2025 年 7 月 19 国倡议。", "points": {"REG": 9, "MET": 1, "EVD": 10, "REL": 7, "TIM": 6}, "note": "昨晚 pending #10 并入早报；补录三要素：发布 2026-10-09/发现 2026-10-13/浏览器轮换首次打开 consilium 一手取得；review_queue⑯ 闭环；OJ 文本与 ETS2 启动时点调整仍未确认"}, {"t": "ICCT《Electrifying road transport for \"35 by 35\"》", "u": "https://theicct.org/electrifying-road-transport-for-35-by-35-oct26/", "s": "ICCT（一手，正文已通读）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "支撑 COP31 主席国“35 by 35”行动议程的道路交通电气化建模：基准情景 2035 年道路交通电力占比仅 6%、2050 年 18%；雄心情景 2035 年达 11%、2050 年 62%，至 2050 年累计替代 601 EJ 化石燃料；每辆在售燃油车锁定 2030–2040 年代化石燃料需求。", "points": {"REG": 6, "MET": 4, "EVD": 8, "REL": 5, "TIM": 9}, "note": "跨 M2；2026-10-13 发布"}, {"t": "ESPR 家具预备研究：DPP 内容潜在评估草案首次发布", "u": "https://espr-euecolabel-furniture.eu/preparatory-study", "s": "欧盟 ESPR 家具产品组官方预备研究页（一手，Circular Data 抓取）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "ESPR 家具产品组预备研究发布首份 DPP 潜在内容评估草案；属各产品组 DPP 内容定义的方法性文件，可作电池/汽车产品组 DPP 内容定义的参照。", "points": {"REG": 4, "MET": 2, "EVD": 7, "REL": 6, "TIM": 10}, "note": "昨晚 pending #7 并入；草案细节未通读"}, {"t": "美国对定尺碳素钢板作出第五次反倾销日落复审终裁", "u": "https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189491&type=1", "s": "中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "美国对进口定尺碳素钢板作出第五次反倾销日落复审终裁；涉华钢铁类贸易救济实质事项。", "points": {"REG": 6, "MET": 1, "EVD": 9, "REL": 4, "TIM": 10}, "note": "昨晚 pending #8 并入；单条税率/措施细节未通读；O15"}, {"t": "美国对钾磷酸盐作出第三次双反日落复审终裁", "u": "https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189490&type=1", "s": "中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "美国对进口钾磷酸盐作出第三次反倾销/反补贴日落复审终裁；化工类贸易救济事项，与汽车价值链直接关联弱，按 O15 跟踪口径收录。", "points": {"REG": 6, "MET": 1, "EVD": 9, "REL": 4, "TIM": 10}, "note": "昨晚 pending #9 并入；O15"}, {"t": "Eldorado Skouries 铜矿获欧盟 CRMA 战略地位", "u": "https://www.mining.com/eldorados-skouries-mine-wins-eu-strategic-status/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Eldorado Gold 旗下希腊 Skouries 铜矿获欧盟关键原材料法案（CRMA）战略项目地位；欧盟本土铜供应链布局进展。", "points": {"REG": 6, "MET": 1, "EVD": 6, "REL": 6, "TIM": 9}, "note": "评分 61 贴近 T2 一句话线，人工确认纳入；O8"}, {"t": "BIR 发布欧盟废物运输法规行动更新", "u": "https://www.bir.org/news-press/news/1000043053-important-update-bir-action-update-on-eu-waste-shipment-regulation", "s": "BIR（国际回收局，一手协会页面）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "BIR 发布《IMPORTANT UPDATE – BIR ACTION UPDATE ON EU WASTE SHIPMENT REGULATION》（2026-10-13），涉欧盟废物运输法规（WSR）执行层面的行业行动更新；回收物跨境贸易管制口径。", "points": {"REG": 5, "MET": 1, "EVD": 7, "REL": 6, "TIM": 10}, "note": "浏览器轮换补录；更新细节未通读；跨 I4；相对 10-02 已推欧盟 11 月禁向非 OECD 出口塑料废物的执行层增量"}, {"t": "Project Blue 称欧盟拟堵住中国混动车关税漏洞", "u": "https://www.projectblue.com/api/articles/api/article/GetPublicBlueArticles?page=1&pageSize=10&types=NEWS%2COPINION&includeMetadata=true", "s": "Project Blue（API 标题级，无公开文章 URL，文章 id 1689）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Project Blue 2026-10-13 报道《EU moves to close tariff loophole on Chinese hybrids》；欧盟拟针对中国混动汽车关税漏洞采取措施。", "points": {"REG": 7, "MET": 1, "EVD": 5, "REL": 8, "TIM": 10}, "note": "浏览器轮换补录；证据仅 API 标题级，措施细节与官方口径待一手核验，人工降档为一句话；相对 10-13 早报中欧混动磋商共识的后续动向；O15"}, {"t": "蔚蓝地图《供应链要你交碳足迹，但你确定交对了吗？》", "u": "https://mp.weixin.qq.com/s/G7nxUdr0zSCyoiglm-GlfQ", "s": "微信公众号（蔚蓝地图，full 正文）", "sec": "LCA 与方法学", "sum": "PCF 字段实务科普：同一产品碳足迹可因口径不同算出 1.25 或 −0.30；梳理客户 PCF 模板中“两个 PCF 总值、化石/生物源/土地利用变化、产品碳含量”等字段定义与正负号规则，对照 PACT、TfS 与 ecoinvent IPCC 方法的子类别映射；供应商交付数据的常见混淆点。", "points": {"REG": 1, "MET": 6, "EVD": 5, "REL": 7, "TIM": 9}, "note": "实务解读口径，案例数据未独立核验"}, {"t": "CEN-CENELEC 发布第二批支持欧盟 DPP 的欧洲标准", "u": "https://mp.weixin.qq.com/s/cuv-AL1sZE94Ue5zoIHrgw", "s": "微信公众号（百思韬，full 正文）", "sec": "LCA 与方法学", "sum": "2026-09-16 CEN 与 CENELEC 发布第二批 DPP 欧洲标准：EN 18239:2026（访问权限管理、信息系统安全与商业保密）、EN 18246:2026（数据认证、可靠性与完整性），由 CEN-CLC/JTC 24 制定，是对已列入 OJEU 的六项协调标准的补充；预计很快被列入 OJEU 获符合性推定。", "points": {"REG": 4, "MET": 7, "EVD": 5, "REL": 7, "TIM": 9}, "note": "标准发布 2026-09-16、文章 10-13；标准原文未通读；跨 C2"}, {"t": "现代汽车集团宣布 155 亿美元印度汽车生态系统投资", "u": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001288", "s": "现代汽车官方新闻中心（一手标题，2026-10-13）", "sec": "整车企业", "sum": "现代汽车集团宣布加速印度增长的 155 亿美元汽车生态系统投资计划；印度本土化产业链布局。", "points": {"REG": 3, "MET": 1, "EVD": 9, "REL": 6, "TIM": 9}, "note": "投资计划口径，细节未通读"}, {"t": "EnergyX 与 Trafigura 签署 10 年期、约 20 亿美元锂承购协议", "u": "https://www.mining.com/energyx-inks-10-year-2b-lithium-offtake-deal-with-trafigura/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "电池产业链", "sum": "美国锂提取公司 EnergyX 与大宗商品贸易商 Trafigura 签署 10 年期、总价值约 20 亿美元的锂承购协议；锂价下行周期中上游长约锁定信号。", "points": {"REG": 2, "MET": 1, "EVD": 6, "REL": 8, "TIM": 10}, "note": "昨晚 pending #1 并入；承购条款细节待跟踪"}, {"t": "POSCO Future M 与 Samsung SDI 签署约 6 万亿韩元 LFP 供应合同", "u": "https://newsroom.posco.com/en/posco-future-m-signs-krw-6-trillion-lfp-supply-contract-with-samsung-sdi-builds-strategic-partnership-as-key-supplier-of-non-pfe-materials/", "s": "POSCO 新闻室（企业一手，2026-10-13）", "sec": "电池产业链", "sum": "双方签署价值约 6 万亿韩元的磷酸铁锂（LFP）供应合同并建立战略伙伴关系，POSCO Future M 定位为“非 PFE 材料”关键供应商；韩系 LFP 供应链加速布局信号。", "points": {"REG": 3, "MET": 1, "EVD": 9, "REL": 7, "TIM": 10}, "note": "昨晚 pending #2 并入；签约类人工降档为一句话；交付时间表未披露"}, {"t": "Hertha Metals 在美国为磁铁级铁 1 亿美元商业工厂破土动工", "u": "https://www.mining.com/hertha-metals-breaks-ground-on-100m-us-commercial-plant-for-magnet-grade-iron/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "电池产业链", "sum": "Hertha Metals 在美国启动其磁铁级铁（magnet-grade iron）1 亿美元商业工厂建设；稀土永磁供应链美国本土化动向。", "points": {"REG": 2, "MET": 1, "EVD": 6, "REL": 8, "TIM": 10}, "note": "昨晚 pending #3 并入；跨 I3"}];
+var BRIEF_DATA = [{"t": "欧盟理事会正式通过 ETS2 市场稳定储备（MSR）针对性修正案（一手闭环）", "u": "https://www.consilium.europa.eu/en/press/press-releases/2026/10/09/ets2-council-signs-off-on-rules-strengthening-the-market-stability-reserve/", "s": "欧盟理事会新闻稿（一手）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "2026-10-09 ECOFIN 通过 ETS2 MSR 针对性修正案：MSR 延长至 2030 年后；碳价超 45 欧元/吨（2020 年价格）时释放配额 2000 万→4000 万；流通配额低于 2.6 亿启动更渐进释放机制；随 2028 年 ETS2 全面启动生效。修正案源于 2025 年 7 月 19 国倡议。", "points": {"REG": 9, "MET": 1, "EVD": 10, "REL": 7, "TIM": 6}, "note": "昨晚 pending #10 并入早报；补录三要素：发布 2026-10-09/发现 2026-10-13/浏览器轮换首次打开 consilium 一手取得；review_queue⑯ 闭环；OJ 文本与 ETS2 启动时点调整仍未确认", "score": 74, "level": "full"}, {"t": "ICCT《Electrifying road transport for \"35 by 35\"》", "u": "https://theicct.org/electrifying-road-transport-for-35-by-35-oct26/", "s": "ICCT（一手，正文已通读）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "支撑 COP31 主席国“35 by 35”行动议程的道路交通电气化建模：基准情景 2035 年道路交通电力占比仅 6%、2050 年 18%；雄心情景 2035 年达 11%、2050 年 62%，至 2050 年累计替代 601 EJ 化石燃料；每辆在售燃油车锁定 2030–2040 年代化石燃料需求。", "points": {"REG": 6, "MET": 4, "EVD": 8, "REL": 5, "TIM": 9}, "note": "跨 M2；2026-10-13 发布", "score": 66, "level": "full"}, {"t": "ESPR 家具预备研究：DPP 内容潜在评估草案首次发布", "u": "https://espr-euecolabel-furniture.eu/preparatory-study", "s": "欧盟 ESPR 家具产品组官方预备研究页（一手，Circular Data 抓取）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "ESPR 家具产品组预备研究发布首份 DPP 潜在内容评估草案；属各产品组 DPP 内容定义的方法性文件，可作电池/汽车产品组 DPP 内容定义的参照。", "points": {"REG": 4, "MET": 2, "EVD": 7, "REL": 6, "TIM": 10}, "note": "昨晚 pending #7 并入；草案细节未通读", "score": 60, "level": "brief"}, {"t": "美国对定尺碳素钢板作出第五次反倾销日落复审终裁", "u": "https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189491&type=1", "s": "中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "美国对进口定尺碳素钢板作出第五次反倾销日落复审终裁；涉华钢铁类贸易救济实质事项。", "points": {"REG": 6, "MET": 1, "EVD": 9, "REL": 4, "TIM": 10}, "note": "昨晚 pending #8 并入；单条税率/措施细节未通读；O15", "score": 65, "level": "brief"}, {"t": "美国对钾磷酸盐作出第三次双反日落复审终裁", "u": "https://cacs.mofcom.gov.cn/cacscms/article/ckys?articleId=189490&type=1", "s": "中国贸易救济信息网·出口案件公告（一手，浏览器轮换发现）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "美国对进口钾磷酸盐作出第三次反倾销/反补贴日落复审终裁；化工类贸易救济事项，与汽车价值链直接关联弱，按 O15 跟踪口径收录。", "points": {"REG": 6, "MET": 1, "EVD": 9, "REL": 4, "TIM": 10}, "note": "昨晚 pending #9 并入；O15", "score": 65, "level": "brief"}, {"t": "Eldorado Skouries 铜矿获欧盟 CRMA 战略地位", "u": "https://www.mining.com/eldorados-skouries-mine-wins-eu-strategic-status/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Eldorado Gold 旗下希腊 Skouries 铜矿获欧盟关键原材料法案（CRMA）战略项目地位；欧盟本土铜供应链布局进展。", "points": {"REG": 6, "MET": 1, "EVD": 6, "REL": 6, "TIM": 9}, "note": "评分 61 贴近 T2 一句话线，人工确认纳入；O8", "score": 61, "level": "brief"}, {"t": "BIR 发布欧盟废物运输法规行动更新", "u": "https://www.bir.org/news-press/news/1000043053-important-update-bir-action-update-on-eu-waste-shipment-regulation", "s": "BIR（国际回收局，一手协会页面）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "BIR 发布《IMPORTANT UPDATE – BIR ACTION UPDATE ON EU WASTE SHIPMENT REGULATION》（2026-10-13），涉欧盟废物运输法规（WSR）执行层面的行业行动更新；回收物跨境贸易管制口径。", "points": {"REG": 5, "MET": 1, "EVD": 7, "REL": 6, "TIM": 10}, "note": "浏览器轮换补录；更新细节未通读；跨 I4；相对 10-02 已推欧盟 11 月禁向非 OECD 出口塑料废物的执行层增量", "score": 62, "level": "brief"}, {"t": "Project Blue 称欧盟拟堵住中国混动车关税漏洞", "u": "https://www.projectblue.com/api/articles/api/article/GetPublicBlueArticles?page=1&pageSize=10&types=NEWS%2COPINION&includeMetadata=true", "s": "Project Blue（API 标题级，无公开文章 URL，文章 id 1689）", "sec": "海外法规与政策（含电池护照与 DPP 实施）", "sum": "Project Blue 2026-10-13 报道《EU moves to close tariff loophole on Chinese hybrids》；欧盟拟针对中国混动汽车关税漏洞采取措施。", "points": {"REG": 7, "MET": 1, "EVD": 5, "REL": 8, "TIM": 10}, "note": "浏览器轮换补录；证据仅 API 标题级，措施细节与官方口径待一手核验，人工降档为一句话；相对 10-13 早报中欧混动磋商共识的后续动向；O15", "score": 68, "level": "brief"}, {"t": "蔚蓝地图《供应链要你交碳足迹，但你确定交对了吗？》", "u": "https://mp.weixin.qq.com/s/G7nxUdr0zSCyoiglm-GlfQ", "s": "微信公众号（蔚蓝地图，full 正文）", "sec": "LCA 与方法学", "sum": "PCF 字段实务科普：同一产品碳足迹可因口径不同算出 1.25 或 −0.30；梳理客户 PCF 模板中“两个 PCF 总值、化石/生物源/土地利用变化、产品碳含量”等字段定义与正负号规则，对照 PACT、TfS 与 ecoinvent IPCC 方法的子类别映射；供应商交付数据的常见混淆点。", "points": {"REG": 1, "MET": 6, "EVD": 5, "REL": 7, "TIM": 9}, "note": "实务解读口径，案例数据未独立核验", "score": 61, "level": "brief"}, {"t": "CEN-CENELEC 发布第二批支持欧盟 DPP 的欧洲标准", "u": "https://mp.weixin.qq.com/s/cuv-AL1sZE94Ue5zoIHrgw", "s": "微信公众号（百思韬，full 正文）", "sec": "LCA 与方法学", "sum": "2026-09-16 CEN 与 CENELEC 发布第二批 DPP 欧洲标准：EN 18239:2026（访问权限管理、信息系统安全与商业保密）、EN 18246:2026（数据认证、可靠性与完整性），由 CEN-CLC/JTC 24 制定，是对已列入 OJEU 的六项协调标准的补充；预计很快被列入 OJEU 获符合性推定。", "points": {"REG": 4, "MET": 7, "EVD": 5, "REL": 7, "TIM": 9}, "note": "标准发布 2026-09-16、文章 10-13；标准原文未通读；跨 C2", "score": 67, "level": "brief"}, {"t": "现代汽车集团宣布 155 亿美元印度汽车生态系统投资", "u": "https://www.hyundai.com/worldwide/en/newsroom/detail/0000001288", "s": "现代汽车官方新闻中心（一手标题，2026-10-13）", "sec": "整车企业", "sum": "现代汽车集团宣布加速印度增长的 155 亿美元汽车生态系统投资计划；印度本土化产业链布局。", "points": {"REG": 3, "MET": 1, "EVD": 9, "REL": 6, "TIM": 9}, "note": "投资计划口径，细节未通读", "score": 61, "level": "brief"}, {"t": "EnergyX 与 Trafigura 签署 10 年期、约 20 亿美元锂承购协议", "u": "https://www.mining.com/energyx-inks-10-year-2b-lithium-offtake-deal-with-trafigura/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "电池产业链", "sum": "美国锂提取公司 EnergyX 与大宗商品贸易商 Trafigura 签署 10 年期、总价值约 20 亿美元的锂承购协议；锂价下行周期中上游长约锁定信号。", "points": {"REG": 2, "MET": 1, "EVD": 6, "REL": 8, "TIM": 10}, "note": "昨晚 pending #1 并入；承购条款细节待跟踪", "score": 61, "level": "brief"}, {"t": "POSCO Future M 与 Samsung SDI 签署约 6 万亿韩元 LFP 供应合同", "u": "https://newsroom.posco.com/en/posco-future-m-signs-krw-6-trillion-lfp-supply-contract-with-samsung-sdi-builds-strategic-partnership-as-key-supplier-of-non-pfe-materials/", "s": "POSCO 新闻室（企业一手，2026-10-13）", "sec": "电池产业链", "sum": "双方签署价值约 6 万亿韩元的磷酸铁锂（LFP）供应合同并建立战略伙伴关系，POSCO Future M 定位为“非 PFE 材料”关键供应商；韩系 LFP 供应链加速布局信号。", "points": {"REG": 3, "MET": 1, "EVD": 9, "REL": 7, "TIM": 10}, "note": "昨晚 pending #2 并入；签约类人工降档为一句话；交付时间表未披露", "score": 66, "level": "brief"}, {"t": "Hertha Metals 在美国为磁铁级铁 1 亿美元商业工厂破土动工", "u": "https://www.mining.com/hertha-metals-breaks-ground-on-100m-us-commercial-plant-for-magnet-grade-iron/", "s": "mining.com（行业媒体，2026-10-13）", "sec": "电池产业链", "sum": "Hertha Metals 在美国启动其磁铁级铁（magnet-grade iron）1 亿美元商业工厂建设；稀土永磁供应链美国本土化动向。", "points": {"REG": 2, "MET": 1, "EVD": 6, "REL": 8, "TIM": 10}, "note": "昨晚 pending #3 并入；跨 I3", "score": 61, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

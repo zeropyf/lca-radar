@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,19 +1406,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>中华人民共和国商务部·新闻发布（一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_870aab913b204c278dc2c42b51174cb1.html" target="_blank" rel="noopener">中欧贸易投资磋商机制第二次例会召开，混动汽车贸易达成谅解（商务部口径）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_870aab913b204c278dc2c42b51174cb1.html" target="_blank" rel="noopener"><span>中欧贸易投资磋商机制第二次例会召开，混动汽车贸易达成谅解（商务部口径）</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部2026年10月9日发布：王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会并发布联合声明，何立峰同日会见；商务部口径称中欧已以符合世贸组织规则的方式就混动汽车贸易达成谅解。谅解具体安排未取得联合声明正文，无法确认。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_870aab913b204c278dc2c42b51174cb1.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/KUhO1Lyy52CWfvQGt2lHNA" target="_blank" rel="noopener">八部门金融支持服务业意见支持循环经济融资与再生材料认证（补录）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/KUhO1Lyy52CWfvQGt2lHNA" target="_blank" rel="noopener"><span>八部门金融支持服务业意见支持循环经济融资与再生材料认证（补录）</span><span class="ext">↗</span></a></h3>
           <p class="sum">八部门《关于金融支持服务业扩能提质的指导意见》第（九）部分支持循环经济融资模式、工业固废综合利用、可再生资源回收与再生材料认证；文件2026年9月28日发布（中新网引央行网站确认），本次迟到发现补录。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/KUhO1Lyy52CWfvQGt2lHNA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（博萃合规洞察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/bp7kMGspO2s-L5o93DHNtQ" target="_blank" rel="noopener">GB/T 48217-2026与GB/T 48266-2026碳足迹国标发布状态待核<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/bp7kMGspO2s-L5o93DHNtQ" target="_blank" rel="noopener"><span>GB/T 48217-2026与GB/T 48266-2026碳足迹国标发布状态待核</span><span class="ext">↗</span></a></h3>
           <p class="sum">据起草单位称两项电动汽车与汽车动力电池产品碳足迹量化国标已于2026年9月28日发布、拟2027年4月1日实施；全国标准信息公共服务平台未检索到官方记录。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/bp7kMGspO2s-L5o93DHNtQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1380,31 +1430,31 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>EU Perspectives（卢森堡会议报道）</span></div>
-          <h3><a href="https://euperspectives.eu/2026/10/eu-ets2-carbon-prices-fuel-heating-bills/" target="_blank" rel="noopener">ETS2市场稳定储备改革获欧盟理事会最终批准（待理事会一手稿补核）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://euperspectives.eu/2026/10/eu-ets2-carbon-prices-fuel-heating-bills/" target="_blank" rel="noopener"><span>ETS2市场稳定储备改革获欧盟理事会最终批准（待理事会一手稿补核）</span><span class="ext">↗</span></a></h3>
           <p class="sum">据报道欧盟财长会议2026年10月9日最终批准ETS2市场稳定储备改革：碳价超45欧元/吨（2020年价格）时释放量由2000万增至4000万个配额，完成6月与欧洲议会协议（议会9月认可）；公报发布后20天生效。ETS2启动时点是否调整未确认。</p>
           <a class="golink" href="https://euperspectives.eu/2026/10/eu-ets2-carbon-prices-fuel-heating-bills/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>EUR-Lex（一手）</span></div>
-          <h3><a href="https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng" target="_blank" rel="noopener">（补录）欧盟EmpCo指令（EU）2024/825成员国转化措施自2026-09-27起适用<span class="ext">↗</span></a></h3>
+          <h3><a href="https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng" target="_blank" rel="noopener"><span>（补录）欧盟EmpCo指令（EU）2024/825成员国转化措施自2026-09-27起适用</span><span class="ext">↗</span></a></h3>
           <p class="sum">EUR-Lex核验：Directive (EU) 2024/825第4条要求成员国2026年3月27日前转化、自2026年9月27日起适用；无证据通用环保声明、抵消式碳中和声明与自设可持续标签列入黑名单。补录：适用日2026-09-27/发现2026-10-09。</p>
           <a class="golink" href="https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Transport &amp; Environment（一手）</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/iru-and-t-e-call-for-eu-framework-to-unlock-semi-private-truck-charging" target="_blank" rel="noopener">T&amp;E与IRU呼吁欧盟框架解锁半公共卡车充电<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/iru-and-t-e-call-for-eu-framework-to-unlock-semi-private-truck-charging" target="_blank" rel="noopener"><span>T&amp;E与IRU呼吁欧盟框架解锁半公共卡车充电</span><span class="ext">↗</span></a></h3>
           <p class="sum">T&amp;E与IRU共同呼吁建立欧盟框架释放半公共卡车充电潜力，属重型车补能政策倡议。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/iru-and-t-e-call-for-eu-framework-to-unlock-semi-private-truck-charging" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>EFRAG（一手）</span></div>
-          <h3><a href="https://www.efrag.org/en/news-and-calendar/news/efrag-extends-deadline-for-costbenefit-analysis-survey-on-esrs40a-to-18-october-2026" target="_blank" rel="noopener">EFRAG将ESRS成本效益分析调查截止日延长至2026-10-18<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.efrag.org/en/news-and-calendar/news/efrag-extends-deadline-for-costbenefit-analysis-survey-on-esrs40a-to-18-october-2026" target="_blank" rel="noopener"><span>EFRAG将ESRS成本效益分析调查截止日延长至2026-10-18</span><span class="ext">↗</span></a></h3>
           <p class="sum">EFRAG延长ESRS成本效益分析调查（ESRS-40a）截止日至2026年10月18日，为O10监测点本轮唯一新动态。</p>
           <a class="golink" href="https://www.efrag.org/en/news-and-calendar/news/efrag-extends-deadline-for-costbenefit-analysis-survey-on-esrs40a-to-18-october-2026" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>PlasticsEurope（一手）</span></div>
-          <h3><a href="https://plasticseurope.org/media/joint-statement-44-european-organisations-call-for-fair-competition-through-more-ambitious-eu-trade-defence/" target="_blank" rel="noopener">44家欧洲组织联合声明呼吁更积极的欧盟贸易防御<span class="ext">↗</span></a></h3>
+          <h3><a href="https://plasticseurope.org/media/joint-statement-44-european-organisations-call-for-fair-competition-through-more-ambitious-eu-trade-defence/" target="_blank" rel="noopener"><span>44家欧洲组织联合声明呼吁更积极的欧盟贸易防御</span><span class="ext">↗</span></a></h3>
           <p class="sum">PlasticsEurope等44家欧洲组织发表联合声明呼吁更积极的欧盟贸易防御，与Tyres Europe 10月5日立场文件同属倡议链。</p>
           <a class="golink" href="https://plasticseurope.org/media/joint-statement-44-european-organisations-call-for-fair-competition-through-more-ambitious-eu-trade-defence/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1419,13 +1469,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（气候变化与可持续发展视界，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/SzPhTeQbhO5vO0aTTfuFRg" target="_blank" rel="noopener">SBTi发布6项资源支持企业向净零标准2.0版过渡<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/SzPhTeQbhO5vO0aTTfuFRg" target="_blank" rel="noopener"><span>SBTi发布6项资源支持企业向净零标准2.0版过渡</span><span class="ext">↗</span></a></h3>
           <p class="sum">SBTi发布6项支持资源协助企业向《企业净零标准》2.0版过渡；验证时间线口径待SBTi官网一手确认。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/SzPhTeQbhO5vO0aTTfuFRg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（汽车海外技术合规联盟，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/TKQjff4ygo6ZQ-Q-55Xn6A" target="_blank" rel="noopener">ISO/TC 297退役电池收集包装暂存安全指南WG3讨论<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/TKQjff4ygo6ZQ-Q-55Xn6A" target="_blank" rel="noopener"><span>ISO/TC 297退役电池收集包装暂存安全指南WG3讨论</span><span class="ext">↗</span></a></h3>
           <p class="sum">ISO/TC 297第十次全体会议及WG3讨论退役动力电池安全收集、包装与暂存指南，中方专家以国内车企实践对接欧盟合规要求；必看关键词强制复核。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/TKQjff4ygo6ZQ-Q-55Xn6A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1437,25 +1487,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>IEA（一手）</span></div>
-          <h3><a href="https://www.iea.org/reports/japan-2026" target="_blank" rel="noopener">IEA发布《Japan 2026》国别报告条目<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.iea.org/reports/japan-2026" target="_blank" rel="noopener"><span>IEA发布《Japan 2026》国别报告条目</span><span class="ext">↗</span></a></h3>
           <p class="sum">IEA报告库更新日本2026国别条目，汽车/电池相关章节待打开报告页确认。</p>
           <a class="golink" href="https://www.iea.org/reports/japan-2026" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（同济大学碳中和研究院，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/j6BylFdvNQcpDbteVi6hFg" target="_blank" rel="noopener">《Nature Communications》中国区域零碳钢铁路径（28省755家钢厂）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/j6BylFdvNQcpDbteVi6hFg" target="_blank" rel="noopener"><span>《Nature Communications》中国区域零碳钢铁路径（28省755家钢厂）</span><span class="ext">↗</span></a></h3>
           <p class="sum">研究构建28省755家钢厂路径模型：近零情景下2060年行业排放约65Mt，氢冶金与废钢电炉合计近九成，2040–2045为改造窗口。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/j6BylFdvNQcpDbteVi6hFg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（清华大学碳中和研究院，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/kmNV7MKBmEgUxZkPeabTuQ" target="_blank" rel="noopener">全国碳市场机组层面首个因果证据：净减排约2.3%<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/kmNV7MKBmEgUxZkPeabTuQ" target="_blank" rel="noopener"><span>全国碳市场机组层面首个因果证据：净减排约2.3%</span><span class="ext">↗</span></a></h3>
           <p class="sum">Journal of Public Economics研究以机组数据评估全国碳市场：净减排约2.3%，主要经产能替代实现。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/kmNV7MKBmEgUxZkPeabTuQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（中汽碳，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/mFGM-pQ8pe6YHLfq~dQo9w" target="_blank" rel="noopener">中国汽车生命周期数据库CALCD据称上线UNEP GLAD平台<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/mFGM-pQ8pe6YHLfq~dQo9w" target="_blank" rel="noopener"><span>中国汽车生命周期数据库CALCD据称上线UNEP GLAD平台</span><span class="ext">↗</span></a></h3>
           <p class="sum">中国汽车生命周期数据库（CALCD）据称已正式上线联合国环境规划署GLAD全球平台；GLAD页面待一手核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/mFGM-pQ8pe6YHLfq~dQo9w" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1470,7 +1520,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Honda Global Newsroom（一手）</span></div>
-          <h3><a href="https://global.honda/en/topics/2026/c_2026-10-09eng.html" target="_blank" rel="noopener">本田发布综合报告《Honda Report 2026》<span class="ext">↗</span></a></h3>
+          <h3><a href="https://global.honda/en/topics/2026/c_2026-10-09eng.html" target="_blank" rel="noopener"><span>本田发布综合报告《Honda Report 2026》</span><span class="ext">↗</span></a></h3>
           <p class="sum">本田发布2026综合报告，气候/LCA披露增量待通读后判断。</p>
           <a class="golink" href="https://global.honda/en/topics/2026/c_2026-10-09eng.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1482,19 +1532,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（Kallanish国际钢铁资讯，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/7AJCaU72JNUR7keSFJ1gSA" target="_blank" rel="noopener">泰国对十家中国钢企ZAM钢征收反倾销税（待公报核验）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/7AJCaU72JNUR7keSFJ1gSA" target="_blank" rel="noopener"><span>泰国对十家中国钢企ZAM钢征收反倾销税（待公报核验）</span><span class="ext">↗</span></a></h3>
           <p class="sum">泰国据称对十家中国钢铁集团及关联企业热浸镀锌铝镁钢征收反倾销税（多数CIF 37.55%），反规避调查结束；公报原文待核。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/7AJCaU72JNUR7keSFJ1gSA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SteelMan 钢铁信息，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/M-zjaoKTHdqdvymv5aZxtg" target="_blank" rel="noopener">SteelMan综述下一代炼铁炉料路线竞争<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/M-zjaoKTHdqdvymv5aZxtg" target="_blank" rel="noopener"><span>SteelMan综述下一代炼铁炉料路线竞争</span><span class="ext">↗</span></a></h3>
           <p class="sum">综述DRI+电熔、粉矿流化床与高品位球团等路线围绕中低品位矿适配的验证进展及成本权衡。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/M-zjaoKTHdqdvymv5aZxtg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Mining.com</span></div>
-          <h3><a href="https://www.mining.com/eu-puts-kghms-2-4b-copper-projects-on-fast-track/" target="_blank" rel="noopener">欧盟据称将KGHM铜项目列入快速通道<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/eu-puts-kghms-2-4b-copper-projects-on-fast-track/" target="_blank" rel="noopener"><span>欧盟据称将KGHM铜项目列入快速通道</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧盟据称将KGHM 240亿美元铜项目列入快速通道，如属实与CRMA战略项目清单相关。</p>
           <a class="golink" href="https://www.mining.com/eu-puts-kghms-2-4b-copper-projects-on-fast-track/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1506,13 +1556,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM新能源，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/oChPIzkhVfa3bUolyCJKhA" target="_blank" rel="noopener">SMM：国庆假期印尼镍矿价格与升水承压<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/oChPIzkhVfa3bUolyCJKhA" target="_blank" rel="noopener"><span>SMM：国庆假期印尼镍矿价格与升水承压</span><span class="ext">↗</span></a></h3>
           <p class="sum">假期印尼镍市清淡，10月上半月镍HMA 16,322.67美元/吨（环比-2.25%），各品位HPM下调，主流升水转负。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/oChPIzkhVfa3bUolyCJKhA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Project Blue</span></div>
-          <h3><a href="https://www.projectblue.com/blue?article=1686&amp;type=blueview&amp;title=nesr-and-saudi-aramco-agree-to-develop-a-lithium-project-in-saudi-arabia" target="_blank" rel="noopener">NESR与Saudi Aramco据称达成沙特锂项目协议<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.projectblue.com/blue?article=1686&amp;type=blueview&amp;title=nesr-and-saudi-aramco-agree-to-develop-a-lithium-project-in-saudi-arabia" target="_blank" rel="noopener"><span>NESR与Saudi Aramco据称达成沙特锂项目协议</span><span class="ext">↗</span></a></h3>
           <p class="sum">NESR与Saudi Aramco据称达成协议开发沙特锂项目，属电池锂价值链上游布局，项目细节待一手核验。</p>
           <a class="golink" href="https://www.projectblue.com/blue?article=1686&amp;type=blueview&amp;title=nesr-and-saudi-aramco-agree-to-develop-a-lithium-project-in-saudi-arabia" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1524,13 +1574,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（退役电池资源与再利用，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/qWO6r63R6kDzMV3IMoYvng" target="_blank" rel="noopener">江苏时代1.3亿元废极片再生回收项目溧阳环评受理公示<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/qWO6r63R6kDzMV3IMoYvng" target="_blank" rel="noopener"><span>江苏时代1.3亿元废极片再生回收项目溧阳环评受理公示</span><span class="ext">↗</span></a></h3>
           <p class="sum">宁德时代全资子公司江苏时代废旧锂离子电池极片再生回收项目（总投资1.3亿元）在常州溧阳受理公示至10月12日，当前为环评受理阶段、非投产。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/qWO6r63R6kDzMV3IMoYvng" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>BIR（国际回收局，一手）</span></div>
-          <h3><a href="https://www.bir.org/news-press/news/1000043035-bir-world-mirror-on-non-ferrous-metals-quarterly-report-october-2026-international-markets-essential-for-balancing-supply-and-demand" target="_blank" rel="noopener">BIR发布《World Mirror on Non-Ferrous Metals》2026年10月季度报告<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.bir.org/news-press/news/1000043035-bir-world-mirror-on-non-ferrous-metals-quarterly-report-october-2026-international-markets-essential-for-balancing-supply-and-demand" target="_blank" rel="noopener"><span>BIR发布《World Mirror on Non-Ferrous Metals》2026年10月季度报告</span><span class="ext">↗</span></a></h3>
           <p class="sum">BIR于2026年10月9日发布有色金属季度报告《World Mirror on Non-Ferrous Metals》，聚焦以国际市场平衡有色金属供需。</p>
           <a class="golink" href="https://www.bir.org/news-press/news/1000043035-bir-world-mirror-on-non-ferrous-metals-quarterly-report-october-2026-international-markets-essential-for-balancing-supply-and-demand" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2284,9 +2334,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="3"><span class="n">1</span><span class="t"><b>ETS2市场稳定储备改革获欧盟理事会最终批准（待一手稿补核）</b><span>EU Perspectives</span></span></a>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>中欧贸易磋商第二次例会：混动汽车贸易达成谅解</b><span>中华人民共和国商务部·新闻发布（一手）</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">3</span><span class="t"><b>EmpCo指令2024/825自2026-09-27起适用（补录）</b><span>EUR-Lex（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">1</span><span class="t"><b>ETS2市场稳定储备改革获欧盟理事会最终批准（待理事会一手稿补核）</b><span>EU Perspectives（卢森堡会议报道）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>中欧贸易投资磋商机制第二次例会召开，混动汽车贸易达成谅解（商务部口径）</b><span>中华人民共和国商务部·新闻发布（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="4"><span class="n">3</span><span class="t"><b>（补录）欧盟EmpCo指令（EU）2024/825成员国转化措施自2026-09-27起适用</b><span>EUR-Lex（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="13"><span class="n">4</span><span class="t"><b>中国汽车生命周期数据库CALCD据称上线UNEP GLAD平台</b><span>微信公众号（中汽碳，partial）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">5</span><span class="t"><b>GB/T 48217-2026与GB/T 48266-2026碳足迹国标发布状态待核</b><span>微信公众号（博萃合规洞察，full 正文）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2424,7 +2476,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-10";
-var BRIEF_DATA = [{"t": "中欧贸易投资磋商机制第二次例会召开，混动汽车贸易达成谅解（商务部口径）", "u": "https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_870aab913b204c278dc2c42b51174cb1.html", "s": "中华人民共和国商务部·新闻发布（一手）", "sec": "国内法规与政策", "sum": "商务部2026年10月9日发布：王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会并发布联合声明，何立峰同日会见；商务部口径称中欧已以符合世贸组织规则的方式就混动汽车贸易达成谅解。谅解具体安排未取得联合声明正文，无法确认。", "points": [], "note": "已核验（一手标题；联合声明正文未通读，细节待补）"}, {"t": "一句话：八部门金融支持服务业意见支持循环经济融资与再生材料认证（补录）", "u": "https://mp.weixin.qq.com/s/KUhO1Lyy52CWfvQGt2lHNA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "国内法规与政策", "sum": "八部门《关于金融支持服务业扩能提质的指导意见》第（九）部分支持循环经济融资模式、工业固废综合利用、可再生资源回收与再生材料认证；文件2026年9月28日发布（中新网引央行网站确认），本次迟到发现补录。", "points": [], "note": "补录：发布2026-09-28/发现2026-10-09；意见原文文号待一手核验"}, {"t": "一句话：GB/T 48217-2026与GB/T 48266-2026碳足迹国标发布状态待核", "u": "https://mp.weixin.qq.com/s/bp7kMGspO2s-L5o93DHNtQ", "s": "微信公众号（博萃合规洞察，full 正文）", "sec": "国内法规与政策", "sum": "据起草单位称两项电动汽车与汽车动力电池产品碳足迹量化国标已于2026年9月28日发布、拟2027年4月1日实施；全国标准信息公共服务平台未检索到官方记录。", "points": [], "note": "待一手核验（起草单位自述，未核验前不作正式状态断言）"}, {"t": "ETS2市场稳定储备改革获欧盟理事会最终批准（待理事会一手稿补核）", "u": "https://euperspectives.eu/2026/10/eu-ets2-carbon-prices-fuel-heating-bills/", "s": "EU Perspectives（卢森堡会议报道）", "sec": "海外法规与政策", "sum": "据报道欧盟财长会议2026年10月9日最终批准ETS2市场稳定储备改革：碳价超45欧元/吨（2020年价格）时释放量由2000万增至4000万个配额，完成6月与欧洲议会协议（议会9月认可）；公报发布后20天生效。ETS2启动时点是否调整未确认。", "points": [], "note": "报道正文通读并链接理事会页面；理事会新闻稿原文未直读，已安排浏览器补核；以OJ文本为准"}, {"t": "（补录）欧盟EmpCo指令（EU）2024/825成员国转化措施自2026-09-27起适用", "u": "https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng", "s": "EUR-Lex（一手）", "sec": "海外法规与政策", "sum": "EUR-Lex核验：Directive (EU) 2024/825第4条要求成员国2026年3月27日前转化、自2026年9月27日起适用；无证据通用环保声明、抵消式碳中和声明与自设可持续标签列入黑名单。补录：适用日2026-09-27/发现2026-10-09。", "points": [], "note": "已核验（EUR-Lex指令文本第4条）；成员国逐国转化状态未核验"}, {"t": "一句话：T&E与IRU呼吁欧盟框架解锁半公共卡车充电", "u": "https://www.transportenvironment.org/articles/iru-and-t-e-call-for-eu-framework-to-unlock-semi-private-truck-charging", "s": "Transport & Environment（一手）", "sec": "海外法规与政策", "sum": "T&E与IRU共同呼吁建立欧盟框架释放半公共卡车充电潜力，属重型车补能政策倡议。", "points": [], "note": "仅有RSS标题（NGO立场文件，正文未通读）"}, {"t": "一句话：EFRAG将ESRS成本效益分析调查截止日延长至2026-10-18", "u": "https://www.efrag.org/en/news-and-calendar/news/efrag-extends-deadline-for-costbenefit-analysis-survey-on-esrs40a-to-18-october-2026", "s": "EFRAG（一手）", "sec": "海外法规与政策", "sum": "EFRAG延长ESRS成本效益分析调查（ESRS-40a）截止日至2026年10月18日，为O10监测点本轮唯一新动态。", "points": [], "note": "仅有标题（程序性延期）"}, {"t": "一句话：44家欧洲组织联合声明呼吁更积极的欧盟贸易防御", "u": "https://plasticseurope.org/media/joint-statement-44-european-organisations-call-for-fair-competition-through-more-ambitious-eu-trade-defence/", "s": "PlasticsEurope（一手）", "sec": "海外法规与政策", "sum": "PlasticsEurope等44家欧洲组织发表联合声明呼吁更积极的欧盟贸易防御，与Tyres Europe 10月5日立场文件同属倡议链。", "points": [], "note": "仅有标题，正文未通读（行业游说口径）"}, {"t": "一句话：SBTi发布6项资源支持企业向净零标准2.0版过渡", "u": "https://mp.weixin.qq.com/s/SzPhTeQbhO5vO0aTTfuFRg", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "LCA与方法学", "sum": "SBTi发布6项支持资源协助企业向《企业净零标准》2.0版过渡；验证时间线口径待SBTi官网一手确认。", "points": [], "note": "微信公众号full正文转述；时间线待官网核验"}, {"t": "一句话：ISO/TC 297退役电池收集包装暂存安全指南WG3讨论", "u": "https://mp.weixin.qq.com/s/TKQjff4ygo6ZQ-Q-55Xn6A", "s": "微信公众号（汽车海外技术合规联盟，partial）", "sec": "LCA与方法学", "sum": "ISO/TC 297第十次全体会议及WG3讨论退役动力电池安全收集、包装与暂存指南，中方专家以国内车企实践对接欧盟合规要求；必看关键词强制复核。", "points": [], "note": "微信公众号partial（企业参会自述，草案文本未取得）"}, {"t": "一句话：IEA发布《Japan 2026》国别报告条目", "u": "https://www.iea.org/reports/japan-2026", "s": "IEA（一手）", "sec": "数据与知识", "sum": "IEA报告库更新日本2026国别条目，汽车/电池相关章节待打开报告页确认。", "points": [], "note": "仅有标题（报告范围未通读）"}, {"t": "一句话：《Nature Communications》中国区域零碳钢铁路径（28省755家钢厂）", "u": "https://mp.weixin.qq.com/s/j6BylFdvNQcpDbteVi6hFg", "s": "微信公众号（同济大学碳中和研究院，full 正文）", "sec": "数据与知识", "sum": "研究构建28省755家钢厂路径模型：近零情景下2060年行业排放约65Mt，氢冶金与废钢电炉合计近九成，2040–2045为改造窗口。", "points": [], "note": "微信公众号full正文转述（DOI 10.1038/s41467-026-76996-1，原文未独立通读）"}, {"t": "一句话：全国碳市场机组层面首个因果证据：净减排约2.3%", "u": "https://mp.weixin.qq.com/s/kmNV7MKBmEgUxZkPeabTuQ", "s": "微信公众号（清华大学碳中和研究院，full 正文）", "sec": "数据与知识", "sum": "Journal of Public Economics研究以机组数据评估全国碳市场：净减排约2.3%，主要经产能替代实现。", "points": [], "note": "微信公众号full正文转述（DOI 10.1016/j.jpubeco.2026.105797，全文未独立通读）"}, {"t": "一句话：中国汽车生命周期数据库CALCD据称上线UNEP GLAD平台", "u": "https://mp.weixin.qq.com/s/mFGM-pQ8pe6YHLfq~dQo9w", "s": "微信公众号（中汽碳，partial）", "sec": "数据与知识", "sum": "中国汽车生命周期数据库（CALCD）据称已正式上线联合国环境规划署GLAD全球平台；GLAD页面待一手核验。", "points": [], "note": "微信公众号partial（仅标题，待UNEP一手核验）"}, {"t": "一句话：本田发布综合报告《Honda Report 2026》", "u": "https://global.honda/en/topics/2026/c_2026-10-09eng.html", "s": "Honda Global Newsroom（一手）", "sec": "整车企业", "sum": "本田发布2026综合报告，气候/LCA披露增量待通读后判断。", "points": [], "note": "仅有标题（报告全文未读）"}, {"t": "一句话：泰国对十家中国钢企ZAM钢征收反倾销税（待公报核验）", "u": "https://mp.weixin.qq.com/s/7AJCaU72JNUR7keSFJ1gSA", "s": "微信公众号（Kallanish国际钢铁资讯，full 正文）", "sec": "上游基础材料", "sum": "泰国据称对十家中国钢铁集团及关联企业热浸镀锌铝镁钢征收反倾销税（多数CIF 37.55%），反规避调查结束；公报原文待核。", "points": [], "note": "微信公众号full正文（Kallanish转述公报，待一手核验）"}, {"t": "一句话：SteelMan综述下一代炼铁炉料路线竞争", "u": "https://mp.weixin.qq.com/s/M-zjaoKTHdqdvymv5aZxtg", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "上游基础材料", "sum": "综述DRI+电熔、粉矿流化床与高品位球团等路线围绕中低品位矿适配的验证进展及成本权衡。", "points": [], "note": "微信公众号full正文（KOL技术综述，未第三方核验）"}, {"t": "一句话：欧盟据称将KGHM铜项目列入快速通道", "u": "https://www.mining.com/eu-puts-kghms-2-4b-copper-projects-on-fast-track/", "s": "Mining.com", "sec": "上游基础材料", "sum": "欧盟据称将KGHM 240亿美元铜项目列入快速通道，如属实与CRMA战略项目清单相关。", "points": [], "note": "仅有标题/摘要（待一手核验）"}, {"t": "一句话：SMM：国庆假期印尼镍矿价格与升水承压", "u": "https://mp.weixin.qq.com/s/oChPIzkhVfa3bUolyCJKhA", "s": "微信公众号（SMM新能源，full 正文）", "sec": "电池产业链", "sum": "假期印尼镍市清淡，10月上半月镍HMA 16,322.67美元/吨（环比-2.25%），各品位HPM下调，主流升水转负。", "points": [], "note": "微信公众号full正文（行业媒体数据口径）"}, {"t": "一句话：NESR与Saudi Aramco据称达成沙特锂项目协议", "u": "https://www.projectblue.com/blue?article=1686&type=blueview&title=nesr-and-saudi-aramco-agree-to-develop-a-lithium-project-in-saudi-arabia", "s": "Project Blue", "sec": "电池产业链", "sum": "NESR与Saudi Aramco据称达成协议开发沙特锂项目，属电池锂价值链上游布局，项目细节待一手核验。", "points": [], "note": "浏览器轮换发现（仅列表标题，待一手核验）"}, {"t": "一句话：江苏时代1.3亿元废极片再生回收项目溧阳环评受理公示", "u": "https://mp.weixin.qq.com/s/qWO6r63R6kDzMV3IMoYvng", "s": "微信公众号（退役电池资源与再利用，full 正文）", "sec": "循环再生", "sum": "宁德时代全资子公司江苏时代废旧锂离子电池极片再生回收项目（总投资1.3亿元）在常州溧阳受理公示至10月12日，当前为环评受理阶段、非投产。", "points": [], "note": "微信公众号full正文（转述溧阳市政府公示，原文未独立直读）"}, {"t": "一句话：BIR发布《World Mirror on Non-Ferrous Metals》2026年10月季度报告", "u": "https://www.bir.org/news-press/news/1000043035-bir-world-mirror-on-non-ferrous-metals-quarterly-report-october-2026-international-markets-essential-for-balancing-supply-and-demand", "s": "BIR（国际回收局，一手）", "sec": "循环再生", "sum": "BIR于2026年10月9日发布有色金属季度报告《World Mirror on Non-Ferrous Metals》，聚焦以国际市场平衡有色金属供需。", "points": [], "note": "浏览器轮换发现（一手列表与直达链接已核验；报告全文未读）"}];
+var BRIEF_DATA = [{"t": "中欧贸易投资磋商机制第二次例会召开，混动汽车贸易达成谅解（商务部口径）", "u": "https://www.mofcom.gov.cn/xwfb/bldhd/art/2026/art_870aab913b204c278dc2c42b51174cb1.html", "s": "中华人民共和国商务部·新闻发布（一手）", "sec": "国内法规与政策", "sum": "商务部2026年10月9日发布：王文涛部长与欧委会贸易和经济安全委员谢夫乔维奇共同召开中欧贸易投资磋商机制第二次例会并发布联合声明，何立峰同日会见；商务部口径称中欧已以符合世贸组织规则的方式就混动汽车贸易达成谅解。谅解具体安排未取得联合声明正文，无法确认。", "points": [], "note": "已核验（一手标题；联合声明正文未通读，细节待补）", "score": 72, "level": "full"}, {"t": "一句话：八部门金融支持服务业意见支持循环经济融资与再生材料认证（补录）", "u": "https://mp.weixin.qq.com/s/KUhO1Lyy52CWfvQGt2lHNA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "国内法规与政策", "sum": "八部门《关于金融支持服务业扩能提质的指导意见》第（九）部分支持循环经济融资模式、工业固废综合利用、可再生资源回收与再生材料认证；文件2026年9月28日发布（中新网引央行网站确认），本次迟到发现补录。", "points": [], "note": "补录：发布2026-09-28/发现2026-10-09；意见原文文号待一手核验", "score": 47, "level": "brief"}, {"t": "一句话：GB/T 48217-2026与GB/T 48266-2026碳足迹国标发布状态待核", "u": "https://mp.weixin.qq.com/s/bp7kMGspO2s-L5o93DHNtQ", "s": "微信公众号（博萃合规洞察，full 正文）", "sec": "国内法规与政策", "sum": "据起草单位称两项电动汽车与汽车动力电池产品碳足迹量化国标已于2026年9月28日发布、拟2027年4月1日实施；全国标准信息公共服务平台未检索到官方记录。", "points": [], "note": "待一手核验（起草单位自述，未核验前不作正式状态断言）", "score": 66, "level": "brief"}, {"t": "ETS2市场稳定储备改革获欧盟理事会最终批准（待理事会一手稿补核）", "u": "https://euperspectives.eu/2026/10/eu-ets2-carbon-prices-fuel-heating-bills/", "s": "EU Perspectives（卢森堡会议报道）", "sec": "海外法规与政策", "sum": "据报道欧盟财长会议2026年10月9日最终批准ETS2市场稳定储备改革：碳价超45欧元/吨（2020年价格）时释放量由2000万增至4000万个配额，完成6月与欧洲议会协议（议会9月认可）；公报发布后20天生效。ETS2启动时点是否调整未确认。", "points": [], "note": "报道正文通读并链接理事会页面；理事会新闻稿原文未直读，已安排浏览器补核；以OJ文本为准", "score": 73, "level": "full"}, {"t": "（补录）欧盟EmpCo指令（EU）2024/825成员国转化措施自2026-09-27起适用", "u": "https://eur-lex.europa.eu/eli/dir/2024/825/oj/eng", "s": "EUR-Lex（一手）", "sec": "海外法规与政策", "sum": "EUR-Lex核验：Directive (EU) 2024/825第4条要求成员国2026年3月27日前转化、自2026年9月27日起适用；无证据通用环保声明、抵消式碳中和声明与自设可持续标签列入黑名单。补录：适用日2026-09-27/发现2026-10-09。", "points": [], "note": "已核验（EUR-Lex指令文本第4条）；成员国逐国转化状态未核验", "score": 68, "level": "full"}, {"t": "一句话：T&E与IRU呼吁欧盟框架解锁半公共卡车充电", "u": "https://www.transportenvironment.org/articles/iru-and-t-e-call-for-eu-framework-to-unlock-semi-private-truck-charging", "s": "Transport & Environment（一手）", "sec": "海外法规与政策", "sum": "T&E与IRU共同呼吁建立欧盟框架释放半公共卡车充电潜力，属重型车补能政策倡议。", "points": [], "note": "仅有RSS标题（NGO立场文件，正文未通读）", "score": 62, "level": "brief"}, {"t": "一句话：EFRAG将ESRS成本效益分析调查截止日延长至2026-10-18", "u": "https://www.efrag.org/en/news-and-calendar/news/efrag-extends-deadline-for-costbenefit-analysis-survey-on-esrs40a-to-18-october-2026", "s": "EFRAG（一手）", "sec": "海外法规与政策", "sum": "EFRAG延长ESRS成本效益分析调查（ESRS-40a）截止日至2026年10月18日，为O10监测点本轮唯一新动态。", "points": [], "note": "仅有标题（程序性延期）", "score": 62, "level": "brief"}, {"t": "一句话：44家欧洲组织联合声明呼吁更积极的欧盟贸易防御", "u": "https://plasticseurope.org/media/joint-statement-44-european-organisations-call-for-fair-competition-through-more-ambitious-eu-trade-defence/", "s": "PlasticsEurope（一手）", "sec": "海外法规与政策", "sum": "PlasticsEurope等44家欧洲组织发表联合声明呼吁更积极的欧盟贸易防御，与Tyres Europe 10月5日立场文件同属倡议链。", "points": [], "note": "仅有标题，正文未通读（行业游说口径）", "score": 57, "level": "brief"}, {"t": "一句话：SBTi发布6项资源支持企业向净零标准2.0版过渡", "u": "https://mp.weixin.qq.com/s/SzPhTeQbhO5vO0aTTfuFRg", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "LCA与方法学", "sum": "SBTi发布6项支持资源协助企业向《企业净零标准》2.0版过渡；验证时间线口径待SBTi官网一手确认。", "points": [], "note": "微信公众号full正文转述；时间线待官网核验", "score": 65, "level": "brief"}, {"t": "一句话：ISO/TC 297退役电池收集包装暂存安全指南WG3讨论", "u": "https://mp.weixin.qq.com/s/TKQjff4ygo6ZQ-Q-55Xn6A", "s": "微信公众号（汽车海外技术合规联盟，partial）", "sec": "LCA与方法学", "sum": "ISO/TC 297第十次全体会议及WG3讨论退役动力电池安全收集、包装与暂存指南，中方专家以国内车企实践对接欧盟合规要求；必看关键词强制复核。", "points": [], "note": "微信公众号partial（企业参会自述，草案文本未取得）", "score": 52, "level": "brief"}, {"t": "一句话：IEA发布《Japan 2026》国别报告条目", "u": "https://www.iea.org/reports/japan-2026", "s": "IEA（一手）", "sec": "数据与知识", "sum": "IEA报告库更新日本2026国别条目，汽车/电池相关章节待打开报告页确认。", "points": [], "note": "仅有标题（报告范围未通读）", "score": 57, "level": "brief"}, {"t": "一句话：《Nature Communications》中国区域零碳钢铁路径（28省755家钢厂）", "u": "https://mp.weixin.qq.com/s/j6BylFdvNQcpDbteVi6hFg", "s": "微信公众号（同济大学碳中和研究院，full 正文）", "sec": "数据与知识", "sum": "研究构建28省755家钢厂路径模型：近零情景下2060年行业排放约65Mt，氢冶金与废钢电炉合计近九成，2040–2045为改造窗口。", "points": [], "note": "微信公众号full正文转述（DOI 10.1038/s41467-026-76996-1，原文未独立通读）", "score": 64, "level": "brief"}, {"t": "一句话：全国碳市场机组层面首个因果证据：净减排约2.3%", "u": "https://mp.weixin.qq.com/s/kmNV7MKBmEgUxZkPeabTuQ", "s": "微信公众号（清华大学碳中和研究院，full 正文）", "sec": "数据与知识", "sum": "Journal of Public Economics研究以机组数据评估全国碳市场：净减排约2.3%，主要经产能替代实现。", "points": [], "note": "微信公众号full正文转述（DOI 10.1016/j.jpubeco.2026.105797，全文未独立通读）", "score": 66, "level": "brief"}, {"t": "一句话：中国汽车生命周期数据库CALCD据称上线UNEP GLAD平台", "u": "https://mp.weixin.qq.com/s/mFGM-pQ8pe6YHLfq~dQo9w", "s": "微信公众号（中汽碳，partial）", "sec": "数据与知识", "sum": "中国汽车生命周期数据库（CALCD）据称已正式上线联合国环境规划署GLAD全球平台；GLAD页面待一手核验。", "points": [], "note": "微信公众号partial（仅标题，待UNEP一手核验）", "score": 68, "level": "brief"}, {"t": "一句话：本田发布综合报告《Honda Report 2026》", "u": "https://global.honda/en/topics/2026/c_2026-10-09eng.html", "s": "Honda Global Newsroom（一手）", "sec": "整车企业", "sum": "本田发布2026综合报告，气候/LCA披露增量待通读后判断。", "points": [], "note": "仅有标题（报告全文未读）", "score": 55, "level": "brief"}, {"t": "一句话：泰国对十家中国钢企ZAM钢征收反倾销税（待公报核验）", "u": "https://mp.weixin.qq.com/s/7AJCaU72JNUR7keSFJ1gSA", "s": "微信公众号（Kallanish国际钢铁资讯，full 正文）", "sec": "上游基础材料", "sum": "泰国据称对十家中国钢铁集团及关联企业热浸镀锌铝镁钢征收反倾销税（多数CIF 37.55%），反规避调查结束；公报原文待核。", "points": [], "note": "微信公众号full正文（Kallanish转述公报，待一手核验）", "score": 61, "level": "brief"}, {"t": "一句话：SteelMan综述下一代炼铁炉料路线竞争", "u": "https://mp.weixin.qq.com/s/M-zjaoKTHdqdvymv5aZxtg", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "上游基础材料", "sum": "综述DRI+电熔、粉矿流化床与高品位球团等路线围绕中低品位矿适配的验证进展及成本权衡。", "points": [], "note": "微信公众号full正文（KOL技术综述，未第三方核验）", "score": 48, "level": "brief"}, {"t": "一句话：欧盟据称将KGHM铜项目列入快速通道", "u": "https://www.mining.com/eu-puts-kghms-2-4b-copper-projects-on-fast-track/", "s": "Mining.com", "sec": "上游基础材料", "sum": "欧盟据称将KGHM 240亿美元铜项目列入快速通道，如属实与CRMA战略项目清单相关。", "points": [], "note": "仅有标题/摘要（待一手核验）", "score": 57, "level": "brief"}, {"t": "一句话：SMM：国庆假期印尼镍矿价格与升水承压", "u": "https://mp.weixin.qq.com/s/oChPIzkhVfa3bUolyCJKhA", "s": "微信公众号（SMM新能源，full 正文）", "sec": "电池产业链", "sum": "假期印尼镍市清淡，10月上半月镍HMA 16,322.67美元/吨（环比-2.25%），各品位HPM下调，主流升水转负。", "points": [], "note": "微信公众号full正文（行业媒体数据口径）", "score": 57, "level": "brief"}, {"t": "一句话：NESR与Saudi Aramco据称达成沙特锂项目协议", "u": "https://www.projectblue.com/blue?article=1686&type=blueview&title=nesr-and-saudi-aramco-agree-to-develop-a-lithium-project-in-saudi-arabia", "s": "Project Blue", "sec": "电池产业链", "sum": "NESR与Saudi Aramco据称达成协议开发沙特锂项目，属电池锂价值链上游布局，项目细节待一手核验。", "points": [], "note": "浏览器轮换发现（仅列表标题，待一手核验）", "score": 54, "level": "brief"}, {"t": "一句话：江苏时代1.3亿元废极片再生回收项目溧阳环评受理公示", "u": "https://mp.weixin.qq.com/s/qWO6r63R6kDzMV3IMoYvng", "s": "微信公众号（退役电池资源与再利用，full 正文）", "sec": "循环再生", "sum": "宁德时代全资子公司江苏时代废旧锂离子电池极片再生回收项目（总投资1.3亿元）在常州溧阳受理公示至10月12日，当前为环评受理阶段、非投产。", "points": [], "note": "微信公众号full正文（转述溧阳市政府公示，原文未独立直读）", "score": 58, "level": "brief"}, {"t": "一句话：BIR发布《World Mirror on Non-Ferrous Metals》2026年10月季度报告", "u": "https://www.bir.org/news-press/news/1000043035-bir-world-mirror-on-non-ferrous-metals-quarterly-report-october-2026-international-markets-essential-for-balancing-supply-and-demand", "s": "BIR（国际回收局，一手）", "sec": "循环再生", "sum": "BIR于2026年10月9日发布有色金属季度报告《World Mirror on Non-Ferrous Metals》，聚焦以国际市场平衡有色金属供需。", "points": [], "note": "浏览器轮换发现（一手列表与直达链接已核验；报告全文未读）", "score": 64, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

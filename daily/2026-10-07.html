@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,19 +1406,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html" target="_blank" rel="noopener">商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html" target="_blank" rel="noopener"><span>商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026-10-06 20:05（商务部新闻办公室），发言人就 10 月 5 日法国、德国向欧委会提交非正式文件、要求欧盟强化使用贸易防御措施并推出多项保护主义新工具一事答记者问。发言人表态：相互依赖不是风险、利益交融不是威胁，开放合作才是发展的正道；保护主义提升不了竞争力，脱钩断链只会损人不利己；希望法德坚持开放合作和自由贸易、遵守世贸规则，不要鼓动欧盟动辄使用保护主义工具，更不要将经贸问题政治化和泛安全化，避免“以错误的方式走错误的道路，最终反噬自己”。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（尚轻时代，full 正文转述财政部函）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/Jw1YglZRtBUjKJjvOd5dfg" target="_blank" rel="noopener">财政部就《企业可持续披露准则第1号——气候（试行）》应用指南及 9 行业应用指南征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/Jw1YglZRtBUjKJjvOd5dfg" target="_blank" rel="noopener"><span>财政部就《企业可持续披露准则第1号——气候（试行）》应用指南及 9 行业应用指南征求意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">财政部办公厅 9 月 28 日发函，就《企业可持续披露准则第1号——气候（试行）》应用指南及电力、钢铁、煤炭、石油、化肥、铝、氢、水泥、汽车 9 个行业应用指南征求意见，反馈截止 10 月 26 日。铝行业指南适用于氧化铝/电解铝/再生铝冶炼企业。相对 10-05 已推 partial 一句话，本次新增发函日期、9 行业完整名单、反馈截止日与铝指南适用范围。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/Jw1YglZRtBUjKJjvOd5dfg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（碳究社，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/g7qaq4QM03ZC54U8TKvFlw" target="_blank" rel="noopener">碳究社长文辨析——“十五五”碳市场扩围化工/石化尚未真正落地<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/g7qaq4QM03ZC54U8TKvFlw" target="_blank" rel="noopener"><span>碳究社长文辨析——“十五五”碳市场扩围化工/石化尚未真正落地</span><span class="ext">↗</span></a></h3>
           <p class="sum">石化化工 2026-02 起纳入的是排放“报告管理”（2.6 万吨门槛），报告管理不等于配额管理；截至 10-05《全国碳排放权交易市场覆盖石化化工行业工作方案》仍未印发，“扩围落地”尚未发生。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/g7qaq4QM03ZC54U8TKvFlw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1380,25 +1430,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/delaying-ets2-would-leave-europe-unprepared-for-future-price-shocks-say-industry-and-ngos" target="_blank" rel="noopener">T&amp;E 联合行业与 NGO 发声——推迟 ETS2 将使欧洲在未来价格冲击面前准备不足<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/delaying-ets2-would-leave-europe-unprepared-for-future-price-shocks-say-industry-and-ngos" target="_blank" rel="noopener"><span>T&amp;E 联合行业与 NGO 发声——推迟 ETS2 将使欧洲在未来价格冲击面前准备不足</span><span class="ext">↗</span></a></h3>
           <p class="sum">10 月 9 日卢森堡部长会议前夕，T&amp;E 联合行业与 NGO 主张再度推迟 ETS2 将削弱欧洲应对未来能源价格冲击的准备；是 10-01 早报“意/捷拟推迟、六国联名反对”的延续。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/delaying-ets2-would-leave-europe-unprepared-for-future-price-shocks-say-industry-and-ngos" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（气候变化与可持续发展视界，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/1f51ndccnHtqgU2RzXUnGw" target="_blank" rel="noopener">CBAM 证书 2026 年 Q3 价格 82.32 欧元/吨，环比上涨 9.4%<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/1f51ndccnHtqgU2RzXUnGw" target="_blank" rel="noopener"><span>CBAM 证书 2026 年 Q3 价格 82.32 欧元/吨，环比上涨 9.4%</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧委会 10-05 公布 2026 年 Q3 CBAM 证书价格 82.32 欧元/吨 CO₂e，较 Q2 的 75.28 欧元上涨 7.04 欧元（+9.4%），创 CBAM 正式实施以来单季最大涨幅。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/1f51ndccnHtqgU2RzXUnGw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（CCCEU，转述 POLITICO）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/tS-cR1PjKIyK80iuRzwFyg" target="_blank" rel="noopener">法德推动欧盟加快反制贸易威胁，拟赋予欧委会更快限制进口权限<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/tS-cR1PjKIyK80iuRzwFyg" target="_blank" rel="noopener"><span>法德推动欧盟加快反制贸易威胁，拟赋予欧委会更快限制进口权限</span><span class="ext">↗</span></a></h3>
           <p class="sum">马克龙与默茨联名致信欧委会，称现有贸易防御工具“不再足够”，主张建立新法律工具使欧盟能更快限制特定国家进口；与对华约 10 亿欧元/天贸易逆差及“再平衡”议程相关；谢夫乔维奇本周访京。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/tS-cR1PjKIyK80iuRzwFyg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>欧委会 Press Corner（一手；经 CEN-CENELEC 转发发现）</span></div>
-          <h3><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2070" target="_blank" rel="noopener">欧委会通过“新标准化法规”提案——标准制定周期拟从 6 年缩至 4 年，电池列为适用领域<span class="ext">↗</span></a></h3>
+          <h3><a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2070" target="_blank" rel="noopener"><span>欧委会通过“新标准化法规”提案——标准制定周期拟从 6 年缩至 4 年，电池列为适用领域</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026-10-06（布鲁塞尔），欧委会通过 “Proposal for a new Standardisation Regulation”，提议修订现行法规 Regulation (EU) No 1025/2012，使欧洲标准化体系更快、更具包容性和战略协调性。适用领域包括清洁技术和电池、建筑产品、网络安全、先进制造——电池被点名为适用领域之一，但新闻稿正文未提及数字产品护照（DPP），也未直接提及电池法规。主要内容：为欧委会的标准化请求设定更明确的截止期限；将“通用规范”明确为有针对性的兜底措施；允许在特定条件和保障下更多使用外部技术规范；允许过渡性交付物支持合格评定；紧急或高度专业化需求时允许其他标准制定组织参与技术工作；强化中小企业、民间社会、学界和公共机构的参与；落实欧洲法院裁决后通过专门存储库实现标准的免费获取；设立欧洲标准化专家中心（Expert Centre on European Standardisation）加强战略统筹与国际协调。欧委会预计该提案将使平均标准制定时间从 6 年缩短至 4 年。尚为欧委会提案，须经欧洲议会和欧盟理事会审议通过后才生效（提案≠已发布≠已适用）。</p>
           <a class="golink" href="https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2070" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1413,7 +1463,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>TfS</span></div>
-          <h3><a href="https://www.tfs-initiative.com/news/chem-x-sustainability-circularity-guidelines-module-3-external-c" target="_blank" rel="noopener">TfS Chem-X 可持续性与循环指南模块 3 公开征求意见<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.tfs-initiative.com/news/chem-x-sustainability-circularity-guidelines-module-3-external-c" target="_blank" rel="noopener"><span>TfS Chem-X 可持续性与循环指南模块 3 公开征求意见</span><span class="ext">↗</span></a></h3>
           <p class="sum">TfS 发布 Chem-X Sustainability &amp; Circularity Guidelines Module 3，公开征求意见。</p>
           <a class="golink" href="https://www.tfs-initiative.com/news/chem-x-sustainability-circularity-guidelines-module-3-external-c" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1425,7 +1475,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>JAMA 一手</span></div>
-          <h3><a href="https://www.jama.or.jp/english/news/reports/2026/838/" target="_blank" rel="noopener">JAMA 发布《2050 年汽车交通碳中和情景分析》（委托日本能源经济研究所，2022 年研究更新版）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.jama.or.jp/english/news/reports/2026/838/" target="_blank" rel="noopener"><span>JAMA 发布《2050 年汽车交通碳中和情景分析》（委托日本能源经济研究所，2022 年研究更新版）</span><span class="ext">↗</span></a></h3>
           <p class="sum">JAMA 委托日本能源经济研究所更新 2022 年情景研究，结合最新市场趋势与修订后的 CO₂ 评估方法，结论称快速 BEV 转型与“HEV+PHEV+碳中和燃料广泛使用”两条路径均可使汽车交通 CO₂ 减排与 IPCC 1.5°C 情景兼容；主张各国按自身情况选择路径。</p>
           <a class="golink" href="https://www.jama.or.jp/english/news/reports/2026/838/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,7 +1490,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>宝马集团 PressClub</span></div>
-          <h3><a href="https://www.press.bmwgroup.com/global/article/detail/T0461465EN?language=en" target="_blank" rel="noopener">宝马物流试点氢内燃机卡车<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.press.bmwgroup.com/global/article/detail/T0461465EN?language=en" target="_blank" rel="noopener"><span>宝马物流试点氢内燃机卡车</span><span class="ext">↗</span></a></h3>
           <p class="sum">BMW Group 在物流车队部署氢内燃机卡车（hydrogen combustion engine truck），属物流脱碳试点。</p>
           <a class="golink" href="https://www.press.bmwgroup.com/global/article/detail/T0461465EN?language=en" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1452,13 +1502,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM 再生金属，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/4e3E6GizA8q-HQkH-GPzWQ" target="_blank" rel="noopener">BHP 与 Amazon 试点低排放铜环境属性证书（EAC），原生铜低碳属性开始独立交易<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/4e3E6GizA8q-HQkH-GPzWQ" target="_blank" rel="noopener"><span>BHP 与 Amazon 试点低排放铜环境属性证书（EAC），原生铜低碳属性开始独立交易</span><span class="ext">↗</span></a></h3>
           <p class="sum">9 月 22 日 BHP 与 Amazon 宣布试点，为 Escondida 铜矿的铜精矿及电解铜创建环境属性证书（EAC），采用 Book-and-Claim 模式使原生铜低碳属性独立交易；再生铜绿色价值是否被削弱引发讨论，减排基准、核证与重复计算等问题待解。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/4e3E6GizA8q-HQkH-GPzWQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SteelMan 钢铁信息，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/Q8qsP2RsOKP5SvSfPZXFJA" target="_blank" rel="noopener">土耳其 OYAK 准备继续投资罗马尼亚电工钢<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/Q8qsP2RsOKP5SvSfPZXFJA" target="_blank" rel="noopener"><span>土耳其 OYAK 准备继续投资罗马尼亚电工钢</span><span class="ext">↗</span></a></h3>
           <p class="sum">土耳其 OYAK 宣布继续投资罗马尼亚 Erdemir Romania，提高无取向电工钢产品等级，方向包括新能源汽车驱动电机用 E-Car 电工钢；投资额与新增产能未公布。该厂年产能 15 万吨，约 90% 出口欧美。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/Q8qsP2RsOKP5SvSfPZXFJA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1470,7 +1520,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM 新能源，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/9YZCTYAV7fhd9nVXNRl02A" target="_blank" rel="noopener">SMM——三元正极 9 月排产下滑明显，10 月预计仅温和复苏<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/9YZCTYAV7fhd9nVXNRl02A" target="_blank" rel="noopener"><span>SMM——三元正极 9 月排产下滑明显，10 月预计仅温和复苏</span><span class="ext">↗</span></a></h3>
           <p class="sum">9 月国内动力市场需求延续疲软，正极厂以消耗库存为主，三元材料排产下滑明显；硫酸镍/硫酸钴延续阴跌、碳酸锂/氢氧化锂跌幅更明显；预计 10 月略有复苏但难回二三季度高峰。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/9YZCTYAV7fhd9nVXNRl02A" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1482,13 +1532,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>BIR（一手；浏览器轮换补扫发现）</span></div>
-          <h3><a href="https://www.bir.org/news-press/news/61-news-featured/1000042996-bir-malaga-2026-programme-announcement-non-ferrous-division-copper-in-focus-supply-demand-and-future-availability" target="_blank" rel="noopener">BIR 公布马拉加 2026 世界回收大会有色金属分会议程——聚焦铜供应、需求与未来可获得性<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.bir.org/news-press/news/61-news-featured/1000042996-bir-malaga-2026-programme-announcement-non-ferrous-division-copper-in-focus-supply-demand-and-future-availability" target="_blank" rel="noopener"><span>BIR 公布马拉加 2026 世界回收大会有色金属分会议程——聚焦铜供应、需求与未来可获得性</span><span class="ext">↗</span></a></h3>
           <p class="sum">BIR（国际回收局）10 月 6 日公布 Malaga 2026 世界回收大会非有色金属分会专题议程“Copper in Focus: Supply, Demand and Future Availability”，聚焦铜的供应、需求与未来可获得性。浏览器轮换补扫发现的迟到条目。</p>
           <a class="golink" href="https://www.bir.org/news-press/news/61-news-featured/1000042996-bir-malaga-2026-programme-announcement-non-ferrous-division-copper-in-focus-supply-demand-and-future-availability" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/A0kYCDZOX8-Tsbw1mGE8AA" target="_blank" rel="noopener">阿联酋航运（ESL）停运废塑料——HS 3915 项下 2026-10-01 起全面禁运<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/A0kYCDZOX8-Tsbw1mGE8AA" target="_blank" rel="noopener"><span>阿联酋航运（ESL）停运废塑料——HS 3915 项下 2026-10-01 起全面禁运</span><span class="ext">↗</span></a></h3>
           <p class="sum">阿联酋航运（ESL）发布客户公告，停止废塑料货物运输，不再接受 2026 年 10 月 1 日及之后的废塑料订舱；HS 3915 项下全面禁运，虚假申报或被列入黑名单。ESL 成为继达飞之后全球第二家全面停运废塑料的集装箱航运企业。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/A0kYCDZOX8-Tsbw1mGE8AA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2242,9 +2292,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</b><span>商务部·新闻发布</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>财政部就气候披露准则应用指南及 9 行业应用指南征求意见（反馈截止 10-26）</b><span>微信公众号（尚轻时代，full 正文转述财政部函）</span></span></a>
-    <a class="hl-item" href="#" data-mi="8"><span class="n">3</span><span class="t"><b>JAMA 发布《2050 年汽车交通碳中和情景分析》更新版</b><span>JAMA 一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问</b><span>商务部·新闻发布（一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>财政部就《企业可持续披露准则第1号——气候（试行）》应用指南及 9 行业应用指南征求意见</b><span>微信公众号（尚轻时代，full 正文转述财政部函）</span></span></a>
+    <a class="hl-item" href="#" data-mi="6"><span class="n">3</span><span class="t"><b>欧委会通过“新标准化法规”提案——标准制定周期拟从 6 年缩至 4 年，电池列为适用领域</b><span>欧委会 Press Corner（一手；经 CEN-CENELEC 转发发现）</span></span></a>
+    <a class="hl-item" href="#" data-mi="8"><span class="n">4</span><span class="t"><b>JAMA 发布《2050 年汽车交通碳中和情景分析》（委托日本能源经济研究所，2022 年研究更新版）</b><span>JAMA 一手</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">5</span><span class="t"><b>碳究社长文辨析——“十五五”碳市场扩围化工/石化尚未真正落地</b><span>微信公众号（碳究社，full 正文）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2382,7 +2434,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-07";
-var BRIEF_DATA = [{"t": "商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html", "s": "商务部·新闻发布（一手）", "sec": "国内法规与政策", "sum": "2026-10-06 20:05（商务部新闻办公室），发言人就 10 月 5 日法国、德国向欧委会提交非正式文件、要求欧盟强化使用贸易防御措施并推出多项保护主义新工具一事答记者问。发言人表态：相互依赖不是风险、利益交融不是威胁，开放合作才是发展的正道；保护主义提升不了竞争力，脱钩断链只会损人不利己；希望法德坚持开放合作和自由贸易、遵守世贸规则，不要鼓动欧盟动辄使用保护主义工具，更不要将经贸问题政治化和泛安全化，避免“以错误的方式走错误的道路，最终反噬自己”。", "points": [], "note": "已核验（一手页面全文通读）"}, {"t": "财政部就《企业可持续披露准则第1号——气候（试行）》应用指南及 9 行业应用指南征求意见", "u": "https://mp.weixin.qq.com/s/Jw1YglZRtBUjKJjvOd5dfg", "s": "微信公众号（尚轻时代，full 正文转述财政部函）", "sec": "国内法规与政策", "sum": "财政部办公厅 9 月 28 日发函，就《企业可持续披露准则第1号——气候（试行）》应用指南及电力、钢铁、煤炭、石油、化肥、铝、氢、水泥、汽车 9 个行业应用指南征求意见，反馈截止 10 月 26 日。铝行业指南适用于氧化铝/电解铝/再生铝冶炼企业。相对 10-05 已推 partial 一句话，本次新增发函日期、9 行业完整名单、反馈截止日与铝指南适用范围。", "points": [], "note": "微信公众号 full 正文；财政部原文未独立一手核验"}, {"t": "一句话：碳究社长文辨析——“十五五”碳市场扩围化工/石化尚未真正落地", "u": "https://mp.weixin.qq.com/s/g7qaq4QM03ZC54U8TKvFlw", "s": "微信公众号（碳究社，full 正文）", "sec": "国内法规与政策", "sum": "石化化工 2026-02 起纳入的是排放“报告管理”（2.6 万吨门槛），报告管理不等于配额管理；截至 10-05《全国碳排放权交易市场覆盖石化化工行业工作方案》仍未印发，“扩围落地”尚未发生。", "points": [], "note": "微信公众号 full 正文（KOL 政策分析；工作方案未印发状态待官方核验）"}, {"t": "一句话：T&E 联合行业与 NGO 发声——推迟 ETS2 将使欧洲在未来价格冲击面前准备不足", "u": "https://www.transportenvironment.org/articles/delaying-ets2-would-leave-europe-unprepared-for-future-price-shocks-say-industry-and-ngos", "s": "T&E", "sec": "海外法规与政策", "sum": "10 月 9 日卢森堡部长会议前夕，T&E 联合行业与 NGO 主张再度推迟 ETS2 将削弱欧洲应对未来能源价格冲击的准备；是 10-01 早报“意/捷拟推迟、六国联名反对”的延续。", "points": [], "note": "T&E 文章一手（仅有 RSS 标题；NGO 立场文件）"}, {"t": "一句话：CBAM 证书 2026 年 Q3 价格 82.32 欧元/吨，环比上涨 9.4%", "u": "https://mp.weixin.qq.com/s/1f51ndccnHtqgU2RzXUnGw", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "海外法规与政策", "sum": "欧委会 10-05 公布 2026 年 Q3 CBAM 证书价格 82.32 欧元/吨 CO₂e，较 Q2 的 75.28 欧元上涨 7.04 欧元（+9.4%），创 CBAM 正式实施以来单季最大涨幅。", "points": [], "note": "微信公众号 full 正文（行业媒体口径；欧委会公告未一手核验）"}, {"t": "一句话：法德推动欧盟加快反制贸易威胁，拟赋予欧委会更快限制进口权限", "u": "https://mp.weixin.qq.com/s/tS-cR1PjKIyK80iuRzwFyg", "s": "微信公众号（CCCEU，转述 POLITICO）", "sec": "海外法规与政策", "sum": "马克龙与默茨联名致信欧委会，称现有贸易防御工具“不再足够”，主张建立新法律工具使欧盟能更快限制特定国家进口；与对华约 10 亿欧元/天贸易逆差及“再平衡”议程相关；谢夫乔维奇本周访京。", "points": [], "note": "微信公众号 full 正文转述 POLITICO；待一手核验"}, {"t": "欧委会通过“新标准化法规”提案——标准制定周期拟从 6 年缩至 4 年，电池列为适用领域", "u": "https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2070", "s": "欧委会 Press Corner（一手；经 CEN-CENELEC 转发发现）", "sec": "海外法规与政策", "sum": "2026-10-06（布鲁塞尔），欧委会通过 “Proposal for a new Standardisation Regulation”，提议修订现行法规 Regulation (EU) No 1025/2012，使欧洲标准化体系更快、更具包容性和战略协调性。适用领域包括清洁技术和电池、建筑产品、网络安全、先进制造——电池被点名为适用领域之一，但新闻稿正文未提及数字产品护照（DPP），也未直接提及电池法规。主要内容：为欧委会的标准化请求设定更明确的截止期限；将“通用规范”明确为有针对性的兜底措施；允许在特定条件和保障下更多使用外部技术规范；允许过渡性交付物支持合格评定；紧急或高度专业化需求时允许其他标准制定组织参与技术工作；强化中小企业、民间社会、学界和公共机构的参与；落实欧洲法院裁决后通过专门存储库实现标准的免费获取；设立欧洲标准化专家中心（Expert Centre on European Standardisation）加强战略统筹与国际协调。欧委会预计该提案将使平均标准制定时间从 6 年缩短至 4 年。尚为欧委会提案，须经欧洲议会和欧盟理事会审议通过后才生效（提案≠已发布≠已适用）。", "points": [], "note": "已核验（欧委会新闻稿正文通读，一手）"}, {"t": "一句话：TfS Chem-X 可持续性与循环指南模块 3 公开征求意见", "u": "https://www.tfs-initiative.com/news/chem-x-sustainability-circularity-guidelines-module-3-external-c", "s": "TfS", "sec": "LCA 与方法学", "sum": "TfS 发布 Chem-X Sustainability & Circularity Guidelines Module 3，公开征求意见。", "points": [], "note": "TfS 一手"}, {"t": "JAMA 发布《2050 年汽车交通碳中和情景分析》（委托日本能源经济研究所，2022 年研究更新版）", "u": "https://www.jama.or.jp/english/news/reports/2026/838/", "s": "JAMA 一手", "sec": "数据与知识", "sum": "JAMA 委托日本能源经济研究所更新 2022 年情景研究，结合最新市场趋势与修订后的 CO₂ 评估方法，结论称快速 BEV 转型与“HEV+PHEV+碳中和燃料广泛使用”两条路径均可使汽车交通 CO₂ 减排与 IPCC 1.5°C 情景兼容；主张各国按自身情况选择路径。", "points": [], "note": "已核验（一手页面通读；行业协会立场研究）"}, {"t": "一句话：宝马物流试点氢内燃机卡车", "u": "https://www.press.bmwgroup.com/global/article/detail/T0461465EN?language=en", "s": "宝马集团 PressClub", "sec": "整车企业", "sum": "BMW Group 在物流车队部署氢内燃机卡车（hydrogen combustion engine truck），属物流脱碳试点。", "points": [], "note": "宝马集团 PressClub 一手（2026-10-06）"}, {"t": "一句话：BHP 与 Amazon 试点低排放铜环境属性证书（EAC），原生铜低碳属性开始独立交易", "u": "https://mp.weixin.qq.com/s/4e3E6GizA8q-HQkH-GPzWQ", "s": "微信公众号（SMM 再生金属，full 正文）", "sec": "上游基础材料", "sum": "9 月 22 日 BHP 与 Amazon 宣布试点，为 Escondida 铜矿的铜精矿及电解铜创建环境属性证书（EAC），采用 Book-and-Claim 模式使原生铜低碳属性独立交易；再生铜绿色价值是否被削弱引发讨论，减排基准、核证与重复计算等问题待解。", "points": [], "note": "微信公众号 full 正文（行业媒体口径）"}, {"t": "一句话：土耳其 OYAK 准备继续投资罗马尼亚电工钢", "u": "https://mp.weixin.qq.com/s/Q8qsP2RsOKP5SvSfPZXFJA", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "上游基础材料", "sum": "土耳其 OYAK 宣布继续投资罗马尼亚 Erdemir Romania，提高无取向电工钢产品等级，方向包括新能源汽车驱动电机用 E-Car 电工钢；投资额与新增产能未公布。该厂年产能 15 万吨，约 90% 出口欧美。", "points": [], "note": "微信公众号 full 正文（投资计划口径）"}, {"t": "一句话：SMM——三元正极 9 月排产下滑明显，10 月预计仅温和复苏", "u": "https://mp.weixin.qq.com/s/9YZCTYAV7fhd9nVXNRl02A", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "9 月国内动力市场需求延续疲软，正极厂以消耗库存为主，三元材料排产下滑明显；硫酸镍/硫酸钴延续阴跌、碳酸锂/氢氧化锂跌幅更明显；预计 10 月略有复苏但难回二三季度高峰。", "points": [], "note": "微信公众号 full 正文（行业媒体数据口径）"}, {"t": "一句话：BIR 公布马拉加 2026 世界回收大会有色金属分会议程——聚焦铜供应、需求与未来可获得性", "u": "https://www.bir.org/news-press/news/61-news-featured/1000042996-bir-malaga-2026-programme-announcement-non-ferrous-division-copper-in-focus-supply-demand-and-future-availability", "s": "BIR（一手；浏览器轮换补扫发现）", "sec": "循环再生", "sum": "BIR（国际回收局）10 月 6 日公布 Malaga 2026 世界回收大会非有色金属分会专题议程“Copper in Focus: Supply, Demand and Future Availability”，聚焦铜的供应、需求与未来可获得性。浏览器轮换补扫发现的迟到条目。", "points": [], "note": "BIR 一手（迟到条目）"}, {"t": "一句话：阿联酋航运（ESL）停运废塑料——HS 3915 项下 2026-10-01 起全面禁运", "u": "https://mp.weixin.qq.com/s/A0kYCDZOX8-Tsbw1mGE8AA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "循环再生", "sum": "阿联酋航运（ESL）发布客户公告，停止废塑料货物运输，不再接受 2026 年 10 月 1 日及之后的废塑料订舱；HS 3915 项下全面禁运，虚假申报或被列入黑名单。ESL 成为继达飞之后全球第二家全面停运废塑料的集装箱航运企业。", "points": [], "note": "微信公众号 full 正文（行业媒体口径）"}];
+var BRIEF_DATA = [{"t": "商务部新闻发言人就法德要求欧盟强化贸易防御等保护主义工具答记者问", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_6997d22d59cc4196a5bb3954828861ec.html", "s": "商务部·新闻发布（一手）", "sec": "国内法规与政策", "sum": "2026-10-06 20:05（商务部新闻办公室），发言人就 10 月 5 日法国、德国向欧委会提交非正式文件、要求欧盟强化使用贸易防御措施并推出多项保护主义新工具一事答记者问。发言人表态：相互依赖不是风险、利益交融不是威胁，开放合作才是发展的正道；保护主义提升不了竞争力，脱钩断链只会损人不利己；希望法德坚持开放合作和自由贸易、遵守世贸规则，不要鼓动欧盟动辄使用保护主义工具，更不要将经贸问题政治化和泛安全化，避免“以错误的方式走错误的道路，最终反噬自己”。", "points": [], "note": "已核验（一手页面全文通读）", "score": 0, "level": "full"}, {"t": "财政部就《企业可持续披露准则第1号——气候（试行）》应用指南及 9 行业应用指南征求意见", "u": "https://mp.weixin.qq.com/s/Jw1YglZRtBUjKJjvOd5dfg", "s": "微信公众号（尚轻时代，full 正文转述财政部函）", "sec": "国内法规与政策", "sum": "财政部办公厅 9 月 28 日发函，就《企业可持续披露准则第1号——气候（试行）》应用指南及电力、钢铁、煤炭、石油、化肥、铝、氢、水泥、汽车 9 个行业应用指南征求意见，反馈截止 10 月 26 日。铝行业指南适用于氧化铝/电解铝/再生铝冶炼企业。相对 10-05 已推 partial 一句话，本次新增发函日期、9 行业完整名单、反馈截止日与铝指南适用范围。", "points": [], "note": "微信公众号 full 正文；财政部原文未独立一手核验", "score": 0, "level": "full"}, {"t": "一句话：碳究社长文辨析——“十五五”碳市场扩围化工/石化尚未真正落地", "u": "https://mp.weixin.qq.com/s/g7qaq4QM03ZC54U8TKvFlw", "s": "微信公众号（碳究社，full 正文）", "sec": "国内法规与政策", "sum": "石化化工 2026-02 起纳入的是排放“报告管理”（2.6 万吨门槛），报告管理不等于配额管理；截至 10-05《全国碳排放权交易市场覆盖石化化工行业工作方案》仍未印发，“扩围落地”尚未发生。", "points": [], "note": "微信公众号 full 正文（KOL 政策分析；工作方案未印发状态待官方核验）", "score": 0, "level": "brief"}, {"t": "一句话：T&E 联合行业与 NGO 发声——推迟 ETS2 将使欧洲在未来价格冲击面前准备不足", "u": "https://www.transportenvironment.org/articles/delaying-ets2-would-leave-europe-unprepared-for-future-price-shocks-say-industry-and-ngos", "s": "T&E", "sec": "海外法规与政策", "sum": "10 月 9 日卢森堡部长会议前夕，T&E 联合行业与 NGO 主张再度推迟 ETS2 将削弱欧洲应对未来能源价格冲击的准备；是 10-01 早报“意/捷拟推迟、六国联名反对”的延续。", "points": [], "note": "T&E 文章一手（仅有 RSS 标题；NGO 立场文件）", "score": 0, "level": "brief"}, {"t": "一句话：CBAM 证书 2026 年 Q3 价格 82.32 欧元/吨，环比上涨 9.4%", "u": "https://mp.weixin.qq.com/s/1f51ndccnHtqgU2RzXUnGw", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "海外法规与政策", "sum": "欧委会 10-05 公布 2026 年 Q3 CBAM 证书价格 82.32 欧元/吨 CO₂e，较 Q2 的 75.28 欧元上涨 7.04 欧元（+9.4%），创 CBAM 正式实施以来单季最大涨幅。", "points": [], "note": "微信公众号 full 正文（行业媒体口径；欧委会公告未一手核验）", "score": 0, "level": "brief"}, {"t": "一句话：法德推动欧盟加快反制贸易威胁，拟赋予欧委会更快限制进口权限", "u": "https://mp.weixin.qq.com/s/tS-cR1PjKIyK80iuRzwFyg", "s": "微信公众号（CCCEU，转述 POLITICO）", "sec": "海外法规与政策", "sum": "马克龙与默茨联名致信欧委会，称现有贸易防御工具“不再足够”，主张建立新法律工具使欧盟能更快限制特定国家进口；与对华约 10 亿欧元/天贸易逆差及“再平衡”议程相关；谢夫乔维奇本周访京。", "points": [], "note": "微信公众号 full 正文转述 POLITICO；待一手核验", "score": 0, "level": "brief"}, {"t": "欧委会通过“新标准化法规”提案——标准制定周期拟从 6 年缩至 4 年，电池列为适用领域", "u": "https://ec.europa.eu/commission/presscorner/detail/en/ip_26_2070", "s": "欧委会 Press Corner（一手；经 CEN-CENELEC 转发发现）", "sec": "海外法规与政策", "sum": "2026-10-06（布鲁塞尔），欧委会通过 “Proposal for a new Standardisation Regulation”，提议修订现行法规 Regulation (EU) No 1025/2012，使欧洲标准化体系更快、更具包容性和战略协调性。适用领域包括清洁技术和电池、建筑产品、网络安全、先进制造——电池被点名为适用领域之一，但新闻稿正文未提及数字产品护照（DPP），也未直接提及电池法规。主要内容：为欧委会的标准化请求设定更明确的截止期限；将“通用规范”明确为有针对性的兜底措施；允许在特定条件和保障下更多使用外部技术规范；允许过渡性交付物支持合格评定；紧急或高度专业化需求时允许其他标准制定组织参与技术工作；强化中小企业、民间社会、学界和公共机构的参与；落实欧洲法院裁决后通过专门存储库实现标准的免费获取；设立欧洲标准化专家中心（Expert Centre on European Standardisation）加强战略统筹与国际协调。欧委会预计该提案将使平均标准制定时间从 6 年缩短至 4 年。尚为欧委会提案，须经欧洲议会和欧盟理事会审议通过后才生效（提案≠已发布≠已适用）。", "points": [], "note": "已核验（欧委会新闻稿正文通读，一手）", "score": 0, "level": "full"}, {"t": "一句话：TfS Chem-X 可持续性与循环指南模块 3 公开征求意见", "u": "https://www.tfs-initiative.com/news/chem-x-sustainability-circularity-guidelines-module-3-external-c", "s": "TfS", "sec": "LCA 与方法学", "sum": "TfS 发布 Chem-X Sustainability & Circularity Guidelines Module 3，公开征求意见。", "points": [], "note": "TfS 一手", "score": 0, "level": "brief"}, {"t": "JAMA 发布《2050 年汽车交通碳中和情景分析》（委托日本能源经济研究所，2022 年研究更新版）", "u": "https://www.jama.or.jp/english/news/reports/2026/838/", "s": "JAMA 一手", "sec": "数据与知识", "sum": "JAMA 委托日本能源经济研究所更新 2022 年情景研究，结合最新市场趋势与修订后的 CO₂ 评估方法，结论称快速 BEV 转型与“HEV+PHEV+碳中和燃料广泛使用”两条路径均可使汽车交通 CO₂ 减排与 IPCC 1.5°C 情景兼容；主张各国按自身情况选择路径。", "points": [], "note": "已核验（一手页面通读；行业协会立场研究）", "score": 0, "level": "full"}, {"t": "一句话：宝马物流试点氢内燃机卡车", "u": "https://www.press.bmwgroup.com/global/article/detail/T0461465EN?language=en", "s": "宝马集团 PressClub", "sec": "整车企业", "sum": "BMW Group 在物流车队部署氢内燃机卡车（hydrogen combustion engine truck），属物流脱碳试点。", "points": [], "note": "宝马集团 PressClub 一手（2026-10-06）", "score": 0, "level": "brief"}, {"t": "一句话：BHP 与 Amazon 试点低排放铜环境属性证书（EAC），原生铜低碳属性开始独立交易", "u": "https://mp.weixin.qq.com/s/4e3E6GizA8q-HQkH-GPzWQ", "s": "微信公众号（SMM 再生金属，full 正文）", "sec": "上游基础材料", "sum": "9 月 22 日 BHP 与 Amazon 宣布试点，为 Escondida 铜矿的铜精矿及电解铜创建环境属性证书（EAC），采用 Book-and-Claim 模式使原生铜低碳属性独立交易；再生铜绿色价值是否被削弱引发讨论，减排基准、核证与重复计算等问题待解。", "points": [], "note": "微信公众号 full 正文（行业媒体口径）", "score": 0, "level": "brief"}, {"t": "一句话：土耳其 OYAK 准备继续投资罗马尼亚电工钢", "u": "https://mp.weixin.qq.com/s/Q8qsP2RsOKP5SvSfPZXFJA", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "上游基础材料", "sum": "土耳其 OYAK 宣布继续投资罗马尼亚 Erdemir Romania，提高无取向电工钢产品等级，方向包括新能源汽车驱动电机用 E-Car 电工钢；投资额与新增产能未公布。该厂年产能 15 万吨，约 90% 出口欧美。", "points": [], "note": "微信公众号 full 正文（投资计划口径）", "score": 0, "level": "brief"}, {"t": "一句话：SMM——三元正极 9 月排产下滑明显，10 月预计仅温和复苏", "u": "https://mp.weixin.qq.com/s/9YZCTYAV7fhd9nVXNRl02A", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "9 月国内动力市场需求延续疲软，正极厂以消耗库存为主，三元材料排产下滑明显；硫酸镍/硫酸钴延续阴跌、碳酸锂/氢氧化锂跌幅更明显；预计 10 月略有复苏但难回二三季度高峰。", "points": [], "note": "微信公众号 full 正文（行业媒体数据口径）", "score": 0, "level": "brief"}, {"t": "一句话：BIR 公布马拉加 2026 世界回收大会有色金属分会议程——聚焦铜供应、需求与未来可获得性", "u": "https://www.bir.org/news-press/news/61-news-featured/1000042996-bir-malaga-2026-programme-announcement-non-ferrous-division-copper-in-focus-supply-demand-and-future-availability", "s": "BIR（一手；浏览器轮换补扫发现）", "sec": "循环再生", "sum": "BIR（国际回收局）10 月 6 日公布 Malaga 2026 世界回收大会非有色金属分会专题议程“Copper in Focus: Supply, Demand and Future Availability”，聚焦铜的供应、需求与未来可获得性。浏览器轮换补扫发现的迟到条目。", "points": [], "note": "BIR 一手（迟到条目）", "score": 0, "level": "brief"}, {"t": "一句话：阿联酋航运（ESL）停运废塑料——HS 3915 项下 2026-10-01 起全面禁运", "u": "https://mp.weixin.qq.com/s/A0kYCDZOX8-Tsbw1mGE8AA", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "循环再生", "sum": "阿联酋航运（ESL）发布客户公告，停止废塑料货物运输，不再接受 2026 年 10 月 1 日及之后的废塑料订舱；HS 3915 项下全面禁运，虚假申报或被列入黑名单。ESL 成为继达飞之后全球第二家全面停运废塑料的集装箱航运企业。", "points": [], "note": "微信公众号 full 正文（行业媒体口径）", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

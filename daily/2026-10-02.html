@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,25 +1406,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SteelMan 钢铁信息，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA" target="_blank" rel="noopener">CBAM 核查机构开始真正进场，核查机制实质性落地<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA" target="_blank" rel="noopener"><span>CBAM 核查机构开始真正进场，核查机制实质性落地</span><span class="ext">↗</span></a></h3>
           <p class="sum">希腊 EMICERT 9-14 获 ESYD 的 CBAM 认可（覆盖全部 CBAM 活动组），Bureau Veritas 9-29 宣布取得 CBAM 核查认可，TÜV Rheinland 9 月中旬更新服务页；欧委会 8-31 起陆续公布核查操作程序，9-28 新一批材料覆盖核查机构注册、系统操作与 O3CI 协作。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E（一手页面已通读）</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/the-litmus-test-for-made-in-europe" target="_blank" rel="noopener">T&amp;E 联合 European Metals、Cefic 致函欧委会，呼吁 2027 年按时实施 EU-UK TCA 电池原产地规则<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/the-litmus-test-for-made-in-europe" target="_blank" rel="noopener"><span>T&amp;E 联合 European Metals、Cefic 致函欧委会，呼吁 2027 年按时实施 EU-UK TCA 电池原产地规则</span><span class="ext">↗</span></a></h3>
           <p class="sum">公开信称 TCA 是《工业加速法案》(IAA) 的&quot;迷你预演&quot;；汽车制造商在规则生效前三个月再次要求推迟 2027 年永久性原产地规则，而供应商方（RECHARGE 数据）已具备 12.1 万吨正极产能、远超 5.2–7.5 万吨需求；呼吁欧委会&quot;守住底线&quot;，否则重创&quot;Made in Europe&quot;雄心。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/the-litmus-test-for-made-in-europe" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E（一手页面已通读）</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/european-businesses-in-the-transport-sector-call-for-eu-to-maintain-stability-and-ambition-on-decarbonising-heavy-duty-vehicles-hdvs" target="_blank" rel="noopener">T&amp;E 等欧洲运输业企业联名致函欧委会，敦促维持重型车 CO₂ 标准雄心、不提前 2027 年审查<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/european-businesses-in-the-transport-sector-call-for-eu-to-maintain-stability-and-ambition-on-decarbonising-heavy-duty-vehicles-hdvs" target="_blank" rel="noopener"><span>T&amp;E 等欧洲运输业企业联名致函欧委会，敦促维持重型车 CO₂ 标准雄心、不提前 2027 年审查</span><span class="ext">↗</span></a></h3>
           <p class="sum">称 2025–2030 目标期已做过定向修订，再改只会加剧投资不确定性；属政策倡导信，非法规变化。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/european-businesses-in-the-transport-sector-call-for-eu-to-maintain-stability-and-ambition-on-decarbonising-heavy-duty-vehicles-hdvs" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Auto Recycling World 经路透</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPNmg1VExXWUs0dG1mX0xsclF2RXRvaTlKT3hfTGFnRHVtQXNFb3FUcGpURjNLZWlkRzlYYWNKZnVSaHlQLVFwTzQ4ZWpkMGlVc19kUWl4TzRVTWFGaEFZZGIyclpGWXA2YjdKeEVNRU4taHFNbWFZVkZPMElFd3BGUXpCTEtoQQ" target="_blank" rel="noopener">Allianz 推动维修、再利用与循环理赔<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPNmg1VExXWUs0dG1mX0xsclF2RXRvaTlKT3hfTGFnRHVtQXNFb3FUcGpURjNLZWlkRzlYYWNKZnVSaHlQLVFwTzQ4ZWpkMGlVc19kUWl4TzRVTWFGaEFZZGIyclpGWXA2YjdKeEVNRU4taHFNbWFZVkZPMElFd3BGUXpCTEtoQQ" target="_blank" rel="noopener"><span>Allianz 推动维修、再利用与循环理赔</span><span class="ext">↗</span></a></h3>
           <p class="sum">保险端发力循环经济理赔模式，与 ELV/报废车价值链相关。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPNmg1VExXWUs0dG1mX0xsclF2RXRvaTlKT3hfTGFnRHVtQXNFb3FUcGpURjNLZWlkRzlYYWNKZnVSaHlQLVFwTzQ4ZWpkMGlVc19kUWl4TzRVTWFGaEFZZGIyclpGWXA2YjdKeEVNRU4taHFNbWFZVkZPMElFd3BGUXpCTEtoQQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1389,7 +1439,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Journal of Cleaner Production</span></div>
-          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149566" target="_blank" rel="noopener">JCP 论文：DPP 赋能的报废策略推荐决策支持系统<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149566" target="_blank" rel="noopener"><span>JCP 论文：DPP 赋能的报废策略推荐决策支持系统</span><span class="ext">↗</span></a></h3>
           <p class="sum">DPP（数字产品护照）数据驱动的报废（EOL）策略推荐决策支持系统；与 O4 电池护照/DPP 实施的方法学侧研究相关。</p>
           <a class="golink" href="https://doi.org/10.1016/j.jclepro.2026.149566" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1404,13 +1454,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>CnEVPost</span></div>
-          <h3><a href="https://cnevpost.com" target="_blank" rel="noopener">CnEVPost：2026 年 9 月中国主要车企交付/销量汇总<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cnevpost.com" target="_blank" rel="noopener"><span>CnEVPost：2026 年 9 月中国主要车企交付/销量汇总</span><span class="ext">↗</span></a></h3>
           <p class="sum">比亚迪 463,561 辆（+16.98%）、上汽 40.6 万辆、奇瑞 292,308 辆（单月出口破 20 万辆）、吉利 29.2 万辆（+7%）、蔚来 37,408 辆、零跑破 10 万辆、小米超 4 万辆、理想 31,817 辆（-6.29%）、长城约 11.5 万辆（-14%）。</p>
           <a class="golink" href="https://cnevpost.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>IT之家</span></div>
-          <h3><a href="https://www.ithome.com" target="_blank" rel="noopener">福特 CEO 法利：美国应吸取欧洲教训，审慎对待中国车企入美<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.ithome.com" target="_blank" rel="noopener"><span>福特 CEO 法利：美国应吸取欧洲教训，审慎对待中国车企入美</span><span class="ext">↗</span></a></h3>
           <p class="sum">福特 CEO 关于美国对华汽车贸易政策的表态。</p>
           <a class="golink" href="https://www.ithome.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1422,13 +1472,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>欧洲铝业协会（一手 PDF 已读）</span></div>
-          <h3><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener">欧洲铝业协会联合约 31 家行业协会发表声明，向 Circular Economy Act 提 6 项诉求<span class="ext">↗</span></a></h3>
+          <h3><a href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener"><span>欧洲铝业协会联合约 31 家行业协会发表声明，向 Circular Economy Act 提 6 项诉求</span><span class="ext">↗</span></a></h3>
           <p class="sum">6 项诉求：① 建立欧盟统一的 EPR 框架、统一定义/目标并与 PPWR 衔接；② 加强 EPR 治理，保持&quot;生产者主导&quot;模式；③ 废弃物链透明度与高质量标准化数据；④ EPR 资金专款专用；⑤ 简化行政：单一欧盟 EPR 注册、一套费用调制数据格式、对齐 ESPR 数字产品护照数据；⑥ 改进单独收集、设定统一收集方法/目标。</p>
           <a class="golink" href="https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（碳加铁，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg" target="_blank" rel="noopener">碳加铁深度综述：氨还原炼铁&quot;十五年，四条路&quot;<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg" target="_blank" rel="noopener"><span>碳加铁深度综述：氨还原炼铁&quot;十五年，四条路&quot;</span><span class="ext">↗</span></a></h3>
           <p class="sum">氨冶金技术路线梳理：氨的核心优势是&quot;已经流通的氢&quot;（含氢 17.6%、液化能耗比氢低约一个数量级）；梳理氨还原四条技术路线的发展历程、当前进展与商业化判断。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,55 +1490,55 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>T&amp;E（一手页面已通读）</span></div>
-          <h3><a href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener">T&amp;E 发布 IAA 本土化可行性分析，直接反驳 ACEA&quot;150GWh 缺口论&quot;<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener"><span>T&amp;E 发布 IAA 本土化可行性分析，直接反驳 ACEA&quot;150GWh 缺口论&quot;</span><span class="ext">↗</span></a></h3>
           <p class="sum">指 ACEA 委托 Mobility Global 的&quot;2028 年 150GWh 电池缺口&quot;结论存在方法缺陷（扣除了随整车出口的电芯、排除了未对齐本地组装的产能；需求高估）；结论：2027 年起欧盟电芯产能可满足企业车辆需求，2030 年可覆盖全部补贴车辆，欧洲 LFP 2030 年有望超 100GWh；但中游是真正瓶颈——2035 年中国仍可能占全球正极产能 80%+，欧洲仅 3%。</p>
           <a class="golink" href="https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（深圳市电池行业协会，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ" target="_blank" rel="noopener">铜箔短缺成电池排产瓶颈，加工费 Q4 上调 1000–2000 元/吨<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ" target="_blank" rel="noopener"><span>铜箔短缺成电池排产瓶颈，加工费 Q4 上调 1000–2000 元/吨</span><span class="ext">↗</span></a></h3>
           <p class="sum">SMM 数据：2026 年国内锂电铜箔需求约 137.32 万吨、供应约 135 万吨，缺口 2.32 万吨；3μm/4.5μm 超薄铜箔结构性短缺，包括宁德时代在内的电池厂主动调整排产（储能电芯优先）；万吨级产线投资 4–8 亿元、建设爬产 18–24 个月，扩产慢；SMM 预测 2027 年缺口扩大至 3.89 万吨。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>LG Energy Solution 官方新闻稿</span></div>
-          <h3><a href="https://news.lgensol.com/company-news/press-releases/5404/" target="_blank" rel="noopener">LG Energy Solution × 美国 indiGOtech 签署非约束性 MoU，探索 2027–2030 年供应 46 系 NCM 圆柱电池<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.lgensol.com/company-news/press-releases/5404/" target="_blank" rel="noopener"><span>LG Energy Solution × 美国 indiGOtech 签署非约束性 MoU，探索 2027–2030 年供应 46 系 NCM 圆柱电池</span><span class="ext">↗</span></a></h3>
           <p class="sum">探索自 2027–2030 年供应 46 系 NCM 圆柱电池用于 indiGOtech 的 Flow Ride/Flow Cargo 电动厢式货车。</p>
           <a class="golink" href="https://news.lgensol.com/company-news/press-releases/5404/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ProLogium 官方</span></div>
-          <h3><a href="https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/" target="_blank" rel="noopener">奔驰 × 台湾 ProLogium 签署联合测试协议，测试其 Gen4 锂陶瓷电池技术<span class="ext">↗</span></a></h3>
+          <h3><a href="https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/" target="_blank" rel="noopener"><span>奔驰 × 台湾 ProLogium 签署联合测试协议，测试其 Gen4 锂陶瓷电池技术</span><span class="ext">↗</span></a></h3>
           <p class="sum">9-24 在台北签署，对最新 Gen4 锂陶瓷电池技术做电气/热/安全测试，奔驰获优先评估权；ProLogium 另向 SEC 提交 425 文件披露。</p>
           <a class="golink" href="https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>WardsAuto</span></div>
-          <h3><a href="https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/" target="_blank" rel="noopener">Ultium Cells 宣布追加 10 亿美元升级田纳西州 Spring Hill 工厂<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/" target="_blank" rel="noopener"><span>Ultium Cells 宣布追加 10 亿美元升级田纳西州 Spring Hill 工厂</span><span class="ext">↗</span></a></h3>
           <p class="sum">目标成为全球首个大规模量产棱柱形锂锰富集（LMR）电芯的工厂，并生产 LFP 储能电芯；工厂改造预计 2028 年完成。</p>
           <a class="golink" href="https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>IT之家</span></div>
-          <h3><a href="https://www.ithome.com" target="_blank" rel="noopener">我国川西锂矿找矿突破，新增碳酸锂当量约 104.68 万吨<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.ithome.com" target="_blank" rel="noopener"><span>我国川西锂矿找矿突破，新增碳酸锂当量约 104.68 万吨</span><span class="ext">↗</span></a></h3>
           <p class="sum">川西锂矿新增碳酸锂当量约 104.68 万吨。</p>
           <a class="golink" href="https://www.ithome.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（宁德时代账号）</span></div>
-          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">9 月 19 款新车全选宁德时代电池<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener"><span>9 月 19 款新车全选宁德时代电池</span><span class="ext">↗</span></a></h3>
           <p class="sum">9 月 19 款新车全部选用宁德时代电池。</p>
           <a class="golink" href="https://mp.weixin.qq.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（锂书房，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">上市公司锂资源量排行榜<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener"><span>上市公司锂资源量排行榜</span><span class="ext">↗</span></a></h3>
           <p class="sum">第一梯队赣锋/天齐/紫金；宁德时代权益资源 730.47 万吨 LCE 新晋重量级玩家。</p>
           <a class="golink" href="https://mp.weixin.qq.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>ILA</span></div>
-          <h3><a href="https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/" target="_blank" rel="noopener">ILA 宣布铅电池创新联盟（CBI）自 2027 年起重组为多技术预竞争研究组织<span class="ext">↗</span></a></h3>
+          <h3><a href="https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/" target="_blank" rel="noopener"><span>ILA 宣布铅电池创新联盟（CBI）自 2027 年起重组为多技术预竞争研究组织</span><span class="ext">↗</span></a></h3>
           <p class="sum">维也纳欧洲铅电池大会上 120 名成员投票支持；保留铅电池核心研发，同时扩展至锂电池及其他新电池技术的独立基准测试与标准/政策话语权。</p>
           <a class="golink" href="https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1500,37 +1550,37 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（生态文明实践，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">&quot;往复&quot;之间——一座再循环工厂里的全球制造业博弈<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener"><span>&quot;往复&quot;之间——一座再循环工厂里的全球制造业博弈</span><span class="ext">↗</span></a></h3>
           <p class="sum">记者蹲点海尔再循环互联工厂，追踪废旧家电&quot;重生&quot;为汽车零部件之路；引用 2026 年 6 月发改委《循环经济发展&quot;十五五&quot;规划》：到 2030 年我国资源循环利用产业产值达到 8 万亿元，山东提出到 2030 年废弃电器电子产品等再生资源产品利用量达到 5000 万吨。</p>
           <a class="golink" href="https://mp.weixin.qq.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>American Recycler</span></div>
-          <h3><a href="https://americanrecycler.com/automotive/vehicle-traction-batteries-labeling/" target="_blank" rel="noopener">美国回收商联合支持车辆电池标签：支持加州 SB 615 车辆牵引电池标签法案<span class="ext">↗</span></a></h3>
+          <h3><a href="https://americanrecycler.com/automotive/vehicle-traction-batteries-labeling/" target="_blank" rel="noopener"><span>美国回收商联合支持车辆电池标签：支持加州 SB 615 车辆牵引电池标签法案</span><span class="ext">↗</span></a></h3>
           <p class="sum">美国汽车回收商协会（ARA）联手加州拆解协会 CADRA、SCADA 等，支持加州 SB 615 车辆牵引电池标签法案，要求统一电池标签以促进回收安全与规范化。</p>
           <a class="golink" href="https://americanrecycler.com/automotive/vehicle-traction-batteries-labeling/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>GlobeNewswire</span></div>
-          <h3><a href="https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html" target="_blank" rel="noopener">American Battery Technology Company 获美国商务部出口许可，可出售最多 1 亿美元回收&quot;黑粉&quot;关键矿物<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html" target="_blank" rel="noopener"><span>American Battery Technology Company 获美国商务部出口许可，可出售最多 1 亿美元回收&quot;黑粉&quot;关键矿物</span><span class="ext">↗</span></a></h3>
           <p class="sum">黑粉来自内华达 Reno 回收工厂（锂/镍/钴/锰/石墨）；消息刺激股价上涨。</p>
           <a class="golink" href="https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Journal of Cleaner Production</span></div>
-          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149558" target="_blank" rel="noopener">JCP 论文：废旧 NCM 电池盐酸浸出液镍钴无碱回收<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149558" target="_blank" rel="noopener"><span>JCP 论文：废旧 NCM 电池盐酸浸出液镍钴无碱回收</span><span class="ext">↗</span></a></h3>
           <p class="sum">用吡啶甲酰胺萃取剂、连续逆流萃取工艺从废旧 NCM 电池盐酸浸出液中无碱回收镍钴；电池湿法回收工艺研究线索。</p>
           <a class="golink" href="https://doi.org/10.1016/j.jclepro.2026.149558" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Journal of Cleaner Production</span></div>
-          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149422" target="_blank" rel="noopener">JCP 论文：低价值可回收物回收的治理机制研究<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1016/j.jclepro.2026.149422" target="_blank" rel="noopener"><span>JCP 论文：低价值可回收物回收的治理机制研究</span><span class="ext">↗</span></a></h3>
           <p class="sum">双重信息不对称下的低价值可回收物回收治理机制。</p>
           <a class="golink" href="https://doi.org/10.1016/j.jclepro.2026.149422" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察）</span></div>
-          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener">湖北省发文，废塑料列入固废规划重点品类<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com" target="_blank" rel="noopener"><span>湖北省发文，废塑料列入固废规划重点品类</span><span class="ext">↗</span></a></h3>
           <p class="sum">地方固废规划政策动态；&quot;155&quot;疑为&quot;十五五&quot;笔误，按标题原样记录；具体文件与品类口径待取。</p>
           <a class="golink" href="https://mp.weixin.qq.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2284,9 +2334,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>CBAM 核查机构开始真正进场</b><span>微信公众号（SteelMan 钢铁信息）</span></span></a>
-    <a class="hl-item" href="#" data-mi="9"><span class="n">2</span><span class="t"><b>T&amp;E 反驳 ACEA：欧洲电池产能足以满足 IAA 本土化要求</b><span>T&amp;E</span></span></a>
-    <a class="hl-item" href="#" data-mi="7"><span class="n">3</span><span class="t"><b>欧洲铝业协会联合声明：向 Circular Economy Act 提 6 项诉求</b><span>欧洲铝业协会</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">1</span><span class="t"><b>CBAM 核查机构开始真正进场，核查机制实质性落地</b><span>微信公众号（SteelMan 钢铁信息，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="7"><span class="n">2</span><span class="t"><b>欧洲铝业协会联合约 31 家行业协会发表声明，向 Circular Economy Act 提 6 项诉求</b><span>欧洲铝业协会（一手 PDF 已读）</span></span></a>
+    <a class="hl-item" href="#" data-mi="9"><span class="n">3</span><span class="t"><b>T&amp;E 发布 IAA 本土化可行性分析，直接反驳 ACEA&quot;150GWh 缺口论&quot;</b><span>T&amp;E（一手页面已通读）</span></span></a>
+    <a class="hl-item" href="#" data-mi="10"><span class="n">4</span><span class="t"><b>铜箔短缺成电池排产瓶颈，加工费 Q4 上调 1000–2000 元/吨</b><span>微信公众号（深圳市电池行业协会，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="18"><span class="n">5</span><span class="t"><b>&quot;往复&quot;之间——一座再循环工厂里的全球制造业博弈</b><span>微信公众号（生态文明实践，full 正文）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2422,7 +2474,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-02";
-var BRIEF_DATA = [{"t": "CBAM 核查机构开始真正进场，核查机制实质性落地", "u": "https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "海外法规与政策", "sum": "希腊 EMICERT 9-14 获 ESYD 的 CBAM 认可（覆盖全部 CBAM 活动组），Bureau Veritas 9-29 宣布取得 CBAM 核查认可，TÜV Rheinland 9 月中旬更新服务页；欧委会 8-31 起陆续公布核查操作程序，9-28 新一批材料覆盖核查机构注册、系统操作与 O3CI 协作。", "points": ["欧委会此前预计首批 CBAM 核查机构 9 月获得认可", "CBAM 采用单独认可制度：原 EU ETS 核查机构须向国家认可机构申请扩项至相应活动组后才能出具正式核查报告", "证据等级：微信公众号 full 正文（行业资讯号梳理——涉法规实施状态，打标「待一手核验」）；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报"], "note": "O9 CBAM 核心义务：过渡期→正式期的核查机制正在实质性落地；TÜV Rheinland、Bureau Veritas 等已在中国有长期业务网络，中国钢铝出口商的核查路径开始明确。统一认可名单尚未完整发布，持续跟踪。"}, {"t": "T&E 联合 European Metals、Cefic 致函欧委会，呼吁 2027 年按时实施 EU-UK TCA 电池原产地规则", "u": "https://www.transportenvironment.org/articles/the-litmus-test-for-made-in-europe", "s": "T&E（一手页面已通读）", "sec": "海外法规与政策", "sum": "公开信称 TCA 是《工业加速法案》(IAA) 的\"迷你预演\"；汽车制造商在规则生效前三个月再次要求推迟 2027 年永久性原产地规则，而供应商方（RECHARGE 数据）已具备 12.1 万吨正极产能、远超 5.2–7.5 万吨需求；呼吁欧委会\"守住底线\"，否则重创\"Made in Europe\"雄心。", "points": [], "note": "NGO/行业协会倡导信；10-01 发布。"}, {"t": "T&E 等欧洲运输业企业联名致函欧委会，敦促维持重型车 CO₂ 标准雄心、不提前 2027 年审查", "u": "https://www.transportenvironment.org/articles/european-businesses-in-the-transport-sector-call-for-eu-to-maintain-stability-and-ambition-on-decarbonising-heavy-duty-vehicles-hdvs", "s": "T&E（一手页面已通读）", "sec": "海外法规与政策", "sum": "称 2025–2030 目标期已做过定向修订，再改只会加剧投资不确定性；属政策倡导信，非法规变化。", "points": [], "note": "补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "Allianz 推动维修、再利用与循环理赔", "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPNmg1VExXWUs0dG1mX0xsclF2RXRvaTlKT3hfTGFnRHVtQXNFb3FUcGpURjNLZWlkRzlYYWNKZnVSaHlQLVFwTzQ4ZWpkMGlVc19kUWl4TzRVTWFGaEFZZGIyclpGWXA2YjdKeEVNRU4taHFNbWFZVkZPMElFd3BGUXpCTEtoQQ", "s": "Auto Recycling World 经路透", "sec": "海外法规与政策", "sum": "保险端发力循环经济理赔模式，与 ELV/报废车价值链相关。", "points": [], "note": "仅有标题摘要。"}, {"t": "JCP 论文：DPP 赋能的报废策略推荐决策支持系统", "u": "https://doi.org/10.1016/j.jclepro.2026.149566", "s": "Journal of Cleaner Production", "sec": "LCA 与方法学", "sum": "DPP（数字产品护照）数据驱动的报废（EOL）策略推荐决策支持系统；与 O4 电池护照/DPP 实施的方法学侧研究相关。", "points": [], "note": "仅有标题/DOI，全文未读；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "CnEVPost：2026 年 9 月中国主要车企交付/销量汇总", "u": "https://cnevpost.com", "s": "CnEVPost", "sec": "整车企业", "sum": "比亚迪 463,561 辆（+16.98%）、上汽 40.6 万辆、奇瑞 292,308 辆（单月出口破 20 万辆）、吉利 29.2 万辆（+7%）、蔚来 37,408 辆、零跑破 10 万辆、小米超 4 万辆、理想 31,817 辆（-6.29%）、长城约 11.5 万辆（-14%）。", "points": [], "note": "媒体汇总。"}, {"t": "福特 CEO 法利：美国应吸取欧洲教训，审慎对待中国车企入美", "u": "https://www.ithome.com", "s": "IT之家", "sec": "整车企业", "sum": "福特 CEO 关于美国对华汽车贸易政策的表态。", "points": [], "note": "仅有标题。"}, {"t": "欧洲铝业协会联合约 31 家行业协会发表声明，向 Circular Economy Act 提 6 项诉求", "u": "https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf", "s": "欧洲铝业协会（一手 PDF 已读）", "sec": "上游基础材料", "sum": "6 项诉求：① 建立欧盟统一的 EPR 框架、统一定义/目标并与 PPWR 衔接；② 加强 EPR 治理，保持\"生产者主导\"模式；③ 废弃物链透明度与高质量标准化数据；④ EPR 资金专款专用；⑤ 简化行政：单一欧盟 EPR 注册、一套费用调制数据格式、对齐 ESPR 数字产品护照数据；⑥ 改进单独收集、设定统一收集方法/目标。", "points": ["参与方约 31 家：European Aluminium、APPLiA、FoodDrinkEurope、AIM、Flexible Packaging Europe、EUROPEN、Plastics Europe、Steel for Packaging Europe、Toy Industries of Europe、VinylPlus、AmCham EU 等"], "note": "欧盟《循环经济法案》是继 ELV 法规后下一个横跨包装/汽车/电池价值链的框架立法；EPR 统一框架与 ESPR 数字产品护照数据对齐两条诉求与 O4/O7（电池护照/DPP）直接相关，值得持续跟踪 CEA 立法进程。行业游说口径。"}, {"t": "碳加铁深度综述：氨还原炼铁\"十五年，四条路\"", "u": "https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg", "s": "微信公众号（碳加铁，full 正文）", "sec": "上游基础材料", "sum": "氨冶金技术路线梳理：氨的核心优势是\"已经流通的氢\"（含氢 17.6%、液化能耗比氢低约一个数量级）；梳理氨还原四条技术路线的发展历程、当前进展与商业化判断。", "points": [], "note": "KOL 技术综述，属分析梳理非新事件；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "T&E 发布 IAA 本土化可行性分析，直接反驳 ACEA\"150GWh 缺口论\"", "u": "https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain", "s": "T&E（一手页面已通读）", "sec": "电池产业链", "sum": "指 ACEA 委托 Mobility Global 的\"2028 年 150GWh 电池缺口\"结论存在方法缺陷（扣除了随整车出口的电芯、排除了未对齐本地组装的产能；需求高估）；结论：2027 年起欧盟电芯产能可满足企业车辆需求，2030 年可覆盖全部补贴车辆，欧洲 LFP 2030 年有望超 100GWh；但中游是真正瓶颈——2035 年中国仍可能占全球正极产能 80%+，欧洲仅 3%。", "points": ["配套新闻稿：https://www.transportenvironment.org/articles/ready-to-scale-europe-will-have-enough-cells-to-meet-demand-and-grow-its-domestic-battery-value-chain-industry", "政策建议：保留 IAA 2027-28 电芯要求与 2030 CAM 要求；2032 年新增 pCAM 20%、AAM 10% 最低门槛；拒绝车企\"70% 车队豁免\"提案"], "note": "与昨日早报 ACEA/Mobility Global 研究形成直接对冲视角；IAA 本土化条款谈判进入关键阶段。NGO 立场分析，产能数据为其模型估算。补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "铜箔短缺成电池排产瓶颈，加工费 Q4 上调 1000–2000 元/吨", "u": "https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ", "s": "微信公众号（深圳市电池行业协会，full 正文）", "sec": "电池产业链", "sum": "SMM 数据：2026 年国内锂电铜箔需求约 137.32 万吨、供应约 135 万吨，缺口 2.32 万吨；3μm/4.5μm 超薄铜箔结构性短缺，包括宁德时代在内的电池厂主动调整排产（储能电芯优先）；万吨级产线投资 4–8 亿元、建设爬产 18–24 个月，扩产慢；SMM 预测 2027 年缺口扩大至 3.89 万吨。", "points": [], "note": "铜箔是电池集流体关键材料，短缺与加工费上调直接推高电芯成本；储能电芯优先排产可能挤压动力电芯交付节奏。企业排产调整为\"有消息透露\"，未一手核验。补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "LG Energy Solution × 美国 indiGOtech 签署非约束性 MoU，探索 2027–2030 年供应 46 系 NCM 圆柱电池", "u": "https://news.lgensol.com/company-news/press-releases/5404/", "s": "LG Energy Solution 官方新闻稿", "sec": "电池产业链", "sum": "探索自 2027–2030 年供应 46 系 NCM 圆柱电池用于 indiGOtech 的 Flow Ride/Flow Cargo 电动厢式货车。", "points": [], "note": "已核验；MoU 阶段非采购承诺。"}, {"t": "奔驰 × 台湾 ProLogium 签署联合测试协议，测试其 Gen4 锂陶瓷电池技术", "u": "https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/", "s": "ProLogium 官方", "sec": "电池产业链", "sum": "9-24 在台北签署，对最新 Gen4 锂陶瓷电池技术做电气/热/安全测试，奔驰获优先评估权；ProLogium 另向 SEC 提交 425 文件披露。", "points": [], "note": "已核验。"}, {"t": "Ultium Cells 宣布追加 10 亿美元升级田纳西州 Spring Hill 工厂", "u": "https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/", "s": "WardsAuto", "sec": "电池产业链", "sum": "目标成为全球首个大规模量产棱柱形锂锰富集（LMR）电芯的工厂，并生产 LFP 储能电芯；工厂改造预计 2028 年完成。", "points": [], "note": "已核验；事件 9-30，10-01 发现。"}, {"t": "我国川西锂矿找矿突破，新增碳酸锂当量约 104.68 万吨", "u": "https://www.ithome.com", "s": "IT之家", "sec": "电池产业链", "sum": "川西锂矿新增碳酸锂当量约 104.68 万吨。", "points": [], "note": "仅有标题，官方通报待取。"}, {"t": "9 月 19 款新车全选宁德时代电池", "u": "https://mp.weixin.qq.com", "s": "微信公众号（宁德时代账号）", "sec": "电池产业链", "sum": "9 月 19 款新车全部选用宁德时代电池。", "points": [], "note": "仅有标题（title-only）。"}, {"t": "上市公司锂资源量排行榜", "u": "https://mp.weixin.qq.com", "s": "微信公众号（锂书房，full 正文）", "sec": "电池产业链", "sum": "第一梯队赣锋/天齐/紫金；宁德时代权益资源 730.47 万吨 LCE 新晋重量级玩家。", "points": [], "note": "媒体梳理口径。"}, {"t": "ILA 宣布铅电池创新联盟（CBI）自 2027 年起重组为多技术预竞争研究组织", "u": "https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/", "s": "ILA", "sec": "电池产业链", "sum": "维也纳欧洲铅电池大会上 120 名成员投票支持；保留铅电池核心研发，同时扩展至锂电池及其他新电池技术的独立基准测试与标准/政策话语权。", "points": [], "note": "已核验；网站元数据 2026-10-01。"}, {"t": "\"往复\"之间——一座再循环工厂里的全球制造业博弈", "u": "https://mp.weixin.qq.com", "s": "微信公众号（生态文明实践，full 正文）", "sec": "循环再生", "sum": "记者蹲点海尔再循环互联工厂，追踪废旧家电\"重生\"为汽车零部件之路；引用 2026 年 6 月发改委《循环经济发展\"十五五\"规划》：到 2030 年我国资源循环利用产业产值达到 8 万亿元，山东提出到 2030 年废弃电器电子产品等再生资源产品利用量达到 5000 万吨。", "points": [], "note": "《循环经济发展\"十五五\"规划》是国内循环经济顶层规划，此前未入库跟踪；8 万亿产值目标是 I4 赛道规模判断的政策锚。规划原文尚未一手取得，记入待核验清单（涉政策口径，打标「待一手核验」）。"}, {"t": "美国回收商联合支持车辆电池标签：支持加州 SB 615 车辆牵引电池标签法案", "u": "https://americanrecycler.com/automotive/vehicle-traction-batteries-labeling/", "s": "American Recycler", "sec": "循环再生", "sum": "美国汽车回收商协会（ARA）联手加州拆解协会 CADRA、SCADA 等，支持加州 SB 615 车辆牵引电池标签法案，要求统一电池标签以促进回收安全与规范化。", "points": [], "note": "已核验。"}, {"t": "American Battery Technology Company 获美国商务部出口许可，可出售最多 1 亿美元回收\"黑粉\"关键矿物", "u": "https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html", "s": "GlobeNewswire", "sec": "循环再生", "sum": "黑粉来自内华达 Reno 回收工厂（锂/镍/钴/锰/石墨）；消息刺激股价上涨。", "points": [], "note": "已核验；2026-10-01。"}, {"t": "JCP 论文：废旧 NCM 电池盐酸浸出液镍钴无碱回收", "u": "https://doi.org/10.1016/j.jclepro.2026.149558", "s": "Journal of Cleaner Production", "sec": "循环再生", "sum": "用吡啶甲酰胺萃取剂、连续逆流萃取工艺从废旧 NCM 电池盐酸浸出液中无碱回收镍钴；电池湿法回收工艺研究线索。", "points": [], "note": "仅有标题/DOI，全文未读；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}, {"t": "JCP 论文：低价值可回收物回收的治理机制研究", "u": "https://doi.org/10.1016/j.jclepro.2026.149422", "s": "Journal of Cleaner Production", "sec": "循环再生", "sum": "双重信息不对称下的低价值可回收物回收治理机制。", "points": [], "note": "仅有标题/DOI。"}, {"t": "湖北省发文，废塑料列入固废规划重点品类", "u": "https://mp.weixin.qq.com", "s": "微信公众号（废塑料新观察）", "sec": "循环再生", "sum": "地方固废规划政策动态；\"155\"疑为\"十五五\"笔误，按标题原样记录；具体文件与品类口径待取。", "points": [], "note": "仅有摘要（partial）；命中\"规划\"关键词故收录一句话；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。"}];
+var BRIEF_DATA = [{"t": "CBAM 核查机构开始真正进场，核查机制实质性落地", "u": "https://mp.weixin.qq.com/s/zthKVQjwavsrjXRCtBkmyA", "s": "微信公众号（SteelMan 钢铁信息，full 正文）", "sec": "海外法规与政策", "sum": "希腊 EMICERT 9-14 获 ESYD 的 CBAM 认可（覆盖全部 CBAM 活动组），Bureau Veritas 9-29 宣布取得 CBAM 核查认可，TÜV Rheinland 9 月中旬更新服务页；欧委会 8-31 起陆续公布核查操作程序，9-28 新一批材料覆盖核查机构注册、系统操作与 O3CI 协作。", "points": ["欧委会此前预计首批 CBAM 核查机构 9 月获得认可", "CBAM 采用单独认可制度：原 EU ETS 核查机构须向国家认可机构申请扩项至相应活动组后才能出具正式核查报告", "证据等级：微信公众号 full 正文（行业资讯号梳理——涉法规实施状态，打标「待一手核验」）；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报"], "note": "O9 CBAM 核心义务：过渡期→正式期的核查机制正在实质性落地；TÜV Rheinland、Bureau Veritas 等已在中国有长期业务网络，中国钢铝出口商的核查路径开始明确。统一认可名单尚未完整发布，持续跟踪。", "score": 0, "level": "full"}, {"t": "T&E 联合 European Metals、Cefic 致函欧委会，呼吁 2027 年按时实施 EU-UK TCA 电池原产地规则", "u": "https://www.transportenvironment.org/articles/the-litmus-test-for-made-in-europe", "s": "T&E（一手页面已通读）", "sec": "海外法规与政策", "sum": "公开信称 TCA 是《工业加速法案》(IAA) 的\"迷你预演\"；汽车制造商在规则生效前三个月再次要求推迟 2027 年永久性原产地规则，而供应商方（RECHARGE 数据）已具备 12.1 万吨正极产能、远超 5.2–7.5 万吨需求；呼吁欧委会\"守住底线\"，否则重创\"Made in Europe\"雄心。", "points": [], "note": "NGO/行业协会倡导信；10-01 发布。", "score": 0, "level": "brief"}, {"t": "T&E 等欧洲运输业企业联名致函欧委会，敦促维持重型车 CO₂ 标准雄心、不提前 2027 年审查", "u": "https://www.transportenvironment.org/articles/european-businesses-in-the-transport-sector-call-for-eu-to-maintain-stability-and-ambition-on-decarbonising-heavy-duty-vehicles-hdvs", "s": "T&E（一手页面已通读）", "sec": "海外法规与政策", "sum": "称 2025–2030 目标期已做过定向修订，再改只会加剧投资不确定性；属政策倡导信，非法规变化。", "points": [], "note": "补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "Allianz 推动维修、再利用与循环理赔", "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPNmg1VExXWUs0dG1mX0xsclF2RXRvaTlKT3hfTGFnRHVtQXNFb3FUcGpURjNLZWlkRzlYYWNKZnVSaHlQLVFwTzQ4ZWpkMGlVc19kUWl4TzRVTWFGaEFZZGIyclpGWXA2YjdKeEVNRU4taHFNbWFZVkZPMElFd3BGUXpCTEtoQQ", "s": "Auto Recycling World 经路透", "sec": "海外法规与政策", "sum": "保险端发力循环经济理赔模式，与 ELV/报废车价值链相关。", "points": [], "note": "仅有标题摘要。", "score": 0, "level": "brief"}, {"t": "JCP 论文：DPP 赋能的报废策略推荐决策支持系统", "u": "https://doi.org/10.1016/j.jclepro.2026.149566", "s": "Journal of Cleaner Production", "sec": "LCA 与方法学", "sum": "DPP（数字产品护照）数据驱动的报废（EOL）策略推荐决策支持系统；与 O4 电池护照/DPP 实施的方法学侧研究相关。", "points": [], "note": "仅有标题/DOI，全文未读；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "CnEVPost：2026 年 9 月中国主要车企交付/销量汇总", "u": "https://cnevpost.com", "s": "CnEVPost", "sec": "整车企业", "sum": "比亚迪 463,561 辆（+16.98%）、上汽 40.6 万辆、奇瑞 292,308 辆（单月出口破 20 万辆）、吉利 29.2 万辆（+7%）、蔚来 37,408 辆、零跑破 10 万辆、小米超 4 万辆、理想 31,817 辆（-6.29%）、长城约 11.5 万辆（-14%）。", "points": [], "note": "媒体汇总。", "score": 0, "level": "brief"}, {"t": "福特 CEO 法利：美国应吸取欧洲教训，审慎对待中国车企入美", "u": "https://www.ithome.com", "s": "IT之家", "sec": "整车企业", "sum": "福特 CEO 关于美国对华汽车贸易政策的表态。", "points": [], "note": "仅有标题。", "score": 0, "level": "brief"}, {"t": "欧洲铝业协会联合约 31 家行业协会发表声明，向 Circular Economy Act 提 6 项诉求", "u": "https://european-aluminium.eu/wp-content/uploads/2026/10/26-10-01-Joint-Statement_A-Circular-Economy-Act-delivering-a-strong-EU-market-for-secondary-raw-materials.pdf", "s": "欧洲铝业协会（一手 PDF 已读）", "sec": "上游基础材料", "sum": "6 项诉求：① 建立欧盟统一的 EPR 框架、统一定义/目标并与 PPWR 衔接；② 加强 EPR 治理，保持\"生产者主导\"模式；③ 废弃物链透明度与高质量标准化数据；④ EPR 资金专款专用；⑤ 简化行政：单一欧盟 EPR 注册、一套费用调制数据格式、对齐 ESPR 数字产品护照数据；⑥ 改进单独收集、设定统一收集方法/目标。", "points": ["参与方约 31 家：European Aluminium、APPLiA、FoodDrinkEurope、AIM、Flexible Packaging Europe、EUROPEN、Plastics Europe、Steel for Packaging Europe、Toy Industries of Europe、VinylPlus、AmCham EU 等"], "note": "欧盟《循环经济法案》是继 ELV 法规后下一个横跨包装/汽车/电池价值链的框架立法；EPR 统一框架与 ESPR 数字产品护照数据对齐两条诉求与 O4/O7（电池护照/DPP）直接相关，值得持续跟踪 CEA 立法进程。行业游说口径。", "score": 0, "level": "full"}, {"t": "碳加铁深度综述：氨还原炼铁\"十五年，四条路\"", "u": "https://mp.weixin.qq.com/s/YbRfcsltm7UrOH8RiUSFUg", "s": "微信公众号（碳加铁，full 正文）", "sec": "上游基础材料", "sum": "氨冶金技术路线梳理：氨的核心优势是\"已经流通的氢\"（含氢 17.6%、液化能耗比氢低约一个数量级）；梳理氨还原四条技术路线的发展历程、当前进展与商业化判断。", "points": [], "note": "KOL 技术综述，属分析梳理非新事件；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "T&E 发布 IAA 本土化可行性分析，直接反驳 ACEA\"150GWh 缺口论\"", "u": "https://www.transportenvironment.org/articles/leveraging-the-iaa-to-build-europes-battery-value-chain", "s": "T&E（一手页面已通读）", "sec": "电池产业链", "sum": "指 ACEA 委托 Mobility Global 的\"2028 年 150GWh 电池缺口\"结论存在方法缺陷（扣除了随整车出口的电芯、排除了未对齐本地组装的产能；需求高估）；结论：2027 年起欧盟电芯产能可满足企业车辆需求，2030 年可覆盖全部补贴车辆，欧洲 LFP 2030 年有望超 100GWh；但中游是真正瓶颈——2035 年中国仍可能占全球正极产能 80%+，欧洲仅 3%。", "points": ["配套新闻稿：https://www.transportenvironment.org/articles/ready-to-scale-europe-will-have-enough-cells-to-meet-demand-and-grow-its-domestic-battery-value-chain-industry", "政策建议：保留 IAA 2027-28 电芯要求与 2030 CAM 要求；2032 年新增 pCAM 20%、AAM 10% 最低门槛；拒绝车企\"70% 车队豁免\"提案"], "note": "与昨日早报 ACEA/Mobility Global 研究形成直接对冲视角；IAA 本土化条款谈判进入关键阶段。NGO 立场分析，产能数据为其模型估算。补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "full"}, {"t": "铜箔短缺成电池排产瓶颈，加工费 Q4 上调 1000–2000 元/吨", "u": "https://mp.weixin.qq.com/s/MVRqEBqOyHFZTDtbFGlIbQ", "s": "微信公众号（深圳市电池行业协会，full 正文）", "sec": "电池产业链", "sum": "SMM 数据：2026 年国内锂电铜箔需求约 137.32 万吨、供应约 135 万吨，缺口 2.32 万吨；3μm/4.5μm 超薄铜箔结构性短缺，包括宁德时代在内的电池厂主动调整排产（储能电芯优先）；万吨级产线投资 4–8 亿元、建设爬产 18–24 个月，扩产慢；SMM 预测 2027 年缺口扩大至 3.89 万吨。", "points": [], "note": "铜箔是电池集流体关键材料，短缺与加工费上调直接推高电芯成本；储能电芯优先排产可能挤压动力电芯交付节奏。企业排产调整为\"有消息透露\"，未一手核验。补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "full"}, {"t": "LG Energy Solution × 美国 indiGOtech 签署非约束性 MoU，探索 2027–2030 年供应 46 系 NCM 圆柱电池", "u": "https://news.lgensol.com/company-news/press-releases/5404/", "s": "LG Energy Solution 官方新闻稿", "sec": "电池产业链", "sum": "探索自 2027–2030 年供应 46 系 NCM 圆柱电池用于 indiGOtech 的 Flow Ride/Flow Cargo 电动厢式货车。", "points": [], "note": "已核验；MoU 阶段非采购承诺。", "score": 0, "level": "brief"}, {"t": "奔驰 × 台湾 ProLogium 签署联合测试协议，测试其 Gen4 锂陶瓷电池技术", "u": "https://prologium.com/mercedes-benz-and-prologium-have-entered-into-a-joint-testing-agreement-including-a-preliminary-platform-evaluation-of-of-prologiums-latest-gen4-superfluidized-all-inorganic-solid-state-batt/", "s": "ProLogium 官方", "sec": "电池产业链", "sum": "9-24 在台北签署，对最新 Gen4 锂陶瓷电池技术做电气/热/安全测试，奔驰获优先评估权；ProLogium 另向 SEC 提交 425 文件披露。", "points": [], "note": "已核验。", "score": 0, "level": "brief"}, {"t": "Ultium Cells 宣布追加 10 亿美元升级田纳西州 Spring Hill 工厂", "u": "https://www.wardsauto.com/news/ultium-cells-boasts-1b-investment-for-future-affordable-gm-ev-batteries/831720/", "s": "WardsAuto", "sec": "电池产业链", "sum": "目标成为全球首个大规模量产棱柱形锂锰富集（LMR）电芯的工厂，并生产 LFP 储能电芯；工厂改造预计 2028 年完成。", "points": [], "note": "已核验；事件 9-30，10-01 发现。", "score": 0, "level": "brief"}, {"t": "我国川西锂矿找矿突破，新增碳酸锂当量约 104.68 万吨", "u": "https://www.ithome.com", "s": "IT之家", "sec": "电池产业链", "sum": "川西锂矿新增碳酸锂当量约 104.68 万吨。", "points": [], "note": "仅有标题，官方通报待取。", "score": 0, "level": "brief"}, {"t": "9 月 19 款新车全选宁德时代电池", "u": "https://mp.weixin.qq.com", "s": "微信公众号（宁德时代账号）", "sec": "电池产业链", "sum": "9 月 19 款新车全部选用宁德时代电池。", "points": [], "note": "仅有标题（title-only）。", "score": 0, "level": "brief"}, {"t": "上市公司锂资源量排行榜", "u": "https://mp.weixin.qq.com", "s": "微信公众号（锂书房，full 正文）", "sec": "电池产业链", "sum": "第一梯队赣锋/天齐/紫金；宁德时代权益资源 730.47 万吨 LCE 新晋重量级玩家。", "points": [], "note": "媒体梳理口径。", "score": 0, "level": "brief"}, {"t": "ILA 宣布铅电池创新联盟（CBI）自 2027 年起重组为多技术预竞争研究组织", "u": "https://ila-lead.org/battery-consortium-set-to-become-multi-technology-research-group/", "s": "ILA", "sec": "电池产业链", "sum": "维也纳欧洲铅电池大会上 120 名成员投票支持；保留铅电池核心研发，同时扩展至锂电池及其他新电池技术的独立基准测试与标准/政策话语权。", "points": [], "note": "已核验；网站元数据 2026-10-01。", "score": 0, "level": "brief"}, {"t": "\"往复\"之间——一座再循环工厂里的全球制造业博弈", "u": "https://mp.weixin.qq.com", "s": "微信公众号（生态文明实践，full 正文）", "sec": "循环再生", "sum": "记者蹲点海尔再循环互联工厂，追踪废旧家电\"重生\"为汽车零部件之路；引用 2026 年 6 月发改委《循环经济发展\"十五五\"规划》：到 2030 年我国资源循环利用产业产值达到 8 万亿元，山东提出到 2030 年废弃电器电子产品等再生资源产品利用量达到 5000 万吨。", "points": [], "note": "《循环经济发展\"十五五\"规划》是国内循环经济顶层规划，此前未入库跟踪；8 万亿产值目标是 I4 赛道规模判断的政策锚。规划原文尚未一手取得，记入待核验清单（涉政策口径，打标「待一手核验」）。", "score": 0, "level": "full"}, {"t": "美国回收商联合支持车辆电池标签：支持加州 SB 615 车辆牵引电池标签法案", "u": "https://americanrecycler.com/automotive/vehicle-traction-batteries-labeling/", "s": "American Recycler", "sec": "循环再生", "sum": "美国汽车回收商协会（ARA）联手加州拆解协会 CADRA、SCADA 等，支持加州 SB 615 车辆牵引电池标签法案，要求统一电池标签以促进回收安全与规范化。", "points": [], "note": "已核验。", "score": 0, "level": "brief"}, {"t": "American Battery Technology Company 获美国商务部出口许可，可出售最多 1 亿美元回收\"黑粉\"关键矿物", "u": "https://www.globenewswire.com/news-release/2026/10/01/3372689/0/en/american-battery-technology-company-receives-approval-for-sale-of-100-million-of-exported-recycled-black-mass-critical-minerals-with-license-from-u-s-department-of-commerce.html", "s": "GlobeNewswire", "sec": "循环再生", "sum": "黑粉来自内华达 Reno 回收工厂（锂/镍/钴/锰/石墨）；消息刺激股价上涨。", "points": [], "note": "已核验；2026-10-01。", "score": 0, "level": "brief"}, {"t": "JCP 论文：废旧 NCM 电池盐酸浸出液镍钴无碱回收", "u": "https://doi.org/10.1016/j.jclepro.2026.149558", "s": "Journal of Cleaner Production", "sec": "循环再生", "sum": "用吡啶甲酰胺萃取剂、连续逆流萃取工艺从废旧 NCM 电池盐酸浸出液中无碱回收镍钴；电池湿法回收工艺研究线索。", "points": [], "note": "仅有标题/DOI，全文未读；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "brief"}, {"t": "JCP 论文：低价值可回收物回收的治理机制研究", "u": "https://doi.org/10.1016/j.jclepro.2026.149422", "s": "Journal of Cleaner Production", "sec": "循环再生", "sum": "双重信息不对称下的低价值可回收物回收治理机制。", "points": [], "note": "仅有标题/DOI。", "score": 0, "level": "brief"}, {"t": "湖北省发文，废塑料列入固废规划重点品类", "u": "https://mp.weixin.qq.com", "s": "微信公众号（废塑料新观察）", "sec": "循环再生", "sum": "地方固废规划政策动态；\"155\"疑为\"十五五\"笔误，按标题原样记录；具体文件与品类口径待取。", "points": [], "note": "仅有摘要（partial）；命中\"规划\"关键词故收录一句话；补录三要素：发布 2026-10-01／发现 2026-10-01（晚间哨兵）／补录原因：10-01 晚间哨兵 pending 并入早报。", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

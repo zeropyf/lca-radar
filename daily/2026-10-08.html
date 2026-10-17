@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,7 +1406,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（碳究社，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/zr-OrGf6IyTSydK1n2MlbA" target="_blank" rel="noopener">零碳工厂评价规范 2025 版发布，对照 2022 版 13 处变化<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/zr-OrGf6IyTSydK1n2MlbA" target="_blank" rel="noopener"><span>零碳工厂评价规范 2025 版发布，对照 2022 版 13 处变化</span><span class="ext">↗</span></a></h3>
           <p class="sum">规范更新至 2025 版，逐条对照 2022 版梳理 13 处变化；与工信部绿色制造体系衔接，企业侧碳管理与“双碳”政策落地的评价口径可能随之调整。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/zr-OrGf6IyTSydK1n2MlbA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1368,43 +1418,43 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>CnEVPost 全文通读（转述 Bloomberg）</span></div>
-          <h3><a href="https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/" target="_blank" rel="noopener">欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”<span class="ext">↗</span></a></h3>
+          <h3><a href="https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/" target="_blank" rel="noopener"><span>欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧委会正准备针对中国产混动车在欧销量激增采取保障措施，选项之一是关税配额；混动车将作为试验案例，若“奏效”可能扩展至其他领域。中国产混动对欧出口从 2024-10 的 3800 辆增至 2026-07 的 5 万辆；谢夫乔维奇本周访京与王文涛会谈，结果或影响计划走向。</p>
           <a class="golink" href="https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Sustainable Business RSS 转引</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOREl5eEZUbkloa1BKSlhTem41RE5mOTV6ZDhaUHNXU0x2Q2lqWjhHTDBFT" target="_blank" rel="noopener">Automotive Manufacturing：数字产品护照正从合规工具转向生产工具<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOREl5eEZUbkloa1BKSlhTem41RE5mOTV6ZDhaUHNXU0x2Q2lqWjhHTDBFT" target="_blank" rel="noopener"><span>Automotive Manufacturing：数字产品护照正从合规工具转向生产工具</span><span class="ext">↗</span></a></h3>
           <p class="sum">行业媒体观察称数字产品护照（DPP）的应用正在从“为合规而建”转向“为生产而用”，企业开始将其作为供应链数据工具。趋势判断类文章，原文未读。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOREl5eEZUbkloa1BKSlhTem41RE5mOTV6ZDhaUHNXU0x2Q2lqWjhHTDBFT" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Minespider 官网新闻稿（一手）</span></div>
-          <h3><a href="https://www.minespider.com/press/minespider-and-tenways-partner-to-prepare-for-the-next-generation-of-e-bike-battery-transparency" target="_blank" rel="noopener">Minespider 与 TENWAYS 合作，为电动自行车 LMT 电池实施数字电池护照<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.minespider.com/press/minespider-and-tenways-partner-to-prepare-for-the-next-generation-of-e-bike-battery-transparency" target="_blank" rel="noopener"><span>Minespider 与 TENWAYS 合作，为电动自行车 LMT 电池实施数字电池护照</span><span class="ext">↗</span></a></h3>
           <p class="sum">双方 10 月 7 日宣布合作，为 TENWAYS 轻型交通工具（LMT）电池实施数字电池护照，提前布局 2027-02-18 欧盟电池法规对 LMT 电池的护照义务；Minespider 称这是护照实施从监管准备走向实际部署的又一案例。</p>
           <a class="golink" href="https://www.minespider.com/press/minespider-and-tenways-partner-to-prepare-for-the-next-generation-of-e-bike-battery-transparency" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Batteries News（全文通读）</span></div>
-          <h3><a href="https://batteriesnews.com/carbmee-applies-ai-native-data-foundation-to-the-eu-digital-battery-passport-challenge/" target="_blank" rel="noopener">carbmee 以 AI 原生数据底座应对欧盟数字电池护照挑战（约 80 个数据字段）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://batteriesnews.com/carbmee-applies-ai-native-data-foundation-to-the-eu-digital-battery-passport-challenge/" target="_blank" rel="noopener"><span>carbmee 以 AI 原生数据底座应对欧盟数字电池护照挑战（约 80 个数据字段）</span><span class="ext">↗</span></a></h3>
           <p class="sum">carbmee 宣布将其 AI 原生数据基础应用于欧盟数字电池护照：每本护照约 80 个数据字段（六大类），需经核验、分级授权并动态更新；方案从企业现有交易数据起步、用 AI 建模补齐缺口，避免套用高默认值导致排放被高估。</p>
           <a class="golink" href="https://batteriesnews.com/carbmee-applies-ai-native-data-foundation-to-the-eu-digital-battery-passport-challenge/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（climate 科学，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/3lznVTrf39kDLEuIhUNZaA" target="_blank" rel="noopener">巴黎协定第六条监督机构本周审议炉灶方法学，逆转风险缓冲池或大幅削减信用签发量<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/3lznVTrf39kDLEuIhUNZaA" target="_blank" rel="noopener"><span>巴黎协定第六条监督机构本周审议炉灶方法学，逆转风险缓冲池或大幅削减信用签发量</span><span class="ext">↗</span></a></h3>
           <p class="sum">PACM 监督机构 10 月 5–9 日波恩第 23 次会议审议两套清洁炉灶方法学：专家组建议对地上木质生物质相关减排量乘以逆转风险系数划入缓冲池（自然风险 4%–36%，人为风险 20%–45%），叠加 fNRB 修订后可签发量将明显下降；另引 Koko Networks 破产案说明东道国授权函收紧对合规级供给的挤压。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/3lznVTrf39kDLEuIhUNZaA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（气候变化与可持续发展视界，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/w0KuWn0qGU5FsYiwZQrmoQ" target="_blank" rel="noopener">CBAM 排放核查解析（1）：范围、流程与结论<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/w0KuWn0qGU5FsYiwZQrmoQ" target="_blank" rel="noopener"><span>CBAM 排放核查解析（1）：范围、流程与结论</span><span class="ext">↗</span></a></h3>
           <p class="sum">解析 CBAM 第三方核查规则：核查在生产设施层面进行，覆盖监测计划符合性、数据流与控制系统有效性等；流程含签约前评估、战略分析、风险评估、现场访问、过程分析、错报处理与独立复核；结论只有“肯定”（可用实测数据）或“否定”（只能按默认值申报）两种。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/w0KuWn0qGU5FsYiwZQrmoQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Tyres Europe 官网（一手） · 10-06 迟到补录</span></div>
-          <h3><a href="https://tyreseurope.org/joint-letter-ahead-of-the-upcoming-interinstitutional-negotiations-on-carbon-border-adjustment-mechanism-cbam-scope-extension/" target="_blank" rel="noopener">Tyres Europe 联合 ACEA、CLEPA 致函——CBAM 范围扩展仅应在存在实质性碳泄漏风险时实施<span class="ext">↗</span></a></h3>
+          <h3><a href="https://tyreseurope.org/joint-letter-ahead-of-the-upcoming-interinstitutional-negotiations-on-carbon-border-adjustment-mechanism-cbam-scope-extension/" target="_blank" rel="noopener"><span>Tyres Europe 联合 ACEA、CLEPA 致函——CBAM 范围扩展仅应在存在实质性碳泄漏风险时实施</span><span class="ext">↗</span></a></h3>
           <p class="sum">Tyres Europe 联合欧洲汽车制造商协会（ACEA）、欧洲汽车供应商协会（CLEPA）致函欧盟政策制定者，针对三方谈判前 CBAM 范围扩展至下游产品议题，要求扩展仅在存在实质性碳泄漏风险时实施、并降低企业合规负担。这是 10-05 贸易救济立场文件之后的又一政策文件。</p>
           <a class="golink" href="https://tyreseurope.org/joint-letter-ahead-of-the-upcoming-interinstitutional-negotiations-on-carbon-border-adjustment-mechanism-cbam-scope-extension/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1419,13 +1469,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（CPCD 社区，full 正文；研究报告口径）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/c8LfpYvXbCkQfNZTEJuqBw" target="_blank" rel="noopener">《中国碳足迹年度报告（2026）》发布（CPCD）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/c8LfpYvXbCkQfNZTEJuqBw" target="_blank" rel="noopener"><span>《中国碳足迹年度报告（2026）》发布（CPCD）</span><span class="ext">↗</span></a></h3>
           <p class="sum">CPCD 正式发布《中国碳足迹年度报告（2026）》，全文 PDF 可下载。报告共 8 章：碳足迹从技术核算走向经济规则、中国政策体系从“施工图”走向“制度链”、系统边界/分配/生物碳等方法学问题、数据库与电力因子、认证披露与供应链应用、国际贸易规则，以及基于 18 家企业现场调研和 370 份实名问卷的分析。报告由过去一年每周 1–2 期的跟踪文章淬炼整合而成。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/c8LfpYvXbCkQfNZTEJuqBw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>DOI（一手）</span></div>
-          <h3><a href="https://doi.org/10.1038/s41560-026-02149-9" target="_blank" rel="noopener">Nature Energy：全有机混合基质膜（单晶共价有机框架）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://doi.org/10.1038/s41560-026-02149-9" target="_blank" rel="noopener"><span>Nature Energy：全有机混合基质膜（单晶共价有机框架）</span><span class="ext">↗</span></a></h3>
           <p class="sum">“All-organic mixed-matrix membranes with single-crystal covalent organic frameworks”。</p>
           <a class="golink" href="https://doi.org/10.1038/s41560-026-02149-9" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,13 +1490,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>奔驰集团媒体中心（一手新闻稿）</span></div>
-          <h3><a href="https://media.mercedes-benz.com/article/b747b5d0-3a9a-4b8a-9e5f-a2f26db33418" target="_blank" rel="noopener">奔驰集团 Q3 全球交付 49.17 万辆，纯电车型销量创纪录<span class="ext">↗</span></a></h3>
+          <h3><a href="https://media.mercedes-benz.com/article/b747b5d0-3a9a-4b8a-9e5f-a2f26db33418" target="_blank" rel="noopener"><span>奔驰集团 Q3 全球交付 49.17 万辆，纯电车型销量创纪录</span><span class="ext">↗</span></a></h3>
           <p class="sum">梅赛德斯-奔驰集团 2026 年第三季度全球交付乘用车与厢式车 49.17 万辆，其中纯电动车型（BEV）销量创历史新高；电动化结构变化直接影响整车企业产品碳足迹的销量加权口径。</p>
           <a class="golink" href="https://media.mercedes-benz.com/article/b747b5d0-3a9a-4b8a-9e5f-a2f26db33418" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos RSS 转引</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQaF9UYmJJU3JPdFVyV" target="_blank" rel="noopener">铃木将采用比亚迪电池，推出日本最便宜的 Kei 电动车<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQaF9UYmJJU3JPdFVyV" target="_blank" rel="noopener"><span>铃木将采用比亚迪电池，推出日本最便宜的 Kei 电动车</span><span class="ext">↗</span></a></h3>
           <p class="sum">铃木计划利用比亚迪电池推出日本市场最便宜的轻型（Kei）电动车。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQaF9UYmJJU3JPdFVyV" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1458,7 +1508,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（南方能源观察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/cs1Y3joSPvG2mo0s2HP4uQ" target="_blank" rel="noopener">南非确定首批绿氢项目，2027 年启动建设（含绿色钢铁项目）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/cs1Y3joSPvG2mo0s2HP4uQ" target="_blank" rel="noopener"><span>南非确定首批绿氢项目，2027 年启动建设（含绿色钢铁项目）</span><span class="ext">↗</span></a></h3>
           <p class="sum">南非总统在 2026 年非洲绿色氢能峰会宣布，根据国家绿色氢能计划确定首批 6 个绿色氢能优先项目：西开普省萨尔达尼亚湾电制可持续航空燃料项目预计 2027 年一季度开工、2029 年一季度出口首批燃料；其余 5 个涵盖绿色氨、绿色钢铁、绿色甲醇，面向南非国内及欧洲市场。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/cs1Y3joSPvG2mo0s2HP4uQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1470,25 +1520,25 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>POSCO 新闻中心（一手新闻稿）</span></div>
-          <h3><a href="https://newsroom.posco.com/en/posco-future-m-signs-krw-1-1-trillion-lfp-cathode-material-supply-contract-with-sk-on-order-wins-gather-pace/" target="_blank" rel="noopener">POSCO Future M 与 SK On 签署 1.1 万亿韩元 LFP 正极材料供应合同<span class="ext">↗</span></a></h3>
+          <h3><a href="https://newsroom.posco.com/en/posco-future-m-signs-krw-1-1-trillion-lfp-cathode-material-supply-contract-with-sk-on-order-wins-gather-pace/" target="_blank" rel="noopener"><span>POSCO Future M 与 SK On 签署 1.1 万亿韩元 LFP 正极材料供应合同</span><span class="ext">↗</span></a></h3>
           <p class="sum">浦项未来 M 与 SK On 签署约 1.1 万亿韩元的磷酸铁锂正极材料供应合同；LFP 正极供应链长约锁定案例。</p>
           <a class="golink" href="https://newsroom.posco.com/en/posco-future-m-signs-krw-1-1-trillion-lfp-cathode-material-supply-contract-with-sk-on-order-wins-gather-pace/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Sustainable Business RSS 转引</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxORHFiNXEzdnhaOGwtZ" target="_blank" rel="noopener">通用汽车计划在田纳西生产更便宜的长续航 EV 电池<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxORHFiNXEzdnhaOGwtZ" target="_blank" rel="noopener"><span>通用汽车计划在田纳西生产更便宜的长续航 EV 电池</span><span class="ext">↗</span></a></h3>
           <p class="sum">通用汽车计划在田纳西州生产成本更低、续航更长的 EV 电池。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMikAFBVV95cUxORHFiNXEzdnhaOGwtZ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>Mining.com</span></div>
-          <h3><a href="https://www.mining.com/sigma-lithium-jumps-as-brazil-court-clears-grot" target="_blank" rel="noopener">Sigma Lithium 巴西法院批准 Grota 矿复产（相对 10-04 停产禁令的实质反转）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mining.com/sigma-lithium-jumps-as-brazil-court-clears-grot" target="_blank" rel="noopener"><span>Sigma Lithium 巴西法院批准 Grota 矿复产（相对 10-04 停产禁令的实质反转）</span><span class="ext">↗</span></a></h3>
           <p class="sum">巴西法院批准 Sigma Lithium 的 Grota do Cirilo 锂矿恢复运营；相对 10-04 早报推送的“两月两停、运营许可再被暂停”（联邦法院禁令源于 Quilombola 社区 FPIC 程序争议），本次为事件的实质反转。</p>
           <a class="golink" href="https://www.mining.com/sigma-lithium-jumps-as-brazil-court-clears-grot" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（高工锂电，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/I-f1c5MF6JuqLWzrewq4AA" target="_blank" rel="noopener">高工锂电：全极耳小圆柱电池加速放量，非车市场全面起量<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/I-f1c5MF6JuqLWzrewq4AA" target="_blank" rel="noopener"><span>高工锂电：全极耳小圆柱电池加速放量，非车市场全面起量</span><span class="ext">↗</span></a></h3>
           <p class="sum">下半年多家小圆柱电池企业迎来产能释放（新能安 JP40 亿级体量、睿恩新能源常州第二条卷绕装配线投产等），量产产品普遍指向全极耳/无极耳技术；电动工具、具身智能、eVTOL 等场景需求共振，全极耳小圆柱短期供不应求、价格与配套集中释放。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/I-f1c5MF6JuqLWzrewq4AA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1500,19 +1550,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（冶材研报，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/8rSnhfnN8Pf09fJOZev6ew" target="_blank" rel="noopener">废钢智能判定分级技术发展报告：从“目视定级”到“视觉＋光谱”多模态融合<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/8rSnhfnN8Pf09fJOZev6ew" target="_blank" rel="noopener"><span>废钢智能判定分级技术发展报告：从“目视定级”到“视觉＋光谱”多模态融合</span><span class="ext">↗</span></a></h3>
           <p class="sum">废钢智能判定分级技术从人工目视定级向“视觉＋光谱”多模态融合演进；废钢定级智能化影响再生钢铁料的品质分级与溯源能力，与再生含量声明的证据链数字化方向相关。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/8rSnhfnN8Pf09fJOZev6ew" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos RSS 转 AutoIndustriya</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxOQkIzdTJ1TmNFOFBMV2FCRmZlOG9uSm9rMkFYX2lwYzlfYk9YQ0l3ckdjb" target="_blank" rel="noopener">丰田支持 En Tsumugi 在菲律宾建设退役 EV 电池回收设施（黑粉处理）<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxOQkIzdTJ1TmNFOFBMV2FCRmZlOG9uSm9rMkFYX2lwYzlfYk9YQ0l3ckdjb" target="_blank" rel="noopener"><span>丰田支持 En Tsumugi 在菲律宾建设退役 EV 电池回收设施（黑粉处理）</span><span class="ext">↗</span></a></h3>
           <p class="sum">丰田支持 En Tsumugi 在菲律宾建设退役电动车电池回收设施项目，配套建设黑粉（black mass）处理能力；东南亚电池回收产能布局新增案例。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMivwFBVV95cUxOQkIzdTJ1TmNFOFBMV2FCRmZlOG9uSm9rMkFYX2lwYzlfYk9YQ0l3ckdjb" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>路透转 AM-online</span></div>
-          <h3><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPSmFtRjN5SThzVXdXU" target="_blank" rel="noopener">RAC Warranty 为老旧二手电动车增加电池故障质保<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPSmFtRjN5SThzVXdXU" target="_blank" rel="noopener"><span>RAC Warranty 为老旧二手电动车增加电池故障质保</span><span class="ext">↗</span></a></h3>
           <p class="sum">RAC Warranty 将电池故障保障扩展至老旧二手电动车；二手电动车电池健康与保值率议题的新案例。</p>
           <a class="golink" href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPSmFtRjN5SThzVXdXU" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2266,9 +2316,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">1</span><span class="t"><b>欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”</b><span>CnEVPost（转述 Bloomberg）</span></span></a>
-    <a class="hl-item" href="#" data-mi="8"><span class="n">2</span><span class="t"><b>《中国碳足迹年度报告（2026）》发布（CPCD）</b><span>微信公众号（CPCD 社区）</span></span></a>
-    <a class="hl-item" href="#" data-mi="3"><span class="n">3</span><span class="t"><b>Minespider 与 TENWAYS 为电动自行车 LMT 电池实施数字电池护照</b><span>Minespider 官网</span></span></a>
+    <a class="hl-item" href="#" data-mi="8"><span class="n">1</span><span class="t"><b>《中国碳足迹年度报告（2026）》发布（CPCD）</b><span>微信公众号（CPCD 社区，full 正文；研究报告口径）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>零碳工厂评价规范 2025 版发布，对照 2022 版 13 处变化</b><span>微信公众号（碳究社，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">3</span><span class="t"><b>欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”</b><span>CnEVPost 全文通读（转述 Bloomberg）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>Automotive Manufacturing：数字产品护照正从合规工具转向生产工具</b><span>路透 Sustainable Business RSS 转引</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">5</span><span class="t"><b>Minespider 与 TENWAYS 合作，为电动自行车 LMT 电池实施数字电池护照</b><span>Minespider 官网新闻稿（一手）</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2405,7 +2457,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-08";
-var BRIEF_DATA = [{"t": "一句话：零碳工厂评价规范 2025 版发布，对照 2022 版 13 处变化", "u": "https://mp.weixin.qq.com/s/zr-OrGf6IyTSydK1n2MlbA", "s": "微信公众号（碳究社，full 正文）", "sec": "国内法规与政策", "sum": "规范更新至 2025 版，逐条对照 2022 版梳理 13 处变化；与工信部绿色制造体系衔接，企业侧碳管理与“双碳”政策落地的评价口径可能随之调整。", "points": [], "note": "微信公众号 full 正文；规范原文待一手核验；10-07 晚间 pending 并入早报"}, {"t": "一句话：欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”", "u": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/", "s": "CnEVPost 全文通读（转述 Bloomberg）", "sec": "海外法规与政策", "sum": "欧委会正准备针对中国产混动车在欧销量激增采取保障措施，选项之一是关税配额；混动车将作为试验案例，若“奏效”可能扩展至其他领域。中国产混动对欧出口从 2024-10 的 3800 辆增至 2026-07 的 5 万辆；谢夫乔维奇本周访京与王文涛会谈，结果或影响计划走向。", "points": [], "note": "二级转述，待一手核验"}, {"t": "一句话：Automotive Manufacturing：数字产品护照正从合规工具转向生产工具", "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOREl5eEZUbkloa1BKSlhTem41RE5mOTV6ZDhaUHNXU0x2Q2lqWjhHTDBFT", "s": "路透 Sustainable Business RSS 转引", "sec": "海外法规与政策", "sum": "行业媒体观察称数字产品护照（DPP）的应用正在从“为合规而建”转向“为生产而用”，企业开始将其作为供应链数据工具。趋势判断类文章，原文未读。", "points": [], "note": "仅有标题/摘要；行业媒体口径；10-07 晚间 pending 并入早报"}, {"t": "一句话：Minespider 与 TENWAYS 合作，为电动自行车 LMT 电池实施数字电池护照", "u": "https://www.minespider.com/press/minespider-and-tenways-partner-to-prepare-for-the-next-generation-of-e-bike-battery-transparency", "s": "Minespider 官网新闻稿（一手）", "sec": "海外法规与政策", "sum": "双方 10 月 7 日宣布合作，为 TENWAYS 轻型交通工具（LMT）电池实施数字电池护照，提前布局 2027-02-18 欧盟电池法规对 LMT 电池的护照义务；Minespider 称这是护照实施从监管准备走向实际部署的又一案例。", "points": [], "note": "已核验（正文通读；厂商合作口径）"}, {"t": "一句话：carbmee 以 AI 原生数据底座应对欧盟数字电池护照挑战（约 80 个数据字段）", "u": "https://batteriesnews.com/carbmee-applies-ai-native-data-foundation-to-the-eu-digital-battery-passport-challenge/", "s": "Batteries News（全文通读）", "sec": "海外法规与政策", "sum": "carbmee 宣布将其 AI 原生数据基础应用于欧盟数字电池护照：每本护照约 80 个数据字段（六大类），需经核验、分级授权并动态更新；方案从企业现有交易数据起步、用 AI 建模补齐缺口，避免套用高默认值导致排放被高估。", "points": [], "note": "媒体一手通读；厂商方案口径；AI×LCA 应用案例"}, {"t": "一句话：巴黎协定第六条监督机构本周审议炉灶方法学，逆转风险缓冲池或大幅削减信用签发量", "u": "https://mp.weixin.qq.com/s/3lznVTrf39kDLEuIhUNZaA", "s": "微信公众号（climate 科学，full 正文）", "sec": "海外法规与政策", "sum": "PACM 监督机构 10 月 5–9 日波恩第 23 次会议审议两套清洁炉灶方法学：专家组建议对地上木质生物质相关减排量乘以逆转风险系数划入缓冲池（自然风险 4%–36%，人为风险 20%–45%），叠加 fNRB 修订后可签发量将明显下降；另引 Koko Networks 破产案说明东道国授权函收紧对合规级供给的挤压。", "points": [], "note": "微信公众号 full 正文；会议决议尚未作出"}, {"t": "一句话：CBAM 排放核查解析（1）：范围、流程与结论", "u": "https://mp.weixin.qq.com/s/w0KuWn0qGU5FsYiwZQrmoQ", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "海外法规与政策", "sum": "解析 CBAM 第三方核查规则：核查在生产设施层面进行，覆盖监测计划符合性、数据流与控制系统有效性等；流程含签约前评估、战略分析、风险评估、现场访问、过程分析、错报处理与独立复核；结论只有“肯定”（可用实测数据）或“否定”（只能按默认值申报）两种。", "points": [], "note": "咨询机构业务文章口径；方法学细节待官方文本核验"}, {"t": "一句话（10-06 迟到补录）：Tyres Europe 联合 ACEA、CLEPA 致函——CBAM 范围扩展仅应在存在实质性碳泄漏风险时实施", "u": "https://tyreseurope.org/joint-letter-ahead-of-the-upcoming-interinstitutional-negotiations-on-carbon-border-adjustment-mechanism-cbam-scope-extension/", "s": "Tyres Europe 官网（一手）", "sec": "海外法规与政策", "sum": "Tyres Europe 联合欧洲汽车制造商协会（ACEA）、欧洲汽车供应商协会（CLEPA）致函欧盟政策制定者，针对三方谈判前 CBAM 范围扩展至下游产品议题，要求扩展仅在存在实质性碳泄漏风险时实施、并降低企业合规负担。这是 10-05 贸易救济立场文件之后的又一政策文件。", "points": [], "note": "补录三要素：发布 2026-10-06 17:25（北京时间）/发现 2026-10-08（浏览器轮换）/10-07 晚间轮换已发现文件但 URL 未取得，本轮补录"}, {"t": "《中国碳足迹年度报告（2026）》发布（CPCD）", "u": "https://mp.weixin.qq.com/s/c8LfpYvXbCkQfNZTEJuqBw", "s": "微信公众号（CPCD 社区，full 正文；研究报告口径）", "sec": "数据与知识", "sum": "CPCD 正式发布《中国碳足迹年度报告（2026）》，全文 PDF 可下载。报告共 8 章：碳足迹从技术核算走向经济规则、中国政策体系从“施工图”走向“制度链”、系统边界/分配/生物碳等方法学问题、数据库与电力因子、认证披露与供应链应用、国际贸易规则，以及基于 18 家企业现场调研和 370 份实名问卷的分析。报告由过去一年每周 1–2 期的跟踪文章淬炼整合而成。", "points": [], "note": "微信公众号 full 正文已读；报告全文 PDF 未通读；全文下载 https://lca.cityghg.com/upload/attachments/1791252214_9f53a0be3e90c06e740d3ba4eff10b98942da361.pdf"}, {"t": "一句话：Nature Energy：全有机混合基质膜（单晶共价有机框架）", "u": "https://doi.org/10.1038/s41560-026-02149-9", "s": "DOI（一手）", "sec": "数据与知识", "sum": "“All-organic mixed-matrix membranes with single-crystal covalent organic frameworks”。", "points": [], "note": "仅有标题，无摘要"}, {"t": "一句话：奔驰集团 Q3 全球交付 49.17 万辆，纯电车型销量创纪录", "u": "https://media.mercedes-benz.com/article/b747b5d0-3a9a-4b8a-9e5f-a2f26db33418", "s": "奔驰集团媒体中心（一手新闻稿）", "sec": "整车企业", "sum": "梅赛德斯-奔驰集团 2026 年第三季度全球交付乘用车与厢式车 49.17 万辆，其中纯电动车型（BEV）销量创历史新高；电动化结构变化直接影响整车企业产品碳足迹的销量加权口径。", "points": [], "note": "企业口径；10-07 晚间 pending 并入早报"}, {"t": "一句话：铃木将采用比亚迪电池，推出日本最便宜的 Kei 电动车", "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaF9UYmJJU3JPdFVyV", "s": "路透 Autos RSS 转引", "sec": "整车企业", "sum": "铃木计划利用比亚迪电池推出日本市场最便宜的轻型（Kei）电动车。", "points": [], "note": "仅有标题/摘要；细节待取"}, {"t": "一句话：南非确定首批绿氢项目，2027 年启动建设（含绿色钢铁项目）", "u": "https://mp.weixin.qq.com/s/cs1Y3joSPvG2mo0s2HP4uQ", "s": "微信公众号（南方能源观察，full 正文）", "sec": "上游基础材料", "sum": "南非总统在 2026 年非洲绿色氢能峰会宣布，根据国家绿色氢能计划确定首批 6 个绿色氢能优先项目：西开普省萨尔达尼亚湾电制可持续航空燃料项目预计 2027 年一季度开工、2029 年一季度出口首批燃料；其余 5 个涵盖绿色氨、绿色钢铁、绿色甲醇，面向南非国内及欧洲市场。", "points": [], "note": "区域能源月报；项目细节待官方核验"}, {"t": "一句话：POSCO Future M 与 SK On 签署 1.1 万亿韩元 LFP 正极材料供应合同", "u": "https://newsroom.posco.com/en/posco-future-m-signs-krw-1-1-trillion-lfp-cathode-material-supply-contract-with-sk-on-order-wins-gather-pace/", "s": "POSCO 新闻中心（一手新闻稿）", "sec": "电池产业链", "sum": "浦项未来 M 与 SK On 签署约 1.1 万亿韩元的磷酸铁锂正极材料供应合同；LFP 正极供应链长约锁定案例。", "points": [], "note": "企业签约口径；10-07 晚间 pending 并入早报"}, {"t": "一句话：通用汽车计划在田纳西生产更便宜的长续航 EV 电池", "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxORHFiNXEzdnhaOGwtZ", "s": "路透 Sustainable Business RSS 转引", "sec": "电池产业链", "sum": "通用汽车计划在田纳西州生产成本更低、续航更长的 EV 电池。", "points": [], "note": "仅有标题/摘要；技术路线与量产时间待取"}, {"t": "一句话：Sigma Lithium 巴西法院批准 Grota 矿复产（相对 10-04 停产禁令的实质反转）", "u": "https://www.mining.com/sigma-lithium-jumps-as-brazil-court-clears-grot", "s": "Mining.com", "sec": "电池产业链", "sum": "巴西法院批准 Sigma Lithium 的 Grota do Cirilo 锂矿恢复运营；相对 10-04 早报推送的“两月两停、运营许可再被暂停”（联邦法院禁令源于 Quilombola 社区 FPIC 程序争议），本次为事件的实质反转。", "points": [], "note": "仅有标题；司法裁决细节未核验"}, {"t": "一句话：高工锂电：全极耳小圆柱电池加速放量，非车市场全面起量", "u": "https://mp.weixin.qq.com/s/I-f1c5MF6JuqLWzrewq4AA", "s": "微信公众号（高工锂电，full 正文）", "sec": "电池产业链", "sum": "下半年多家小圆柱电池企业迎来产能释放（新能安 JP40 亿级体量、睿恩新能源常州第二条卷绕装配线投产等），量产产品普遍指向全极耳/无极耳技术；电动工具、具身智能、eVTOL 等场景需求共振，全极耳小圆柱短期供不应求、价格与配套集中释放。", "points": [], "note": "行业媒体分析口径"}, {"t": "一句话：废钢智能判定分级技术发展报告：从“目视定级”到“视觉＋光谱”多模态融合", "u": "https://mp.weixin.qq.com/s/8rSnhfnN8Pf09fJOZev6ew", "s": "微信公众号（冶材研报，full 正文）", "sec": "循环再生", "sum": "废钢智能判定分级技术从人工目视定级向“视觉＋光谱”多模态融合演进；废钢定级智能化影响再生钢铁料的品质分级与溯源能力，与再生含量声明的证据链数字化方向相关。", "points": [], "note": "技术报告原文待确认；10-07 晚间 pending 并入早报"}, {"t": "一句话：丰田支持 En Tsumugi 在菲律宾建设退役 EV 电池回收设施（黑粉处理）", "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQkIzdTJ1TmNFOFBMV2FCRmZlOG9uSm9rMkFYX2lwYzlfYk9YQ0l3ckdjb", "s": "路透 Autos RSS 转 AutoIndustriya", "sec": "循环再生", "sum": "丰田支持 En Tsumugi 在菲律宾建设退役电动车电池回收设施项目，配套建设黑粉（black mass）处理能力；东南亚电池回收产能布局新增案例。", "points": [], "note": "仅有标题/摘要；细节待取；10-07 晚间 pending 并入早报"}, {"t": "一句话：RAC Warranty 为老旧二手电动车增加电池故障质保", "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPSmFtRjN5SThzVXdXU", "s": "路透转 AM-online", "sec": "循环再生", "sum": "RAC Warranty 将电池故障保障扩展至老旧二手电动车；二手电动车电池健康与保值率议题的新案例。", "points": [], "note": "仅有标题/摘要"}];
+var BRIEF_DATA = [{"t": "一句话：零碳工厂评价规范 2025 版发布，对照 2022 版 13 处变化", "u": "https://mp.weixin.qq.com/s/zr-OrGf6IyTSydK1n2MlbA", "s": "微信公众号（碳究社，full 正文）", "sec": "国内法规与政策", "sum": "规范更新至 2025 版，逐条对照 2022 版梳理 13 处变化；与工信部绿色制造体系衔接，企业侧碳管理与“双碳”政策落地的评价口径可能随之调整。", "points": [], "note": "微信公众号 full 正文；规范原文待一手核验；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：欧盟拟对中国产混动车采取保障措施，作为贸易再平衡“试验案例”", "u": "https://cnevpost.com/2026/10/07/eu-plans-chinese-hybrid-import-curbs/", "s": "CnEVPost 全文通读（转述 Bloomberg）", "sec": "海外法规与政策", "sum": "欧委会正准备针对中国产混动车在欧销量激增采取保障措施，选项之一是关税配额；混动车将作为试验案例，若“奏效”可能扩展至其他领域。中国产混动对欧出口从 2024-10 的 3800 辆增至 2026-07 的 5 万辆；谢夫乔维奇本周访京与王文涛会谈，结果或影响计划走向。", "points": [], "note": "二级转述，待一手核验", "score": 0, "level": "brief"}, {"t": "一句话：Automotive Manufacturing：数字产品护照正从合规工具转向生产工具", "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOREl5eEZUbkloa1BKSlhTem41RE5mOTV6ZDhaUHNXU0x2Q2lqWjhHTDBFT", "s": "路透 Sustainable Business RSS 转引", "sec": "海外法规与政策", "sum": "行业媒体观察称数字产品护照（DPP）的应用正在从“为合规而建”转向“为生产而用”，企业开始将其作为供应链数据工具。趋势判断类文章，原文未读。", "points": [], "note": "仅有标题/摘要；行业媒体口径；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：Minespider 与 TENWAYS 合作，为电动自行车 LMT 电池实施数字电池护照", "u": "https://www.minespider.com/press/minespider-and-tenways-partner-to-prepare-for-the-next-generation-of-e-bike-battery-transparency", "s": "Minespider 官网新闻稿（一手）", "sec": "海外法规与政策", "sum": "双方 10 月 7 日宣布合作，为 TENWAYS 轻型交通工具（LMT）电池实施数字电池护照，提前布局 2027-02-18 欧盟电池法规对 LMT 电池的护照义务；Minespider 称这是护照实施从监管准备走向实际部署的又一案例。", "points": [], "note": "已核验（正文通读；厂商合作口径）", "score": 0, "level": "brief"}, {"t": "一句话：carbmee 以 AI 原生数据底座应对欧盟数字电池护照挑战（约 80 个数据字段）", "u": "https://batteriesnews.com/carbmee-applies-ai-native-data-foundation-to-the-eu-digital-battery-passport-challenge/", "s": "Batteries News（全文通读）", "sec": "海外法规与政策", "sum": "carbmee 宣布将其 AI 原生数据基础应用于欧盟数字电池护照：每本护照约 80 个数据字段（六大类），需经核验、分级授权并动态更新；方案从企业现有交易数据起步、用 AI 建模补齐缺口，避免套用高默认值导致排放被高估。", "points": [], "note": "媒体一手通读；厂商方案口径；AI×LCA 应用案例", "score": 0, "level": "brief"}, {"t": "一句话：巴黎协定第六条监督机构本周审议炉灶方法学，逆转风险缓冲池或大幅削减信用签发量", "u": "https://mp.weixin.qq.com/s/3lznVTrf39kDLEuIhUNZaA", "s": "微信公众号（climate 科学，full 正文）", "sec": "海外法规与政策", "sum": "PACM 监督机构 10 月 5–9 日波恩第 23 次会议审议两套清洁炉灶方法学：专家组建议对地上木质生物质相关减排量乘以逆转风险系数划入缓冲池（自然风险 4%–36%，人为风险 20%–45%），叠加 fNRB 修订后可签发量将明显下降；另引 Koko Networks 破产案说明东道国授权函收紧对合规级供给的挤压。", "points": [], "note": "微信公众号 full 正文；会议决议尚未作出", "score": 0, "level": "brief"}, {"t": "一句话：CBAM 排放核查解析（1）：范围、流程与结论", "u": "https://mp.weixin.qq.com/s/w0KuWn0qGU5FsYiwZQrmoQ", "s": "微信公众号（气候变化与可持续发展视界，full 正文）", "sec": "海外法规与政策", "sum": "解析 CBAM 第三方核查规则：核查在生产设施层面进行，覆盖监测计划符合性、数据流与控制系统有效性等；流程含签约前评估、战略分析、风险评估、现场访问、过程分析、错报处理与独立复核；结论只有“肯定”（可用实测数据）或“否定”（只能按默认值申报）两种。", "points": [], "note": "咨询机构业务文章口径；方法学细节待官方文本核验", "score": 0, "level": "brief"}, {"t": "一句话（10-06 迟到补录）：Tyres Europe 联合 ACEA、CLEPA 致函——CBAM 范围扩展仅应在存在实质性碳泄漏风险时实施", "u": "https://tyreseurope.org/joint-letter-ahead-of-the-upcoming-interinstitutional-negotiations-on-carbon-border-adjustment-mechanism-cbam-scope-extension/", "s": "Tyres Europe 官网（一手）", "sec": "海外法规与政策", "sum": "Tyres Europe 联合欧洲汽车制造商协会（ACEA）、欧洲汽车供应商协会（CLEPA）致函欧盟政策制定者，针对三方谈判前 CBAM 范围扩展至下游产品议题，要求扩展仅在存在实质性碳泄漏风险时实施、并降低企业合规负担。这是 10-05 贸易救济立场文件之后的又一政策文件。", "points": [], "note": "补录三要素：发布 2026-10-06 17:25（北京时间）/发现 2026-10-08（浏览器轮换）/10-07 晚间轮换已发现文件但 URL 未取得，本轮补录", "score": 0, "level": "brief"}, {"t": "《中国碳足迹年度报告（2026）》发布（CPCD）", "u": "https://mp.weixin.qq.com/s/c8LfpYvXbCkQfNZTEJuqBw", "s": "微信公众号（CPCD 社区，full 正文；研究报告口径）", "sec": "数据与知识", "sum": "CPCD 正式发布《中国碳足迹年度报告（2026）》，全文 PDF 可下载。报告共 8 章：碳足迹从技术核算走向经济规则、中国政策体系从“施工图”走向“制度链”、系统边界/分配/生物碳等方法学问题、数据库与电力因子、认证披露与供应链应用、国际贸易规则，以及基于 18 家企业现场调研和 370 份实名问卷的分析。报告由过去一年每周 1–2 期的跟踪文章淬炼整合而成。", "points": [], "note": "微信公众号 full 正文已读；报告全文 PDF 未通读；全文下载 https://lca.cityghg.com/upload/attachments/1791252214_9f53a0be3e90c06e740d3ba4eff10b98942da361.pdf", "score": 0, "level": "full"}, {"t": "一句话：Nature Energy：全有机混合基质膜（单晶共价有机框架）", "u": "https://doi.org/10.1038/s41560-026-02149-9", "s": "DOI（一手）", "sec": "数据与知识", "sum": "“All-organic mixed-matrix membranes with single-crystal covalent organic frameworks”。", "points": [], "note": "仅有标题，无摘要", "score": 0, "level": "brief"}, {"t": "一句话：奔驰集团 Q3 全球交付 49.17 万辆，纯电车型销量创纪录", "u": "https://media.mercedes-benz.com/article/b747b5d0-3a9a-4b8a-9e5f-a2f26db33418", "s": "奔驰集团媒体中心（一手新闻稿）", "sec": "整车企业", "sum": "梅赛德斯-奔驰集团 2026 年第三季度全球交付乘用车与厢式车 49.17 万辆，其中纯电动车型（BEV）销量创历史新高；电动化结构变化直接影响整车企业产品碳足迹的销量加权口径。", "points": [], "note": "企业口径；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：铃木将采用比亚迪电池，推出日本最便宜的 Kei 电动车", "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaF9UYmJJU3JPdFVyV", "s": "路透 Autos RSS 转引", "sec": "整车企业", "sum": "铃木计划利用比亚迪电池推出日本市场最便宜的轻型（Kei）电动车。", "points": [], "note": "仅有标题/摘要；细节待取", "score": 0, "level": "brief"}, {"t": "一句话：南非确定首批绿氢项目，2027 年启动建设（含绿色钢铁项目）", "u": "https://mp.weixin.qq.com/s/cs1Y3joSPvG2mo0s2HP4uQ", "s": "微信公众号（南方能源观察，full 正文）", "sec": "上游基础材料", "sum": "南非总统在 2026 年非洲绿色氢能峰会宣布，根据国家绿色氢能计划确定首批 6 个绿色氢能优先项目：西开普省萨尔达尼亚湾电制可持续航空燃料项目预计 2027 年一季度开工、2029 年一季度出口首批燃料；其余 5 个涵盖绿色氨、绿色钢铁、绿色甲醇，面向南非国内及欧洲市场。", "points": [], "note": "区域能源月报；项目细节待官方核验", "score": 0, "level": "brief"}, {"t": "一句话：POSCO Future M 与 SK On 签署 1.1 万亿韩元 LFP 正极材料供应合同", "u": "https://newsroom.posco.com/en/posco-future-m-signs-krw-1-1-trillion-lfp-cathode-material-supply-contract-with-sk-on-order-wins-gather-pace/", "s": "POSCO 新闻中心（一手新闻稿）", "sec": "电池产业链", "sum": "浦项未来 M 与 SK On 签署约 1.1 万亿韩元的磷酸铁锂正极材料供应合同；LFP 正极供应链长约锁定案例。", "points": [], "note": "企业签约口径；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：通用汽车计划在田纳西生产更便宜的长续航 EV 电池", "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxORHFiNXEzdnhaOGwtZ", "s": "路透 Sustainable Business RSS 转引", "sec": "电池产业链", "sum": "通用汽车计划在田纳西州生产成本更低、续航更长的 EV 电池。", "points": [], "note": "仅有标题/摘要；技术路线与量产时间待取", "score": 0, "level": "brief"}, {"t": "一句话：Sigma Lithium 巴西法院批准 Grota 矿复产（相对 10-04 停产禁令的实质反转）", "u": "https://www.mining.com/sigma-lithium-jumps-as-brazil-court-clears-grot", "s": "Mining.com", "sec": "电池产业链", "sum": "巴西法院批准 Sigma Lithium 的 Grota do Cirilo 锂矿恢复运营；相对 10-04 早报推送的“两月两停、运营许可再被暂停”（联邦法院禁令源于 Quilombola 社区 FPIC 程序争议），本次为事件的实质反转。", "points": [], "note": "仅有标题；司法裁决细节未核验", "score": 0, "level": "brief"}, {"t": "一句话：高工锂电：全极耳小圆柱电池加速放量，非车市场全面起量", "u": "https://mp.weixin.qq.com/s/I-f1c5MF6JuqLWzrewq4AA", "s": "微信公众号（高工锂电，full 正文）", "sec": "电池产业链", "sum": "下半年多家小圆柱电池企业迎来产能释放（新能安 JP40 亿级体量、睿恩新能源常州第二条卷绕装配线投产等），量产产品普遍指向全极耳/无极耳技术；电动工具、具身智能、eVTOL 等场景需求共振，全极耳小圆柱短期供不应求、价格与配套集中释放。", "points": [], "note": "行业媒体分析口径", "score": 0, "level": "brief"}, {"t": "一句话：废钢智能判定分级技术发展报告：从“目视定级”到“视觉＋光谱”多模态融合", "u": "https://mp.weixin.qq.com/s/8rSnhfnN8Pf09fJOZev6ew", "s": "微信公众号（冶材研报，full 正文）", "sec": "循环再生", "sum": "废钢智能判定分级技术从人工目视定级向“视觉＋光谱”多模态融合演进；废钢定级智能化影响再生钢铁料的品质分级与溯源能力，与再生含量声明的证据链数字化方向相关。", "points": [], "note": "技术报告原文待确认；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：丰田支持 En Tsumugi 在菲律宾建设退役 EV 电池回收设施（黑粉处理）", "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOQkIzdTJ1TmNFOFBMV2FCRmZlOG9uSm9rMkFYX2lwYzlfYk9YQ0l3ckdjb", "s": "路透 Autos RSS 转 AutoIndustriya", "sec": "循环再生", "sum": "丰田支持 En Tsumugi 在菲律宾建设退役电动车电池回收设施项目，配套建设黑粉（black mass）处理能力；东南亚电池回收产能布局新增案例。", "points": [], "note": "仅有标题/摘要；细节待取；10-07 晚间 pending 并入早报", "score": 0, "level": "brief"}, {"t": "一句话：RAC Warranty 为老旧二手电动车增加电池故障质保", "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPSmFtRjN5SThzVXdXU", "s": "路透转 AM-online", "sec": "循环再生", "sum": "RAC Warranty 将电池故障保障扩展至老旧二手电动车；二手电动车电池健康与保值率议题的新案例。", "points": [], "note": "仅有标题/摘要", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;

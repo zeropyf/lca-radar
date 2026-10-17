@@ -346,6 +346,8 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
+.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
 .search-ov.on{display:flex}
@@ -728,13 +730,13 @@ body.tb-compact .sec{scroll-margin-top:66px}
 .arc-month .chev{width:13px;height:13px;color:var(--gray);transition:transform .18s}
 .arc-month.open .chev{transform:rotate(180deg)}
 .arc-month .c{font-size:11.5px;color:var(--gray);font-weight:400}
-.arclist .arc{align-items:flex-start;gap:12px;padding:12px 12px;border-radius:14px;margin-bottom:4px}
-.ad{display:flex;flex-direction:column;align-items:center;min-width:40px;padding-top:2px}
-.ad b{font-size:22px;font-weight:800;line-height:1;letter-spacing:-.01em;color:var(--primary)}
-.ad i{font-style:normal;font-size:10.5px;letter-spacing:.26em;text-indent:.26em;color:var(--faint);margin-top:6px}
-.arc .tx{flex:1;min-width:0;padding-top:2px}
-.arc .tx b{font-size:14.5px;font-weight:400;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.arc .tx i{font-size:12px;margin-top:3px}
+.arclist .arc{align-items:flex-start;gap:10px;padding:9px 10px;border-radius:12px;margin-bottom:2px;opacity:.92}
+.ad{display:flex;flex-direction:column;align-items:center;min-width:36px;padding-top:2px}
+.ad b{font-size:18px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--faint)}
+.ad i{font-style:normal;font-size:10px;letter-spacing:.2em;text-indent:.2em;color:var(--faint);margin-top:5px;opacity:.8}
+.arc .tx{flex:1;min-width:0;padding-top:1px}
+.arc .tx b{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.arc .tx i{font-size:11px;margin-top:2px;color:var(--faint)}
 .arc.cur .ad b{color:var(--accent-deep)}
 .arc-empty{padding:18px 14px;font-size:13px;color:var(--faint);text-align:center}
 /* 查看原文：弱化为安静的文本链 */
@@ -899,6 +901,52 @@ a.dc.has.today{outline-offset:1px}
 /* 弹窗内的收藏按钮 */
 .mfav{display:inline-block;margin-left:10px;border:1px solid var(--line);border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;color:var(--body);background:var(--card);cursor:pointer}
 .mfav.on{color:var(--accent-deep);border-color:var(--accent-deep)}
+/* ===== 监控页 v30 ===== */
+.health{max-width:860px;margin:0 auto;padding:32px 20px}
+.health h1{font-size:26px;margin-bottom:8px}
+.health .lede{color:var(--muted);margin-bottom:28px}
+.health h2{font-size:18px;margin:28px 0 14px}
+.health-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.hstat{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.hstat b{display:block;font-size:28px;font-weight:800;color:var(--primary)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.hstat span{font-size:12px;color:var(--muted)}
+.health-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th,.health-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+.health-table th{background:var(--bg2);font-weight:600;color:var(--muted)}
+.pill{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#dc2626}.pill.warn{background:#fef3c7;color:#d97706}.pill.ok{background:#dcfce7;color:#16a34a}
+tr.st-err td{color:var(--muted)}
+.health-chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.health-chart canvas{width:100%;height:200px;display:block}
+.hsec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.hsec h2{margin:0 0 14px;font-size:16px}
+.hnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.upd{color:var(--muted);font-size:12px}
+.upd b{color:var(--text)}
+.health-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.hstat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.hstat b{display:block;font-size:24px;margin-bottom:4px}
+.hstat span{font-size:12px;color:var(--muted)}
+.hstat.ok b{color:#16a34a}.hstat.warn b{color:#d97706}.hstat.err b{color:#dc2626}
+.health-table{width:100%;border-collapse:collapse;font-size:13px}
+.health-table th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:2px solid var(--line);font-size:12px}
+.health-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.health-table tr.st-err td:first-child{border-left:3px solid #dc2626}
+.health-table tr.st-warn td:first-child{border-left:3px solid #d97706}
+.mono{font-family:ui-monospace,monospace;font-size:12px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.pill.err{background:#fee2e2;color:#991b1b}
+.pill.warn{background:#fef3c7;color:#92400e}
+/* ===== 筛选流程图示 v30 ===== */
+.filter-viz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin:16px 0 8px;overflow-x:auto}
+.filter-viz svg{min-width:620px;width:100%;height:auto;display:block}
+.filter-legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--muted)}
+.fleg{display:flex;align-items:center;gap:6px}
+.fleg .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.filter-note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center;line-height:1.7}
 /* ===== 关于页 ===== */
 .about{max-width:920px;margin:0 auto;padding:44px 28px 80px}
 .about-kicker{font-size:12px;font-weight:800;letter-spacing:.28em;color:var(--accent-deep);margin:0 0 10px}
@@ -1199,7 +1247,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="../fav.html">收藏</a>
     <a href="../archive.html">往期归档</a>
     <a href="../changelog.html">更新日志</a>
+    <a href="../health.html">监控</a>
   </nav>
+  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
@@ -1356,19 +1406,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>商务部·新闻发布（N64，一手）</span></div>
-          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html" target="_blank" rel="noopener">商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html" target="_blank" rel="noopener"><span>商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查</span><span class="ext">↗</span></a></h3>
           <p class="sum">商务部新闻发言人 2026-10-03 答记者问：对原产于欧盟的进口对硝基甲苯发起反倾销调查。中欧贸易救济新动作；对硝基甲苯为化工中间体，与汽车/电池价值链无直接关联。</p>
           <a class="golink" href="https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（CCCEU《周•知》，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener">谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener"><span>谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”</span><span class="ext">↗</span></a></h3>
           <p class="sum">欧委会贸易和经济安全委员谢夫乔维奇（POLITICO 采访）称 10 月 8–9 日北京 TIC 第二次会议“极其关键”，三项目标为应对中国商品出口激增、扩大欧盟对华出口、就中国稀土出口限制建立长期可预期性；中欧贸易逆差约 10 亿欧元/天；欧盟部分成员国提议研究欧版“301”贸易工具。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（聊碳成金，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ" target="_blank" rel="noopener">低碳政策在快速推进，为何市场反应却遇冷？<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ" target="_blank" rel="noopener"><span>低碳政策在快速推进，为何市场反应却遇冷？</span><span class="ext">↗</span></a></h3>
           <p class="sum">低碳政策在快速推进，为何市场反应却遇冷？KOL 长文提出政策热与市场体感冷之间有 12–36 个月传导时滞，核心主张“谁先把可核查的碳数据做出来，谁就先把价值解冻”。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1380,13 +1430,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Autos RSS 转 디지털투데이</span></div>
-          <h3><a href="https://news.google.com" target="_blank" rel="noopener">European car and battery industries put &#x27;made in Europe&#x27; to the test<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com" target="_blank" rel="noopener"><span>European car and battery industries put &#x27;made in Europe&#x27; to the test</span><span class="ext">↗</span></a></h3>
           <p class="sum">“European car and battery industries put &#x27;made in Europe&#x27; to the test”：欧洲汽车与电池产业“欧洲制造”竞争力测试相关报道。</p>
           <a class="golink" href="https://news.google.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（废塑料新观察，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q" target="_blank" rel="noopener">英国明确化学回收塑料质量平衡认证要求<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q" target="_blank" rel="noopener"><span>英国明确化学回收塑料质量平衡认证要求</span><span class="ext">↗</span></a></h3>
           <p class="sum">英国税务海关总署（HMRC）2026-08-28 发布化学回收塑料质量平衡核算准备指南及最低认证要求，明确相关材料如何计入塑料包装税（PPT）的再生含量；新安排 2027 年 4 月 1 日起实施，再生含量达 30% 及以上的包装组件免税。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1401,7 +1451,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>Makersite 官方博客（N86，一手）</span></div>
-          <h3><a href="https://makersite.io/insights/one-partnership-working-together-at-every-stage/" target="_blank" rel="noopener">Makersite × 施耐德电气：AI 驱动 LCA 平台合作<span class="ext">↗</span></a></h3>
+          <h3><a href="https://makersite.io/insights/one-partnership-working-together-at-every-stage/" target="_blank" rel="noopener"><span>Makersite × 施耐德电气：AI 驱动 LCA 平台合作</span><span class="ext">↗</span></a></h3>
           <p class="sum">Makersite 与施耐德电气 SE Advisory Services 达成合作，用 AI 驱动的 Product Lifecycle Intelligence 平台承接企业 LCA/产品碳足迹/EPD/合规分析需求。</p>
           <a class="golink" href="https://makersite.io/insights/one-partnership-working-together-at-every-stage/" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1416,19 +1466,19 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>路透 Sustainable Business RSS 转 STAT Times</span></div>
-          <h3><a href="https://news.google.com" target="_blank" rel="noopener">Harbinger 拿下 FedEx 3 亿美元电动卡车订单<span class="ext">↗</span></a></h3>
+          <h3><a href="https://news.google.com" target="_blank" rel="noopener"><span>Harbinger 拿下 FedEx 3 亿美元电动卡车订单</span><span class="ext">↗</span></a></h3>
           <p class="sum">Harbinger 拿下 FedEx 3 亿美元电动卡车订单（商用电动卡车底盘，车队电动化大单）。</p>
           <a class="golink" href="https://news.google.com" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（彭博新能源财经，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener">BNEF：2026H1 全球新能源中重卡销量 15.8 万辆创纪录<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener"><span>BNEF：2026H1 全球新能源中重卡销量 15.8 万辆创纪录</span><span class="ext">↗</span></a></h3>
           <p class="sum">2026 年上半年全球新能源中卡和重卡销量 15.8 万辆创纪录（几乎全部为纯电动车型），同比增长 75%；德国纯电动长途重卡潜在市场规模 25%–50%（取决于能源成本）。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>IT之家（N67）</span></div>
-          <h3><a href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener">国庆假期前两天全国高速充电量超 5000 万千瓦时<span class="ext">↗</span></a></h3>
+          <h3><a href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener"><span>国庆假期前两天全国高速充电量超 5000 万千瓦时</span><span class="ext">↗</span></a></h3>
           <p class="sum">国庆假期前两天全国高速公路充电量超 5000 万千瓦时，同比增长 51.34%（新能源汽车假期出行充电数据）。</p>
           <a class="golink" href="https://www.ithome.com/1/009/508.htm" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1440,7 +1490,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（有色日鉴，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener">9 月最后一周铝行业热点汇总<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener"><span>9 月最后一周铝行业热点汇总</span><span class="ext">↗</span></a></h3>
           <p class="sum">9 月最后一周铝行业热点：国内铝锭社会库存 63.8 万吨节前连续三周去库；中铝贵州分公司稳定量产 8021 电池铝箔扁锭；SMM 新增四川、湖北 ADC12 压铸铝合金出厂报价；几内亚 CBG 氧化铝精炼厂寻求美国融资。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1452,13 +1502,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（SMM 新能源，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA" target="_blank" rel="noopener">巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA" target="_blank" rel="noopener"><span>巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停</span><span class="ext">↗</span></a></h3>
           <p class="sum">9 月 24 日巴西米纳斯吉拉斯州 FEAM 暂停 Sigma Lithium 旗下 Grota do Cirilo 锂矿 5 项运营许可并将扩建项目纳入禁令，两个月内第二次被暂停。起因是联邦法院 9 月 4 日紧急禁令：Quilombola 社区联合会指控环评申报夸大矿区与传统领地距离、未完成 FPIC 程序。该矿名义产能 27 万吨/年，规划 2027 年底扩至 58 万吨/年。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（高工锂电，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA" target="_blank" rel="noopener">高工锂电解读电池产业“十五五”规划：固态电池、AI、出海<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA" target="_blank" rel="noopener"><span>高工锂电解读电池产业“十五五”规划：固态电池、AI、出海</span><span class="ext">↗</span></a></h3>
           <p class="sum">高工锂电解读《新型电池产业发展“十五五”规划》（工信部等七部门 2026-09-28 联合印发）：五大维度部署 19 项重点任务；AI 赋能的数智化转型列为重中之重；固态电池等新一代前沿技术即将迎来规模化突破。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -1470,13 +1520,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（生态文明实践，full 正文）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg" target="_blank" rel="noopener">报废车回收行业“反向开票”浅谈<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg" target="_blank" rel="noopener"><span>报废车回收行业“反向开票”浅谈</span><span class="ext">↗</span></a></h3>
           <p class="sum">报废车回收行业“反向开票”浅谈：自 2024 年 4 月 29 日起资源回收企业向出售报废产品的自然人开票；截至 2025 年底全国约 1.48 万户企业向约 167 万名自然人反向开票近 9000 亿元；《循环经济发展“十五五”规划》提出继续推进。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
         <div class="item">
           <div class="srcrow"><span>微信公众号（生态文明实践，partial）</span></div>
-          <h3><a href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener">统计局：1–8 月废弃资源综合利用业盈利 174.2 亿元<span class="ext">↗</span></a></h3>
+          <h3><a href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener"><span>统计局：1–8 月废弃资源综合利用业盈利 174.2 亿元</span><span class="ext">↗</span></a></h3>
           <p class="sum">国家统计局：2026 年 1–8 月废弃资源综合利用业实现盈利 174.2 亿元。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q" target="_blank" rel="noopener">查看原文<span class="arr">↗</span></a>
         </div>
@@ -2230,9 +2280,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <aside class="rail" id="drail">
     <h4>今日看点</h4>
-    <a class="hl-item" href="#" data-mi="10"><span class="n">1</span><span class="t"><b>巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停，禁令波及扩建项目</b><span>微信公众号（SMM 新能源）</span></span></a>
-    <a class="hl-item" href="#" data-mi="1"><span class="n">2</span><span class="t"><b>谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”，稀土出口限制可预期性列入三项目标</b><span>微信公众号（CCCEU《周•知》）</span></span></a>
-    <a class="hl-item" href="#" data-mi="4"><span class="n">3</span><span class="t"><b>英国明确化学回收塑料质量平衡认证要求，2027 年 4 月起适用于塑料包装税再生含量核算</b><span>微信公众号（废塑料新观察）</span></span></a>
+    <a class="hl-item" href="#" data-mi="10"><span class="n">1</span><span class="t"><b>巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停</b><span>微信公众号（SMM 新能源，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查</b><span>商务部·新闻发布（N64，一手）</span></span></a>
+    <a class="hl-item" href="#" data-mi="1"><span class="n">3</span><span class="t"><b>谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”</b><span>微信公众号（CCCEU《周•知》，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>低碳政策在快速推进，为何市场反应却遇冷？</b><span>微信公众号（聊碳成金，full 正文）</span></span></a>
+    <a class="hl-item" href="#" data-mi="3"><span class="n">5</span><span class="t"><b>European car and battery industries put &#x27;made in Europe&#x27; to the test</b><span>路透 Autos RSS 转 디지털투데이</span></span></a>
     <div class="toc">
       <h4>本期版面</h4>
 
@@ -2369,7 +2421,7 @@ function showWeekly(date){
 
 <script>
 var ISSUE_DATE = "2026-10-04";
-var BRIEF_DATA = [{"t": "商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html", "s": "商务部·新闻发布（N64，一手）", "sec": "国内法规与政策", "sum": "商务部新闻发言人 2026-10-03 答记者问：对原产于欧盟的进口对硝基甲苯发起反倾销调查。中欧贸易救济新动作；对硝基甲苯为化工中间体，与汽车/电池价值链无直接关联。", "points": [], "note": "O15 中欧贸易政策跟踪；一手页面标题，正文未通读。"}, {"t": "谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”", "u": "https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA", "s": "微信公众号（CCCEU《周•知》，full 正文）", "sec": "国内法规与政策", "sum": "欧委会贸易和经济安全委员谢夫乔维奇（POLITICO 采访）称 10 月 8–9 日北京 TIC 第二次会议“极其关键”，三项目标为应对中国商品出口激增、扩大欧盟对华出口、就中国稀土出口限制建立长期可预期性；中欧贸易逆差约 10 亿欧元/天；欧盟部分成员国提议研究欧版“301”贸易工具。", "points": [], "note": "O15 中欧贸易政策跟踪；转载号周报口径，待一手核验。"}, {"t": "低碳政策在快速推进，为何市场反应却遇冷？", "u": "https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ", "s": "微信公众号（聊碳成金，full 正文）", "sec": "国内法规与政策", "sum": "低碳政策在快速推进，为何市场反应却遇冷？KOL 长文提出政策热与市场体感冷之间有 12–36 个月传导时滞，核心主张“谁先把可核查的碳数据做出来，谁就先把价值解冻”。", "points": [], "note": "KOL 评论口径；文中数据未独立核验。"}, {"t": "European car and battery industries put 'made in Europe' to the test", "u": "https://news.google.com", "s": "路透 Autos RSS 转 디지털투데이", "sec": "海外法规与政策", "sum": "“European car and battery industries put 'made in Europe' to the test”：欧洲汽车与电池产业“欧洲制造”竞争力测试相关报道。", "points": [], "note": "仅有标题/摘要。"}, {"t": "英国明确化学回收塑料质量平衡认证要求", "u": "https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "海外法规与政策", "sum": "英国税务海关总署（HMRC）2026-08-28 发布化学回收塑料质量平衡核算准备指南及最低认证要求，明确相关材料如何计入塑料包装税（PPT）的再生含量；新安排 2027 年 4 月 1 日起实施，再生含量达 30% 及以上的包装组件免税。", "points": [], "note": "英国指南为二级转述，待一手核验。"}, {"t": "Makersite × 施耐德电气：AI 驱动 LCA 平台合作", "u": "https://makersite.io/insights/one-partnership-working-together-at-every-stage/", "s": "Makersite 官方博客（N86，一手）", "sec": "LCA 与方法学", "sum": "Makersite 与施耐德电气 SE Advisory Services 达成合作，用 AI 驱动的 Product Lifecycle Intelligence 平台承接企业 LCA/产品碳足迹/EPD/合规分析需求。", "points": [], "note": "一手全文已读；厂商合作口径；AI for LCA 方向。"}, {"t": "Harbinger 拿下 FedEx 3 亿美元电动卡车订单", "u": "https://news.google.com", "s": "路透 Sustainable Business RSS 转 STAT Times", "sec": "整车企业", "sum": "Harbinger 拿下 FedEx 3 亿美元电动卡车订单（商用电动卡车底盘，车队电动化大单）。", "points": [], "note": "仅有标题/摘要。"}, {"t": "BNEF：2026H1 全球新能源中重卡销量 15.8 万辆创纪录", "u": "https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA", "s": "微信公众号（彭博新能源财经，full 正文）", "sec": "整车企业", "sum": "2026 年上半年全球新能源中卡和重卡销量 15.8 万辆创纪录（几乎全部为纯电动车型），同比增长 75%；德国纯电动长途重卡潜在市场规模 25%–50%（取决于能源成本）。", "points": [], "note": "付费报告摘要口径。"}, {"t": "国庆假期前两天全国高速充电量超 5000 万千瓦时", "u": "https://www.ithome.com/1/009/508.htm", "s": "IT之家（N67）", "sec": "整车企业", "sum": "国庆假期前两天全国高速公路充电量超 5000 万千瓦时，同比增长 51.34%（新能源汽车假期出行充电数据）。", "points": [], "note": "仅有标题/摘要。"}, {"t": "9 月最后一周铝行业热点汇总", "u": "https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw", "s": "微信公众号（有色日鉴，full 正文）", "sec": "上游基础材料", "sum": "9 月最后一周铝行业热点：国内铝锭社会库存 63.8 万吨节前连续三周去库；中铝贵州分公司稳定量产 8021 电池铝箔扁锭；SMM 新增四川、湖北 ADC12 压铸铝合金出厂报价；几内亚 CBG 氧化铝精炼厂寻求美国融资。", "points": [], "note": "行业媒体汇总。"}, {"t": "巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停", "u": "https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "9 月 24 日巴西米纳斯吉拉斯州 FEAM 暂停 Sigma Lithium 旗下 Grota do Cirilo 锂矿 5 项运营许可并将扩建项目纳入禁令，两个月内第二次被暂停。起因是联邦法院 9 月 4 日紧急禁令：Quilombola 社区联合会指控环评申报夸大矿区与传统领地距离、未完成 FPIC 程序。该矿名义产能 27 万吨/年，规划 2027 年底扩至 58 万吨/年。", "points": [], "note": "微信公众号 full 正文（SMM 行业分析；司法裁决、TAC 协议等细节未独立一手核验）。"}, {"t": "高工锂电解读电池产业“十五五”规划：固态电池、AI、出海", "u": "https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA", "s": "微信公众号（高工锂电，full 正文）", "sec": "电池产业链", "sum": "高工锂电解读《新型电池产业发展“十五五”规划》（工信部等七部门 2026-09-28 联合印发）：五大维度部署 19 项重点任务；AI 赋能的数智化转型列为重中之重；固态电池等新一代前沿技术即将迎来规模化突破。", "points": [], "note": "媒体解读口径；规划原文待一手核验；标题命中“十五五”必看关键词。"}, {"t": "报废车回收行业“反向开票”浅谈", "u": "https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg", "s": "微信公众号（生态文明实践，full 正文）", "sec": "循环再生", "sum": "报废车回收行业“反向开票”浅谈：自 2024 年 4 月 29 日起资源回收企业向出售报废产品的自然人开票；截至 2025 年底全国约 1.48 万户企业向约 167 万名自然人反向开票近 9000 亿元；《循环经济发展“十五五”规划》提出继续推进。", "points": [], "note": "行业解读口径；税务数据未独立核验。"}, {"t": "统计局：1–8 月废弃资源综合利用业盈利 174.2 亿元", "u": "https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q", "s": "微信公众号（生态文明实践，partial）", "sec": "循环再生", "sum": "国家统计局：2026 年 1–8 月废弃资源综合利用业实现盈利 174.2 亿元。", "points": [], "note": "partial，仅标题/摘要；官方统计口径。"}];
+var BRIEF_DATA = [{"t": "商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查", "u": "https://www.mofcom.gov.cn/xwfb/xwfyrth/art/2026/art_53e95cd6d6b64c43be04d11cbf37aa1c.html", "s": "商务部·新闻发布（N64，一手）", "sec": "国内法规与政策", "sum": "商务部新闻发言人 2026-10-03 答记者问：对原产于欧盟的进口对硝基甲苯发起反倾销调查。中欧贸易救济新动作；对硝基甲苯为化工中间体，与汽车/电池价值链无直接关联。", "points": [], "note": "O15 中欧贸易政策跟踪；一手页面标题，正文未通读。", "score": 0, "level": "brief"}, {"t": "谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”", "u": "https://mp.weixin.qq.com/s/W3-tCGO9S4jciiDf5dcLiA", "s": "微信公众号（CCCEU《周•知》，full 正文）", "sec": "国内法规与政策", "sum": "欧委会贸易和经济安全委员谢夫乔维奇（POLITICO 采访）称 10 月 8–9 日北京 TIC 第二次会议“极其关键”，三项目标为应对中国商品出口激增、扩大欧盟对华出口、就中国稀土出口限制建立长期可预期性；中欧贸易逆差约 10 亿欧元/天；欧盟部分成员国提议研究欧版“301”贸易工具。", "points": [], "note": "O15 中欧贸易政策跟踪；转载号周报口径，待一手核验。", "score": 0, "level": "brief"}, {"t": "低碳政策在快速推进，为何市场反应却遇冷？", "u": "https://mp.weixin.qq.com/s/meQic96Oe8MFdbd2yB-KDQ", "s": "微信公众号（聊碳成金，full 正文）", "sec": "国内法规与政策", "sum": "低碳政策在快速推进，为何市场反应却遇冷？KOL 长文提出政策热与市场体感冷之间有 12–36 个月传导时滞，核心主张“谁先把可核查的碳数据做出来，谁就先把价值解冻”。", "points": [], "note": "KOL 评论口径；文中数据未独立核验。", "score": 0, "level": "brief"}, {"t": "European car and battery industries put 'made in Europe' to the test", "u": "https://news.google.com", "s": "路透 Autos RSS 转 디지털투데이", "sec": "海外法规与政策", "sum": "“European car and battery industries put 'made in Europe' to the test”：欧洲汽车与电池产业“欧洲制造”竞争力测试相关报道。", "points": [], "note": "仅有标题/摘要。", "score": 0, "level": "brief"}, {"t": "英国明确化学回收塑料质量平衡认证要求", "u": "https://mp.weixin.qq.com/s/YBheESjAk9GFB3Wghw9V9Q", "s": "微信公众号（废塑料新观察，full 正文）", "sec": "海外法规与政策", "sum": "英国税务海关总署（HMRC）2026-08-28 发布化学回收塑料质量平衡核算准备指南及最低认证要求，明确相关材料如何计入塑料包装税（PPT）的再生含量；新安排 2027 年 4 月 1 日起实施，再生含量达 30% 及以上的包装组件免税。", "points": [], "note": "英国指南为二级转述，待一手核验。", "score": 0, "level": "brief"}, {"t": "Makersite × 施耐德电气：AI 驱动 LCA 平台合作", "u": "https://makersite.io/insights/one-partnership-working-together-at-every-stage/", "s": "Makersite 官方博客（N86，一手）", "sec": "LCA 与方法学", "sum": "Makersite 与施耐德电气 SE Advisory Services 达成合作，用 AI 驱动的 Product Lifecycle Intelligence 平台承接企业 LCA/产品碳足迹/EPD/合规分析需求。", "points": [], "note": "一手全文已读；厂商合作口径；AI for LCA 方向。", "score": 0, "level": "brief"}, {"t": "Harbinger 拿下 FedEx 3 亿美元电动卡车订单", "u": "https://news.google.com", "s": "路透 Sustainable Business RSS 转 STAT Times", "sec": "整车企业", "sum": "Harbinger 拿下 FedEx 3 亿美元电动卡车订单（商用电动卡车底盘，车队电动化大单）。", "points": [], "note": "仅有标题/摘要。", "score": 0, "level": "brief"}, {"t": "BNEF：2026H1 全球新能源中重卡销量 15.8 万辆创纪录", "u": "https://mp.weixin.qq.com/s/6PRImfGYkp5Vu2CISAYSzA", "s": "微信公众号（彭博新能源财经，full 正文）", "sec": "整车企业", "sum": "2026 年上半年全球新能源中卡和重卡销量 15.8 万辆创纪录（几乎全部为纯电动车型），同比增长 75%；德国纯电动长途重卡潜在市场规模 25%–50%（取决于能源成本）。", "points": [], "note": "付费报告摘要口径。", "score": 0, "level": "brief"}, {"t": "国庆假期前两天全国高速充电量超 5000 万千瓦时", "u": "https://www.ithome.com/1/009/508.htm", "s": "IT之家（N67）", "sec": "整车企业", "sum": "国庆假期前两天全国高速公路充电量超 5000 万千瓦时，同比增长 51.34%（新能源汽车假期出行充电数据）。", "points": [], "note": "仅有标题/摘要。", "score": 0, "level": "brief"}, {"t": "9 月最后一周铝行业热点汇总", "u": "https://mp.weixin.qq.com/s/a8afDQA6Nn4pG22JLvyCxw", "s": "微信公众号（有色日鉴，full 正文）", "sec": "上游基础材料", "sum": "9 月最后一周铝行业热点：国内铝锭社会库存 63.8 万吨节前连续三周去库；中铝贵州分公司稳定量产 8021 电池铝箔扁锭；SMM 新增四川、湖北 ADC12 压铸铝合金出厂报价；几内亚 CBG 氧化铝精炼厂寻求美国融资。", "points": [], "note": "行业媒体汇总。", "score": 0, "level": "brief"}, {"t": "巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停", "u": "https://mp.weixin.qq.com/s/cao5PQA7SOJEX9CJYMr-BA", "s": "微信公众号（SMM 新能源，full 正文）", "sec": "电池产业链", "sum": "9 月 24 日巴西米纳斯吉拉斯州 FEAM 暂停 Sigma Lithium 旗下 Grota do Cirilo 锂矿 5 项运营许可并将扩建项目纳入禁令，两个月内第二次被暂停。起因是联邦法院 9 月 4 日紧急禁令：Quilombola 社区联合会指控环评申报夸大矿区与传统领地距离、未完成 FPIC 程序。该矿名义产能 27 万吨/年，规划 2027 年底扩至 58 万吨/年。", "points": [], "note": "微信公众号 full 正文（SMM 行业分析；司法裁决、TAC 协议等细节未独立一手核验）。", "score": 0, "level": "full"}, {"t": "高工锂电解读电池产业“十五五”规划：固态电池、AI、出海", "u": "https://mp.weixin.qq.com/s/uoT1ibtAsbc1YX9fFPtmoA", "s": "微信公众号（高工锂电，full 正文）", "sec": "电池产业链", "sum": "高工锂电解读《新型电池产业发展“十五五”规划》（工信部等七部门 2026-09-28 联合印发）：五大维度部署 19 项重点任务；AI 赋能的数智化转型列为重中之重；固态电池等新一代前沿技术即将迎来规模化突破。", "points": [], "note": "媒体解读口径；规划原文待一手核验；标题命中“十五五”必看关键词。", "score": 0, "level": "brief"}, {"t": "报废车回收行业“反向开票”浅谈", "u": "https://mp.weixin.qq.com/s/4QfsauAO983x7VaSeDfMNg", "s": "微信公众号（生态文明实践，full 正文）", "sec": "循环再生", "sum": "报废车回收行业“反向开票”浅谈：自 2024 年 4 月 29 日起资源回收企业向出售报废产品的自然人开票；截至 2025 年底全国约 1.48 万户企业向约 167 万名自然人反向开票近 9000 亿元；《循环经济发展“十五五”规划》提出继续推进。", "points": [], "note": "行业解读口径；税务数据未独立核验。", "score": 0, "level": "brief"}, {"t": "统计局：1–8 月废弃资源综合利用业盈利 174.2 亿元", "u": "https://mp.weixin.qq.com/s/bw2ZnMUuQyXwvTSef-~32Q", "s": "微信公众号（生态文明实践，partial）", "sec": "循环再生", "sum": "国家统计局：2026 年 1–8 月废弃资源综合利用业实现盈利 174.2 亿元。", "points": [], "note": "partial，仅标题/摘要；官方统计口径。", "score": 0, "level": "brief"}];
 function openModal(i){
   var d = BRIEF_DATA[i]; if(!d) return;
   document.getElementById('mSrc').textContent = d.s;
