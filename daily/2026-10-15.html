@@ -336,11 +336,11 @@ h1.mast .lca{color:var(--accent)}
   vertical-align:middle;margin-right:8px;border-radius:2px}
 .rail .hl-item{display:flex;gap:12px;margin-bottom:16px;text-decoration:none}
 .rail .hl-item .n{font-size:22px;font-weight:900;color:var(--accent);line-height:1.2}
-.rail .hl-item .t b{display:block;font-size:13.5px;line-height:1.55;color:var(--ink);font-weight:700}
+.rail .hl-item .t b{display:block;font-size:13.5px;line-height:1.55;color:var(--muted);font-weight:700}
 .rail .hl-item:hover .t b{color:var(--primary);text-decoration:underline}
 .rail .hl-item .t span{font-size:12px;color:var(--faint)}
 .rail .toc{margin-top:28px}
-.rail .toc a{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--body);
+.rail .toc a{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--muted);
   padding:5px 0;font-size:13.5px}
 .rail .toc a:hover{color:var(--primary)}
 /* v28r8：搜索 */
@@ -657,11 +657,11 @@ h1.mast .lca{color:var(--accent)}
   vertical-align:middle;margin-right:8px;border-radius:2px}
 .rail .hl-item{display:flex;gap:12px;margin-bottom:16px;text-decoration:none}
 .rail .hl-item .n{font-size:22px;font-weight:900;color:var(--accent);line-height:1.2}
-.rail .hl-item .t b{display:block;font-size:13.5px;line-height:1.55;color:var(--ink);font-weight:700}
+.rail .hl-item .t b{display:block;font-size:13.5px;line-height:1.55;color:var(--muted);font-weight:700}
 .rail .hl-item:hover .t b{color:var(--primary);text-decoration:underline}
 .rail .hl-item .t span{font-size:12px;color:var(--faint)}
 .rail .toc{margin-top:28px}
-.rail .toc a{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--body);
+.rail .toc a{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--muted);
   padding:5px 0;font-size:13.5px}
 .rail .toc a:hover{color:var(--primary)}
 .rail .toc .n{color:var(--accent-deep);font-weight:800;font-size:12.5px}
@@ -2941,6 +2941,8 @@ var cur=localStorage.getItem("lca-lang")||"zh";
 function apply(lang){
   cur=lang; localStorage.setItem("lca-lang",lang);
   document.documentElement.classList.toggle("lang-en", lang==="en");
+  // 导航文字变了，pill 位置要重算（等重排完成）
+  if(window.movePill){ requestAnimationFrame(function(){ window.movePill(true); }); }
   document.documentElement.setAttribute("lang", lang==="zh"?"zh-CN":"en");
   document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){ r.checked = (r.value===lang); });
   document.querySelectorAll("[data-i18n]").forEach(function(el){
