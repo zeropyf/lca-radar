@@ -349,8 +349,8 @@ h1.mast .lca{color:var(--accent)}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
 .lang-switch{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:18px;padding:2px;background:var(--bg);cursor:pointer}
-.lang-switch .thumb{position:absolute;top:2px;left:2px;width:calc(50% - 2px);height:calc(100% - 4px);background:var(--primary);border-radius:16px;transition:transform .25s ease;z-index:0;pointer-events:none}
-html.no-anim .lang-switch .thumb{transition:none!important}
+.lang-switch .thumb{position:absolute;top:2px;left:2px;width:calc(50% - 2px);height:calc(100% - 4px);background:var(--primary);border-radius:16px;z-index:0;pointer-events:none}
+html.lang-ready .lang-switch .thumb{transition:transform .25s ease}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
 html.lang-en .lang-switch .thumb{transform:translateX(100%)}
@@ -2929,11 +2929,10 @@ function apply(lang){
   });
 }
 function initLang(){
-  document.documentElement.classList.add('no-anim');
   apply(cur);
-  // 下一帧恢复动画，避免初始加载时滑块抽动
+  // 初始化完成后才启用滑块过渡动画，页面加载期间永不抽动
   requestAnimationFrame(function(){requestAnimationFrame(function(){
-    document.documentElement.classList.remove('no-anim');
+    document.documentElement.classList.add('lang-ready');
   });});
   document.querySelectorAll('.lang-switch').forEach(function(sw){
     // 防止重复绑定
