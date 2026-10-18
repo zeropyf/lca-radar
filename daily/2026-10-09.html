@@ -352,6 +352,7 @@ h1.mast .lca{color:var(--accent)}
 html.no-anim .lang-switch .thumb{transition:none!important}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
+html.lang-en .lang-switch .thumb{transform:translateX(100%)}
 .lang-switch label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-width:38px;height:32px;padding:0 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 .lang-switch label span{position:relative;z-index:1}
 .lang-switch input{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
@@ -2888,6 +2889,7 @@ en:{
 var cur=localStorage.getItem("lca-lang")||"zh";
 function apply(lang){
   cur=lang; localStorage.setItem("lca-lang",lang);
+  document.documentElement.classList.toggle("lang-en", lang==="en");
   document.documentElement.setAttribute("lang", lang==="zh"?"zh-CN":"en");
   document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){ r.checked = (r.value===lang); });
   document.querySelectorAll("[data-i18n]").forEach(function(el){
