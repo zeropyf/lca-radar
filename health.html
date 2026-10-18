@@ -234,7 +234,8 @@ a.dd.has.cur{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--accent)}
 .arc:hover{background:var(--hover)}
 .arc.cur{background:var(--blue-soft)}
 .arc .d{font-size:23px;font-weight:900;color:var(--primary);line-height:1;min-width:30px;text-align:center}
-.arc .tx b{display:block;font-size:13px;color:var(--ink);font-weight:700;line-height:1.5}
+.arc .tx b{display:block;font-size:13px;color:var(--muted);font-weight:700;line-height:1.5}
+.arc.cur .tx b{color:var(--ink)}
 .arc .tx i{display:block;font-style:normal;font-size:12px;color:var(--gray);line-height:1.5;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:122px}
 .sidenav .foot{font-size:12px;color:var(--faint);margin-top:10px}
@@ -547,7 +548,8 @@ html{scroll-behavior:smooth}
 .arc:hover{background:var(--hover)}
 .arc.cur{background:var(--blue-soft)}
 .arc .d{font-size:23px;font-weight:900;color:var(--primary);line-height:1;min-width:30px;text-align:center}
-.arc .tx b{display:block;font-size:13px;color:var(--ink);font-weight:700;line-height:1.5}
+.arc .tx b{display:block;font-size:13px;color:var(--muted);font-weight:700;line-height:1.5}
+.arc.cur .tx b{color:var(--ink)}
 .arc .tx i{display:block;font-style:normal;font-size:12px;color:var(--gray);line-height:1.5;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:122px}
 .sidenav .foot{font-size:12px;color:var(--faint);margin-top:10px}
@@ -1539,10 +1541,13 @@ function apply(lang){
 }
 document.addEventListener("DOMContentLoaded",function(){
   apply(cur);
-  // 初始化 radio 选中状态
-  document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){
-    r.checked = (r.value === cur);
-    r.addEventListener('change',function(){ if(r.checked) apply(r.value); });
+  document.querySelectorAll('.lang-switch').forEach(function(sw){
+    sw.addEventListener('click',function(e){
+      var label = e.target.closest('label');
+      if(!label) return;
+      var input = label.querySelector('input');
+      if(input) apply(input.value);
+    });
   });
 });
 window.LCA_I18N={apply:apply,get:function(){return cur;},dict:I18N};
