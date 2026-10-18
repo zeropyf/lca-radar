@@ -350,9 +350,9 @@ h1.mast .lca{color:var(--accent)}
 .lang-switch .thumb{position:absolute;top:2px;left:2px;width:calc(50% - 2px);height:calc(100% - 4px);background:var(--primary);border-radius:16px;transition:transform .25s ease;z-index:0;pointer-events:none}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
-.lang-switch label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-width:38px;height:32px;padding:0 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang-switch label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-width:38px;height:32px;padding:0 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 .lang-switch label span{position:relative;z-index:1}
-.lang-switch input{position:absolute;opacity:0;pointer-events:none}
+.lang-switch input{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .lang-switch input:checked + span{color:#fff}
 .tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
