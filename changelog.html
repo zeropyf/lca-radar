@@ -1256,14 +1256,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="changelog.html" class="on">更新日志</a>
     <a href="health.html">监控</a>
   </nav>
+  <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+  </button>
   <div class="lang-switch" role="radiogroup" aria-label="语言 / Language">
     <span class="thumb" aria-hidden="true"></span>
     <label title="中文"><input type="radio" name="lca-lang" value="zh" checked><span>中</span></label>
     <label title="English"><input type="radio" name="lca-lang" value="en"><span>EN</span></label>
   </div>
-  <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-  </button>
   <div class="tb-theme">
       <div class="theme-switch" role="radiogroup" aria-label="外观主题">
         <span class="thumb" aria-hidden="true"></span>
@@ -1498,6 +1498,52 @@ navScroll();
     if(e.key==='Escape' && isOpen) close();
   });
   inp.addEventListener('input', render);
+})();
+</script>
+<script>
+/* ===== 中英双语切换 v30 ===== */
+(function(){
+var I18N={
+zh:{
+"nav.about":"关于","nav.daily":"日报","nav.fav":"收藏","nav.archive":"往期归档","nav.changelog":"更新日志","nav.health":"监控",
+"sidebar.highlights":"今日看点","sidebar.archive":"往期",
+"about.title":"关于 LCA瞭望","about.lede":"LCA瞭望是一份聚焦生命周期评价（LCA）、碳合规、DPP / 电池护照与汽车价值链的情报日报。",
+"health.title":"信息源健康度与输出监控","health.sources":"监测渠道健康度","health.output":"输出数量统计",
+"filter.title":"信息筛选流程","filter.desc":"我们的筛选不是黑箱。每条候选都要经过五轴打分、加权、门槛、品味规则、硬规则五道关口，全程可追溯。"
+},
+en:{
+"nav.about":"About","nav.daily":"Daily","nav.fav":"Saved","nav.archive":"Archive","nav.changelog":"Changelog","nav.health":"Monitor",
+"sidebar.highlights":"Today's Highlights","sidebar.archive":"Archive",
+"about.title":"About LCA RADAR","about.lede":"LCA RADAR is a daily intelligence brief focused on Life Cycle Assessment (LCA), carbon compliance, DPP / Battery Passport, and the automotive value chain.",
+"health.title":"Source Health & Output Monitor","health.sources":"Source Health","health.output":"Output Statistics",
+"filter.title":"How We Filter","filter.desc":"Our filtering is not a black box. Every candidate goes through five-axis scoring, weighting, thresholds, taste rules, and hard rules — fully traceable."
+}};
+var cur=localStorage.getItem("lca-lang")||"zh";
+function apply(lang){
+  cur=lang; localStorage.setItem("lca-lang",lang);
+  document.documentElement.setAttribute("lang", lang==="zh"?"zh-CN":"en");
+  document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){ r.checked = (r.value===lang); });
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var k=el.getAttribute("data-i18n");
+    if(I18N[lang]&&I18N[lang][k]) el.textContent=I18N[lang][k];
+  });
+  // 条目级切换：有 data-en 的用英文，无则回退中文
+  document.querySelectorAll("[data-en]").forEach(function(el){
+    var en=el.getAttribute("data-en");
+    var zh=el.getAttribute("data-zh")||el.textContent;
+    if(!el.getAttribute("data-zh")) el.setAttribute("data-zh", zh);
+    if(lang==="en"&&en) el.textContent=en; else el.textContent=el.getAttribute("data-zh");
+  });
+}
+document.addEventListener("DOMContentLoaded",function(){
+  apply(cur);
+  // 初始化 radio 选中状态
+  document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){
+    r.checked = (r.value === cur);
+    r.addEventListener('change',function(){ if(r.checked) apply(r.value); });
+  });
+});
+window.LCA_I18N={apply:apply,get:function(){return cur;},dict:I18N};
 })();
 </script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
