@@ -1190,6 +1190,7 @@ html.force-light .topbar .theme-switch .thumb{transform:translateX(0)}
 .mast-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .mast-name{font-size:26px;font-weight:900;letter-spacing:.03em;color:var(--primary)}
 .mast-name .lca{color:var(--accent)}
+html[lang="en"] .mast-en{display:none}
 .mast-en{font-size:12px;letter-spacing:.28em;color:var(--faint);font-weight:600}
 .mast-line{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
 .datepick{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:700;white-space:nowrap;max-width:100%;
@@ -1388,22 +1389,22 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <div class="masthead">
       <div class="mast-left">
         <div class="mast-top">
-          <span class="mast-name"><span class="lca">LCA</span>瞭望</span>
+          <span class="mast-name"><span class="lca">LCA</span><span data-zh="瞭望" data-en=" RADAR">瞭望</span></span>
           <span class="mast-en">LCA RADAR</span>
         </div>
-        <div class="mast-line"><span class="mast-dateline"><span data-zh="2026 年 10 月 6 日" data-en="2026 年 10 月 6 日">2026 年 10 月 6 日</span> · <span data-i18n="ui.wd1">星期二</span> · <span data-i18n="ui.issue_prefix">第</span> 7 <span data-i18n="ui.issue">期</span></span></div>
+        <div class="mast-line"><span class="mast-dateline"><span data-zh="2026 年 10 月 6 日" data-en="Oct 6, 2026">2026 年 10 月 6 日</span> · <span data-i18n="ui.wd1">星期二</span> · <span data-i18n="ui.issue_prefix">第</span> 7 <span data-i18n="ui.issue_num">期</span></span></div>
         <div class="mast-cov"><span class="kind" data-i18n="ui.morning">早报</span><span><span data-i18n="ui.cov">覆盖窗口：</span><span class="cov">2026-10-05 00:00–24:00</span><span class="tz">（Asia/Shanghai）</span></span></div>
       </div>
       <div class="dcal-card">
         <div class="dc-info">
-          <span class="dc-issue">第 7 期</span>
+          <span class="dc-issue"><span data-i18n="ui.issue_prefix">第</span> 7 <span data-i18n="ui.issue_num">期</span></span>
           <span class="bignum">06</span>
-          <span class="dc-date">2026 年 10 月</span>
-          <span class="dc-week">周二</span>
+          <span class="dc-date" data-zh="2026 年 10 月" data-en="2026/10">2026 年 10 月</span>
+          <span class="dc-week" data-i18n="ui.wd1">周二</span>
         </div>
         <div class="dc-dots">
-          <div class="dcal-mhead"><span>十月</span><span class="dcal-c">本月 18 期</span></div>
-          <div class="dc-weekrow"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+          <div class="dcal-mhead"><span data-zh="十月" data-en="October">十月</span><span class="dcal-c" data-zh="本月 18 期" data-en="18 issues">本月 18 期</span></div>
+          <div class="dc-weekrow"><span data-zh="一" data-en="M">一</span><span data-zh="二" data-en="T">二</span><span data-zh="三" data-en="W">三</span><span data-zh="四" data-en="T">四</span><span data-zh="五" data-en="F">五</span><span data-zh="六" data-en="S">六</span><span data-zh="日" data-en="S">日</span></div>
           <div class="dc-grid"><span class="dd"></span><span class="dd"></span><span class="dd"></span><a class="dd has" href="2026-10-01.html" title="10 月 1 日早报"></a><a class="dd has" href="2026-10-02.html" title="10 月 2 日早报"></a><a class="dd has" href="2026-10-03.html" title="10 月 3 日早报"></a><a class="dd has" href="2026-10-04.html" title="10 月 4 日早报"></a><a class="dd has" href="2026-10-05.html" title="10 月 5 日早报"></a><a class="dd has cur" href="2026-10-06.html" title="10 月 6 日早报"></a><a class="dd has" href="2026-10-07.html" title="10 月 7 日早报"></a><a class="dd has" href="2026-10-08.html" title="10 月 8 日早报"></a><a class="dd has" href="2026-10-09.html" title="10 月 9 日早报"></a><a class="dd has" href="2026-10-10.html" title="10 月 10 日早报"></a><a class="dd has" href="2026-10-11.html" title="10 月 11 日早报"></a><a class="dd has" href="2026-10-12.html" title="10 月 12 日早报"></a><a class="dd has" href="2026-10-13.html" title="10 月 13 日早报"></a><a class="dd has" href="2026-10-14.html" title="10 月 14 日早报"></a><a class="dd has" href="2026-10-15.html" title="10 月 15 日早报"></a><a class="dd has" href="2026-10-16.html" title="10 月 16 日早报"></a><a class="dd has" href="2026-10-17.html" title="10 月 17 日早报"></a><a class="dd has" href="2026-10-18.html" title="10 月 18 日早报"></a><span class="dd" title="10 月 19 日"></span><span class="dd" title="10 月 20 日"></span><span class="dd" title="10 月 21 日"></span><span class="dd" title="10 月 22 日"></span><span class="dd" title="10 月 23 日"></span><span class="dd" title="10 月 24 日"></span><span class="dd" title="10 月 25 日"></span><span class="dd" title="10 月 26 日"></span><span class="dd" title="10 月 27 日"></span><span class="dd" title="10 月 28 日"></span><span class="dd" title="10 月 29 日"></span><span class="dd" title="10 月 30 日"></span><span class="dd" title="10 月 31 日"></span></div>
         </div>
       </div>
@@ -1415,14 +1416,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     </div>
 
     <div class="layer">
-      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅰ · 合规" data-en="Ⅰ · Compliance">Ⅰ · 合规</span><span class="rule"></span><span class="lc">7 条</span></div>
+      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅰ · 合规" data-en="Ⅰ · Compliance">Ⅰ · 合规</span><span class="rule"></span><span class="lc" data-zh="7 条" data-en="7">7 条</span></div>
       <div class="sec" id="sec-c1">
         <div class="sec-head">
           <div class="sec-title"><h2 data-zh="国内法规与政策" data-en="Domestic Regulations &amp; Policy">国内法规与政策</h2></div>
           <a class="more" href="#"><span>1</span> <span data-i18n="ui.items">条</span> →</a>
         </div>
         <div class="item">
-          <div class="srcrow"><span data-zh="微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）" data-en="WeChat (生态文明实践, full text；转述第一财经对 9-22 生态环境部新闻发布会报道)">微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）</span></div>
+          <div class="srcrow"><span data-zh="微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）" data-en="WeChat (Ecological Civilization Practice, full text；转述第一财经对 9-22 生态环境部新闻发布会报道)">微信公众号（生态文明实践，full 正文；转述第一财经对 9-22 生态环境部新闻发布会报道）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg" target="_blank" rel="noopener"><span>《固体废物污染防治&quot;十五五&quot;规划》印发，&quot;新三样&quot;纳入全生命周期闭环管理</span><span class="ext">↗</span></a></h3>
           <p class="sum">生态环境部会同发改委、工信部等部门印发《固体废物污染防治&quot;十五五&quot;规划》，聚焦五大突出问题组织 5 个专项整治；针对&quot;新三样&quot;（退役光伏组件、风电设备、动力电池）已出台回收利用政策、初步建立全生命周期闭环管理体系，生态环境部牵头制定污染防治标准。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/mH0tHndKalgX6YTmvrFgFg" target="_blank" rel="noopener"><span data-i18n="ui.vieworig">查看原文</span><span class="arr">↗</span></a>
@@ -1472,7 +1473,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
       </div>
     </div>
     <div class="layer">
-      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅱ · 方法" data-en="Ⅱ · Methodology">Ⅱ · 方法</span><span class="rule"></span><span class="lc">1 条</span></div>
+      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅱ · 方法" data-en="Ⅱ · Methodology">Ⅱ · 方法</span><span class="rule"></span><span class="lc" data-zh="1 条" data-en="1">1 条</span></div>
       <div class="sec" id="sec-m1">
         <div class="sec-head">
           <div class="sec-title"><h2 data-zh="数据与知识" data-en="Data &amp; Knowledge">数据与知识</h2></div>
@@ -1487,7 +1488,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
       </div>
     </div>
     <div class="layer">
-      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅲ · 产业" data-en="Ⅲ · Industry">Ⅲ · 产业</span><span class="rule"></span><span class="lc">5 条</span></div>
+      <div class="layer-div"><span class="tick"></span><span class="zh" data-zh="Ⅲ · 产业" data-en="Ⅲ · Industry">Ⅲ · 产业</span><span class="rule"></span><span class="lc" data-zh="5 条" data-en="5">5 条</span></div>
       <div class="sec" id="sec-i1">
         <div class="sec-head">
           <div class="sec-title"><h2 data-zh="整车企业" data-en="OEMs">整车企业</h2></div>
@@ -1530,7 +1531,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
           <a class="golink" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9LZS02aDA5S0JXNTFBcWo0dkg5cXUzWE83Nl9nZjJLTWR4d05odUdHMTJ3VWg1YURnVU5uQTNwSEFxSTZMdDlZcG8" target="_blank" rel="noopener"><span data-i18n="ui.vieworig">查看原文</span><span class="arr">↗</span></a>
         </div>
         <div class="item">
-          <div class="srcrow"><span data-zh="微信公众号（高工锂电，行业资讯；partial，仅标题）" data-en="WeChat (高工锂电, 行业资讯；partial，仅标题)">微信公众号（高工锂电，行业资讯；partial，仅标题）</span></div>
+          <div class="srcrow"><span data-zh="微信公众号（高工锂电，行业资讯；partial，仅标题）" data-en="WeChat (Gaogong Lithium, 行业资讯；partial，仅标题)">微信公众号（高工锂电，行业资讯；partial，仅标题）</span></div>
           <h3><a href="https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg" target="_blank" rel="noopener"><span>高工锂电：16GWh 投产、1.1 万座闪充站铺开，比亚迪二代刀片电池走出比亚迪</span><span class="ext">↗</span></a></h3>
           <p class="sum">标题信息显示：16GWh 产能投产、1.1 万座闪充站铺开、比亚迪二代刀片电池对外供应动向；文章链接打开返回参数错误、正文缺失，细节待正文核验。</p>
           <a class="golink" href="https://mp.weixin.qq.com/s/tss1ZhZ~gEWqIAxbTMUDmg" target="_blank" rel="noopener"><span data-i18n="ui.vieworig">查看原文</span><span class="arr">↗</span></a>
@@ -1540,8 +1541,8 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
 
     <div class="tail">
-      <div class="end">（ 本 期 完 ）</div>
-      <p class="disclaimer">本简报基于公开来源整理；微信公众号内容凡涉法规状态均须一手核验。URL 均为实际检索到的链接，未编造。</p>
+      <div class="end" data-zh="（ 本 期 完 ）" data-en="— End of Issue —">（ 本 期 完 ）</div>
+      <p class="disclaimer"><span data-zh="本简报基于公开来源整理；微信公众号内容凡涉法规状态均须一手核验。URL 均为实际检索到的链接，未编造。" data-en="Regulatory status is based on official documents; items marked &quot;pending first-hand verification&quot; have not yet been confirmed by primary sources.">本简报基于公开来源整理；微信公众号内容凡涉法规状态均须一手核验。URL 均为实际检索到的链接，未编造。</span></p>
       </div>
   </div>
   <div id="wmain" hidden>
@@ -1563,7 +1564,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
           <span class="dc-week">10.05 — 10.11</span>
         </div>
         <div class="dc-dots">
-          <div class="dcal-mhead"><span>2026 年</span><span class="dcal-c">全年 2 期</span></div>
+          <div class="dcal-mhead"><span data-zh="2026 年" data-en="2026">2026 年</span><span class="dcal-c" data-zh="全年 2 期" data-en="2 issues">2 期</span></div>
           <div class="dc-grid weeks">
             <span class="dd" title="第 1 周 · 12.29 — 01.04"></span>
             <span class="dd" title="第 2 周 · 01.05 — 01.11"></span>
@@ -1894,7 +1895,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
           <span class="dc-week">10.05 — 10.11</span>
         </div>
         <div class="dc-dots">
-          <div class="dcal-mhead"><span>2026 年</span><span class="dcal-c">全年 2 期</span></div>
+          <div class="dcal-mhead"><span data-zh="2026 年" data-en="2026">2026 年</span><span class="dcal-c" data-zh="全年 2 期" data-en="2 issues">2 期</span></div>
           <div class="dc-grid weeks">
             <span class="dd" title="第 1 周 · 12.29 — 01.04"></span>
             <span class="dd" title="第 2 周 · 01.05 — 01.11"></span>
@@ -2294,14 +2295,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
       <h4>本期版面</h4>
 
       <div class="toc-layer">Ⅰ 合规</div>
-      <a href="#sec-c1"><span class="tdot" aria-hidden="true">•</span>国内法规与政策<span class="c">1 条</span></a>
-      <a href="#sec-c2"><span class="tdot" aria-hidden="true">•</span>海外法规与政策<span class="c">6 条</span></a>
+      <a href="#sec-c1"><span class="tdot" aria-hidden="true">•</span>国内法规与政策<span class="c" data-zh="1 条" data-en="1">1 条</span></a>
+      <a href="#sec-c2"><span class="tdot" aria-hidden="true">•</span>海外法规与政策<span class="c" data-zh="6 条" data-en="6">6 条</span></a>
       <div class="toc-layer">Ⅱ 方法</div>
-      <a href="#sec-m1"><span class="tdot" aria-hidden="true">•</span>数据与知识<span class="c">1 条</span></a>
+      <a href="#sec-m1"><span class="tdot" aria-hidden="true">•</span>数据与知识<span class="c" data-zh="1 条" data-en="1">1 条</span></a>
       <div class="toc-layer">Ⅲ 产业</div>
-      <a href="#sec-i1"><span class="tdot" aria-hidden="true">•</span>整车企业<span class="c">1 条</span></a>
-      <a href="#sec-i2"><span class="tdot" aria-hidden="true">•</span>上游基础材料<span class="c">1 条</span></a>
-      <a href="#sec-i3"><span class="tdot" aria-hidden="true">•</span>电池产业链<span class="c">3 条</span></a>
+      <a href="#sec-i1"><span class="tdot" aria-hidden="true">•</span>整车企业<span class="c" data-zh="1 条" data-en="1">1 条</span></a>
+      <a href="#sec-i2"><span class="tdot" aria-hidden="true">•</span>上游基础材料<span class="c" data-zh="1 条" data-en="1">1 条</span></a>
+      <a href="#sec-i3"><span class="tdot" aria-hidden="true">•</span>电池产业链<span class="c" data-zh="3 条" data-en="3">3 条</span></a>
     </div>
   </aside>
   <aside class="rail" id="wrail" hidden>
@@ -2463,7 +2464,7 @@ document.querySelectorAll('.theme-switch input[name="lca-theme"]').forEach(funct
 </script>
 
 </div>
-<footer class="site-foot"><span>LCA瞭望 · LCA RADAR</span><span class="pv">本站总访问 <span id="busuanzi_value_site_pv">…</span> · 访客 <span id="busuanzi_value_site_uv">…</span></span></footer>
+<footer class="site-foot"><span data-zh="LCA瞭望 · LCA RADAR" data-en="LCA RADAR">LCA瞭望 · LCA RADAR</span><span class="pv"><span data-i18n="ui.pv">本站总访问</span> <span id="busuanzi_value_site_pv">…</span> · <span data-i18n="ui.visitors">访客</span> <span id="busuanzi_value_site_uv">…</span></span></footer>
 <div class="search-ov" id="searchOv" role="dialog" aria-label="搜索">
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="搜索标题、摘要…" autocomplete="off">
@@ -2584,7 +2585,7 @@ function renderFav(){
   for(var k=0;k<a.length;k++){var x=a[k];
     html+='<div class="fav-item"><a class="fav-t" href="'+escH(x.u)+'" target="_blank" rel="noopener">'+escH(x.t)+'</a>'
       +'<div class="fav-meta">'+escH(x.s||'')+(x.d?' · '+escH(x.d):'')+'</div>'
-      +'<button class="fav-del" data-fid="'+escH(x.id)+'">取消收藏</button></div>';
+      +'<button class="fav-del" data-fid="'+escH(x.id)+'" data-i18n="fav.unsave">取消收藏</button></div>';
   }
   list.innerHTML=html;
   empty.hidden=a.length>0;
@@ -2780,37 +2781,57 @@ renderFav();
   update();
 })();
 </script>
-<script>
+<script data-i18n="fav.title">
 /* ===== 中英双语切换 v30 ===== */
 (function(){
 var I18N={
 zh:{
 "nav.about":"关于","nav.daily":"日报","nav.fav":"收藏","nav.archive":"往期归档","nav.changelog":"更新日志","nav.health":"监控",
 "sidebar.highlights":"今日看点","sidebar.archive":"往期","sidebar.layout":"本期版面","sidebar.month":"月份",
-"about.title":"关于 LCA瞭望","about.lede":"LCA瞭望是一份聚焦生命周期评价（LCA）、碳合规、DPP / 电池护照与汽车价值链的情报日报。",
-"health.title":"信息源健康度与输出监控","health.sources":"监测渠道健康度","health.output":"输出数量统计",
+"about.title":"关于 LCA瞭望","about.lede":"LCA瞭望是一份聚焦生命周期评价（LCA）、碳合规、DPP / 电池护照与汽车价值链的情报日报。每天早上，它把260+ 个监测渠道里真正值得看的动态挑出来，按合规、方法、产业三层八个子专题整理成刊。下面是它每天走完的流程：",
+"health.title":"信息源健康度与输出监控","health.sources":"监测渠道健康度","health.output":"输出数量统计","health.avg":"日均条数","health.noise":"历史噪声率（I1/I2/I3）","health.acc":"筛选一致率（v1.1验证）",
 "filter.title":"信息筛选流程","filter.desc":"我们的筛选不是黑箱。每条候选都要经过五轴打分、加权、门槛、品味规则、硬规则五道关口，全程可追溯。",
+"about.s1t":"扫描","about.s1n":"260+","about.s1u":"个监测渠道","about.s1d":"政府机构、国际组织、学术期刊、行业协会、企业与 116 个微信公众号；宁可误报，不漏报。","about.s1f":"A级每日 · B级隔天 · C级每周",
+"about.s2t":"复核","about.s2n":"三级","about.s2u":"审定","about.s2d":"收录 / 一句话 / 过滤三档。法规状态只认一手文本，草案、征求意见、通过、公报、生效严格区分。","about.s2f":"二手来源一律标注「待一手核验」",
+"about.s3t":"成刊","about.s3n":"3","about.s3u":"种刊式","about.s3d":"每日早报覆盖前一日全窗口，晚间重大事件哨兵，每周一周报；收录条目点标题看站内详情。","about.s3f":"早报＋哨兵＋周报",
+"about.s4t":"分发","about.s4n":"2","about.s4u":"个出口","about.s4d":"网页版每日更新，飞书群同步推送摘要卡；往期按月份归档，日历可回溯任意一期。","about.s4f":"网页＋飞书推送",
+"about.topics":"专题体系","about.t1k":"Ⅰ · 合规","about.t1t":"法规与政策","about.t1a":"国内法规与政策","about.t1b":"海外法规与政策",
+"about.t2k":"Ⅱ · 方法","about.t2t":"方法与数据","about.t2a":"LCA 与方法学","about.t2b":"数据与知识",
+"about.t3k":"Ⅲ · 产业","about.t3t":"价值链动态","about.t3a":"整车企业","about.t3b":"电池产业链","about.t3c":"上游基础材料","about.t3d":"循环再生",
+"about.who":"做这个站的人","about.bio":"一名在汽车行业做 LCA 方法学、碳合规与 DPP / 电池护照的普通从业者。LCA瞭望源于他每天早上给自己做的功课：从 260+ 个渠道里捞出值得看的动态，整理成刊。既然这套流程已经跑通，就顺手分享出来——微小的贡献，如果每天能帮同行省下半小时找信息的时间，就值了。",
+"about.disclaimer":"内容基于公开来源整理，仅供学习参考，不构成合规或投资建议。原文版权归各来源所有；如来源方希望更正或调整展示，请联系站长。",
+"fav.title":"收藏","fav.lede":"本机收藏的 LCA瞭望内容，适合稍后阅读和回看。","fav.note":"收藏只保存在当前浏览器；清除浏览器数据或换设备后不会同步。","fav.empty":"还没有收藏内容。点开任意一条内容，在详情页点击收藏即可添加。","fav.go":"去看日报 →","fav.unsave":"取消收藏","ui.featured":"收录","ui.oneliner":"一句话","clog.title":"更新日志","clog.allday":"全天","clog.launch":"上线","clog.fix":"修复","health.lede":"监测渠道的存活状态与每日输出数量的透明看板。","health.updated":"数据更新于","health.total":"监测渠道总数","health.ok":"正常","health.warn":"异常","health.err":"连续失败","health.ch":"渠道","health.type":"类型","health.status":"状态","health.consec":"连续失败","health.lastok":"最后成功","health.red":"红警","health.yellow":"警告","health.note":"红警：连续失败超阈值，需人工介入换源或退役；警告：偶发失败，持续观察。",
 "ui.vieworig":"查看原文","ui.morning":"早报","ui.items":"条内容","ui.minutes":"分钟","ui.sources":"个来源","ui.topics":"个子专题有动态",
 "ui.compliance":"合规","ui.method":"方法","ui.industry":"产业",
 "ui.c1":"国内法规与政策","ui.c2":"海外法规与政策（含电池护照与 DPP 实施）","ui.m1":"LCA 与方法学","ui.m2":"数据与知识",
 "ui.i1":"整车企业","ui.i2":"电池产业链","ui.i3":"上游基础材料","ui.i4":"循环再生",
 "ui.daily":"日报","ui.weekly":"周报","ui.search":"搜索","ui.backtop":"回到顶部","ui.close":"关闭",
 "ui.wd0":"周一","ui.wd1":"周二","ui.wd2":"周三","ui.wd3":"周四","ui.wd4":"周五","ui.wd5":"周六","ui.wd6":"周日",
-"ui.issue":"期","ui.year":"年","ui.month":"月","ui.issue_prefix":"第","ui.cov":"覆盖窗口：","ui.about":"约","ui.primary":"条一手发布"
+"ui.issue":"期","ui.year":"年","ui.month":"月","ui.issue_prefix":"第","ui.cov":"覆盖窗口：","ui.about":"约","ui.primary":"条一手发布","ui.issue_num":"期","funnel.label":"今日早报","ui.pv":"本站总访问","ui.visitors":"访客"
 },
 en:{
 "nav.about":"About","nav.daily":"Daily","nav.fav":"Saved","nav.archive":"Archive","nav.changelog":"Changelog","nav.health":"Monitor",
 "sidebar.highlights":"Today's Highlights","sidebar.archive":"Archive","sidebar.layout":"In This Issue","sidebar.month":"Month",
-"about.title":"About LCA RADAR","about.lede":"LCA RADAR is a daily intelligence brief focused on Life Cycle Assessment (LCA), carbon compliance, DPP / Battery Passport, and the automotive value chain.",
-"health.title":"Source Health & Output Monitor","health.sources":"Source Health","health.output":"Output Statistics",
+"about.title":"About LCA RADAR","about.lede":"LCA RADAR is a daily intelligence brief focused on Life Cycle Assessment (LCA), carbon compliance, DPP / Battery Passport, and the automotive value chain. Every morning, it picks the truly noteworthy updates from 260+ monitoring channels and organizes them by the three layers and eight topics of compliance, methodology, and industry. Below is its daily workflow:",
+"health.title":"Source Health & Output Monitor","health.sources":"Source Health","health.output":"Output Statistics","health.avg":"Daily avg","health.noise":"Historical noise rate (I1/I2/I3)","health.acc":"Screening agreement (v1.1 validation)",
 "filter.title":"How We Filter","filter.desc":"Our filtering is not a black box. Every candidate goes through five-axis scoring, weighting, thresholds, taste rules, and hard rules — fully traceable.",
+"about.s1t":"Scan","about.s1n":"260+","about.s1u":"monitoring channels","about.s1d":"Government agencies, international organizations, academic journals, industry associations, enterprises and 116 WeChat accounts; better a false positive than a miss.","about.s1f":"Tier A daily · Tier B every other day · Tier C weekly",
+"about.s2t":"Review","about.s2n":"Three","about.s2u":"review tiers","about.s2d":"Three tiers: featured / one-liner / filtered. Regulatory status only recognizes primary texts; drafts, consultations, adoptions, gazettes, and entries into force are strictly distinguished.","about.s2f":"Secondary sources are always marked \u201cpending primary verification\u201d",
+"about.s3t":"Publish","about.s3n":"3","about.s3u":"formats","about.s3d":"Daily morning brief covers the previous day\u2019s full window, evening sentinel for major events, weekly report every Monday; click featured titles for in-site details.","about.s3f":"Brief + Sentinel + Weekly",
+"about.s4t":"Distribute","about.s4n":"2","about.s4u":"channels","about.s4d":"Web version updated daily, Feishu group receives summary cards; archives by month, calendar can trace back to any issue.","about.s4f":"Web + Feishu",
+"about.topics":"Topic System","about.t1k":"I · Compliance","about.t1t":"Regulations & Policy","about.t1a":"Domestic Regulations & Policy","about.t1b":"Overseas Regulations & Policy",
+"about.t2k":"II · Methodology","about.t2t":"Methods & Data","about.t2a":"LCA & Methodology","about.t2b":"Data & Knowledge",
+"about.t3k":"III · Industry","about.t3t":"Value Chain Dynamics","about.t3a":"OEMs","about.t3b":"Battery Value Chain","about.t3c":"Upstream Materials","about.t3d":"Circular & Recycling",
+"about.who":"Who Built This","about.bio":"An ordinary practitioner working on LCA methodology, carbon compliance and DPP / Battery Passport in the automotive industry. LCA RADAR started as his own morning routine: fishing noteworthy updates from 260+ channels and organizing them into a brief. Since the workflow works, why not share it — a tiny contribution, worth it if it saves peers half an hour of searching every day.",
+"about.disclaimer":"Content is compiled from public sources for learning reference only, not compliance or investment advice. Original copyrights belong to their sources; if a source wishes to correct or adjust the display, please contact the site owner.",
+"fav.title":"Saved","fav.lede":"LCA RADAR content saved on this device, for reading later.","fav.note":"Saved only in this browser; clearing browser data or switching devices will not sync.","fav.empty":"No saved items yet. Open any item and tap Save on the detail page to add.","fav.go":"Go to Daily →","fav.unsave":"Remove","ui.featured":"Featured","ui.oneliner":"One-liners","clog.title":"Changelog","clog.allday":"All day","clog.launch":"Launched","clog.fix":"Fixed","health.lede":"A transparent dashboard of monitoring channel health and daily output.","health.updated":"Updated","health.total":"Total channels","health.ok":"Healthy","health.warn":"Warning","health.err":"Failing","health.ch":"Channel","health.type":"Type","health.status":"Status","health.consec":"Consec. fails","health.lastok":"Last success","health.red":"Critical","health.yellow":"Warning","health.note":"Critical: consecutive failures exceed threshold, manual intervention required; Warning: occasional failures, under observation.",
 "ui.vieworig":"View Original","ui.morning":"Morning Brief","ui.items":"items","ui.minutes":"min","ui.sources":"sources","ui.topics":"topics updated",
 "ui.compliance":"Compliance","ui.method":"Methodology","ui.industry":"Industry",
 "ui.c1":"Domestic Regulations & Policy","ui.c2":"Overseas Regulations & Policy (Battery Passport & DPP)","ui.m1":"LCA & Methodology","ui.m2":"Data & Knowledge",
 "ui.i1":"OEMs","ui.i2":"Battery Value Chain","ui.i3":"Upstream Materials","ui.i4":"Circular & Recycling",
 "ui.daily":"Daily","ui.weekly":"Weekly","ui.search":"Search","ui.backtop":"Back to top","ui.close":"Close",
 "ui.wd0":"Mon","ui.wd1":"Tue","ui.wd2":"Wed","ui.wd3":"Thu","ui.wd4":"Fri","ui.wd5":"Sat","ui.wd6":"Sun",
-"ui.issue":"issues","ui.year":"","ui.month":"","ui.issue_prefix":"Issue","ui.cov":"Coverage:","ui.about":"~","ui.primary":"primary sources"
+"ui.issue":"issues","ui.year":"","ui.month":"","ui.issue_prefix":"Issue","ui.cov":"Coverage:","ui.about":"~","ui.primary":"primary sources","ui.issue_num":"","funnel.label":"Today's Brief","ui.pv":"Visits","ui.visitors":"Visitors"
 }};
 var cur=localStorage.getItem("lca-lang")||"zh";
 function apply(lang){
@@ -2819,7 +2840,7 @@ function apply(lang){
   document.querySelectorAll('input[name="lca-lang"]').forEach(function(r){ r.checked = (r.value===lang); });
   document.querySelectorAll("[data-i18n]").forEach(function(el){
     var k=el.getAttribute("data-i18n");
-    if(I18N[lang]&&I18N[lang][k]) el.textContent=I18N[lang][k];
+    if(I18N[lang]&&(k in I18N[lang])) el.textContent=I18N[lang][k];
   });
   // 条目级切换：有 data-en 的用英文，无则回退中文
   document.querySelectorAll("[data-en]").forEach(function(el){
