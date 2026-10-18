@@ -739,7 +739,7 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 /* v28r7：目录中下载清单与产业专题视觉分隔 */
 .toc-sep{height:1px;background:var(--line);margin:10px 2px}
 .toc a.toc-dl{margin-top:2px;font-weight:600}
-.rail .toc{position:sticky;top:76px}
+.rail .hl-sec{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
 /* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
 .sec{scroll-margin-top:84px}
@@ -2422,12 +2422,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </div>
 
   <aside class="rail" id="drail">
+    <div class="hl-sec">
     <h4 data-i18n="sidebar.highlights">今日看点</h4>
     <a class="hl-item" href="#" data-mi="12"><span class="n">1</span><span class="t"><b>GB/T 48217-2026 / GB/T 48266-2026 产品碳足迹国标一手核验：电动汽车与汽车动力电池碳足迹量化方法</b><span data-zh="全国标准信息公共服务平台（一手）" data-en="全国标准信息公共服务平台 (Primary)">全国标准信息公共服务平台（一手）</span></span></a>
     <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>商务部新闻发言人就中欧混动汽车、电动汽车磋商共识答记者问（官方口径澄清）</b><span data-zh="中华人民共和国商务部（一手官网）" data-en="中华人民共和国商务部（一手官网）">中华人民共和国商务部（一手官网）</span></span></a>
     <a class="hl-item" href="#" data-mi="11"><span class="n">3</span><span class="t"><b>易碳大咖说｜耦合MFA与LCA的中国原铝工业深度脱碳路径情景模拟</b><span data-zh="微信公众号（易碳，full 正文）" data-en="WeChat (易碳, full text)">微信公众号（易碳，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="20"><span class="n">4</span><span class="t"><b>CATL：连续三期均有产品发布GBA电池护照，称&quot;全球唯一&quot;</b><span data-zh="宁德时代官网（一手）" data-en="宁德时代官网 (Primary)">宁德时代官网（一手）</span></span></a>
     <a class="hl-item" href="#" data-mi="1"><span class="n">5</span><span class="t"><b>财政部、税务总局：新能源汽车增值税出口退税率自2027年4月1日起由13%下调至9%</b><span data-zh="IT之家（转述部委公告）" data-en="IT之家（转述部委公告）">IT之家（转述部委公告）</span></span></a>
+    </div>
     <div class="toc">
       <h4 data-i18n="sidebar.layout">本期版面</h4>
 
@@ -2445,11 +2447,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </aside>
   <aside class="rail" id="wrail" hidden>
     <div class="wk-rail" data-wdate="2026-10-11">
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b><span data-zh="中欧贸易再平衡进入"行动周"" data-en="China-EU trade rebalancing "action week"">中欧贸易再平衡进入"行动周"</span></b><span>TIC第二次例会混动谅解</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">2</span><span class="t"><b><span data-zh="国内"十五五"前奏密集" data-en="Domestic "15th FYP" prelude intensifies">国内"十五五"前奏密集</span></b><span>固废规划</span></span></a>
     <a class="hl-item" href="#wsec-c2"><span class="n">3</span><span class="t"><b><span data-zh="电池护照实施加速" data-en="Battery passport implementation accelerates">电池护照实施加速</span></b><span>LMT护照落地</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>
@@ -2468,11 +2472,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     </div>
     </div>
     <div class="wk-rail" data-wdate="2026-10-04" hidden>
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b>欧盟电池法规二级立法加速</b><span>Art 10 授权法案草案发布并进入</span></span></a>
     <a class="hl-item" href="#wsec-i2"><span class="n">2</span><span class="t"><b>IAA 本土化之争白热化</b><span>ACEA/Mobility Glob</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">3</span><span class="t"><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><span>七部门《新型电池产业发展&quot;十五五&quot;规</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>

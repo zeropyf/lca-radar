@@ -739,7 +739,7 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 /* v28r7：目录中下载清单与产业专题视觉分隔 */
 .toc-sep{height:1px;background:var(--line);margin:10px 2px}
 .toc a.toc-dl{margin-top:2px;font-weight:600}
-.rail .toc{position:sticky;top:76px}
+.rail .hl-sec{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
 /* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
 .sec{scroll-margin-top:84px}
@@ -2326,12 +2326,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </div>
 
   <aside class="rail" id="drail">
+    <div class="hl-sec">
     <h4 data-i18n="sidebar.highlights">今日看点</h4>
     <a class="hl-item" href="#" data-mi="10"><span class="n">1</span><span class="t"><b>巴西 Sigma Lithium 两月两停：Grota do Cirilo 锂矿运营许可再被暂停</b><span data-zh="微信公众号（SMM 新能源，full 正文）" data-en="WeChat (SMM 新能源, full text)">微信公众号（SMM 新能源，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>商务部：对原产于欧盟的进口对硝基甲苯发起反倾销调查</b><span data-zh="商务部·新闻发布（N64，一手）" data-en="商务部·新闻发布（N64，一手）">商务部·新闻发布（N64，一手）</span></span></a>
     <a class="hl-item" href="#" data-mi="1"><span class="n">3</span><span class="t"><b>谢夫乔维奇：10 月 8–9 日北京 TIC 第二次会议“极其关键”</b><span data-zh="微信公众号（CCCEU《周•知》，full 正文）" data-en="WeChat (CCCEU《周•知》, full text)">微信公众号（CCCEU《周•知》，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>低碳政策在快速推进，为何市场反应却遇冷？</b><span data-zh="微信公众号（聊碳成金，full 正文）" data-en="WeChat (聊碳成金, full text)">微信公众号（聊碳成金，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="3"><span class="n">5</span><span class="t"><b>European car and battery industries put &#x27;made in Europe&#x27; to the test</b><span data-zh="路透 Autos RSS 转 디지털투데이" data-en="路透 Autos RSS 转 디지털투데이">路透 Autos RSS 转 디지털투데이</span></span></a>
+    </div>
     <div class="toc">
       <h4 data-i18n="sidebar.layout">本期版面</h4>
 
@@ -2349,11 +2351,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </aside>
   <aside class="rail" id="wrail" hidden>
     <div class="wk-rail" data-wdate="2026-10-11">
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b><span data-zh="中欧贸易再平衡进入"行动周"" data-en="China-EU trade rebalancing "action week"">中欧贸易再平衡进入"行动周"</span></b><span>TIC第二次例会混动谅解</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">2</span><span class="t"><b><span data-zh="国内"十五五"前奏密集" data-en="Domestic "15th FYP" prelude intensifies">国内"十五五"前奏密集</span></b><span>固废规划</span></span></a>
     <a class="hl-item" href="#wsec-c2"><span class="n">3</span><span class="t"><b><span data-zh="电池护照实施加速" data-en="Battery passport implementation accelerates">电池护照实施加速</span></b><span>LMT护照落地</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>
@@ -2372,11 +2376,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     </div>
     </div>
     <div class="wk-rail" data-wdate="2026-10-04" hidden>
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b>欧盟电池法规二级立法加速</b><span>Art 10 授权法案草案发布并进入</span></span></a>
     <a class="hl-item" href="#wsec-i2"><span class="n">2</span><span class="t"><b>IAA 本土化之争白热化</b><span>ACEA/Mobility Glob</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">3</span><span class="t"><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><span>七部门《新型电池产业发展&quot;十五五&quot;规</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>

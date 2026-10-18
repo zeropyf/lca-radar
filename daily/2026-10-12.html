@@ -739,7 +739,7 @@ body.tb-compact .sidenav{top:46px;height:calc(100vh - 110px)}
 /* v28r7：目录中下载清单与产业专题视觉分隔 */
 .toc-sep{height:1px;background:var(--line);margin:10px 2px}
 .toc a.toc-dl{margin-top:2px;font-weight:600}
-.rail .toc{position:sticky;top:76px}
+.rail .hl-sec{position:sticky;top:76px}
 body.tb-compact .rail .toc{top:58px}
 /* 子专题锚点跳转：避开 fixed 顶栏（常态 64 / 收紧 46），留 20px 间距 */
 .sec{scroll-margin-top:84px}
@@ -2314,12 +2314,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </div>
 
   <aside class="rail" id="drail">
+    <div class="hl-sec">
     <h4 data-i18n="sidebar.highlights">今日看点</h4>
     <a class="hl-item" href="#" data-mi="1"><span class="n">1</span><span class="t"><b>修订后《碳排放权交易管理暂行条例》全文10月10日公布（第24/26条罚则调整，与生态环境法典衔接）</b><span data-zh="微信公众号（青悦 ESG，full 正文）" data-en="WeChat (青悦 ESG, full text)">微信公众号（青悦 ESG，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="0"><span class="n">2</span><span class="t"><b>中共中央、国务院印发《关于发展新质生产力的意见》（19项举措，绿色低碳循环发展经济体系定调“十五五”政策基线）</b><span data-zh="微信公众号（深圳市电池行业协会，full 正文）" data-en="WeChat (深圳市电池行业协会, full text)">微信公众号（深圳市电池行业协会，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="3"><span class="n">3</span><span class="t"><b>电池护照QR码实务连载②：Art 10授权法案草案拟引EN 18220:2026 / EN 18219:2026</b><span data-zh="微信公众号（果冻的合规笔记，full 正文）" data-en="WeChat (果冻的合规笔记, full text)">微信公众号（果冻的合规笔记，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="2"><span class="n">4</span><span class="t"><b>欧盟据称考虑对中国汽车实施临时贸易保障措施（混动“谅解”后，未来四年对欧出口或减半，最快12月配额+附加关税）</b><span data-zh="微信公众号（高工锂电，full 正文）" data-en="WeChat (Gaogong Lithium, full text)">微信公众号（高工锂电，full 正文）</span></span></a>
     <a class="hl-item" href="#" data-mi="7"><span class="n">5</span><span class="t"><b>宁德时代与赛力斯签署长期战略合作协议，扩大问界电池产能</b><span data-zh="CnEVPost；微信公众号（宁德时代，企业官方，partial）" data-en="CnEVPost；WeChat (宁德时代, 企业官方，partial)">CnEVPost；微信公众号（宁德时代，企业官方，partial）</span></span></a>
+    </div>
     <div class="toc">
       <h4 data-i18n="sidebar.layout">本期版面</h4>
 
@@ -2337,11 +2339,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   </aside>
   <aside class="rail" id="wrail" hidden>
     <div class="wk-rail" data-wdate="2026-10-11">
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b><span data-zh="中欧贸易再平衡进入"行动周"" data-en="China-EU trade rebalancing "action week"">中欧贸易再平衡进入"行动周"</span></b><span>TIC第二次例会混动谅解</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">2</span><span class="t"><b><span data-zh="国内"十五五"前奏密集" data-en="Domestic "15th FYP" prelude intensifies">国内"十五五"前奏密集</span></b><span>固废规划</span></span></a>
     <a class="hl-item" href="#wsec-c2"><span class="n">3</span><span class="t"><b><span data-zh="电池护照实施加速" data-en="Battery passport implementation accelerates">电池护照实施加速</span></b><span>LMT护照落地</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>
@@ -2360,11 +2364,13 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     </div>
     </div>
     <div class="wk-rail" data-wdate="2026-10-04" hidden>
+<div class="hl-sec">
 <h4><span data-zh="本周主线" data-en="Highlights">本周主线</span></h4>
     <a class="hl-item" href="#wsec-c2"><span class="n">1</span><span class="t"><b>欧盟电池法规二级立法加速</b><span>Art 10 授权法案草案发布并进入</span></span></a>
     <a class="hl-item" href="#wsec-i2"><span class="n">2</span><span class="t"><b>IAA 本土化之争白热化</b><span>ACEA/Mobility Glob</span></span></a>
     <a class="hl-item" href="#wk-overview"><span class="n">3</span><span class="t"><b>中国电池产业&quot;十五五&quot;顶层设计落地</b><span>七部门《新型电池产业发展&quot;十五五&quot;规</span></span></a>
-    <div class="toc">
+    </div>
+<div class="toc">
       <h4><span data-zh="本期版面" data-en="Contents">本期版面</span></h4>
       <a href="#wk-overview"><span class="tdot" aria-hidden="true">•</span>本周导读</a>
       <div class="toc-layer"><span data-zh="Ⅰ 合规" data-en="I. Compliance">Ⅰ 合规</span></div>
