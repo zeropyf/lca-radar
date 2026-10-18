@@ -346,7 +346,14 @@ h1.mast .lca{color:var(--accent)}
   border:1px solid var(--line);background:var(--card);color:var(--gray);cursor:pointer;flex:none}
 .tb-search:hover{color:var(--primary);border-color:var(--primary)}
 .tb-search svg{width:18px;height:18px}
-.tb-lang{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer}
+.lang-switch{position:relative;display:flex;align-items:center;border:1px solid var(--line);border-radius:18px;padding:2px;background:var(--bg);cursor:pointer}
+.lang-switch .thumb{position:absolute;top:2px;left:2px;width:calc(50% - 2px);height:calc(100% - 4px);background:var(--primary);border-radius:16px;transition:transform .25s ease;z-index:0;pointer-events:none}
+.lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
+.lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
+.lang-switch label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-width:38px;height:32px;padding:0 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang-switch label span{position:relative;z-index:1}
+.lang-switch input{position:absolute;opacity:0;pointer-events:none}
+.lang-switch input:checked + span{color:#fff}
 .tb-lang:hover{color:var(--primary);border-color:var(--primary)}
 .search-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);
   display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
@@ -1249,7 +1256,11 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     <a href="changelog.html" class="on">更新日志</a>
     <a href="health.html">监控</a>
   </nav>
-  <button class="tb-lang" id="tbLangBtn" aria-label="语言 / Language" title="中 / EN">中</button>
+  <div class="lang-switch" role="radiogroup" aria-label="语言 / Language">
+    <span class="thumb" aria-hidden="true"></span>
+    <label title="中文"><input type="radio" name="lca-lang" value="zh" checked><span>中</span></label>
+    <label title="English"><input type="radio" name="lca-lang" value="en"><span>EN</span></label>
+  </div>
   <button class="tb-search" id="tbSearchBtn" aria-label="搜索" title="搜索（/）">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
   </button>
