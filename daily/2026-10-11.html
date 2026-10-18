@@ -361,7 +361,9 @@ html:has(.theme-switch input[value="dark"]:checked) .lang-switch label{color:#c8
 html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#fff}
 @media (prefers-color-scheme:dark){
 html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch label{color:#c8d2e0}
+html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch input:checked+span{color:#0f2841}
 }
+html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#0f2841}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
 html.lang-en .lang-switch .thumb{transform:translateX(100%)}
