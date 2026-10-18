@@ -1852,9 +1852,12 @@ function apply(lang){
     if(lang==="en"&&en) el.textContent=en; else el.textContent=el.getAttribute("data-zh");
   });
 }
-document.addEventListener("DOMContentLoaded",function(){
+function initLang(){
   apply(cur);
   document.querySelectorAll('.lang-switch').forEach(function(sw){
+    // 防止重复绑定
+    if(sw.dataset.langBound) return;
+    sw.dataset.langBound = "1";
     sw.addEventListener('click',function(e){
       var label = e.target.closest('label');
       if(!label) return;
@@ -1862,7 +1865,12 @@ document.addEventListener("DOMContentLoaded",function(){
       if(input) apply(input.value);
     });
   });
-});
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initLang);
+} else {
+  initLang();
+}
 window.LCA_I18N={apply:apply,get:function(){return cur;},dict:I18N};
 })();
 </script>
