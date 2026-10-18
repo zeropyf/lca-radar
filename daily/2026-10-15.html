@@ -984,6 +984,8 @@ tr.st-err td{color:var(--gray)}
 .pstep{position:relative;padding:4px 24px 0;
   animation:rise .55s cubic-bezier(.2,.7,.3,1) backwards;animation-delay:calc(var(--d,0)*.12s);
   transition:transform .25s}
+.pstep{display:flex;flex-direction:column}
+.pstep>p{flex:1}
 .pstep+.pstep{border-left:1px solid var(--line)}
 .pstep:hover{transform:translateY(-4px)}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -1018,7 +1020,7 @@ tr.st-err td{color:var(--gray)}
 .cday-h{font-size:17px;font-weight:800;color:var(--ink);margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .citem{display:flex;gap:14px;padding:14px 4px;border-bottom:1px dashed var(--line)}
 .citem:last-child{border-bottom:0}
-.citem .t{font-size:12.5px;color:var(--faint);min-width:44px;padding-top:4px;font-variant-numeric:tabular-nums}
+.citem .t{font-size:12.5px;color:var(--faint);min-width:58px;padding-top:4px;font-variant-numeric:tabular-nums}
 /* 类型徽标：统一中性胶囊 + 主题色系圆点 */
 .tag{flex:none;align-self:flex-start;display:inline-flex;align-items:center;gap:7px;
   font-size:12px;font-weight:600;padding:4px 11px;border-radius:20px;margin-top:1px;
@@ -1422,7 +1424,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
     </div>
 
     <div class="stats-line">
-      <span class="st-main"><span data-zh="28 条内容" data-en="28 items">28 条内容</span> · <span data-i18n="ui.about">约</span> <span data-zh="0 分钟" data-en="0 minutes">0 分钟</span></span>
+      <span class="st-main"><span data-zh="28 条内容" data-en="28 items">28 条内容</span> · <span data-i18n="ui.about">约</span> <span data-zh="1 分钟" data-en="1 minute">1 分钟</span></span>
       <span class="st-sub"><span data-zh="269 个来源" data-en="269 sources">269 个来源</span> · <span data-zh="10 条一手发布" data-en="10 primary sources">10 条一手发布</span> · <span data-zh="7 个子专题有动态" data-en="7 topics updated">7 个子专题有动态</span></span>
     </div>
 
