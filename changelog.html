@@ -986,6 +986,14 @@ tr.st-err td{color:var(--gray)}
   transition:transform .25s}
 .pstep{display:flex;flex-direction:column}
 .pstep>p{flex:1}
+/* 脚注虚线对齐（2026-10-18）：四卡片脚注行数不同（英文下1~3行），flex只能底对齐、虚线（.pmeta上边框）对不齐；
+   用 subgrid 让四张卡片的四行（标题/数据/描述/脚注）共享行高：描述行 1fr 吸掉空余、脚注行取最高者，
+   四个 .pmeta 等高且底对齐，虚线自然对齐；不支持 subgrid 的浏览器回退到上面的 flex（不坏） */
+@supports (grid-template-rows:subgrid){
+.psteps{grid-template-rows:auto auto 1fr auto}
+.pstep{display:grid;grid-template-rows:subgrid;grid-row:1/-1}
+.pstep>p{flex:none}
+}
 .pstep+.pstep{border-left:1px solid var(--line)}
 .pstep:hover{transform:translateY(-4px)}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
