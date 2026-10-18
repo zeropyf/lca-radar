@@ -356,6 +356,9 @@ h1.mast .lca{color:var(--accent)}
 html.lang-ready .lang-switch .thumb{transition:transform .25s ease}
 .lang-switch{opacity:0}
 html.lang-ready .lang-switch{opacity:1;transition:opacity .18s ease}
+/* 深色模式开关未选中文字提亮 */
+html:has(.theme-switch input[value="dark"]:checked) .lang-switch label{color:#c8d2e0}
+html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#fff}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
 html.lang-en .lang-switch .thumb{transform:translateX(100%)}
@@ -1030,7 +1033,7 @@ tr.st-err td{color:var(--gray)}
 .citem:last-child{border-bottom:0}
 .citem .t{font-size:12.5px;color:var(--faint);min-width:68px;padding-top:4px;font-variant-numeric:tabular-nums}
 /* 类型徽标：统一中性胶囊 + 主题色系圆点 */
-.tag{flex:none;align-self:flex-start;display:inline-flex;align-items:center;gap:7px;
+.tag{flex:none;align-self:flex-start;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:64px;
   font-size:12px;font-weight:600;padding:4px 11px;border-radius:20px;margin-top:1px;
   background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--body);white-space:nowrap}
 .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dot,var(--accent));flex:none}
