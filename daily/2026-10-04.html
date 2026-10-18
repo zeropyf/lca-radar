@@ -357,13 +357,13 @@ html.lang-ready .lang-switch .thumb{transition:transform .25s ease}
 .lang-switch{opacity:0}
 html.lang-ready .lang-switch{opacity:1;transition:opacity .18s ease}
 /* 深色模式开关未选中文字提亮 */
-html:has(.theme-switch input[value="dark"]:checked) .lang-switch label{color:#c8d2e0}
+html:has(.theme-switch input[value="dark"]:checked) .lang-switch label{color:#c8d2e0!important}
 html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#fff}
 @media (prefers-color-scheme:dark){
-html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch label{color:#c8d2e0}
-html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch input:checked+span{color:#0f2841}
+html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch label{color:#c8d2e0!important}
+html:not(.force-light):has(.theme-switch input[value="auto"]:checked) .lang-switch input:checked+span{color:#0f2841!important}
 }
-html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#0f2841}
+html:has(.theme-switch input[value="dark"]:checked) .lang-switch input:checked+span{color:#0f2841!important}
 .lang-switch:has(input[value="zh"]:checked) .thumb{transform:translateX(0)}
 .lang-switch:has(input[value="en"]:checked) .thumb{transform:translateX(100%)}
 html.lang-en .lang-switch .thumb{transform:translateX(100%)}
