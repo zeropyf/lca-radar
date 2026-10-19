@@ -1953,6 +1953,11 @@ function apply(lang){
     var k=el.getAttribute("data-i18n-html");
     if(I18N[lang]&&(k in I18N[lang])) el.innerHTML=I18N[lang][k];
   });
+  // placeholder 双语
+  document.querySelectorAll("[data-en-ph]").forEach(function(el){
+    var v = lang==="en" ? el.getAttribute("data-en-ph") : el.getAttribute("data-zh-ph");
+    if(v) el.setAttribute("placeholder", v);
+  });
   // 条目级切换：有 data-en 的用英文，无则回退中文
   document.querySelectorAll("[data-en]").forEach(function(el){
     var en=el.getAttribute("data-en");

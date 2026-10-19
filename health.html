@@ -1430,12 +1430,12 @@ tr:hover td{background:var(--bg)}
     </div>
     <table>
       <thead><tr><th>ID</th><th><span data-zh="渠道" data-en="Channel">渠道</span></th><th><span data-zh="类型" data-en="Type">类型</span></th><th><span data-zh="状态" data-en="Status">状态</span></th><th class="r"><span data-zh="连续失败" data-en="Failures">连续失败</span></th><th><span data-zh="最后成功" data-en="Last OK">最后成功</span></th></tr></thead>
-      <tbody>
-        <tr><td class="mono">N24</td><td>Albemarle（雅宝）/ Newsroom</td><td>官网</td><td><span class="pill err"><span data-zh="严重" data-en="Critical">严重</span></span></td><td class="r">10</td><td class="mono">2026-10-08</td></tr>
-        <tr><td class="mono">N103</td><td>中国标准化研究院</td><td>官网</td><td><span class="pill err"><span data-zh="严重" data-en="Critical">严重</span></span></td><td class="r">22</td><td class="mono">2026-09-28</td></tr>
-        <tr><td class="mono">1</td><td>生态环境部</td><td>官网</td><td><span class="pill ok"><span data-zh="正常" data-en="Healthy">正常</span></span></td><td class="r">0</td><td class="mono">2026-10-18</td></tr>
-        <tr><td class="mono">2</td><td>工业和信息化部</td><td>官网</td><td><span class="pill ok"><span data-zh="正常" data-en="Healthy">正常</span></span></td><td class="r">0</td><td class="mono">2026-10-18</td></tr>
-      </tbody>
+      <tbody id="health-tbody">
+<tr class="st-err"><td class="mono">N103</td><td><span data-zh="N103 中国标准化研究院" data-en="China National Institute of Standardization">N103 中国标准化研究院</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill err" data-zh="红警" data-en="Critical">红警</span></td><td class="num">25</td><td class="mono">2026-10-19</td></tr>
+<tr class="st-err"><td class="mono">N107</td><td><span data-zh="N107 市场监管总局" data-en="State Administration for Market Regulation">N107 市场监管总局</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill err" data-zh="红警" data-en="Critical">红警</span></td><td class="num">25</td><td class="mono">2026-10-19</td></tr>
+<tr class="st-err"><td class="mono">N93</td><td><span data-zh="N93 美国能源部DOE" data-en="U.S. Department of Energy">N93 美国能源部DOE</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill err" data-zh="红警" data-en="Critical">红警</span></td><td class="num">25</td><td class="mono">2026-10-19</td></tr>
+<tr class="st-err"><td class="mono">N98</td><td><span data-zh="N98 加拿大环境与气候变化部ECCC" data-en="Environment and Climate Change Canada">N98 加拿大环境与气候变化部ECCC</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill err" data-zh="红警" data-en="Critical">红警</span></td><td class="num">25</td><td class="mono">2026-10-19</td></tr>
+        </tbody>
     </table>
   </div>
 
@@ -1700,6 +1700,11 @@ function apply(lang){
   document.querySelectorAll("[data-i18n-html]").forEach(function(el){
     var k=el.getAttribute("data-i18n-html");
     if(I18N[lang]&&(k in I18N[lang])) el.innerHTML=I18N[lang][k];
+  });
+  // placeholder 双语
+  document.querySelectorAll("[data-en-ph]").forEach(function(el){
+    var v = lang==="en" ? el.getAttribute("data-en-ph") : el.getAttribute("data-zh-ph");
+    if(v) el.setAttribute("placeholder", v);
   });
   // 条目级切换：有 data-en 的用英文，无则回退中文
   document.querySelectorAll("[data-en]").forEach(function(el){
