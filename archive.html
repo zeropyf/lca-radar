@@ -306,7 +306,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -638,7 +638,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -1366,6 +1366,9 @@ a.dd.has.cur{box-shadow:0 0 0 2px #141e2c,0 0 0 4px #33d6d6}}
 .rail h4{color:#a9b3c0}
 }
 .timeline .eact{font-size:12px;color:#8D8D8F;margin-top:3px;line-height:1.5}
+/* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+
 
 /* v28r6：周报 rail 内层包裹拉满高度，否则 .toc 被困住吸不住 */
 .wk-rail{min-height:100%}
@@ -1663,7 +1666,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -1995,7 +1998,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -2586,6 +2589,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   .datepick{font-size:14.5px;padding:6px 14px}
 }
 
+/* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+
 
 /* v28r6：周报 rail 内层包裹拉满高度，否则 .toc 被困住吸不住 */
 .wk-rail{min-height:100%}
@@ -2883,7 +2889,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -3215,7 +3221,7 @@ h1.mast .lca{color:var(--accent)}
 .item h3{font-size:18px;font-weight:800;line-height:1.55;margin:0 0 8px}
 .item h3 a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;transition:color .15s}
 .item h3 a:hover{color:var(--primary);border-bottom-color:var(--accent)}
-.item h3 a .ext{color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
+.item h3 a .ext{position:absolute;color:var(--accent);font-size:.78em;margin-left:6px;opacity:0;transition:opacity .15s;font-weight:700}
 .item h3 a:hover .ext{opacity:1}
 .item .sum{font-size:15px;color:var(--body);margin:0 0 8px}
 /* 关联提示：每条必有，无加粗标签，以细边线＋灰字低调呈现 */
@@ -3805,6 +3811,9 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
   .mast-name{font-size:23px}
   .datepick{font-size:14.5px;padding:6px 14px}
 }
+
+/* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
 
 
 /* 往期归档时间线样式来自设计稿主 CSS（构建器整块提取），此处无需重复定义 */
@@ -3847,7 +3856,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 <p class="arc-sub"><span data-zh="共 22 期 · 自 2026 年 9 月 30 日起" data-en="22 issues · since 2026-09-30">共 22 期 · 自 2026 年 9 月 30 日起</span></p>
 <div class="tl">
 <div class="tl-month" id="arc-m-2026-10"><span data-zh="2026 年 10 月" data-en="2026/10">2026 年 10 月</span><span class="tl-mc"><span>21</span> <span data-i18n="ui.issue">期</span></span></div>
-<a class="tl-item" href="daily/2026-10-21.html"><span class="tl-date"><b>21</b><i data-i18n="ui.wd2">星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue"><span data-i18n="ui.issue_prefix">第</span> 22 <span data-i18n="ui.issue_num">期</span></em><span class="tl-meta"><span>27</span> <span data-i18n="ui.items">条内容</span>（<span data-i18n="ui.featured">收录</span> 5 · <span data-i18n="ui.oneliner">一句话</span> 22）</span></span><b class="tl-title" data-zh="欧洲议会三大党团达成协议：2035 年乘用车 CO₂ 减排目标降至 87.5%，低碳钢抵扣 7.5 个百分点" data-en="Issue 22">欧洲议会三大党团达成协议：2035 年乘用车 CO₂ 减排目标降至 87.5%，低碳钢抵扣 7.5 个百分点</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="tl-item" href="daily/2026-10-21.html"><span class="tl-date"><b>21</b><i data-i18n="ui.wd2">星期三</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue"><span data-i18n="ui.issue_prefix">第</span> 22 <span data-i18n="ui.issue_num">期</span></em><span class="tl-meta"><span>27</span> <span data-i18n="ui.items">条内容</span>（<span data-i18n="ui.featured">收录</span> 5 · <span data-i18n="ui.oneliner">一句话</span> 22）</span></span><b class="tl-title" data-zh="欧洲议会三大党团达成协议：2035 年乘用车 CO₂ 减排目标降至 87.5%，低碳钢抵扣 7.5 个百分点" data-en="European Parliament&#x27;s three largest groups reach deal: 2035 car CO₂ target cut to 87.5%, with 7.5 pp low-carbon steel offset">欧洲议会三大党团达成协议：2035 年乘用车 CO₂ 减排目标降至 87.5%，低碳钢抵扣 7.5 个百分点</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-20.html"><span class="tl-date"><b>20</b><i data-i18n="ui.wd1">星期二</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue"><span data-i18n="ui.issue_prefix">第</span> 21 <span data-i18n="ui.issue_num">期</span></em><span class="tl-meta"><span>11</span> <span data-i18n="ui.items">条内容</span>（<span data-i18n="ui.featured">收录</span> 1 · <span data-i18n="ui.oneliner">一句话</span> 10）</span></span><b class="tl-title" data-zh="欧委会发布电池护照访问权限实施条例草案，公开征求意见（2026-10-19 至 11-16）" data-en="European Commission opens public consultation on draft implementing regulation on access rights to certain parts of the battery passport (19 Oct – 16 Nov 2026)">欧委会发布电池护照访问权限实施条例草案，公开征求意见（2026-10-19 至 11-16）</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-19.html"><span class="tl-date"><b>19</b><i data-i18n="ui.wd0">星期一</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue"><span data-i18n="ui.issue_prefix">第</span> 20 <span data-i18n="ui.issue_num">期</span></em><span class="tl-meta"><span>6</span> <span data-i18n="ui.items">条内容</span>（<span data-i18n="ui.featured">收录</span> 0 · <span data-i18n="ui.oneliner">一句话</span> 6）</span></span><b class="tl-title" data-zh="T&amp;E 新报告：2024 年注册插混车实际排放接近官方 6 倍，呼吁车企缩小插混油箱、提升充电速度" data-en="T&amp;E report: real-world emissions of PHEVs registered in 2024 nearly 6x official figures; carmakers urged to shrink PHEV fuel tanks and speed up charging">T&amp;E 新报告：2024 年注册插混车实际排放接近官方 6 倍，呼吁车企缩小插混油箱、提升充电速度</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
 <a class="tl-item" href="daily/2026-10-18.html"><span class="tl-date"><b>18</b><i data-i18n="ui.wd6">星期日</i></span><span class="tl-body"><span class="tl-top"><em class="tl-issue"><span data-i18n="ui.issue_prefix">第</span> 19 <span data-i18n="ui.issue_num">期</span></em><span class="tl-meta"><span>14</span> <span data-i18n="ui.items">条内容</span>（<span data-i18n="ui.featured">收录</span> 1 · <span data-i18n="ui.oneliner">一句话</span> 13）</span></span><b class="tl-title" data-zh="RECHARGE 联署文件：44 家欧洲组织呼吁以更雄心勃勃的欧盟贸易救济工具实现公平竞争" data-en="RECHARGE co-signed paper: 44 European organisations call for fair competition through more ambitious EU trade defence">RECHARGE 联署文件：44 家欧洲组织呼吁以更雄心勃勃的欧盟贸易救济工具实现公平竞争</b></span><span class="tl-arrow" aria-hidden="true">&rarr;</span></a>
