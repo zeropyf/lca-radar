@@ -1367,7 +1367,7 @@ a.dd.has.cur{box-shadow:0 0 0 2px #141e2c,0 0 0 4px #33d6d6}}
 }
 .timeline .eact{font-size:12px;color:#8D8D8F;margin-top:3px;line-height:1.5}
 /* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
-.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}.tu{white-space:nowrap}
 @media (hover:none){.item h3 a .ext{display:none}}
 
 
@@ -2591,7 +2591,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 }
 
 /* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
-.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}.tu{white-space:nowrap}
 @media (hover:none){.item h3 a .ext{display:none}}
 
 
@@ -3815,7 +3815,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 }
 
 /* v29-r4 标题断行保护：中文词组不在词内断行，仅空格/标点处断，超长段兜底断行；标点避头尾 */
-.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+.item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{word-break:keep-all;overflow-wrap:break-word;line-break:strict}.tu{white-space:nowrap}
 @media (hover:none){.item h3 a .ext{display:none}}
 
 
@@ -4045,7 +4045,7 @@ navScroll();
     if(!hits.length){ res.innerHTML = '<div class="empty">没有找到相关内容</div>'; return; }
     res.innerHTML = hits.map(function(it){
       var u = it.u || (SITE_BASE + 'daily/' + it.d + '.html');
-      return '<a href="' + u + '" target="_blank" rel="noopener"><div class="rt">' + dispTitle(it.t) + '</div>' +
+      return '<a href="' + u + '" target="_blank" rel="noopener"><div class="rt">' + (it.th||dispTitle(it.t)) + '</div>' +
         '<div class="rm">' + it.d + ' · ' + it.c + '</div></a>';
     }).join('');
   }
@@ -4171,7 +4171,7 @@ function apply(lang){
     var en=el.getAttribute("data-en");
     var zh=el.getAttribute("data-zh")||el.textContent;
     if(!el.getAttribute("data-zh")) el.setAttribute("data-zh", zh);
-    if(lang==="en"&&en!==null) el.textContent=en; else el.textContent=el.getAttribute("data-zh");
+    if(lang==="en"&&en!==null) el.textContent=en; else if(el.getAttribute("data-w")) el.innerHTML=el.getAttribute("data-zh"); else el.textContent=el.getAttribute("data-zh");
   });
 }
 function initLang(){
