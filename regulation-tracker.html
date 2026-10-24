@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法规进展监控 · LCA瞭望 LCA RADAR</title>
+<style>
+  :root{
+    --bg:#F4F6F8; --card:#FFFFFF; --ink:rgba(0,0,0,.88); --ink2:#54585A; --line:#E4E4E6;
+    --steel:#0077B6; --link:#0077B6; --primary:#0A1E33; --accent:#00A9E0; --accent-deep:#0077B6; --alert:#c0392b;
+    --chip-bg:#F1F3F5; --hover:#F4F6F8; --sel:#DCEFFA;
+    --applied:#0A1E33; --applied-bg:#E4EAF0;
+    --pending:#0077B6; --pending-bg:#DCEFFA;
+    --consult:#a86a1b; --consult-bg:#FAEBDC;
+    --awaited:#8D8D8F; --awaited-bg:#F1F3F5;
+    --proposal:#8D8D8F;
+    --today:#c0392b;
+  }
+  html[data-theme="dark"]{
+    --bg:#0A1626; --card:#12233A; --ink:#edf1f6; --ink2:#a9b3c0; --line:#233142;
+    --steel:#4DB8E8; --link:#4DB8E8; --primary:#DCEFFA; --accent:#4DB8E8; --accent-deep:#4DB8E8; --alert:#e0685c;
+    --chip-bg:#1a2434; --hover:#16202e; --sel:#16324F;
+    --applied:#DCEFFA; --applied-bg:#1B2F47;
+    --pending:#4DB8E8; --pending-bg:#16324F;
+    --consult:#e0a04e; --consult-bg:#3a2c14;
+    --awaited:#8b96a5; --awaited-bg:#1a2434;
+    --proposal:#8b96a5;
+    --today:#e0685c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  .wrap{max-width:1360px;margin:0 auto;padding:26px 22px 52px}
+  header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  h1{font-size:25px;margin:0;line-height:1.3}
+  .sub{color:var(--ink2);font-size:13px;margin-top:4px}
+  .toggles{display:flex;gap:8px}
+  .toggles button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer}
+  .toggles button.on{background:var(--steel);border-color:var(--steel);color:#fff}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:20px}
+  /* legend = status filter + counts */
+  .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .lg{display:inline-flex;align-items:center;gap:6px;border:1.5px solid;border-radius:20px;padding:2px 11px;font-size:12.5px;font-weight:600;cursor:pointer;background:transparent}
+  .lg .n{font-weight:800}
+  .lg.applied{color:var(--applied);border-color:var(--applied);background:var(--applied-bg)}
+  .lg.pending{color:var(--pending);border-color:var(--pending);background:var(--pending-bg)}
+  .lg.consult{color:var(--consult);border-color:var(--consult);background:var(--consult-bg)}
+  .lg.awaited{color:var(--awaited);border-color:var(--awaited);background:var(--awaited-bg)}
+  .lg.proposal{color:var(--proposal);border-color:var(--proposal);border-style:dashed}
+  .lg.off{opacity:.35}
+  .lg-hint{color:var(--ink2);font-size:12px;margin-left:4px}
+  .win-tools{margin-left:auto;display:flex;gap:8px}
+  .win-tools button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 12px;font-size:12.5px;cursor:pointer}
+  .win-tools button.on{background:var(--steel);border-color:var(--steel);color:#fff}
+  .scrollx{overflow-x:auto}
+  svg text{font-family:inherit}
+  /* detail */
+  .detail-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:14px}
+  @media(max-width:900px){.detail-grid{grid-template-columns:1fr}}
+  .detail-grid .card{margin-top:0}
+  .detail-grid h3{margin:0 0 2px;font-size:16.5px}
+  .detail-grid .en{color:var(--ink2);font-size:12px;margin-bottom:10px}
+  .pill{display:inline-block;font-size:12px;border-radius:20px;padding:1px 9px;border:1.5px solid;white-space:nowrap;font-weight:600}
+  .pill.applied{color:var(--applied);border-color:var(--applied);background:var(--applied-bg)}
+  .pill.pending{color:var(--pending);border-color:var(--pending);background:var(--pending-bg)}
+  .pill.consult{color:var(--consult);border-color:var(--consult);background:var(--consult-bg)}
+  .pill.awaited{color:var(--awaited);border-color:var(--awaited);background:var(--awaited-bg)}
+  .pill.proposal{color:var(--proposal);border-color:var(--proposal);border-style:dashed}
+  .slide-mark{display:inline-block;font-size:11px;color:var(--steel);border:1px solid var(--steel);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:1px}
+  .kv{display:grid;grid-template-columns:104px 1fr;row-gap:8px;font-size:13.5px;border-bottom:1px dashed var(--line);padding-bottom:12px}
+  .kv dt{white-space:nowrap}
+  .mech{background:var(--sel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:12px;line-height:1.65}
+  .mech b{color:var(--primary)}
+  .src{font-size:13px;margin-top:12px;line-height:1.8}
+  .src b{color:var(--ink2);font-weight:600}
+  .src a{color:var(--link)}
+  .kv dt{color:var(--ink2)} .kv dd{margin:0}
+  .note{font-size:13.5px;margin-top:10px}
+  .nbr .row{padding:6px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .nbr .row:last-child{border-bottom:none}
+  .rel-chip{display:inline-block;background:var(--chip-bg);border:1px solid var(--line);border-radius:14px;padding:0 8px;font-size:12px;margin:1px 2px;cursor:pointer;color:var(--ink)}
+  .rel-chip:hover{border-color:var(--steel);color:var(--steel)}
+  .rel-chip .k{color:var(--ink2);margin-right:3px}
+  .foot{color:var(--ink2);font-size:12.5px;margin-top:18px;line-height:1.75}
+  .toolbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .seg button{border:none;background:var(--card);color:var(--ink2);padding:5px 13px;font-size:12.5px;cursor:pointer}
+  .seg button.on{background:var(--steel);color:#fff}
+  .seg-label{font-size:12px;color:var(--ink2);align-self:center;margin-right:2px}
+  .vlegend{display:flex;gap:20px;flex-wrap:wrap;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;margin-top:12px}
+  .vl{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+  .vl em{font-style:normal}
+  .sh{display:inline-block;flex:none}
+  .sh.dia{width:11px;height:11px;transform:rotate(45deg);background:var(--ink)}
+  .sh.dia.hollow{background:var(--card);border:1.8px solid var(--ink)}
+  .sh.bar{width:26px;height:9px;border-radius:5px;background:var(--ink);opacity:.75}
+  .sh.bar.dashed{background:transparent;border:1.4px dashed var(--ink)}
+  .sh.tline{width:0;height:16px;border-left:1.8px dashed var(--alert)}
+  .sh.badge{background:var(--alert);color:#fff;font-style:normal;font-size:10px;font-weight:700;border-radius:7px;padding:1px 6px}
+  .sh.tbc{font-style:normal;font-size:11px;border:1.4px solid var(--ink2);border-radius:10px;padding:1px 9px;color:var(--ink)}
+  .sh.sub{font-style:normal;font-size:10px;font-weight:700;border-radius:9px;padding:1px 7px}
+  .sh.sub.da{background:var(--pending-bg);color:var(--link)}
+  .sh.sub.ia{background:var(--applied-bg);color:var(--applied)}
+  .modal-bg{position:fixed;inset:0;background:rgba(10,16,22,.5);display:flex;align-items:center;justify-content:center;z-index:50;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s}
+  .modal-bg.open{opacity:1;visibility:visible}
+  .modal{position:relative;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.35);width:min(680px,calc(100% - 32px));max-height:86vh;overflow:auto;padding:22px 24px;transform:translateY(8px);transition:transform .2s ease}
+  .modal-bg.open .modal{transform:translateY(0)}
+  .modal-x{position:absolute;top:10px;right:12px;border:none;background:transparent;color:var(--ink2);font-size:19px;cursor:pointer;line-height:1;padding:4px 6px}
+  .modal-x:hover{color:var(--ink)}
+  .modal h3{margin:0 4px 2px 0;font-size:18px;padding-right:28px}
+  .modal .en{color:var(--ink2);font-size:12px;margin-bottom:12px}
+  .modal .rel-title{font-size:14.5px;font-weight:700;margin:18px 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1><span data-zh="法规进展监控" data-en="Regulation Tracker"></span></h1>
+      <div class="sub"><span data-zh="数据截止至" data-en="Data as of"></span> <span id="asof"></span></div>
+    </div>
+    <div class="toggles">
+      <button id="langZh" class="on">中文</button><button id="langEn">EN</button>
+      <button id="themeBtn">深色</button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="legend" id="legend"></div>
+    <div class="toolbar">
+      <div><span class="seg-label" data-zh="时间窗" data-en="Window"></span>
+        <span class="seg" id="winSeg"><button data-w="all" class="on" data-zh="全部 2025–2032" data-en="All 2025–2032"></button><button data-w="w24" data-zh="未来 24 个月" data-en="Next 24 months"></button></span></div>
+    </div>
+    <div class="vlegend">
+      <span class="vl"><i class="sh dia solid"></i><em data-zh="确定日期" data-en="Firm date"></em></span>
+      <span class="vl"><i class="sh dia hollow"></i><em data-zh="原定 / 指示日期" data-en="Original / indicative"></em></span>
+      <span class="vl"><i class="sh bar"></i><em data-zh="区间" data-en="Period"></em></span>
+      <span class="vl"><i class="sh bar dashed"></i><em data-zh="拟议区间" data-en="Proposed period"></em></span>
+      <span class="vl"><i class="sh tline"></i><em data-zh="今天" data-en="Today"></em></span>
+      <span class="vl"><i class="sh badge" data-zh="23天" data-en="23d"></i><em data-zh="临近节点" data-en="Near-term"></em></span>
+      <span class="vl"><i class="sh tbc" data-zh="待定" data-en="TBC"></i><em data-zh="日期未定" data-en="No date yet"></em></span>
+      <span class="vl"><i class="sh sub da">DA</i><em data-zh="委托法案待通过" data-en="Delegated act outstanding"></em></span>
+      <span class="vl"><i class="sh sub ia">IA</i><em data-zh="实施法案待通过" data-en="Implementing act outstanding"></em></span>
+      <span class="vl"><svg width="36" height="14" viewBox="0 0 36 14" style="flex:none"><polygon points="7,1 13,7 7,13 1,7" style="fill:var(--card);stroke:var(--ink);stroke-width:1.5"/><line x1="14" y1="7" x2="27" y2="7" style="stroke:var(--ink);stroke-width:1.3;stroke-dasharray:3 3"/><polygon points="27,3.5 34,7 27,10.5" style="fill:var(--ink)"/></svg><em data-zh="附条件日期" data-en="Conditional date"></em></span>
+    </div>
+    <div class="scrollx" style="margin-top:10px"><svg id="chart" role="img" aria-label="swimlane roadmap"></svg></div>
+  </div>
+
+  <div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-x" id="modalX" aria-label="close">✕</button>
+    <div id="modalDetail"></div>
+    <div class="rel-title" data-zh="关联事项" data-en="Related items"></div>
+    <div class="nbr" id="modalNbr"></div>
+  </div></div>
+
+  <div class="foot" data-zh="说明：空心菱形为原定或拟议日期，实际起算以子法规通过为准；「待通过」指子法规尚未通过。状态以 EUR-Lex 与欧委会为准，细节见各事项弹窗。"
+       data-en="Notes: hollow diamonds are original or indicative dates; the actual start depends on the sub-act's adoption. 'Not yet adopted' means the sub-act is outstanding. EUR-Lex and the Commission prevail; see each item's popup for details."></div>
+</div>
+<script>
+const L={lang:'zh'};
+const ST={
+  consult:{zh:'公开咨询中',en:'Under consultation',cls:'consult',col:'var(--consult)'},
+  awaited:{zh:'待通过',en:'Not yet adopted',cls:'awaited',col:'var(--awaited)'},
+  pending:{zh:'已生效 · 待适用',en:'In force · pending application',cls:'pending',col:'var(--link)'},
+  applied:{zh:'已适用',en:'Applying',cls:'applied',col:'var(--applied)'},
+  proposal:{zh:'立法提案',en:'Legislative proposal',cls:'proposal',col:'var(--awaited)'}
+};
+const ST_ORDER=['consult','awaited','pending','applied','proposal'];
+const PARENTS=[
+  {id:'bat',zh:'电池法规',en:'Battery Regulation',no:'(EU) 2023/1542'},
+  {id:'espr',zh:'ESPR · 产品护照框架',en:'ESPR · DPP framework',no:'(EU) 2024/1781'},
+  {id:'cbam',zh:'碳边境 CBAM',en:'CBAM',no:'(EU) 2023/956'},
+  {id:'veh',zh:'整车与材料',en:'Vehicles & materials',no:'Euro 7 / ELV / CRMA'},
+  {id:'cn',zh:'中国侧',en:'China',no:'工信部 / 财政部',noe:'MIIT / MOF'}
+];
+/* 专题分区：每个分区下，每个法规一条子集泳道（只含该法规在本专题的事项） */
+/* 原始来源：一手链接（EUR-Lex / 欧委会 / 工信部转载）；未找到一手链接的事项（jtc24、cn2）暂不挂 */
+const SRC={
+  cf1:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  cf2:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  cf3:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  rc:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  dur:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  lab:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  rec:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng'],['EUR-Lex · 回收方法学委托条例 (EU) 2025/606','EUR-Lex · Recycling methodology Delegated Regulation (EU) 2025/606','http://data.europa.eu/eli/reg_del/2025/606/oj']],
+  passport:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng'],['欧委会 · 电池护照常见问题','Commission · Battery passport FAQ','https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/eu-digital-product-passport-faq-batteries_en']],
+  ia779:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng'],['欧委会 · 电池护照常见问题','Commission · Battery passport FAQ','https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/eu-digital-product-passport-faq-batteries_en']],
+  qr:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng']],
+  guide:[['欧委会 · 电池护照常见问题','Commission · Battery passport FAQ','https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/eu-digital-product-passport-faq-batteries_en']],
+  registry:[['EUR-Lex · ESPR 原文','EUR-Lex · ESPR','https://eur-lex.europa.eu/eli/reg/2024/1781/'],['欧委会 · 电池护照常见问题','Commission · Battery passport FAQ','https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/eu-digital-product-passport-faq-batteries_en']],
+  steel:[['EUR-Lex · ESPR 原文','EUR-Lex · ESPR','https://eur-lex.europa.eu/eli/reg/2024/1781/'],['欧委会 · 钢铁护照专页','Commission · Iron & steel DPP page','https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/iron-steel_en']],
+  tex:[['EUR-Lex · ESPR 原文','EUR-Lex · ESPR','https://eur-lex.europa.eu/eli/reg/2024/1781/']],
+  dd:[['EUR-Lex · 电池法规原文','EUR-Lex · Batteries Regulation','https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng'],['EUR-Lex · 延期修订 (EU) 2025/1561','EUR-Lex · Postponement (EU) 2025/1561','https://eur-lex.europa.eu/eli/reg/2025/1561/oj/eng']],
+  cbamrev:[['EUR-Lex · CBAM 合并文本','EUR-Lex · CBAM consolidated text','https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020']],
+  cbamdef:[['EUR-Lex · CBAM 合并文本','EUR-Lex · CBAM consolidated text','https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020']],
+  cert:[['EUR-Lex · CBAM 合并文本','EUR-Lex · CBAM consolidated text','https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020']],
+  surrender:[['EUR-Lex · CBAM 合并文本','EUR-Lex · CBAM consolidated text','https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020']],
+  downstream:[['EUR-Lex · CBAM 合并文本','EUR-Lex · CBAM consolidated text','https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02023R0956-20251020']],
+  euro7:[['EUR-Lex · Euro 7 原文','EUR-Lex · Euro 7 text','https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32024R1257']],
+  elv:[['EUR-Lex · 整车循环法规 (EU) 2026/1738','EUR-Lex · Vehicle circularity Regulation (EU) 2026/1738','http://data.europa.eu/eli/reg/2026/1738/oj']],
+  crma:[['EUR-Lex · 关键原材料法原文','EUR-Lex · CRMA text','https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02024R1252-20240503']],
+  cn1:[['工信部通知答记者问（转载）','MIIT notice Q&A (mirror)','https://www.ncsti.gov.cn/zcfg/zcjd/202601/t20260104_234207.html']]
+};
+const SECTIONS=[
+  {zh:'碳足迹 · 碳边境 · 气候披露', en:'Carbon footprint · CBAM · disclosure', lanes:[
+    {zh:'电池法规', en:'Battery Regulation', no:'(EU) 2023/1542', detail:'bat-act', items:['cf1','cf2','cf3']},
+    {zh:'碳边境 CBAM', en:'CBAM', no:'(EU) 2023/956', detail:'cbam-note', items:['cbamrev','cbamdef','cert','surrender','downstream']},
+    {zh:'工信部', en:'MIIT', no:'', detail:null, items:['cn1']},
+    {zh:'财政部', en:'MOF', no:'', detail:null, items:['cn2']}]},
+  {zh:'电池护照 · 产品信息', en:'Battery passport · product information', lanes:[
+    {zh:'电池法规', en:'Battery Regulation', no:'(EU) 2023/1542', detail:'bat-act', items:['passport','ia779','registry','guide','jtc24','qr','lab']},
+    {zh:'ESPR', en:'ESPR', no:'(EU) 2024/1781', detail:'espr', items:['steel','tex']}]},
+  {zh:'循环 · 再生 · 回收', en:'Circularity · recycled content · recycling', lanes:[
+    {zh:'电池法规', en:'Battery Regulation', no:'(EU) 2023/1542', detail:'bat-act', items:['rc','rec']},
+    {zh:'报废车辆 ELV', en:'ELV Regulation', no:'', detail:null, items:['elv']}]},
+  {zh:'尽职调查 · 关键原材料', en:'Due diligence · critical raw materials', lanes:[
+    {zh:'电池法规', en:'Battery Regulation', no:'(EU) 2023/1542', detail:'bat-act', items:['dd']},
+    {zh:'关键原材料法', en:'Critical Raw Materials Act', no:'(EU) 2024/1252', detail:null, items:['crma']}]},
+  {zh:'整车排放 · 电池性能', en:'Vehicle emissions · battery performance', lanes:[
+    {zh:'Euro 7', en:'Euro 7', no:'(EU) 2024/1257', detail:null, items:['euro7']},
+    {zh:'电池法规', en:'Battery Regulation', no:'(EU) 2023/1542', detail:'bat-act', items:['dur']}]}
+];
+const ITEMS=[
+ {id:'cf1',p:'bat',zh:'碳足迹申报',en:'Carbon footprint declaration',ref:'Art 7(1)',st:'awaited',sub:'DA+IA',slide:1,orig:{d:'2025-02-18',zh:'EV 电池',en:'EV batteries'},mech:{n:12,zh:'委托法案＋实施法案',en:'delegated + implementing acts'},
+  next:{d:'—',zh:'待法案通过后 12 个月',en:'12 months after the act is adopted'},
+  basis:{zh:'授权条款 Art 7(1)：方法学委托法案＋格式实施法案',en:'Art 7(1): methodology delegated act + format implementing act'},
+  dates:{zh:'原定 EV 电池 2025-02-18 起；实际起算以子法规通过为准',en:'Originally from 18 Feb 2025 (EV batteries); actual start depends on the sub-act being adopted'},
+  note:{zh:'欧委会护照指南 v2.0（2026-08-15）明确：2027-02 护照上线时碳足迹申报与标签不填、不展示。市面另有「工业电池碳规则已于 2026 年实施」的说法（多家营销站点日期互不一致，2026-02/06/07/08 月各一说），经核无一手依据：工业电池申报按 Art 7(1) 为 2026-02-18 或子法规生效后 18 个月取较晚者，子法规未通过故未生效；EN 15804+A2 为建筑产品 EPD 标准，非电池方法学。结论：不采信。',en:'Commission passport guidance v2.0 (15 Aug 2026): CF declaration and label are not to be filled or displayed at the Feb 2027 passport launch. A circulating claim that industrial-battery carbon rules took effect in 2026 (marketing sites disagree among themselves: Feb/Jun/Jul/Aug 2026) has no primary source: under Art 7(1) the industrial declaration starts 18 Feb 2026 or 18 months after the sub-acts, whichever is later, and the sub-acts are not adopted; EN 15804+A2 is a construction-product EPD standard, not the battery methodology. Not relied on.'},
+  rel:[['cf2','递进','Sequence'],['cf3','递进','Sequence']],
+  g:[{k:'dia',d:'2025-02-18',hollow:1,lb:{zh:'原定',en:'orig.'}}]},
+ {id:'cf2',p:'bat',zh:'碳足迹绩效等级',en:'CF performance classes',ref:'Art 7(2)',st:'awaited',sub:'DA',slide:1,orig:{d:'2026-08-18',zh:'EV 电池',en:'EV batteries'},mech:{n:18,zh:'委托法案',en:'delegated act'},
+  next:{d:'—',zh:'待法案通过后 18 个月',en:'18 months after adoption'},
+  basis:{zh:'授权条款 Art 7(2)',en:'Art 7(2)'},
+  dates:{zh:'原定 EV 电池 2026-08-18 起；实际起算以子法规通过为准',en:'Originally from 18 Aug 2026 (EV); actual start depends on the sub-act being adopted'},
+  note:{zh:'等级划分依赖 Art 7(1) 方法学先行，是碳足迹三步的第二步。',en:'Depends on the Art 7(1) methodology landing first — step two of three.'},
+  rel:[['cf1','前置','After'],['cf3','递进','Sequence']],
+  g:[{k:'dia',d:'2026-08-18',hollow:1,lb:{zh:'原定',en:'orig.'}}]},
+ {id:'cf3',p:'bat',zh:'碳足迹最高阈值',en:'Maximum CF threshold',ref:'Art 7(3)',st:'awaited',sub:'DA',slide:1,orig:{d:'2028-02-18',zh:'EV 电池',en:'EV batteries'},mech:{n:18,zh:'委托法案',en:'delegated act'},
+  next:{d:'2028-02-18',zh:'原定（条件式）',en:'Original date (conditional)'},
+  basis:{zh:'授权条款 Art 7(3)',en:'Art 7(3)'},
+  dates:{zh:'EV 电池原定 2028-02-18 起；日期与阈值均待委托法案',en:'EV batteries originally from 18 Feb 2028; date and value both await the delegated act'},
+  note:{zh:'超过阈值不得投放市场——三步中唯一的市场准入硬约束。',en:'Above the threshold, the battery cannot be placed on the market — the only market-access constraint of the three steps.'},
+  rel:[['cf2','前置','After']],
+  g:[{k:'dia',d:'2028-02-18',hollow:1,lb:{zh:'原定',en:'orig.'}}]},
+ {id:'rc',p:'bat',zh:'再生含量',en:'Recycled content',ref:'Art 8',st:'awaited',sub:'DA',slide:1,orig:{d:'2028-08-18',zh:'申报',en:'declaration'},mech:{n:24,zh:'委托法案',en:'delegated act'},
+  next:{d:'2031-08-18',zh:'最低含量起算',en:'Minimum levels start'},
+  basis:{zh:'授权条款 Art 8(1) 方法学；最低含量条文直定',en:'Art 8(1) methodology; minimum levels set in the Regulation itself'},
+  dates:{zh:'申报时间以方法学法案通过后起算；最低值 2031：钴16%·锂6%·镍6%·铅85%，2036 加严',en:'Declaration timing starts once the methodology act is adopted; 2031 minima: Co 16% · Li 6% · Ni 6% · Pb 85%, tightening in 2036'},
+  note:{zh:'方法等法案、数值是法定的，两层分开看。',en:'Method awaits an act; the numbers are already law — keep the two layers separate.'},
+  rel:[['crma','背景','Context']],
+  g:[{k:'dia',d:'2028-08-18',hollow:1,lb:{zh:'原定申报',en:'decl. orig.'}},{k:'dia',d:'2031-08-18',lb:{zh:'最低含量',en:'minima'}}]},
+ {id:'passport',p:'bat',zh:'电池护照',en:'Battery passport',ref:'Art 77',st:'pending',
+  next:{d:'2027-02-18',zh:'强制适用',en:'Mandatory application'},
+  basis:{zh:'EV / LMT / 工业电池 >2kWh；Annex XIII 数据；经 ESPR 中央注册库登记',en:'EV / LMT / industrial >2 kWh; Annex XIII data; registered via the ESPR central registry'},
+  dates:{zh:'2027-02-18 适用（距今 117 天）',en:'Applies 18 Feb 2027 (117 days)'},
+  note:{zh:'第一个真正落地的 DPP。配套文件嵌套在本条之下：访问权限实施法案（77(9)）、注册库实施条例（(EU) 2026/1778）、护照指南 v2.0、JTC 24 标准；注册库已上线但尚不接受电池注册；护照中的碳足迹项上线时不填。企业自建平台按国际标准对接，是既定路线。',en:'The first DPP to actually land. Supporting documents nest under this item: the access-rights implementing act (77(9)), the registry implementing regulation ((EU) 2026/1778), passport guidance v2.0 and JTC 24 standards; The registry is live but does not yet accept battery registrations; the CF fields stay empty at launch. The in-house platform route on international standards stands.'},
+  rel:[['registry','依赖','Relies on'],['ia779','子项','Sub-item'],['guide','配套指南','Guidance'],['jtc24','配套标准','Standards'],['cf1','载明','Carries']],
+  g:[{k:'dia',d:'2027-02-18',lb:{zh:'适用',en:'applies'}}]},
+ {id:'ia779',p:'bat',childOf:'passport',zh:'护照数据访问权限',en:'Passport data access rights',ref:'Art 77(9) 草案',refe:'Art 77(9) draft',st:'awaited',sub:'IA',
+  next:{d:'—',zh:'委员会投票目标 2026-12/2027-01',en:'Committee vote targeted Dec 2026/Jan 2027'},
+  basis:{zh:'实施条例草案，授权条款 Art 77(9)',en:'Draft implementing act under Art 77(9)'},
+  dates:{zh:'实施法案原定 2026-08-18 前通过（已逾期）；欧委会常见问题（2026-09）称草案预计 2026-10/11 月公开征求意见，通过目标 2026-Q4；第三场研讨会（2026-09-30）更新：草案未来几周内上 Have Your Say 并送 WTO/TBT 通报，委员会投票目标 2026-12/2027-01',en:'Implementing act was due by 18 Aug 2026 (missed); Commission FAQ (Sep 2026) expects the draft for public feedback in Oct/Nov 2026, adoption targeted Q4 2026; webinar 3 (30 Sep 2026) updates this: the draft goes to Have Your Say and WTO/TBT notification in the coming weeks, with a committee vote targeted Dec 2026/Jan 2027'},
+  note:{zh:'决定谁能看护照的哪一层数据，直接影响自建平台的访问控制设计。原定 2026-08-18 前通过的实施法案已逾期；欧委会 2026-09 常见问题称草案预计 2026-10/11 月公开征求意见，通过目标 2026-Q4；第三场研讨会（2026-09-30）更新：草案未来几周内上 Have Your Say 并送 WTO/TBT 通报，委员会投票目标 2026-12/2027-01（通过时点较 Q4 口径顺延）；护照 2027-02-18 适用不受影响。此前页内所列「咨询截止 2026-11-16」未能在一手渠道确认，已改为欧委会说法。',en:'Decides who can see which layer of passport data — directly shapes access-control design of the in-house platform. The implementing act due by 18 Aug 2026 is overdue; the Commission Sep 2026 FAQ expects the draft for public feedback in Oct/Nov 2026, adoption targeted Q4 2026; webinar 3 (30 Sep 2026) updates this: the draft goes to Have Your Say and WTO/TBT notification in the coming weeks, with a committee vote targeted Dec 2026/Jan 2027 (adoption slips past the Q4 wording). The 18 Feb 2027 passport date is unaffected. An earlier "consultation closes 16 Nov 2026" date could not be confirmed against a primary source and has been replaced by the Commission wording.'},
+  rel:[['passport','属','Part of']],
+  g:[{k:'dia',d:'2026-08-18',hollow:1,labAbove:1,lb:{zh:'原定通过',en:'due'}},{k:'bar',f:'2026-10-01',t:'2027-01-31',dashed:1,lb:{zh:'草案反馈·投票·拟',en:'draft feedback & vote·exp.'}}]},
+ {id:'guide',p:'bat',childOf:'passport',zh:'护照指南 v2.0',en:'Passport guidance v2.0',ref:'欧委会指南',refe:'Commission guidance',st:'applied',
+  next:{d:'2026-08-15',zh:'已发布',en:'Published'},
+  basis:{zh:'欧委会护照指南 v2.0（2026-08-15），按电池类别与必填/可选/条件项整理 71 个数据点；指南不创设新义务、非权威解释',en:'Commission passport guidance v2.0 (15 Aug 2026): 71 data points by battery category and mandatory/optional/conditional status; creates no new obligations and is not an authoritative interpretation'},
+  dates:{zh:'2026-08-15 发布；明确 2027-02 护照上线时碳足迹申报与标签不填、不展示；开发者技术规范计划 2026-10 底发布（第三场研讨会）',en:'Published 15 Aug 2026; CF declaration and label not to be filled or displayed at the Feb 2027 launch; developer technical specifications planned end Oct 2026 (webinar 3)'},
+  note:{zh:'指南本身不是法规，读数时须与法规及子法规对照；71 个数据点的必填/可选/条件划分是实操锚点。第三场研讨会（2026-09-30）称：开发者技术规范（护照语义与数据格式）计划 10 月底发布；新版指南计划未来几周内发布。',en:'Guidance is not law; read it against the Regulation and sub-acts. The mandatory/optional/conditional split across 71 data points is the practical anchor. Webinar 3 (30 Sep 2026): technical specifications for developers (passport semantics and data formats) planned for end of October; a new version of the guidance planned for the coming weeks.'},
+  rel:[['passport','配套','Supports']],
+  g:[{k:'dia',d:'2026-08-15',labAbove:1,lb:{zh:'发布',en:'published'}},{k:'dia',d:'2026-10-31',hollow:1,lb:{zh:'技术规范·拟',en:'tech specs·exp.'}}]},
+ {id:'jtc24',p:'bat',childOf:'passport',zh:'JTC 24 护照标准',en:'JTC 24 passport standards',ref:'EN 18216–18223',st:'applied',
+  next:{d:'2026-07-01',zh:'已发布并引用',en:'Published & cited'},
+  basis:{zh:'CEN/CENELEC JTC 24 横向 DPP 标准 EN 18216–18223',en:'CEN/CENELEC JTC 24 horizontal DPP standards, EN 18216–18223'},
+  dates:{zh:'2026 年发布；2026-07 被欧委会实施决定引用为协调标准',en:'Published in 2026; cited as harmonised standards by a Commission implementing decision in Jul 2026'},
+  note:{zh:'横向标准，定义护照标识、载体、存储与互操作，适用于所有产品护照（含电池）；是自建平台对接层面的依据。',en:'Horizontal standards defining passport identification, carrier, storage and interoperability for all product passports (batteries included); the interoperability basis for the in-house platform.'},
+  rel:[['passport','配套','Supports']],
+  g:[{k:'dia',d:'2026-07-01',lb:{zh:'2026-07 引用',en:'cited Jul 2026'}}]},
+ {id:'qr',p:'bat',childOf:'passport',zh:'护照标识标准',en:'Passport ID standards',ref:'Art 77(3) 委托法案',refe:'Art 77(3) delegated act',st:'awaited',sub:'DA',
+  next:{d:'—',zh:'通过与发布目标 2027 年',en:'Adoption & publication targeted 2027'},
+  basis:{zh:'Art 77(3) 委托法案：二维码与唯一标识符标准，拟更新为 EN 18220 与 EN 18219；现行引用标准仍可继续使用（等效）',en:'Art 77(3) delegated act: QR code and unique identifier standards, to be updated to EN 18220 and EN 18219; currently referenced standards remain usable (equivalent)'},
+  dates:{zh:'草案 2026-09-29 前后已上 Have Your Say（研讨会称「昨天」，研讨会为 9 月 30 日），随后送 WTO/TBT 通报；通过与发布目标 2027 年（未给月份）',en:'Draft on Have Your Say around 29 Sep 2026 (the workshop said "yesterday"; the workshop was held 30 Sep), then WTO/TBT notification; adoption and publication targeted 2027 (no month given)'},
+  note:{zh:'护照「扫码可读」的标准层：二维码载体与唯一标识符格式由这件委托法案定，现行引用标准在新版出台前仍可继续使用（等效）。',en:'The standards layer behind "scan to read" the passport: the data-carrier and unique-identifier formats are set by this delegated act; currently referenced standards remain usable (equivalent) until the update.'},
+  rel:[['passport','配套','Supports']],
+  g:[{k:'dia',d:'2026-09-29',lb:{zh:'草案发布',en:'draft published'}}]},
+ {id:'dd',p:'bat',zh:'供应链尽职调查',en:'Supply-chain due diligence',ref:'Art 47–52',st:'pending',
+  next:{d:'2027-08-18',zh:'适用',en:'Applies'},
+  basis:{zh:'年营业额 ≥ €40M 的经营者；钴、天然石墨、锂、镍',en:'Operators with turnover ≥ €40m; cobalt, natural graphite, lithium, nickel'},
+  dates:{zh:'原 2025-08-18 → 经 (EU) 2025/1561 延期至 2027-08-18；欧委会尽调指南法定截止 2026-07-26 已过，截至 2026-10-24 公开检索未见发布',en:'Was 18 Aug 2025 → postponed by (EU) 2025/1561 to 18 Aug 2027; Commission due-diligence guidance deadline 26 Jul 2026 has passed, no publication found in public sources as of 24 Oct 2026'},
+  note:{zh:'延期已成法（2025/1561，2025-07-21 通过），日期确定，不再变动。欧委会尽调指南法定截止 2026-07-26 已过，截至 2026-10-24 公开检索未见发布（与访问权限实施法案同为逾期未出）；另有提案拟将豁免门槛提至 €150M（SMC）并改三年一报，立法进程中；该提案所属 Omnibus IV 数字化线指示性全会审议 2026-11-23（曾由 11-11 改期）。',en:'The postponement is law ((EU) 2025/1561, adopted 21 Jul 2025); the date is firm. The Commission due-diligence guidance deadline 26 Jul 2026 has passed and no publication was found in public sources as of 24 Oct 2026 (overdue, like the access-rights implementing act). A separate proposal would raise the exemption to €150m (SMCs) and move reporting to every three years; in the legislative process. Its Omnibus IV digitalisation strand has an indicative plenary sitting on 23 Nov 2026 (moved from 11 Nov).'},
+  rel:[['crma','背景','Context']],
+  g:[{k:'bar',f:'2025-07-21',t:'2027-08-18'},{k:'dia',d:'2025-08-18',hollow:1,lb:{zh:'条文原定',en:'statutory'}},{k:'dia',d:'2026-07-26',hollow:1,labAbove:1,lb:{zh:'指南逾期',en:'guide overdue'}},{k:'dia',d:'2026-11-23',hollow:1,lb:{zh:'全会·拟',en:'plenary·exp.'}},{k:'dia',d:'2027-08-18',lb:{zh:'适用',en:'applies'}}]},
+ {id:'dur',p:'bat',zh:'电化学性能与耐久性',en:'Electrochemical performance & durability',ref:'Art 10',st:'awaited',sub:'DA',u:1,
+  next:{d:'—',zh:'委托法案待通过',en:'Delegated act outstanding'},
+  basis:{zh:'授权条款 Art 10(2)：最低值委托法案',en:'Art 10(2): minimum-values delegated act'},
+  dates:{zh:'未定',en:'Unset'},
+  note:{zh:'与 Euro 7 的整车电池耐久最低值是两套口径，评审时不能混用。',en:'A different yardstick from Euro 7 vehicle battery durability — do not mix the two in reviews.'},
+  rel:[['euro7','口径衔接','Aligned with']],g:[]},
+ {id:'lab',p:'bat',zh:'标签与标识',en:'Labelling',ref:'Art 13',st:'awaited',sub:'IA',
+  next:{d:'2027-02-18',zh:'二维码随护照',en:'QR code with passport'},
+  basis:{zh:'条文直定义务＋统一规格实施法案',en:'Direct obligations + harmonised-specifications implementing act'},
+  dates:{zh:'垃圾桶标识等已分步适用；统一规格实施法案草案 2025-12-15 发布（WTO 通报），行业反馈 2026-01；待通过',en:'Crossed-out bin etc. already phasing in; harmonised-specs draft 15 Dec 2025 (WTO notified), industry feedback Jan 2026; act outstanding'},
+  note:{zh:'混合状态：部分已适用、部分等法案。草案定标签格式与分拆规则，空间不足时信息可放包装/随附文件并配二维码。',en:'Mixed state: partly applying, partly awaiting the act. The draft sets label format and splitting rules; where space is short, information may go on packaging/accompanying documents with a QR code.'},
+  rel:[['passport','衔接','Linked']],
+  g:[{k:'dia',d:'2025-08-18',lb:{zh:'标识起步',en:'marking starts'}},{k:'dia',d:'2025-12-15',labAbove:1,lb:{zh:'统一规格草案',en:'harmonised draft'}}]},
+ {id:'rec',p:'bat',zh:'回收效率与材料回收',en:'Recycling efficiencies & material recovery',ref:'Art 71 · (EU) 2025/606',st:'applied',sub:'DA',
+  next:{d:'—',zh:'方法已生效',en:'Methodology in force'},
+  basis:{zh:'Art 71 授权；委托条例 (EU) 2025/606（2025-03-21 通过，2025-07-24 生效）',en:'Art 71; Delegated Regulation (EU) 2025/606 (21 Mar 2025, in force 24 Jul 2025)'},
+  dates:{zh:'2025-07-24 计算与核查方法生效；2025-12-31 效率目标（铅酸 75% · 锂基 65%）；2027-12-31 材料回收目标（钴/铜/铅/镍 90% · 锂 50%）',en:'Methodology in force 24 Jul 2025; 31 Dec 2025 efficiency targets (lead-acid 75% · lithium 65%); 31 Dec 2027 recovery targets (Co/Cu/Pb/Ni 90% · Li 50%)'},
+  note:{zh:'方法学已成法，回收商按统一口径计量并向成员国报送；目标值 2030/2031 年再加严（锂基效率 70%，回收率 95%/80%）。',en:'The methodology is law: recyclers measure on a harmonised basis and report to Member States; targets tighten again in 2030/2031 (lithium efficiency 70%, recovery 95%/80%).'},
+  rel:[],g:[{k:'dia',d:'2025-07-24',lb:{zh:'方法学生效',en:'methodology in force'}},{k:'dia',d:'2027-12-31',lb:{zh:'回收目标',en:'recovery targets'}}]},
+ {id:'registry',p:'espr',childOf:'passport',zh:'DPP 中央注册库',en:'DPP central registry',ref:'(EU) 2026/1778',st:'applied',
+  next:{d:'—',zh:'已上线',en:'Live'},
+  basis:{zh:'ESPR Art 13 授权；实施条例 (EU) 2026/1778（2026-07-16 通过）',en:'ESPR Art 13; Implementing Regulation (EU) 2026/1778 (16 Jul 2026)'},
+  dates:{zh:'2026-07-20 上线（含测试环境）；尚不接受电池注册；API 集成指南计划 2026-12 底发布（第三场研讨会）',en:'Live since 20 Jul 2026 (with test environment); battery registrations not yet accepted; registry API integration guidelines planned end Dec 2026 (webinar 3)'},
+  note:{zh:'上线 ≠ 可注册，两个状态分开标。电池护照唯一标识须在此登记（1542 Art 77(10)）。求助台 08:00–20:00 CET（欧委会常见问题 1.2）。第三场研讨会（2026-09-30）称：注册库 API 集成指南计划 12 月底发布；服务账号指南计划未来几周内发布；企业核验说明视频 10 月初上线，错误处理改进已实施；欧委会 DPP 专页已上线（法规、指南、注册库入口集中地）。',en:'Live ≠ open for battery registration — the two states are tracked separately. Battery passport identifiers must be registered here (1542 Art 77(10)). Helpdesk 08:00–20:00 CET (Commission FAQ 1.2). Webinar 3 (30 Sep 2026): registry API integration guidelines planned end of December; service-account guide planned for the coming weeks; company-verification explanatory video early October, error-handling improvements already implemented; the Commission DPP web page is live (regulations, guidance and registry entry in one place).'},
+  rel:[['passport','配套','Supports']],
+  g:[{k:'dia',d:'2026-07-20',lb:{zh:'上线',en:'live'}},{k:'dia',d:'2026-12-31',hollow:1,lb:{zh:'API指南·拟',en:'API guide·exp.'}}]},
+ {id:'steel',p:'espr',zh:'钢铁委托法案',en:'Iron & steel delegated act',ref:'ESPR 工作计划',refe:'ESPR working plan',st:'awaited',sub:'DA',
+  next:{d:'—',zh:'指示性年份 2026',en:'Indicative year 2026'},
+  basis:{zh:'ESPR 2025–2030 工作计划 COM(2025) 187',en:'ESPR working plan 2025–2030, COM(2025) 187'},
+  dates:{zh:'公开咨询 2026-05-20→08-12 已截止；通过目标 2026-Q4；通过后 ≥18 个月才适用',en:'Consultation 20 May → 12 Aug 2026 closed; adoption targeted Q4 2026; applies ≥18 months after adoption'},
+  note:{zh:'钢铁是电池材料上游，法案内容会反压供应链数据要求。咨询两轮共 226 条反馈。',en:'Steel sits upstream of battery materials; its data requirements will flow down the supply chain. Two consultation streams drew 226 responses.'},
+  rel:[],
+  g:[{k:'dia',d:'2026-08-12',lb:{zh:'咨询截止',en:'consult. closed'}},{k:'dia',d:'2026-12-31',hollow:1,lb:{zh:'指示 2026',en:'indic. 2026'}}]},
+ {id:'tex',p:'espr',zh:'纺织 · 铝 · 轮胎委托法案',en:'Textiles / aluminium / tyres delegated acts',ref:'ESPR 工作计划',refe:'ESPR working plan',st:'awaited',sub:'DA',
+  next:{d:'—',zh:'指示性年份 2027',en:'Indicative year 2027'},
+  basis:{zh:'ESPR 2025–2030 工作计划',en:'ESPR working plan 2025–2030'},
+  dates:{zh:'未通过',en:'Not adopted'},
+  note:{zh:'其中铝与电池产业链直接相关。',en:'Aluminium is directly relevant to the battery chain.'},
+  rel:[],
+  g:[{k:'dia',d:'2027-12-31',hollow:1,lb:{zh:'指示 2027',en:'indic. 2027'}}]},
+ {id:'cbamrev',p:'cbam',zh:'简化修订',en:'Simplification amendment',ref:'(EU) 2025/2083',st:'applied',
+  next:{d:'—',zh:'已生效',en:'In force'},
+  basis:{zh:'Omnibus 简化包，修订 2023/956',en:'Omnibus simplification amending 2023/956'},
+  dates:{zh:'2025-10-08 签署，2025-10-20 生效',en:'Signed 8 Oct 2025, in force 20 Oct 2025'},
+  note:{zh:'50 吨/年门槛取代逐票价值门槛：豁免约 90% 进口商、覆盖约 99% 排放；电力与氢不设门槛。',en:'A 50 t/year threshold replaces the per-consignment test: ~90% of importers exempt, ~99% of emissions still covered; no threshold for electricity and hydrogen.'},
+  rel:[['cbam-note','修订对象','Amends']],
+  g:[{k:'dia',d:'2025-10-20',lb:{zh:'生效',en:'in force'}}]},
+ {id:'cbamdef',p:'cbam',zh:'CBAM 正式期开始',en:'CBAM definitive period starts',ref:'(EU) 2023/956',st:'applied',
+  next:{d:'—',zh:'正式期进行中',en:'Definitive period running'},
+  basis:{zh:'2023/956 正式期；过渡期只申报不交证',en:'Definitive period under 2023/956; transition period was report-only'},
+  dates:{zh:'2026-01-01 正式期开始：进口商须为授权申报人、年度申报并交证（首年覆盖 2026 年进口）',en:'Definitive period from 1 Jan 2026: importers must be authorised declarants, file annually and surrender certificates (first year covers 2026 imports)'},
+  note:{zh:'从“只申报”到“申报＋交钱”的分水岭；证书价锚定 EU ETS 拍卖价。',en:'The watershed from report-only to report-and-pay; certificate prices anchor to EU ETS auctions.'},
+  rel:[['ets','价格锚定','Price anchor']],
+  g:[{k:'dia',d:'2026-01-01',lb:{zh:'正式期开始',en:'definitive period'}}]},
+ {id:'cert',p:'cbam',zh:'证书销售开启',en:'Certificate sales open',ref:'正式期里程碑',refe:'Definitive-period milestone',st:'pending',
+  next:{d:'2027-02-01',zh:'开售',en:'Sales open'},
+  basis:{zh:'CBAM 正式期安排；证书价锚定 EU ETS 拍卖价',en:'Definitive-period arrangement; certificate price anchored to EU ETS auctions'},
+  dates:{zh:'2027-02-01 开售；2027 年起每季末持证 ≥ 当年累计排放 50%',en:'Sales from 1 Feb 2027; from 2027, holdings ≥50% of year-to-date emissions at each quarter end'},
+  note:{zh:'',en:''},
+  rel:[['ets','价格锚定','Price anchor']],
+  g:[{k:'dia',d:'2027-02-01',lb:{zh:'开售',en:'sales open'}}]},
+ {id:'surrender',p:'cbam',zh:'首次年度申报与交证',en:'First annual declaration & surrender',ref:'正式期里程碑',refe:'Definitive-period milestone',st:'pending',
+  next:{d:'2027-09-30',zh:'截止',en:'Deadline'},
+  basis:{zh:'覆盖 2026 年进口货物；嵌入排放须经第三方核查',en:'Covers 2026 imports; embedded emissions must be third-party verified'},
+  dates:{zh:'2027-09-30 截止（距今 341 天）',en:'Due 30 Sep 2027 (341 days)'},
+  note:{zh:'',en:''},rel:[],
+  g:[{k:'dia',d:'2027-09-30',lb:{zh:'截止',en:'due'}}]},
+ {id:'downstream',p:'cbam',zh:'下游扩展',en:'Downstream extension',ref:'2025-12 立法提案',refe:'Dec 2025 proposal',st:'proposal',
+  next:{d:'2028-01-01',zh:'拟纳入（提案）',en:'Proposed inclusion'},
+  basis:{zh:'欧委会 2025-12 修订提案，立法程序中',en:'Commission proposal of Dec 2025, in the legislative process'},
+  dates:{zh:'拟 2028-01 起纳入钢铝密集型下游产品；未成法',en:'Proposed from Jan 2028 for steel/aluminium-intensive downstream goods; not law'},
+  note:{zh:'只作规划信号，不作合规依据。另有 2026-07 提案拟把 ETS 免费配额退出延至 2038，谈判中。',en:'A planning signal only, not a compliance basis. A separate Jul 2026 proposal would extend ETS free-allocation phase-out to 2038; under negotiation.'},
+  rel:[],
+  g:[{k:'bar',f:'2028-01-01',t:'2028-12-31',dashed:1,lb:{zh:'拟纳入',en:'proposed'}}]},
+ {id:'euro7',p:'veh',zh:'Euro 7',en:'Euro 7',ref:'(EU) 2024/1257',st:'pending',sub:'IA',
+  next:{d:'2026-11-29',zh:'轻型车新车型适用',en:'New light-duty types'},
+  basis:{zh:'型式批准：排放＋电池耐久；含车辆环境护照',en:'Type approval: emissions + battery durability; environmental vehicle passport'},
+  dates:{zh:'轻型车新车型 2026-11-29（距今 36 天）；全部新车 2027-11-29',en:'New light-duty types 29 Nov 2026 (36 days); all new vehicles 29 Nov 2027'},
+  note:{zh:'电池耐久最低值：乘用车 5 年/10 万 km ≥80%、8 年/16 万 km ≥72%。实施细则草案 2026 年在走 WTO/TBT 通报。',en:'Battery durability minima (cars): ≥80% at 5 yrs/100k km, ≥72% at 8 yrs/160k km. Implementing drafts were under WTO/TBT notification in 2026.'},
+  rel:[['dur','口径衔接','Aligned with']],
+  g:[{k:'dia',d:'2026-11-29',lb:{zh:'新车型',en:'new types'}},{k:'dia',d:'2027-11-29',lb:{zh:'全部新车',en:'all new'}}]},
+ {id:'elv',p:'veh',zh:'报废车辆新规',en:'End-of-life vehicles Regulation',ref:'(EU) 2026/1738',st:'pending',
+  next:{d:'2028-09-01',zh:'普遍适用',en:'General application'},
+  basis:{zh:'2026-07-08 通过、2026-07-24 公报、2026-08-13 生效；整车循环性、再生含量与数字循环车辆护照',en:'Adopted 8 Jul 2026, published 24 Jul 2026, in force 13 Aug 2026; vehicle circularity, recycled content and the Digital Circularity Vehicle Passport'},
+  dates:{zh:'2026-06-18 欧洲议会终批（437:112）；2028-09-01 普遍适用（M1/N1）；2029-09-01 生产者责任；2031-09-01 出口规则；2032-09-01 整车护照＋15% 再生塑料',en:'European Parliament final approval 18 Jun 2026 (437:112); general application 1 Sep 2028 (M1/N1); producer responsibility 1 Sep 2029; export rule 1 Sep 2031; vehicle passport + 15% recycled plastic 1 Sep 2032'},
+  note:{zh:'分阶段时间表已锁定：2028-09-01 普遍适用，2029-09-01 起仅注册生产者可投放，2031-09-01 起仅适路非报废车可出口，2032-09-01 起每辆新车须配数字循环车辆护照（Art 13，与电池护照、Euro 7 车辆环境护照互操作）＋新车型塑料再生含量 15%，2036 年提至 25%。',en:'The staged timetable is fixed: general application 1 Sep 2028, only registered producers may place vehicles from 1 Sep 2029, only roadworthy non-ELVs may be exported from 1 Sep 2031, and from 1 Sep 2032 every new vehicle needs a Digital Circularity Vehicle Passport (Art 13, interoperable with the battery passport and the Euro 7 environmental vehicle passport) plus 15% recycled plastic in new types, rising to 25% in 2036.'},
+  rel:[['passport','同源','Same family']],
+  g:[{k:'dia',d:'2028-09-01',lb:{zh:'普遍适用',en:'general application'}},{k:'dia',d:'2029-09-01',lb:{zh:'生产者责任',en:'producer responsibility'}},{k:'dia',d:'2031-09-01',lb:{zh:'出口规则',en:'export rule'}},{k:'dia',d:'2032-09-01',lb:{zh:'整车护照',en:'vehicle passport'}}]},
+ {id:'crma',p:'veh',zh:'关键原材料法',en:'Critical Raw Materials Act',ref:'(EU) 2024/1252',st:'pending',
+  next:{d:'2030-12-31',zh:'2030 基准年',en:'2030 benchmark year'},
+  basis:{zh:'2024-05-23 生效',en:'In force since 23 May 2024'},
+  dates:{zh:'2030 基准：开采 10% · 加工 40% · 回收 25% · 单一来源 ≤65%',en:'2030 benchmarks: extraction 10% · processing 40% · recycling 25% · single source ≤65%'},
+  note:{zh:'不直接设产品义务，但决定尽调与供应链叙事的政策背景。',en:'Sets no direct product duties, but frames due diligence and supply-chain policy.'},
+  rel:[['rc','背景','Context'],['dd','背景','Context']],
+  g:[{k:'dia',d:'2030-12-31',lb:{zh:'2030 基准',en:'2030 bench.'}}]},
+ {id:'cn1',p:'cn',zh:'动力电池碳足迹申报',en:'Traction-battery CF declaration (MIIT)',ref:'工信部 · 551号通知',refe:'MIIT Notice No. 551 (2025)',st:'applied',
+  next:{d:'2027-01-01',zh:'常态化申报',en:'Routine declaration'},
+  basis:{zh:'《关于开展汽车动力电池碳足迹申报工作的通知》（工信厅通装函〔2025〕551号，2025-12-30）；《工业和信息化领域碳排放双控工作体系实施方案（2026—2030年）》第四部分（十一）',en:'MIIT Notice on traction-battery CF declaration (Tongzhuanghan [2025] No. 551, 30 Dec 2025); MIIT carbon dual-control implementation plan (2026–2030), Part IV (XI)'},
+  dates:{zh:'2025-12-30 通知印发；2026 年底前试运行（典型产品申报），2027 年起常态化申报、覆盖全部型号',en:'Notice issued 30 Dec 2025; trial phase through end-2026 (representative products), routine declaration from 2027 covering all models'},
+  note:{zh:'目标到 2026 年底背景数据库体系基本建成、管理体系基本建立；现阶段暂不提管理要求，以申报建体系为主。与欧盟 Art 7 方法学对照，是中国侧的主锚点。',en:'Target: by end-2026 the industry background-database system is largely built and the management system largely in place; no management requirements yet — declaration first, system-building second. The China-side anchor, to be read against EU Art 7 methodology.'},
+  rel:[['cf1','方法对照','Method mirror']],
+  g:[{k:'bar',f:'2026-01-01',t:'2026-12-31'},{k:'dia',d:'2025-12-30',lb:{zh:'通知印发',en:'notice'}},{k:'dia',d:'2027-01-01',lb:{zh:'常态化申报',en:'routine'}}]},
+ {id:'cn2',p:'cn',zh:'汽车气候披露指南',en:'Automotive climate disclosure guide (MOF)',ref:'财政部 · 征求意见稿',refe:'MOF · consultation draft',st:'consult',
+  next:{d:'2026-10-26',zh:'意见截止',en:'Comments close'},
+  basis:{zh:'财政部征求意见稿（财办会〔2026〕34号）',en:'Ministry of Finance consultation draft (Cai Ban Hui [2026] No. 34)'},
+  dates:{zh:'意见截止 2026-10-26',en:'Comments close 26 Oct 2026'},
+  note:{zh:'是否反馈、以何名义、是否逐条对标，待拍板。文件含《企业可持续披露准则第 1 号——气候（试行）》应用指南与 9 个行业指南（含汽车）。',en:'Whether to comment, in what capacity, and whether to map clause-by-clause — decision pending. Covers the application guide for the Climate disclosure standard (trial) plus nine sector guides (incl. automotive).'},
+  rel:[],
+  g:[{k:'dia',d:'2026-10-26',lb:{zh:'意见截止',en:'comments close'}}]},
+ {id:'ets',p:'cbam',zh:'EU ETS',en:'EU ETS',ref:'欧盟碳市场',refe:'EU carbon market',st:'applied',hidden:1,
+  next:{d:'—',zh:'运行中',en:'Running'},
+  basis:{zh:'欧盟排放交易体系；CBAM 证书价格锚定其拍卖价',en:'EU Emissions Trading System; CBAM certificate prices anchor to its auction prices'},
+  dates:{zh:'免费配额 2026–2034 逐步退出（有延至 2038 的提案）',en:'Free allocation phases out 2026–2034 (proposal to extend to 2038)'},
+  note:{zh:'与 CBAM 是同一枚硬币的两面：境内免费配额退多少，边境证书补多少。',en:'Two sides of one coin with CBAM: as free allocation falls, border certificates rise.'},
+  rel:[['cert','被锚定','Anchors']],g:[]},
+ {id:'espr',p:'espr',zh:'ESPR（母法）',en:'ESPR (parent act)',ref:'(EU) 2024/1781',st:'pending',hidden:1,
+  next:{d:'—',zh:'框架已生效',en:'Framework in force'},
+  basis:{zh:'(EU) 2024/1781，2024-07-18 生效',en:'(EU) 2024/1781, in force since 18 Jul 2024'},
+  dates:{zh:'2025–2030 工作计划；注册库 2026-07-20 上线',en:'Working plan 2025–2030; registry live 20 Jul 2026'},
+  note:{zh:'DPP 母框架。电池走 1542 独立轨道，其余产品组走 ESPR 轨道，共用一个注册库。',en:'The DPP framework act. Batteries run on the 1542 track; other product groups on the ESPR track; one shared registry.'},
+  rel:[['registry','下设','Covers']],g:[]},
+ {id:'cbam-note',p:'cbam',zh:'CBAM（母法）',en:'CBAM (parent act)',ref:'(EU) 2023/956',st:'applied',hidden:1,
+  next:{d:'—',zh:'正式期运行中',en:'Definitive period running'},
+  basis:{zh:'(EU) 2023/956，经 2025/2083 简化修订',en:'(EU) 2023/956, as simplified by 2025/2083'},
+  dates:{zh:'过渡期 2023-10–2025-12；正式期 2026-01-01 起',en:'Transitional period Oct 2023–Dec 2025; definitive period from 1 Jan 2026'},
+  note:{zh:'正式期只有授权申报人可进口在册货物；50 吨/年门槛。',en:'In the definitive period only authorised declarants may import covered goods; 50 t/year threshold.'},
+  rel:[['cbamrev','被修订','Amended by'],['cert','下设','Covers'],['surrender','下设','Covers'],['downstream','拟扩展','To extend']],g:[]},
+ {id:'bat-act',p:'bat',zh:'电池法规（母法）',en:'Battery Regulation (parent act)',ref:'(EU) 2023/1542',st:'pending',hidden:1,
+  next:{d:'—',zh:'分阶段适用中',en:'Phasing in'},
+  basis:{zh:'2023-08-17 生效，2024-02-18 起分阶段适用',en:'In force 17 Aug 2023; phased application from 18 Feb 2024'},
+  dates:{zh:'护照 2027-02-18 · 尽调 2027-08-18 · 再生含量最低值 2031',en:'Passport 18 Feb 2027 · due diligence 18 Aug 2027 · recycled-content minima 2031'},
+  note:{zh:'义务大多要等子法规通过后才起算——这个页面主要盯子法规的状态。',en:'Most obligations start only once sub-acts are adopted — this page mainly tracks sub-act status.'},
+  rel:[],g:[]}
+];
+const byId={}; ITEMS.forEach(i=>byId[i.id]=i);
+const T=o=>o[L.lang]||o.zh;
+</script>
+<script>
+const $=s=>document.querySelector(s);
+const NS='http://www.w3.org/2000/svg';
+function gel(tag,attrs){ const e=document.createElementNS(NS,tag); for(const k in attrs){ const v=attrs[k];
+  if(typeof v==='string' && v.indexOf('var(')>=0) e.style.setProperty(k,v); else e.setAttribute(k,v); } return e; }
+function fillStatic(){ document.querySelectorAll('[data-zh]').forEach(e=>{ e.textContent=L.lang==='zh'?e.dataset.zh:(e.dataset.en||e.dataset.zh); }); document.title=L.lang==='zh'?'法规进展监控 · LCA瞭望 LCA RADAR':'Regulation Tracker · LCA RADAR';
+  document.documentElement.lang=L.lang==='zh'?'zh-CN':'en'; }
+function pill(st){ const s=ST[st]; return '<span class="pill '+s.cls+'">'+T(s)+'</span>'; }
+/* legend with counts + filter */
+let statusFilter=null;
+function renderLegend(){
+  const counts={}; ST_ORDER.forEach(s=>counts[s]=ITEMS.filter(i=>i.st===s&&!i.hidden).length);
+  $('#legend').innerHTML = ST_ORDER.map(s=>'<button class="lg '+ST[s].cls+(statusFilter&&statusFilter!==s?' off':'')+'" data-s="'+s+'">'+T(ST[s])+' <span class="n">'+counts[s]+'</span></button>').join('')
+    + '<span class="lg-hint">'+(L.lang==='zh'?'点状态筛选 · 点事项看详情':'Click a status to filter · click an item for details')+'</span>';
+  $('#legend').querySelectorAll('.lg').forEach(b=>b.addEventListener('click',()=>{
+    statusFilter = statusFilter===b.dataset.s? null : b.dataset.s;
+    renderLegend(); renderChart();
+  }));
+}
+/* chart */
+const DAY=86400000, pd=s=>new Date(s+'T00:00:00Z').getTime(), TODAY=pd('2026-10-24');
+let win={f:'2025-01-01',t:'2033-01-01'};
+let selected=null, expanded=false;
+const rowOf={};
+function renderChart(){
+  const svg=$('#chart'); svg.innerHTML='';
+  const W=1240, labelW=172, subX=labelW+6, subW=62, tbcW=196, plotX=labelW+subW+8, plotW=W-plotX-tbcW-14, tbcX=W-tbcW-6;
+  const SUB_STYLE={DA:{bg:'var(--pending-bg)',fg:'var(--link)'},IA:{bg:'var(--applied-bg)',fg:'var(--applied)'},'DA+IA':{bg:'var(--pending-bg)',fg:'var(--link)'}};
+  const f=pd(win.f), t=pd(win.t), span=t-f;
+  const X=d=> plotX + (pd(d)-f)/span*plotW;
+  const rowH=27, secH=30, subH=24, secGap=14;
+  const totalH=34 + SECTIONS.reduce((a,s)=>a+secH+s.lanes.reduce((b,l)=>{
+    const its=l.items.map(id=>byId[id]).filter(Boolean);
+    return b+subH+its.filter(i=>!i.u).length*rowH+its.filter(i=>i.u).length*rowH;
+  },0)+secGap,0);
+  svg.setAttribute('viewBox','0 0 '+W+' '+totalH);
+  /* TBC zone backdrop */
+  svg.appendChild(gel('rect',{x:tbcX-8,y:26,width:tbcW+2,height:totalH-34,fill:'var(--chip-bg)',rx:8,opacity:.55}));
+  const tbh=gel('text',{x:tbcX+tbcW/2-4,y:20,'font-size':11.5,fill:'var(--ink2)','text-anchor':'middle','font-weight':700});
+  tbh.textContent=L.lang==='zh'?'日期未定':'NO DATE YET'; svg.appendChild(tbh);
+  svg.appendChild(gel('line',{x1:tbcX-8,y1:26,x2:tbcX-8,y2:totalH-8,stroke:'var(--line)','stroke-width':1,'stroke-dasharray':'3 4'}));
+  /* year grid */
+  for(let yr=2025;yr<=2032;yr++){
+    const x=X(yr+'-01-01'); if(x<plotX||x>plotX+plotW) continue;
+    svg.appendChild(gel('line',{x1:x,y1:26,x2:x,y2:totalH-8,stroke:'var(--line)','stroke-width':1}));
+    const tx=gel('text',{x:x+4,y:16,'font-size':11.5,fill:'var(--ink2)'}); tx.textContent=yr; svg.appendChild(tx);
+  }
+  const subHtxt=gel('text',{x:subX+subW/2,y:16,'font-size':11,fill:'var(--ink2)','text-anchor':'middle','font-weight':700});
+  subHtxt.textContent=L.lang==='zh'?'子法规':'Sub-act'; svg.appendChild(subHtxt);
+  svg.appendChild(gel('line',{x1:plotX-4,y1:26,x2:plotX-4,y2:totalH-8,stroke:'var(--line)','stroke-width':1}));
+  const todayX=X('2026-10-24');
+  if(todayX>=plotX&&todayX<=plotX+plotW){
+    svg.appendChild(gel('line',{x1:todayX,y1:26,x2:todayX,y2:totalH-8,stroke:'var(--today)','stroke-width':1.4,'stroke-dasharray':'5 4'}));
+    const tt=gel('text',{x:todayX+5,y:31,'font-size':11,fill:'var(--today)','font-weight':700}); tt.textContent=L.lang==='zh'?'今天':'today'; svg.appendChild(tt);
+  }
+  let y=34;
+  SECTIONS.forEach(sec=>{
+    /* section band */
+    svg.appendChild(gel('rect',{x:0,y:y,width:W,height:secH-4,fill:'var(--sel)',rx:7}));
+    const st=gel('text',{x:10,y:y+17,'font-size':13.5,'font-weight':800,fill:'var(--ink)'});
+    st.textContent=T(sec); svg.appendChild(st);
+    y+=secH;
+    sec.lanes.forEach(lane=>{
+      const its=lane.items.map(id=>byId[id]).filter(Boolean);
+      const rows=its.filter(i=>!i.u).concat(its.filter(i=>i.u));
+      /* sub-lane header */
+      const lt=gel('text',{x:10,y:y+16,'font-size':12.5,'font-weight':700,fill:'var(--steel)'});
+      lt.textContent=T(lane); svg.appendChild(lt);
+      if(lane.detail){
+        lt.style.cursor='pointer';
+        const ltip=document.createElementNS(NS,'title'); ltip.textContent=L.lang==='zh'?'点击看'+T(lane)+'详情':'Details of '+T(lane); lt.appendChild(ltip);
+        lt.addEventListener('click',()=>select(lane.detail,true));
+      }
+      y+=subH;
+      rows.forEach((it,ri)=>{
+        const nk=rows.filter(r=>r.childOf===it.id).length;
+        if(!it.childOf && nk){
+          const last=rows.map((r,i)=>r.childOf===it.id?i:-1).filter(i=>i>=0).pop();
+          svg.appendChild(gel('rect',{x:0,y:y+ri*rowH+1,width:W-2,height:(last-ri+1)*rowH-2,fill:'var(--chip-bg)',opacity:.65,rx:6,stroke:'var(--line)','stroke-width':1}));
+          svg.appendChild(gel('line',{x1:52,y1:y+ri*rowH+rowH/2+8,x2:52,y2:y+last*rowH+rowH/2,stroke:'var(--ink2)','stroke-width':1.2,opacity:.55}));
+        }
+      });
+      rows.forEach(it=>{
+        const cy=y+rowH/2;
+        const dimmed = statusFilter && it.st!==statusFilter;
+        const g=gel('g',{opacity: dimmed?0.16:1, style:'cursor:pointer'});
+        if(expanded && it.id===selected){
+          g.appendChild(gel('rect',{x:0,y:y+1,width:W-2,height:rowH-2,fill:'var(--sel)',rx:6}));
+        }
+        const nk2=rows.filter(r=>r.childOf===it.id).length;
+        const nm=gel('text',{x: it.childOf?46:labelW-8,y:cy+4,'font-size':11.5,fill: (expanded&&it.id===selected)?'var(--ink)':'var(--ink2)','text-anchor': it.childOf?'start':'end','font-weight': (expanded&&it.id===selected)?700:400});
+        let label=T(it), cw=(L.lang==='zh'?11.5:6.4), maxW= it.childOf?118:labelW-16;
+        if(nk2) label+= L.lang==='zh' ? '（'+nk2+' 项配套）' : ' ('+nk2+' more)';
+        if(it.childOf) label='└ '+label;
+        if(it.childOf){
+          const wOf=t=>[...t].reduce((a,c)=>a+(/[^\x00-\xff]/.test(c)?11.5:6.4),0);
+          while(label.length>2 && wOf(label)>maxW-8) label=label.slice(0,-1);
+          if(wOf(label)>maxW-8) label=label.slice(0,-1)+'…';
+        } else if(label.length*cw>maxW){ const n=Math.floor(maxW/cw)-1; label=label.slice(0,n)+'…'; }
+        nm.textContent=label+(it.slide?' ⁺':''); g.appendChild(nm);
+      if(it.sub){ const stl=SUB_STYLE[it.sub];
+        g.appendChild(gel('rect',{x:subX,y:cy-9,width:subW-2,height:18,rx:9,fill:stl.bg}));
+        const sbt=gel('text',{x:subX+(subW-2)/2,y:cy+4,'font-size':10.5,fill:stl.fg,'text-anchor':'middle','font-weight':700}); sbt.textContent=it.sub; g.appendChild(sbt);
+      } else {
+        const dash=gel('text',{x:subX+(subW-2)/2,y:cy+4,'font-size':11,fill:'var(--ink2)','text-anchor':'middle',opacity:.45}); dash.textContent='—'; g.appendChild(dash);
+      }
+        const col=ST[it.st].col;
+        const tip=document.createElementNS(NS,'title');
+        tip.textContent=T(it)+' · '+T(ST[it.st])+' · '+it.next.d+' '+T(it.next);
+        g.appendChild(tip);
+        if(it.u){
+          const label2=T(it.next);
+          const pw=Math.min(label2.length*(L.lang==='zh'?12:6.6)+18, tbcW-14);
+          const px=tbcX+(tbcW-pw)/2-4;
+          g.appendChild(gel('rect',{x:px,y:cy-10,width:pw,height:20,rx:10,fill:'var(--card)',stroke:col,'stroke-width':1.4,'stroke-dasharray': it.st==='proposal'?'5 3':'none'}));
+          const pt=gel('text',{x:px+pw/2,y:cy+4,'font-size':11,fill:'var(--ink)','text-anchor':'middle'}); pt.textContent=label2; g.appendChild(pt);
+        } else {
+          it.g.forEach(ev=>{
+            if(ev.k==='dia'){
+              const x=X(ev.d); if(x<plotX-4||x>plotX+plotW+4) return;
+              const s=7;
+              g.appendChild(gel('polygon',{points:x+','+(cy-s)+' '+(x+s)+','+cy+' '+x+','+(cy+s)+' '+(x-s)+','+cy,
+                fill: ev.hollow?'var(--card)':col, stroke:col,'stroke-width':1.8}));
+              if(ev.hollow && it.slide){
+                g.appendChild(gel('line',{x1:x+s+2,y1:cy,x2:x+s+30,y2:cy,stroke:col,'stroke-width':1.3,'stroke-dasharray':'3 3'}));
+                g.appendChild(gel('polygon',{points:(x+s+30)+','+(cy-3.5)+' '+(x+s+30)+','+(cy+3.5)+' '+(x+s+36)+','+cy,fill:col}));
+              }
+              if(ev.lb){ let lbt=T(ev.lb);
+                if(ev.hollow && (lbt.indexOf('原定')===0 || lbt.indexOf('orig.')===0)) lbt=lbt+' '+ev.d;
+                if(ev.hollow && it.mech) lbt=lbt+(L.lang==='zh'?' · +'+it.mech.n+'个月':' · +'+it.mech.n+'mo');
+                let lbx=(ev.hollow && it.slide)? x+s+42 : x+s+5, anch='start', lby=ev.labAbove? cy-13 : cy+3.5;
+                if(lbx>plotX+plotW-60){ lbx=x-s-5; anch='end'; lby=cy-13; }
+                const lb=gel('text',{x:lbx,y:lby,'font-size':10.5,fill:'var(--ink2)','text-anchor':anch,'paint-order':'stroke',stroke:'var(--card)','stroke-width':3,'stroke-linejoin':'round'}); lb.textContent=lbt; g.appendChild(lb); }
+              const days=Math.round((pd(ev.d)-TODAY)/DAY);
+              if(!ev.hollow && days>=0 && days<=130){
+                const bt=(L.lang==='zh'? days+' 天' : days+'d');
+                const bw=bt.length*7.5+10;
+                g.appendChild(gel('rect',{x:x-bw/2,y:cy-24,width:bw,height:14,rx:7,fill: days<=40?'var(--alert)':'var(--steel)'}));
+                const btx=gel('text',{x:x,y:cy-13.5,'font-size':9.5,fill:'#fff','text-anchor':'middle','font-weight':700}); btx.textContent=bt; g.appendChild(btx);
+              }
+            } else if(ev.k==='bar'){
+              const x1=X(ev.f), x2=X(ev.t); if(x2<plotX||x1>plotX+plotW) return;
+              const cx1=Math.max(x1,plotX), cx2=Math.min(x2,plotX+plotW);
+              g.appendChild(gel('rect',{x:cx1,y:cy-5,width:cx2-cx1,height:10,rx:5,
+                fill: ev.dashed?'none':col,'fill-opacity': ev.dashed?0:0.75, stroke:col,'stroke-width': ev.dashed?1.4:0,'stroke-dasharray': ev.dashed?'5 4':'none'}));
+              if(ev.lb){ let lx=x2+6, anch='start'; if(lx>W-tbcW-90){ lx=cx2-6; anch='end'; }
+                const lb=gel('text',{x:lx,y:cy+3.5,'font-size':10.5,fill:'var(--ink2)','text-anchor':anch,'paint-order':'stroke',stroke:'var(--card)','stroke-width':3,'stroke-linejoin':'round'}); lb.textContent=T(ev.lb); g.appendChild(lb); }
+            }
+          });
+        }
+        g.addEventListener('click',()=>select(it.id,true));
+        svg.appendChild(g);
+        rowOf[it.id]=y;
+        y+=rowH;
+      });
+    });
+    y+=secGap;
+  });
+}
+/* detail modal */
+function closeModal(){
+  expanded=false;
+  $('#modalBg').classList.remove('open');
+  document.body.style.overflow='';
+  renderChart();
+}
+function select(id,toggle){
+  const it=byId[id]; if(!it) return;
+  if(toggle && expanded && selected===id){ closeModal(); return; }
+  selected=id; expanded=true;
+  renderChart();
+  $('#modalDetail').innerHTML='<h3>'+T(it)+'</h3><div class="en">'+it.en+' · '+(L.lang==='zh'?it.ref:(it.refe||it.ref))+'</div>'+pill(it.st)+
+    (it.slide?'<span class="slide-mark">'+(L.lang==='zh'?'附条件日期':'Conditional date')+'</span>':'')+
+    '<dl class="kv" style="margin-top:12px"><dt>'+(L.lang==='zh'?'依据':'Basis')+'</dt><dd>'+T(it.basis)+'</dd>'+
+    '<dt>'+(L.lang==='zh'?'关键日期':'Key dates')+'</dt><dd>'+T(it.dates)+'</dd>'+
+    (it.sub?'<dt>'+(L.lang==='zh'?'待通过子法规':'Outstanding sub-act')+'</dt><dd>'+({DA:'委托法案（delegated act）',IA:'实施法案（implementing act）','DA+IA':'委托法案＋实施法案（delegated + implementing acts）'})[it.sub]+'</dd>':'')+
+    (it.orig?'<dt>'+(L.lang==='zh'?'条文原定':'Original schedule')+'</dt><dd>'+it.orig.d+'（'+T(it.orig)+'）'+(L.lang==='zh'?'，实际起算以子法规通过为准':', actual start depends on the sub-act being adopted')+'</dd>':'')+'</dl>'+
+    (SRC[it.id]?'<div class="src"><b>'+(L.lang==='zh'?'原始来源：':'Sources: ')+'</b>'+SRC[it.id].map(a=>'<a href="'+a[2]+'" target="_blank" rel="noopener">'+(L.lang==='zh'?a[0]:a[1])+'</a>').join(' · ')+'</div>':'')+
+    (it.mech?'<div class="mech"><b>'+(L.lang==='zh'?'起算机制：':'Start rule: ')+'</b>'+(L.lang==='zh'
+      ?'实际起算 ＝ 较晚者 —— ① 条文原定日 '+it.orig.d+'（'+T(it.orig)+'）；② '+it.mech.zh+'生效后 '+it.mech.n+' 个月。'
+      :'the later of — (1) the original date '+it.orig.d+' ('+T(it.orig)+'); (2) '+it.mech.n+' months after the '+it.mech.en+' enter into force.')+'</div>':'')+
+    (T(it.note)?'<div class="note">'+T(it.note)+'</div>':'');
+  const outIds=new Set(it.rel.map(r=>r[0]));
+  const rows=it.rel.map(([to,k,ke])=>{ const t=byId[to]; return t?'<div class="row"><span class="rel-chip" data-to="'+to+'"><span class="k">'+(L.lang==='zh'?k:ke)+'</span>'+T(t)+'</span> '+pill(t.st)+'</div>':''; }).join('')
+    + ITEMS.filter(o=>o.id!==id&&!outIds.has(o.id)&&o.rel.some(r=>r[0]===id)).map(o=>'<div class="row"><span class="rel-chip" data-to="'+o.id+'"><span class="k">'+(L.lang==='zh'?'被引用':'Referenced by')+'</span>'+T(o)+'</span> '+pill(o.st)+'</div>').join('');
+  $('#modalNbr').innerHTML=rows||'<div class="row" style="color:var(--ink2)">'+(L.lang==='zh'?'无跨法规关系（从属关系见泳道分组）':'No cross-act links (parentage shown by lanes)')+'</div>';
+  $('#modalNbr').querySelectorAll('.rel-chip').forEach(c=>c.addEventListener('click',()=>{ select(c.dataset.to,false); document.querySelector('.modal').scrollTop=0; }));
+  $('#modalBg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function fmtAsof(){ const d=new Date(TODAY), y=d.getUTCFullYear(), mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getUTCMonth()]; const el=document.getElementById('asof'); if(el) el.textContent = L.lang==='zh' ? (y+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0')) : (d.getUTCDate()+' '+mo+' '+y); }
+function rerender(){ fillStatic(); fmtAsof(); renderLegend(); if(expanded&&selected) select(selected,false); else renderChart(); }
+$('#modalX').addEventListener('click',closeModal);
+$('#modalBg').addEventListener('click',e=>{ if(e.target.id==='modalBg') closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&expanded) closeModal(); });
+/* toolbar */
+$('#winSeg').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+  win = b.dataset.w==='all'? {f:'2025-01-01',t:'2032-06-30'} : {f:'2026-07-01',t:'2028-10-31'};
+  $('#winSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  renderChart();
+}));
+$('#langZh').addEventListener('click',()=>{ L.lang='zh'; $('#langZh').classList.add('on'); $('#langEn').classList.remove('on'); rerender(); });
+$('#langEn').addEventListener('click',()=>{ L.lang='en'; $('#langEn').classList.add('on'); $('#langZh').classList.remove('on'); rerender(); });
+$('#themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement, dark=h.dataset.theme!=='dark';
+  h.dataset.theme=dark?'dark':'light';
+  $('#themeBtn').textContent=dark?(L.lang==='zh'?'浅色':'Light'):(L.lang==='zh'?'深色':'Dark');
+  renderChart();
+});
+rerender();
+</script>
+</body>
+</html>
