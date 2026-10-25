@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>法规进展监控 · v14 测试版 — LCA瞭望</title>
+<title>法规进展监控 · v14.1 测试版 — LCA瞭望</title>
 <style>
   :root{
     --bg:#F4F6F8; --card:#FFFFFF; --ink:rgba(0,0,0,.88); --ink2:#54585A; --line:#E4E4E6;
     --steel:#0077B6; --link:#0077B6; --primary:#0A1E33; --accent:#00A9E0; --accent-deep:#0077B6; --alert:#c0392b;
     --chip-bg:#F1F3F5; --hover:#F4F6F8; --sel:#DCEFFA; --on-text:#ffffff;
     --applied:#0A1E33; --applied-bg:#E4EAF0;
-    --pending:#0077B6; --pending-bg:#DCEFFA;
+    --pending:#005a8a; --pending-bg:#DCEFFA;
     --consult:#8a5410; --consult-bg:#FAEBDC;
     --awaited:#5c5c5e; --awaited-bg:#F1F3F5;
     --proposal:#5c5c5e; --published:#1d6b4f; --published-bg:#E2F2EA;
     --today:#c0392b;
+    --badge-alert-bg:#c0392b; --badge-alert-fg:#ffffff; --badge-steel-bg:#0077B6; --badge-steel-fg:#ffffff;
   }
   html[data-theme="dark"]{
     --bg:#0A1626; --card:#12233A; --ink:#edf1f6; --ink2:#a9b3c0; --line:#233142;
@@ -26,6 +27,7 @@
     --awaited:#aab4c0; --awaited-bg:#1a2434;
     --proposal:#aab4c0; --published:#7fd4ae; --published-bg:#14382a;
     --today:#e0685c;
+    --badge-alert-bg:#e0685c; --badge-alert-fg:#0A1626; --badge-steel-bg:#4DB8E8; --badge-steel-fg:#0A1626;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
@@ -49,6 +51,9 @@
   .recent h3{font-size:13.5px;margin:0 0 6px}
   .recent ul{margin:0;padding-left:18px;font-size:13px;line-height:1.75}
   .recent a{color:var(--link)}
+  .recent h4{font-size:12.5px;margin:12px 0 2px;color:var(--ink2)}
+  .method summary{cursor:pointer;font-weight:700;font-size:13.5px}
+  .method p{font-size:13px;color:var(--ink2);line-height:1.75;margin:8px 0 0}
   .legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
   .lg{display:inline-flex;align-items:center;gap:6px;border:1.5px solid;border-radius:20px;padding:2px 11px;font-size:12.5px;font-weight:600;cursor:pointer;background:transparent}
   .lg .n{font-weight:800}
@@ -58,7 +63,7 @@
   .lg.awaited{color:var(--awaited);border-color:var(--awaited);background:var(--awaited-bg)}
   .lg.proposal{color:var(--proposal);border-color:var(--proposal);border-style:dashed}
   .lg.published{color:var(--published);border-color:var(--published);background:var(--published-bg)}
-  .lg.off{opacity:.35}
+  .lg.off{opacity:1;background:transparent;color:var(--ink2)}
   .lg-hint{color:var(--ink2);font-size:12px;margin-left:4px}
   .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
   .filters label{font-size:12.5px;color:var(--ink2)}
@@ -83,7 +88,7 @@
   .sh.bar{width:26px;height:9px;border-radius:5px;background:var(--ink);opacity:.75}
   .sh.bar.dashed{background:transparent;border:1.4px dashed var(--ink)}
   .sh.tline{width:0;height:16px;border-left:1.8px dashed var(--alert)}
-  .sh.badge{background:var(--alert);color:#fff;font-style:normal;font-size:10px;font-weight:700;border-radius:7px;padding:1px 6px}
+  .sh.badge{background:var(--badge-alert-bg);color:var(--badge-alert-fg);font-style:normal;font-size:10px;font-weight:700;border-radius:7px;padding:1px 6px}
   .sh.tbc{font-style:normal;font-size:11px;border:1.4px solid var(--ink2);border-radius:10px;padding:1px 9px;color:var(--ink)}
   .scrollx{overflow-x:auto}
   .chartmin{min-width:900px}
@@ -109,6 +114,11 @@
   .pill.awaited{color:var(--awaited);border-color:var(--awaited);background:var(--awaited-bg)}
   .pill.proposal{color:var(--proposal);border-color:var(--proposal);border-style:dashed}
   .pill.published{color:var(--published);border-color:var(--published);background:var(--published-bg)}
+  .pill.phased{color:var(--applied);border-color:var(--applied);background:var(--applied-bg)}
+  .pill.framework{color:var(--applied);border-color:var(--applied);background:var(--applied-bg)}
+  .pill.definitive{color:var(--published);border-color:var(--published);background:var(--published-bg)}
+  .pill.running{color:var(--pending);border-color:var(--pending);background:var(--pending-bg)}
+  .pill.unverified{color:var(--ink2);border-color:var(--ink2);background:var(--chip-bg);border-style:dashed}
   .typechip{display:inline-block;font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:1px}
   .kv{display:grid;grid-template-columns:132px 1fr;row-gap:8px;font-size:13.5px;border-bottom:1px dashed var(--line);padding-bottom:12px}
   .kv dt{color:var(--ink2);white-space:normal}
@@ -151,7 +161,7 @@
   <header class="top">
     <div>
       <div class="site"><a href="https://radar.lca.wiki/" target="_blank" rel="noopener" data-zh="LCA瞭望 · LCA RADAR" data-en="LCA RADAR"></a> <span data-zh="／ 法规进展监控" data-en=" / Regulation Tracker"></span></div>
-      <h1><span data-zh="法规进展监控" data-en="Regulation Tracker"></span><span class="draft-tag" data-zh="v14 测试版" data-en="v14 test page"></span></h1>
+      <h1><span data-zh="法规进展监控" data-en="Regulation Tracker"></span><span class="draft-tag" data-zh="v14.1 测试版" data-en="v14.1 test page"></span></h1>
       <div class="sub"><span data-zh="数据核验截止：" data-en="Data verified through: "></span><span id="asof"></span><span data-zh=" · 展示事项 27 项（含 v14 新增 1 项）" data-en=" · 27 items shown (incl. 1 added in v14)"></span></div>
     </div>
     <div class="toggles">
@@ -160,6 +170,7 @@
     </div>
   </header>
 
+  <main id="mainContent">
   <div class="card">
     <h2 data-zh="收录范围" data-en="Coverage"></h2>
     <p class="scope" data-zh="本页监控汽车与电池重点法规及配套进展：欧盟电池法规 (EU) 2023/1542、ESPR (EU) 2024/1781、CBAM (EU) 2023/956、Euro 7 (EU) 2024/1257、报废车辆法规 (EU) 2026/1738、关键原材料法 (EU) 2024/1252，以及中国工信部动力电池碳足迹申报与财政部汽车气候披露指南。同一法规下可能有多项义务；事项数不等于法规数。覆盖台账见同期交付文件。"
@@ -169,6 +180,15 @@
   <div class="card">
     <h2 data-zh="近期关注" data-en="Recent focus"></h2>
     <div class="recent" id="recent"></div>
+  </div>
+
+  <div class="card method">
+    <details>
+      <summary data-zh="数据与核验方法" data-en="Data &amp; verification method"></summary>
+      <p data-zh="版本 v14.1 测试版；数据核验截止 2026-10-25（v14 事实核验于 2026-10-24，v14.1 复核于 2026-10-25）。" data-en="Version v14.1 test page; data verified through 25 Oct 2026 (v14 facts checked 24 Oct 2026, v14.1 re-checked 25 Oct 2026)."></p>
+      <p data-zh="“待核验”表示尚未取得一手依据，不得理解为“未发布”“未通过”或“不存在”；状态徽章来自事项的显式状态字段，未知状态显示“状态待核验”，不默认“待通过”。" data-en="“Pending verification” means no primary source has been obtained yet; it must not be read as “not published”, “not adopted” or “non-existent”. Status badges come from each item's explicit status field; unknown status shows “Status pending verification”, never a default “Not yet adopted”."></p>
+      <p data-zh="计划日期口径：计划、指示、目标类日期不是正式截止；过期后显示“计划日期已过，发布状态待核验”，不自动变为已发生。条件日期口径：依赖法案生效日未知时不产出确定适用日，列表、时间轴、详情、近期关注四处一致显示待确认。" data-en="Plan-date convention: planned, indicative or target dates are not formal deadlines; once passed they show “Planned date passed; publication status pending verification” and never auto-flip to occurred. Conditional-date convention: while a dependency's entry-into-force date is unknown, no firm application date is produced, and the list, timeline, detail and recent-focus views all show “to be confirmed”."></p>
+    </details>
   </div>
 
   <div class="card">
@@ -203,20 +223,21 @@
 
   <div class="banner" id="banner" role="alert"></div>
 
-  <div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="foot" data-zh="说明：空心菱形为原定或指示日期，实际起算以子法规生效为准；「待通过」指子法规尚未通过。状态以 EUR-Lex 与欧委会为准，细节见各事项详情。数据版本：v14.1（核验截止 2026-10-25）；上一可用版本：v14 设计稿（文件原样保留，v14.1 如有问题回退到 v14；v13 设计稿亦保留）。"
+       data-en="Notes: hollow diamonds are original or indicative dates; the actual start depends on the sub-act entering into force. 'Not yet adopted' means the sub-act is outstanding. EUR-Lex and the Commission prevail; see each item's detail for specifics. Data version: v14.1 (verified through 25 Oct 2026); previous usable version: v14 draft (file retained as-is; fall back to v14 if v14.1 has problems; v13 draft also retained)."></div>
+</main>
+</div>
+<div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-x" id="modalX" aria-label="close">✕</button>
     <div id="modalDetail"></div>
   </div></div>
-
-  <div class="foot" data-zh="说明：空心菱形为原定或指示日期，实际起算以子法规生效为准；「待通过」指子法规尚未通过。状态以 EUR-Lex 与欧委会为准，细节见各事项详情。数据版本：v14（核验截止 2026-10-24）；上一可用版本：v13 设计稿（文件原样保留，v14 如有问题回退到 v13）。"
-       data-en="Notes: hollow diamonds are original or indicative dates; the actual start depends on the sub-act entering into force. 'Not yet adopted' means the sub-act is outstanding. EUR-Lex and the Commission prevail; see each item's detail for specifics. Data version: v14 (verified through 24 Oct 2026); previous usable version: v13 draft (file retained as-is; fall back to v13 if v14 has problems)."></div>
-</div>
 <script id="reg-data" type="application/json">{
   "meta": {
-    "version": "v14",
-    "dataAsOf": "2026-10-24",
+    "version": "v14.1",
+    "dataAsOf": "2026-10-25",
     "displayCount": 27,
-    "prevVersion": "v13"
+    "prevVersion": "v14",
+    "prevNote": "v14 设计稿文件原样保留；v14.1 如有问题回退到 v14，v13 设计稿亦保留。"
   },
   "sources": {
     "S01": {
@@ -608,6 +629,21 @@
         "zh": "v13 底料",
         "en": "Carried from v13"
       }
+    },
+    "S29": {
+      "title": {
+        "zh": "欧洲议会 OEIL · Euro 7 最终法案摘要",
+        "en": "European Parliament OEIL · Euro 7 final act summary"
+      },
+      "org": "European Parliament",
+      "doc": "Euro 7 摘要，Application dates",
+      "url": "https://oeil.europarl.europa.eu/oeil/en/document-summary?id=1784743",
+      "checked": "2026-10-24",
+      "verified": null,
+      "status": {
+        "zh": "轻重型车分组已核验；母法原文待核验",
+        "en": "Light/heavy-duty grouping verified; parent-act text pending verification"
+      }
     }
   },
   "sections": [
@@ -763,8 +799,8 @@
       },
       "jur": "EU",
       "prod": {
-        "zh": "EV 电池、工业电池、LMT 电池",
-        "en": "EV, industrial and LMT batteries"
+        "zh": "EV 电池、可充电工业电池（>2kWh，含仅外部储能类别分日历）、LMT 电池",
+        "en": "EV batteries, rechargeable industrial batteries (> 2 kWh, incl. the external-storage-only category on its own calendar) and LMT batteries"
       },
       "roles": {
         "zh": "投放欧盟市场的经济运营者",
@@ -775,12 +811,12 @@
         "art": "Art 7(1)"
       },
       "stage": {
-        "zh": "方法学委托法案与格式实施法案均待通过",
-        "en": "Methodology delegated act and format implementing act both outstanding"
+        "zh": "Art 7(1) 起算规则已核验；配套文件实时状态待核验",
+        "en": "Art 7(1) start rule verified; live companion-file status pending verification"
       },
       "app": {
-        "zh": "尚未适用（条件未满足）",
-        "en": "Not yet applying (conditions unmet)"
+        "zh": "实际适用日待确认（配套文件生效日未知）",
+        "en": "Actual application date to be confirmed (companion-file entry-into-force dates unknown)"
       },
       "ev": [
         {
@@ -806,8 +842,16 @@
             "en": "Art 7(1) methodology delegated act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         },
         {
@@ -817,16 +861,24 @@
             "en": "Art 7(1) format implementing act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         }
       ],
       "rule": {
         "op": "latest_of",
         "text": {
-          "zh": "实际适用日 ＝ 较晚者：① 条文原定日；② 相应委托法案生效后 N 个月；③ 相应实施法案生效后 N 个月。分产品：EV 为原定 2025-02-18＋12 个月；工业电池为原定 2026-02-18＋18 个月；LMT 为原定 2028-08-18＋18 个月；带外部储能的工业电池为原定 2030-08-18＋18 个月。依赖生效日未知时不产出确定适用日。",
-          "en": "Actual application date = the latest of: (1) the statutory base date; (2) N months after the delegated act enters into force; (3) N months after the implementing act enters into force. By category: EV base 18 Feb 2025 + 12 months; industrial base 18 Feb 2026 + 18 months; LMT base 18 Aug 2028 + 18 months; industrial with external storage base 18 Aug 2030 + 18 months. No firm date is produced while a dependency date is unknown."
+          "zh": "实际适用日＝三者取最晚：① 法定基准日（分产品）；② 方法学委托法案生效后偏移量；③ 格式实施法案生效后偏移量。分产品——EV：法定基准日 2025-02-18，委托法案生效后 12 个月，实施法案生效后 12 个月；除仅外部储能外的工业电池：法定基准日 2026-02-18，委托法案生效后 18 个月，实施法案生效后 18 个月；LMT：法定基准日 2028-08-18，委托法案生效后 18 个月，实施法案生效后 18 个月；带外部储能的工业电池（(d) 项剩余类别）：法定基准日 2030-08-18，委托法案生效后 18 个月，实施法案生效后 18 个月。依赖生效日未知时不产出确定适用日。",
+          "en": "Actual application date = the latest of: (1) the statutory base date (by category); (2) the offset after the methodology delegated act enters into force; (3) the offset after the format implementing act enters into force. By category — EV: base date 18 Feb 2025, DA + 12 months, IA + 12 months; industrial except exclusively external storage: base date 18 Feb 2026, DA + 18 months, IA + 18 months; LMT: base date 18 Aug 2028, DA + 18 months, IA + 18 months; industrial with external storage (item (d), residual category): base date 18 Aug 2030, DA + 18 months, IA + 18 months. No firm date is produced while a dependency date is unknown."
         }
       },
       "src": [
@@ -841,8 +893,8 @@
         }
       },
       "act": {
-        "zh": "按 Art 7(1) 方法学口径整理碳足迹活动数据与核算文件；待方法学法案出台后再定申报格式。",
-        "en": "Organise carbon-footprint activity data and calculation files to the Art 7(1) methodology; confirm the declaration format once the methodology act lands."
+        "zh": "按 Art 7(1) 方法学口径整理碳足迹活动数据与核算文件；方法学口径待 Art 7(1) 方法学委托法案，申报格式待 Art 7(1) 格式实施法案。",
+        "en": "Organise carbon-footprint activity data and calculation files to the Art 7(1) methodology; the methodology follows the Art 7(1) methodology delegated act, the declaration format follows the Art 7(1) format implementing act."
       },
       "rel": [
         {
@@ -872,6 +924,10 @@
         {
           "zh": "研究记录：市面“工业电池碳规则已于 2026 年实施”的说法（多家营销站点日期互不一致，2026-02／06／07／08 月各一说）经核无一手依据：工业电池申报按 Art 7(1) 为 2026-02-18 或子法规生效后 18 个月取较晚者，子法规未通过故未生效；EN 15804+A2 为建筑产品 EPD 标准，非电池方法学。结论：不采信。",
           "en": "Research note: a circulating claim that industrial-battery carbon rules took effect in 2026 (marketing sites disagree: Feb/Jun/Jul/Aug 2026) has no primary source — under Art 7(1) the industrial declaration starts 18 Feb 2026 or 18 months after the sub-acts, whichever is later, and the sub-acts are not adopted; EN 15804+A2 is a construction-product EPD standard, not the battery methodology. Not relied on."
+        },
+        {
+          "zh": "v14.1：状态与证据拆为法定规则／配套文件当前状态／实际适用状态／证据状态四行；“均待通过”“尚未适用（条件未满足）”等推导结论改为待核验表述；规则写法拆为法定基准日／依赖生效后偏移量／取最晚结果三段；工业范围补可充电、>2kWh，外部储能类别单列日历；行动建议按方法学→DA、格式→IA 拆开。",
+          "en": "v14.1: status and evidence split into statutory rule / companion-file status / actual application status / evidence status; inferred conclusions (“both outstanding”, “not yet applying (conditions unmet)”) rewritten as pending-verification wording; rule rewritten as base date / post-entry-into-force offset / latest-of; industrial scope adds rechargeable and > 2 kWh, external-storage category on its own calendar; action split methodology→DA, format→IA."
         }
       ],
       "next": {
@@ -883,6 +939,94 @@
       "disp": {
         "child": false,
         "hidden": false
+      },
+      "cat": "awaited",
+      "appStatus": "pending",
+      "cond": {
+        "rule": "latest_of",
+        "verificationStatus": "dependency-status-unverified",
+        "categories": [
+          {
+            "key": "ev",
+            "label": {
+              "zh": "EV 电池",
+              "en": "EV batteries"
+            },
+            "baseDate": "2025-02-18",
+            "dependencies": [
+              {
+                "key": "cf_decl_da",
+                "entryIntoForce": null,
+                "offsetMonths": 12
+              },
+              {
+                "key": "cf_decl_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 12
+              }
+            ]
+          },
+          {
+            "key": "ind",
+            "label": {
+              "zh": "除仅外部储能外的工业电池",
+              "en": "Industrial except exclusively external storage"
+            },
+            "baseDate": "2026-02-18",
+            "dependencies": [
+              {
+                "key": "cf_decl_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_decl_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "lmt",
+            "label": {
+              "zh": "LMT 电池",
+              "en": "LMT batteries"
+            },
+            "baseDate": "2028-08-18",
+            "dependencies": [
+              {
+                "key": "cf_decl_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_decl_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "ind-ext",
+            "label": {
+              "zh": "带外部储能的工业电池（(d) 项剩余类别）",
+              "en": "Industrial with external storage (item (d), residual category)"
+            },
+            "baseDate": "2030-08-18",
+            "dependencies": [
+              {
+                "key": "cf_decl_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_decl_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -894,8 +1038,8 @@
       },
       "jur": "EU",
       "prod": {
-        "zh": "EV 电池、工业电池、LMT 电池",
-        "en": "EV, industrial and LMT batteries"
+        "zh": "EV 电池、可充电工业电池（>2kWh，含仅外部储能类别分日历）、LMT 电池",
+        "en": "EV batteries, rechargeable industrial batteries (> 2 kWh, incl. the external-storage-only category on its own calendar) and LMT batteries"
       },
       "roles": {
         "zh": "投放欧盟市场的经济运营者",
@@ -906,12 +1050,12 @@
         "art": "Art 7(2)"
       },
       "stage": {
-        "zh": "等级委托法案与标签实施法案均待通过",
-        "en": "Classes delegated act and label implementing act both outstanding"
+        "zh": "Art 7(2) 起算规则已核验；配套文件实时状态待核验",
+        "en": "Art 7(2) start rule verified; live companion-file status pending verification"
       },
       "app": {
-        "zh": "尚未适用（条件未满足）",
-        "en": "Not yet applying (conditions unmet)"
+        "zh": "实际适用日待确认（配套文件生效日未知）",
+        "en": "Actual application date to be confirmed (companion-file entry-into-force dates unknown)"
       },
       "ev": [
         {
@@ -937,8 +1081,16 @@
             "en": "Art 7(2) classes delegated act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         },
         {
@@ -948,16 +1100,24 @@
             "en": "Art 7(2) label and declaration-format implementing act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         }
       ],
       "rule": {
         "op": "latest_of",
         "text": {
-          "zh": "实际适用日 ＝ 较晚者：① 条文原定日；② 相应委托法案生效后 18 个月；③ 相应实施法案生效后 18 个月。分产品：EV 为原定 2026-08-18；工业电池（不含仅外部储能）为原定 2027-08-18；LMT 为原定 2030-02-18；带外部储能的工业电池为原定 2032-02-18。7(2) 的 DA／IA 与 7(1) 的 DA／IA 是两套文件，不得混用生效日。",
-          "en": "Actual application date = the latest of: (1) the statutory base date; (2) 18 months after the delegated act enters into force; (3) 18 months after the implementing act enters into force. By category: EV base 18 Aug 2026; industrial (excluding exclusively external storage) base 18 Aug 2027; LMT base 18 Feb 2030; industrial with external storage base 18 Feb 2032. The Art 7(2) DA/IA are a different pair from the Art 7(1) DA/IA; do not mix their entry-into-force dates."
+          "zh": "实际适用日＝三者取最晚：① 法定基准日（分产品）；② 等级委托法案生效后偏移量；③ 标签与声明格式实施法案生效后偏移量。分产品——EV：法定基准日 2026-08-18，委托法案生效后 18 个月，实施法案生效后 18 个月；除仅外部储能外的工业电池：法定基准日 2027-08-18，委托法案生效后 18 个月，实施法案生效后 18 个月；LMT：法定基准日 2030-02-18，委托法案生效后 18 个月，实施法案生效后 18 个月；带外部储能的工业电池：法定基准日 2032-02-18，委托法案生效后 18 个月，实施法案生效后 18 个月。7(2) 的 DA／IA 与 7(1) 的 DA／IA 是两套文件，不得混用生效日。依赖生效日未知时不产出确定适用日。",
+          "en": "Actual application date = the latest of: (1) the statutory base date (by category); (2) the offset after the classes delegated act enters into force; (3) the offset after the label and declaration-format implementing act enters into force. By category — EV: base date 18 Aug 2026, DA + 18 months, IA + 18 months; industrial except exclusively external storage: base date 18 Aug 2027, DA + 18 months, IA + 18 months; LMT: base date 18 Feb 2030, DA + 18 months, IA + 18 months; industrial with external storage: base date 18 Feb 2032, DA + 18 months, IA + 18 months. The Art 7(2) DA/IA are a different pair from the Art 7(1) DA/IA; do not mix their entry-into-force dates. No firm date is produced while a dependency date is unknown."
         }
       },
       "src": [
@@ -999,6 +1159,10 @@
         {
           "zh": "v14：配套文件由仅 DA 补为 DA＋IA（Art 7(2) 第四分段同时涉及两项）；触发词改为“生效”；分产品基准日拆分。",
           "en": "v14: companion files corrected from DA-only to DA + IA (Art 7(2) fourth subparagraph covers both); trigger word changed to “entry into force”; base dates split by category."
+        },
+        {
+          "zh": "v14.1：状态与证据拆四行；规则写法拆为法定基准日／依赖生效后偏移量／取最晚结果三段；工业范围补可充电、>2kWh。",
+          "en": "v14.1: status and evidence split into four rows; rule rewritten as base date / offset / latest-of; industrial scope adds rechargeable and > 2 kWh."
         }
       ],
       "next": {
@@ -1010,6 +1174,94 @@
       "disp": {
         "child": false,
         "hidden": false
+      },
+      "cat": "awaited",
+      "appStatus": "pending",
+      "cond": {
+        "rule": "latest_of",
+        "verificationStatus": "dependency-status-unverified",
+        "categories": [
+          {
+            "key": "ev",
+            "label": {
+              "zh": "EV 电池",
+              "en": "EV batteries"
+            },
+            "baseDate": "2026-08-18",
+            "dependencies": [
+              {
+                "key": "cf_classes_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_label_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "ind",
+            "label": {
+              "zh": "除仅外部储能外的工业电池",
+              "en": "Industrial except exclusively external storage"
+            },
+            "baseDate": "2027-08-18",
+            "dependencies": [
+              {
+                "key": "cf_classes_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_label_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "lmt",
+            "label": {
+              "zh": "LMT 电池",
+              "en": "LMT batteries"
+            },
+            "baseDate": "2030-02-18",
+            "dependencies": [
+              {
+                "key": "cf_classes_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_label_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "ind-ext",
+            "label": {
+              "zh": "带外部储能的工业电池",
+              "en": "Industrial with external storage"
+            },
+            "baseDate": "2032-02-18",
+            "dependencies": [
+              {
+                "key": "cf_classes_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              },
+              {
+                "key": "cf_label_ia",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -1021,8 +1273,8 @@
       },
       "jur": "EU",
       "prod": {
-        "zh": "EV 电池、工业电池、LMT 电池",
-        "en": "EV, industrial and LMT batteries"
+        "zh": "EV 电池、可充电工业电池（>2kWh，含仅外部储能类别分日历）、LMT 电池",
+        "en": "EV batteries, rechargeable industrial batteries (> 2 kWh, incl. the external-storage-only category on its own calendar) and LMT batteries"
       },
       "roles": {
         "zh": "投放欧盟市场的经济运营者",
@@ -1033,12 +1285,12 @@
         "art": "Art 7(3)"
       },
       "stage": {
-        "zh": "阈值委托法案待通过",
-        "en": "Threshold delegated act outstanding"
+        "zh": "Art 7(3) 起算规则已核验；配套文件实时状态待核验",
+        "en": "Art 7(3) start rule verified; live companion-file status pending verification"
       },
       "app": {
-        "zh": "尚未适用（条件未满足）",
-        "en": "Not yet applying (conditions unmet)"
+        "zh": "实际适用日待确认（配套文件生效日未知）",
+        "en": "Actual application date to be confirmed (companion-file entry-into-force dates unknown)"
       },
       "ev": [
         {
@@ -1064,16 +1316,24 @@
             "en": "Art 7(3) threshold delegated act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         }
       ],
       "rule": {
         "op": "latest_of",
         "text": {
-          "zh": "实际适用日 ＝ 较晚者：① 条文原定日；② 阈值委托法案生效后 18 个月。7(3) 只有 DA 肢，无 IA 肢。分产品：EV 为原定 2028-02-18；工业电池（不含仅外部储能）为原定 2029-02-18；LMT 为原定 2031-08-18；带外部储能的工业电池为原定 2033-08-18。",
-          "en": "Actual application date = the latest of: (1) the statutory base date; (2) 18 months after the threshold delegated act enters into force. Art 7(3) has a DA limb only, no IA limb. By category: EV base 18 Feb 2028; industrial (excluding exclusively external storage) base 18 Feb 2029; LMT base 18 Aug 2031; industrial with external storage base 18 Aug 2033."
+          "zh": "实际适用日＝两者取最晚：① 法定基准日（分产品）；② 阈值委托法案生效后偏移量。分产品——EV：法定基准日 2028-02-18，委托法案生效后 18 个月；除仅外部储能外的工业电池：法定基准日 2029-02-18，委托法案生效后 18 个月；LMT：法定基准日 2031-08-18，委托法案生效后 18 个月；带外部储能的工业电池：法定基准日 2033-08-18，委托法案生效后 18 个月。7(3) 只有 DA 肢，无 IA 肢。依赖生效日未知时不产出确定适用日。",
+          "en": "Actual application date = the later of: (1) the statutory base date (by category); (2) the offset after the threshold delegated act enters into force. By category — EV: base date 18 Feb 2028, DA + 18 months; industrial except exclusively external storage: base date 18 Feb 2029, DA + 18 months; LMT: base date 18 Aug 2031, DA + 18 months; industrial with external storage: base date 18 Aug 2033, DA + 18 months. Art 7(3) has a DA limb only, no IA limb. No firm date is produced while a dependency date is unknown."
         }
       },
       "src": [
@@ -1083,8 +1343,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "规则已核验",
-          "en": "Rule verified"
+          "zh": "规则已核验；依赖法案实时状态待复核",
+          "en": "Rule verified; live dependency status needs review"
         }
       },
       "act": {
@@ -1108,6 +1368,10 @@
         {
           "zh": "v14：删除“唯一的市场准入硬约束”中的“唯一”；确认 7(3) 只有 DA 肢、无 IA 肢。",
           "en": "v14: removed “only” from “the only market-access constraint”; confirmed Art 7(3) has a DA limb only."
+        },
+        {
+          "zh": "v14.1：状态与证据拆四行；规则写法拆为法定基准日／依赖生效后偏移量／取最晚结果三段；工业范围补可充电、>2kWh。",
+          "en": "v14.1: status and evidence split into four rows; rule rewritten as base date / offset / latest-of; industrial scope adds rechargeable and > 2 kWh."
         }
       ],
       "next": {
@@ -1119,6 +1383,74 @@
       "disp": {
         "child": false,
         "hidden": false
+      },
+      "cat": "awaited",
+      "appStatus": "pending",
+      "cond": {
+        "rule": "latest_of",
+        "verificationStatus": "dependency-status-unverified",
+        "categories": [
+          {
+            "key": "ev",
+            "label": {
+              "zh": "EV 电池",
+              "en": "EV batteries"
+            },
+            "baseDate": "2028-02-18",
+            "dependencies": [
+              {
+                "key": "cf_threshold_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "ind",
+            "label": {
+              "zh": "除仅外部储能外的工业电池",
+              "en": "Industrial except exclusively external storage"
+            },
+            "baseDate": "2029-02-18",
+            "dependencies": [
+              {
+                "key": "cf_threshold_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "lmt",
+            "label": {
+              "zh": "LMT 电池",
+              "en": "LMT batteries"
+            },
+            "baseDate": "2031-08-18",
+            "dependencies": [
+              {
+                "key": "cf_threshold_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "ind-ext",
+            "label": {
+              "zh": "带外部储能的工业电池",
+              "en": "Industrial with external storage"
+            },
+            "baseDate": "2033-08-18",
+            "dependencies": [
+              {
+                "key": "cf_threshold_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -1130,8 +1462,8 @@
       },
       "jur": "EU",
       "prod": {
-        "zh": "工业电池、EV 电池、LMT 电池",
-        "en": "Industrial, EV and LMT batteries"
+        "zh": "工业电池（>2kWh，排除仅外部储能）、EV 电池、SLI 电池；LMT 电池（申报与最低值分阶段不同）",
+        "en": "Industrial batteries (> 2 kWh, excluding exclusively external storage), EV batteries and SLI batteries; LMT batteries (declaration and minimum levels on different phases)"
       },
       "roles": {
         "zh": "投放欧盟市场的经济运营者",
@@ -1142,12 +1474,12 @@
         "art": "Art 8"
       },
       "stage": {
-        "zh": "方法学委托法案待通过；最低值已由法规直定",
-        "en": "Methodology delegated act outstanding; minimum levels set in the Regulation itself"
+        "zh": "Art 8 规则已核验：申报为生效触发、最低值为固定日；方法学委托法案实时状态待核验",
+        "en": "Art 8 rule verified: declaration on an entry-into-force trigger, minimum levels on fixed dates; live methodology DA status pending verification"
       },
       "app": {
-        "zh": "尚未适用（申报条件未满足；最低值固定日未到）",
-        "en": "Not yet applying (declaration conditions unmet; minimum-level dates not reached)"
+        "zh": "申报实际适用日待确认；最低值固定日 2031-08-18／2036-08-18",
+        "en": "Declaration application date to be confirmed; minimum levels on fixed dates 18 Aug 2031 / 18 Aug 2036"
       },
       "ev": [
         {
@@ -1191,6 +1523,20 @@
           "src": [
             "S01"
           ]
+        },
+        {
+          "id": "rc-lmt-decl",
+          "type": "application",
+          "nat": "firm",
+          "prec": "day",
+          "d": "2033-08-18",
+          "lbl": {
+            "zh": "LMT 申报（固定日）",
+            "en": "LMT declaration (fixed date)"
+          },
+          "src": [
+            "S01"
+          ]
         }
       ],
       "deps": [
@@ -1201,16 +1547,24 @@
             "en": "Art 8 methodology delegated act"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         }
       ],
       "rule": {
         "op": "latest_of",
         "text": {
-          "zh": "申报义务：实际适用日 ＝ 较晚者（条文原定 2028-08-18，方法学委托法案生效后 24 个月）。最低含量是固定日历日，不是生效触发：2031-08-18 起适用最低值（钴 16%·锂 6%·镍 6%·铅 85%），2036-08-18 加严。",
-          "en": "Declaration duty: actual application date = the later of the statutory base 18 Aug 2028 and 24 months after the methodology delegated act enters into force. Minimum levels are fixed calendar dates, not entry-into-force triggers: from 18 Aug 2031 (Co 16% · Li 6% · Ni 6% · Pb 85%), tightening 18 Aug 2036."
+          "zh": "申报义务：实际适用日＝较晚者——① 法定基准日 2028-08-18（工业电池 >2kWh，排除仅外部储能；EV；SLI）；② 方法学委托法案生效后 24 个月。LMT 申报为固定日 2033-08-18，无生效触发。最低含量是固定日历日，不是生效触发：2031-08-18 起适用最低值（工业电池、EV、SLI；钴 16%·铅 85%·锂 6%·镍 6%），2036-08-18 加严（含 LMT；钴 26%·铅 85%·锂 12%·镍 15%）。",
+          "en": "Declaration duty: actual application date = the later of (1) the statutory base date 18 Aug 2028 (industrial batteries > 2 kWh, excluding exclusively external storage; EV; SLI) and (2) 24 months after the methodology delegated act enters into force. The LMT declaration is a fixed date, 18 Aug 2033, with no entry-into-force trigger. Minimum levels are fixed calendar dates, not entry-into-force triggers: from 18 Aug 2031 (industrial, EV, SLI; Co 16% · Pb 85% · Li 6% · Ni 6%), tightening 18 Aug 2036 (incl. LMT; Co 26% · Pb 85% · Li 12% · Ni 15%)."
         }
       },
       "src": [
@@ -1220,8 +1574,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "规则已核验",
-          "en": "Rule verified"
+          "zh": "规则已核验；方法学委托法案实时状态待复核",
+          "en": "Rule verified; live methodology DA status needs review"
         }
       },
       "act": {
@@ -1238,24 +1592,137 @@
         }
       ],
       "note": {
-        "zh": "方法学等法案，数值是法定的，两层分开看。",
-        "en": "Method awaits an act; the numbers are already law — keep the two layers separate."
+        "zh": "方法学等法案，数值是法定的，两层分开看。适用类别含 SLI 电池（搜索 SLI 可找到本项）；LMT 不从 2028 年申报、不适用 2031 年最低值，LMT 申报固定日 2033-08-18、最低值自 2036-08-18 纳入。钴／锂／镍按活性物质中回收份额，铅按电池中回收份额。",
+        "en": "Method awaits an act; the numbers are already law — keep the two layers separate. SLI batteries are in scope (search “SLI” to find this item); LMT does not declare from 2028 and is outside the 2031 minima — LMT declaration is fixed at 18 Aug 2033 and LMT joins the minima from 18 Aug 2036. Cobalt/lithium/nickel shares are in the active material; the lead share is in the battery."
       },
       "hist": [
         {
           "zh": "v14：区分“申报（生效触发）”与“最低值（固定日）”，此前混写已拆分。",
           "en": "v14: separated the declaration (entry-into-force trigger) from the minimum levels (fixed dates)."
+        },
+        {
+          "zh": "v14.1：Art 8 按 8(1) 第一分段／第二分段／8(2)／8(3)／8(4) 拆子记录；补 SLI 类别与 LMT 2033 固定申报日；删除 Art 8 作为范围限定的“可充电”（范围字段中仅保留“无此限定”的说明句）；next 由 2031 固定最低值改为条件式申报（LMT 固定日单列），进入日期待定区，不再遮蔽条件申报。",
+          "en": "v14.1: Art 8 split into 8(1) first subparagraph / second subparagraph / 8(2) / 8(3) / 8(4) sub-records; SLI scope and the LMT 2033 fixed declaration date added; the “rechargeable” qualifier removed from Art 8 scope fields (only the “no such qualifier” note remains); next changed from the fixed 2031 minima date to the conditional declaration (LMT fixed date listed separately), so the item now enters the dates-to-be-confirmed zone instead of hiding the conditional duty."
         }
       ],
       "next": {
-        "d": "2031-08-18",
-        "nat": "firm",
-        "zh": "最低含量起算",
-        "en": "Minimum levels start"
+        "zh": "条件式：申报待方法学委托法案生效后 24 个月（分产品，见起算规则）；LMT 申报固定日 2033-08-18",
+        "en": "Conditional: declaration 24 months after the methodology DA enters into force (by category, see start rule); LMT declaration fixed date 18 Aug 2033",
+        "d": null,
+        "nat": "cond"
       },
       "disp": {
         "child": false,
         "hidden": false
+      },
+      "cat": "awaited",
+      "appStatus": "pending",
+      "subs": [
+        {
+          "art": "Art 8(1) 第一分段",
+          "t": {
+            "zh": "申报（工业／EV／SLI）",
+            "en": "Declaration (industrial / EV / SLI)"
+          },
+          "status": {
+            "zh": "2028-08-18 或方法学委托法案生效后 24 个月取较晚；方法学委托法案须 2026-08-18 前通过（实时状态待核验）",
+            "en": "18 Aug 2028 or 24 months after the methodology DA enters into force, whichever latest; methodology DA due by 18 Aug 2026 (live status pending verification)"
+          },
+          "scope": {
+            "zh": "符合相关材料条件的工业电池 >2kWh（排除仅外部储能）、EV 电池、SLI 电池，含钴／铅／锂／镍者须附再生含量文件；钴／锂／镍为活性物质中回收份额，铅为电池中回收份额；文件按每个电池型号、每年、每个制造工厂提供。Art 8 无“可充电”限定，不得从 Art 7 搬运。",
+            "en": "Industrial batteries > 2 kWh meeting the material conditions (excluding exclusively external storage), EV batteries and SLI batteries containing cobalt, lead, lithium or nickel must be accompanied by a recycled-content document; cobalt/lithium/nickel shares are in the active material, lead share is in the battery; documentation per battery model, per year, per manufacturing plant. Art 8 has no “rechargeable” qualifier — do not import it from Art 7."
+          }
+        },
+        {
+          "art": "Art 8(1) 第二分段",
+          "t": {
+            "zh": "申报（LMT）",
+            "en": "Declaration (LMT)"
+          },
+          "status": {
+            "zh": "固定日 2033-08-18，无生效触发",
+            "en": "Fixed date 18 Aug 2033, no entry-into-force trigger"
+          },
+          "scope": {
+            "zh": "符合相关材料条件的 LMT 电池。不得把第一分段的“生效后 24 个月”触发外推到本分段。",
+            "en": "LMT batteries meeting the material conditions. Do not extend the first subparagraph's “24 months after entry into force” trigger to this subparagraph."
+          }
+        },
+        {
+          "art": "Art 8(2)",
+          "t": {
+            "zh": "最低含量",
+            "en": "Minimum levels"
+          },
+          "status": {
+            "zh": "固定日 2031-08-18",
+            "en": "Fixed date 18 Aug 2031"
+          },
+          "scope": {
+            "zh": "符合规定条件的工业电池、EV 电池、SLI 电池，不含 LMT；钴 16%·铅 85%·锂 6%·镍 6%。",
+            "en": "Industrial, EV and SLI batteries meeting the conditions, excluding LMT; Co 16% · Pb 85% · Li 6% · Ni 6%."
+          }
+        },
+        {
+          "art": "Art 8(3)",
+          "t": {
+            "zh": "后续最低含量",
+            "en": "Subsequent minimum levels"
+          },
+          "status": {
+            "zh": "固定日 2036-08-18",
+            "en": "Fixed date 18 Aug 2036"
+          },
+          "scope": {
+            "zh": "符合规定条件的工业电池、EV 电池、SLI 电池、LMT 电池，LMT 在这一阶段纳入；钴 26%·铅 85%·锂 12%·镍 15%。",
+            "en": "Industrial, EV, SLI and LMT batteries meeting the conditions, LMT included at this stage; Co 26% · Pb 85% · Li 12% · Ni 15%."
+          }
+        },
+        {
+          "art": "Art 8(4)",
+          "t": {
+            "zh": "再利用例外",
+            "en": "Reuse exception"
+          },
+          "status": {
+            "zh": "不适用 8(1)–8(3)",
+            "en": "8(1)–8(3) do not apply"
+          },
+          "scope": {
+            "zh": "经再利用准备／再用途准备／再用途／再制造的电池不适用 8(1)–8(3)。",
+            "en": "Batteries that have undergone preparation for repurposing, preparation for reuse, reuse or remanufacturing are outside 8(1)–8(3)."
+          }
+        }
+      ],
+      "cond": {
+        "rule": "latest_of",
+        "verificationStatus": "dependency-status-unverified",
+        "categories": [
+          {
+            "key": "decl-main",
+            "label": {
+              "zh": "工业（>2kWh，排除仅外部储能）／EV／SLI 申报",
+              "en": "Industrial (> 2 kWh, excluding exclusively external storage) / EV / SLI declaration"
+            },
+            "baseDate": "2028-08-18",
+            "dependencies": [
+              {
+                "key": "rc_method_da",
+                "entryIntoForce": null,
+                "offsetMonths": 24
+              }
+            ]
+          },
+          {
+            "key": "decl-lmt",
+            "label": {
+              "zh": "LMT 申报",
+              "en": "LMT declaration"
+            },
+            "baseDate": "2033-08-18",
+            "dependencies": []
+          }
+        ]
       }
     },
     {
@@ -1432,7 +1899,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "ia779",
@@ -1579,7 +2048,9 @@
       "disp": {
         "child": true,
         "hidden": false
-      }
+      },
+      "cat": "consult",
+      "appStatus": "na"
     },
     {
       "id": "guide",
@@ -1631,21 +2102,18 @@
             "zh": "开发者技术规范·拟",
             "en": "Developer tech specs (planned)"
           },
-          "src": [
-            "S10"
-          ]
+          "src": []
         }
       ],
       "src": [
-        "S09",
-        "S10"
+        "S09"
       ],
       "ver": {
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "措辞与文件性质已核验（官方 PDF）",
-          "en": "Wording and document nature verified (official PDF)"
+          "zh": "措辞与文件性质已核验（官方 PDF）；开发者技术规范 2026-10-31 计划日期未能公开核验（FAQ 无此日期，公开研讨会材料无出处），已降级为未核验计划",
+          "en": "Wording and document nature verified (official PDF); the 31 Oct 2026 developer-spec plan date could not be publicly verified (absent from the FAQ, no public workshop source) and has been downgraded to an unverified plan"
         }
       },
       "act": {
@@ -1662,25 +2130,31 @@
         }
       ],
       "note": {
-        "zh": "2026-08-15 版数据点指南将相关字段（数据点 17 碳足迹声明与碳足迹标签）标为 2027 年 2 月阶段不填写／不展示，并注明格式仍待实施法案规定。该指南不新增法定义务，后续处理以适用法规及更新文件为准。指南共 71 个数据点，按电池类别与必填／可选／条件项整理。",
-        "en": "The 15 Aug 2026 data-points guidance marks the relevant fields (data point 17, carbon-footprint declaration and carbon-footprint label) as not to be filled/displayed as of February 2027, with format still to be specified in the upcoming implementing act. The guidance creates no new legal obligations; follow the applicable legislation and updated documents. 71 data points in total, by battery category and mandatory/optional/conditional status."
+        "zh": "2026-08-15 版数据点指南将相关字段（数据点 17 碳足迹声明、数据点 18 碳足迹标签）标为 2027 年 2 月阶段不填写／不展示，并注明格式仍待实施法案规定。该指南不新增法定义务，后续处理以适用法规及更新文件为准。指南共 71 个数据点，按电池类别与必填／可选／条件项整理。",
+        "en": "The 15 Aug 2026 data-points guidance marks the relevant fields (data point 17, carbon-footprint declaration; data point 18, carbon-footprint label) as not to be filled/displayed as of February 2027, with format still to be specified in the upcoming implementing act. The guidance creates no new legal obligations; follow the applicable legislation and updated documents. 71 data points in total, by battery category and mandatory/optional/conditional status."
       },
       "hist": [
         {
           "zh": "v14：状态词由“已适用”改为“指南 · 已发布”；措辞按官方 PDF 补足边界（不扩大为法律禁止自愿披露，也不反向写成可不受限制自愿填报）；开发者技术规范节点保持计划标记。",
           "en": "v14: status word changed from “applying” to “guidance · published”; wording completed against the official PDF (not expanded into a legal ban on voluntary disclosure, nor into unrestricted voluntary disclosure); developer-spec node kept as planned."
+        },
+        {
+          "zh": "v14.1：数据点号更正——声明 17、标签 18（v14 把 17 同时用于两者是错的）；开发者技术规范 2026-10-31 降级为未能公开核验的计划（见 next 与证据状态）。",
+          "en": "v14.1: data-point numbers corrected — declaration 17, label 18 (v14 used 17 for both, which was wrong); the 31 Oct 2026 developer-spec date downgraded to an unverifiable plan (see next and evidence status)."
         }
       ],
       "next": {
+        "zh": "开发者技术规范（计划，研讨会口径；未能公开核验：FAQ 与公开研讨会材料均无此日期，核查截至 2026-10-25）",
+        "en": "Developer technical specs (planned, webinar wording; could not be publicly verified: neither the FAQ nor public workshop materials give this date, checked through 25 Oct 2026)",
         "d": "2026-10-31",
-        "nat": "plan",
-        "zh": "开发者技术规范（计划，研讨会口径）",
-        "en": "Developer technical specs (planned, webinar wording)"
+        "nat": "plan"
       },
       "disp": {
         "child": true,
         "hidden": false
-      }
+      },
+      "cat": "published",
+      "appStatus": "na"
     },
     {
       "id": "jtc24",
@@ -1782,7 +2256,9 @@
       "disp": {
         "child": true,
         "hidden": false
-      }
+      },
+      "cat": "published",
+      "appStatus": "na"
     },
     {
       "id": "qr",
@@ -1835,8 +2311,8 @@
         "checked": "2026-10-24",
         "verified": null,
         "note": {
-          "zh": "草案日由研讨会“昨天”推算，待核验；通过与发布目标 2027 年（未给月份）",
-          "en": "Draft date inferred from the workshop's “yesterday”, pending; adoption and publication targeted 2027 (no month given)"
+          "zh": "草案日由研讨会“昨天”推算，待核验；通过与发布目标 2027 年（未给月份）；推算依据待补",
+          "en": "Draft date inferred from the workshop's “yesterday”, pending; adoption and publication targeted 2027 (no month given); inference basis pending"
         }
       },
       "act": {
@@ -1860,18 +2336,25 @@
         {
           "zh": "v14：草案日标注为推算日并附待核验状态；不硬写 EN 18220／18219 对应关系。",
           "en": "v14: draft date marked as inferred with pending status; no hard-coded EN 18220/18219 mapping."
+        },
+        {
+          "zh": "v14.1：草案推算日依据明确标为待补；本项进入日期待定区（存在未解决的推算依据问题）。",
+          "en": "v14.1: the inferred draft date's basis explicitly flagged as pending; this item now enters the dates-to-be-confirmed zone (unresolved inference basis)."
         }
       ],
       "next": {
+        "zh": "通过与发布目标 2027 年（计划，未给月份）；草案日 2026-09-29 为推算日，推算依据待补",
+        "en": "Adoption & publication targeted 2027 (planned, no month given); draft date 29 Sep 2026 is inferred, inference basis pending",
         "d": null,
-        "nat": "plan",
-        "zh": "通过与发布目标 2027 年（未给月份）",
-        "en": "Adoption & publication targeted 2027 (no month given)"
+        "nat": "plan"
       },
       "disp": {
         "child": true,
         "hidden": false
-      }
+      },
+      "cat": "awaited",
+      "appStatus": "pending",
+      "unresolved": true
     },
     {
       "id": "dd",
@@ -1886,8 +2369,8 @@
         "en": "Batteries containing cobalt, natural graphite, lithium or nickel"
       },
       "roles": {
-        "zh": "年营业额 ≥ €40M 的经济运营者",
-        "en": "Economic operators with turnover ≥ €40m"
+        "zh": "本章适用对象：上一财政年度之前的财政年度净营业额 ≥4000 万欧元的经济运营者，或属于合并口径超过 4000 万欧元的集团的运营者；同时满足净营业额 <4000 万欧元且不属于超限集团者豁免；已投放市场／投入使用后经再利用准备／再用途准备／再用途／再制造的电池的相关投放行为不适用本章",
+        "en": "Chapter applies to: economic operators whose net turnover in the financial year preceding the previous financial year is ≥ €40m, or operators belonging to a group whose consolidated turnover exceeds €40m; operators are exempt only if they meet both conditions — net turnover < €40m and not part of an above-threshold group; subsequent placing acts for batteries that have undergone preparation for repurposing, preparation for reuse, reuse or remanufacturing after being placed on the market or put into service are outside this chapter"
       },
       "basis": {
         "inst": "(EU) 2023/1542",
@@ -1938,8 +2421,8 @@
           "prec": "day",
           "d": "2026-07-26",
           "lbl": {
-            "zh": "指南逾期",
-            "en": "Guidance overdue"
+            "zh": "指南法定发布时间已过；发布状态待核验（检索截至 2026-10-24）",
+            "en": "Guidance statutory publication date passed; publication status pending (retrieved through 24 Oct 2026)"
           },
           "src": [
             "S01"
@@ -1978,16 +2461,16 @@
       "files": [
         {
           "name": {
-            "zh": "2025/0130(COD)（COM(2025)0501，中小企业减负措施扩展至小中型企业）",
-            "en": "2025/0130(COD) (COM(2025)0501, SME relief extended to small mid-caps)"
+            "zh": "2025/0130(COD)（COM(2025)0501，拟扩大尽调豁免）",
+            "en": "2025/0130(COD) (COM(2025)0501, proposed wider due-diligence exemption)"
           },
           "type": {
             "zh": "立法提案",
             "en": "Legislative proposal"
           },
           "status": {
-            "zh": "未通过；指示性全会 2026-11-23",
-            "en": "Not adopted; indicative plenary 23 Nov 2026"
+            "zh": "未通过；指示性全会 2026-11-23；具体定义与适用口径待核验",
+            "en": "Not adopted; indicative plenary 23 Nov 2026; specific definition and application scope pending verification"
           }
         },
         {
@@ -2029,8 +2512,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "延期与两线已核验；指南存在与否、“2025-07-21”出处待核验",
-          "en": "Postponement and both strands verified; whether the guidance exists, and the source of “21 Jul 2025”, pending"
+          "zh": "延期与两线已核验；指南发布状态待核验（检索截至 2026-10-24，未见发布件，不等于不存在）；“2025-07-21”出处待核验",
+          "en": "Postponement and both strands verified; guidance publication status pending (retrieved through 24 Oct 2026, no publication found, not proof of non-existence); the source of “21 Jul 2025” pending"
         }
       },
       "act": {
@@ -2047,13 +2530,17 @@
         }
       ],
       "note": {
-        "zh": "原 2025-08-18 → 经 (EU) 2025/1561 延期至 2027-08-18。现行法定日期，继续监测后续修订。欧委会尽调指南法定截止 2026-07-26 已过，截至 2026-10-24 公开检索未见发布（仅为检索结果，不等于官方确认不存在）。另有提案拟将豁免门槛提至 €150M（小中型企业）并改三年一报，仍在立法进程中。",
-        "en": "Was 18 Aug 2025 → postponed by (EU) 2025/1561 to 18 Aug 2027. Current statutory date; keep monitoring later amendments. The Commission due-diligence guidance deadline 26 Jul 2026 has passed and no publication was found in public sources as of 24 Oct 2026 (a retrieval result only, not official confirmation of non-existence). A separate proposal would raise the exemption to €150m (small mid-caps) and move reporting to every three years; still in the legislative process."
+        "zh": "原 2025-08-18 → 经 (EU) 2025/1561 延期至 2027-08-18。现行法定日期，继续监测后续修订。欧委会尽调指南法定截止 2026-07-26 已过，截至 2026-10-24 公开检索未见发布（仅为检索结果，不等于官方确认不存在）。另有 COM(2025)501 提案拟扩大豁免、尚未通过（具体定义与适用口径待核验）。",
+        "en": "Was 18 Aug 2025 → postponed by (EU) 2025/1561 to 18 Aug 2027. Current statutory date; keep monitoring later amendments. The Commission due-diligence guidance deadline 26 Jul 2026 has passed and no publication was found in public sources as of 24 Oct 2026 (a retrieval result only, not official confirmation of non-existence). A separate proposal, COM(2025)501, would widen the exemption and is not adopted (specific definition and application scope pending verification)."
       },
       "hist": [
         {
           "zh": "v14：删除“2025-07-21 通过”（法案全文无此日期）与“日期确定，不再变动”；2025/1561 拆分为议会立场／法案日期／公报／生效四个日期；0130 与 0134 拆为两条关联文件记录；指南“未见发布”限定为检索结果。",
           "en": "v14: removed “adopted 21 Jul 2025” (no such date in the act) and “date fixed, no further change”; split 2025/1561 into Parliament position / act date / OJ / entry-into-force dates; split 0130 and 0134 into two related-file records; “no publication found” limited to a retrieval result."
+        },
+        {
+          "zh": "v14.1：主体范围按 Art 47 完整表述（指定财政年度净营业额、集团合并口径、恰为 4000 万不超限、再利用类例外）；150M 提案降级为“COM(2025)501 提案拟扩大豁免、尚未通过”，不写具体定义与三年一报；时间轴“指南逾期”改为“指南法定发布时间已过；发布状态待核验（检索截至 2026-10-24）”。",
+          "en": "v14.1: actor scope rewritten to the full Art 47 test (designated financial-year net turnover, group consolidation, exactly €40m not above threshold, repurposing-type exception); the €150m proposal downgraded to “COM(2025)501 would widen the exemption, not adopted”, with no specific definition or three-year reporting claim; timeline “guidance overdue” changed to “guidance statutory publication date passed; publication status pending (retrieved through 24 Oct 2026)”."
         }
       ],
       "next": {
@@ -2065,7 +2552,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "dur",
@@ -2088,12 +2577,12 @@
         "art": "Art 10"
       },
       "stage": {
-        "zh": "部分已适用（10(1)）；最低值委托法案待通过",
-        "en": "Partly applying (10(1)); minimum-value delegated acts outstanding"
+        "zh": "部分已适用（10(1)）；最低值委托法案实时状态待核验",
+        "en": "Partly applying (10(1)); live minimum-value DA status pending verification"
       },
       "app": {
-        "zh": "部分已适用",
-        "en": "Partly applying"
+        "zh": "部分已适用：10(1) 自 2024-08-18 已适用；10(2)／10(3) 最低值实际适用日待确认",
+        "en": "Partly applying: 10(1) applies since 18 Aug 2024; 10(2)/10(3) minimum-value application dates to be confirmed"
       },
       "ev": [
         {
@@ -2194,8 +2683,16 @@
             "en": "Art 10(5) first-subparagraph industrial-battery DA"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         },
         {
@@ -2205,8 +2702,16 @@
             "en": "Art 10(5) second-subparagraph LMT DA"
           },
           "status": {
-            "zh": "待通过，生效日未知",
-            "en": "Outstanding; entry-into-force date unknown"
+            "zh": "实时状态待核验；生效日未知",
+            "en": "Live status pending verification; entry-into-force date unknown"
+          },
+          "ver": {
+            "checked": "2026-10-24",
+            "verified": null,
+            "note": {
+              "zh": "规则已核验；依赖法案实时状态待复核",
+              "en": "Rule verified; live dependency status needs review"
+            }
           }
         }
       ],
@@ -2242,17 +2747,57 @@
         {
           "zh": "v14：Art 10 拆分为 10(1)／10(2)／10(3) 三条子记录；纠正 10(2)“授权条款”定位；明确 10(1) 无仅外部储能排除、Art 10 内无 EV 最低值；本事项不再列入纯“日期未定”区（10(1) 已适用，10(2)／10(3) 为条件式日期）。",
           "en": "v14: Art 10 split into 10(1)/10(2)/10(3) sub-records; corrected the “authorisation clause” label on 10(2); clarified 10(1) has no external-storage exclusion and Art 10 has no EV minima; no longer listed as purely undated (10(1) applies; 10(2)/10(3) are conditional)."
+        },
+        {
+          "zh": "v14.1：状态与证据拆四行；补条件计算结构（工业／LMT 两类）；next 写法拆为法定基准日／依赖生效后偏移量／取最晚三段；Art 10(1) 证据要求（Annex IV B／Annex VIII 映射）本轮无把握未补充，记入验收记录“仍待处理”。",
+          "en": "v14.1: status and evidence split into four rows; conditional-calculation structure added (industrial/LMT); next rewritten as base date / offset / latest-of; Art 10(1) evidence mapping (Annex IV B / Annex VIII) not added — no confident source this round, logged as still pending in the acceptance record."
         }
       ],
       "next": {
-        "d": null,
-        "nat": "cond",
-        "zh": "条件式：工业电池最低值待 10(5) DA 生效后 18 个月（基准日 2027-08-18，取最晚）",
-        "en": "Conditional: industrial minima 18 months after the Art 10(5) DA enters into force (base 18 Aug 2027, whichever latest)"
+        "zh": "条件式：工业电池最低值——法定基准日 2027-08-18，10(5) 第一分段 DA 生效后 18 个月，取最晚；LMT 最低值——法定基准日 2028-08-18，10(5) 第二分段 DA 生效后 18 个月，取最晚",
+        "en": "Conditional: industrial minima — statutory base date 18 Aug 2027, 18 months after the Art 10(5) first-subparagraph DA enters into force, whichever latest; LMT minima — statutory base date 18 Aug 2028, 18 months after the Art 10(5) second-subparagraph DA enters into force, whichever latest"
       },
       "disp": {
         "child": false,
         "hidden": false
+      },
+      "cat": "awaited",
+      "appStatus": "partial",
+      "cond": {
+        "rule": "latest_of",
+        "verificationStatus": "dependency-status-unverified",
+        "categories": [
+          {
+            "key": "ind",
+            "label": {
+              "zh": "可充电工业电池（>2kWh，排除仅外部储能）",
+              "en": "Rechargeable industrial batteries (> 2 kWh, excluding exclusively external storage)"
+            },
+            "baseDate": "2027-08-18",
+            "dependencies": [
+              {
+                "key": "dur_ind_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          },
+          {
+            "key": "lmt",
+            "label": {
+              "zh": "LMT 电池",
+              "en": "LMT batteries"
+            },
+            "baseDate": "2028-08-18",
+            "dependencies": [
+              {
+                "key": "dur_lmt_da",
+                "entryIntoForce": null,
+                "offsetMonths": 18
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -2372,7 +2917,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "awaited",
+      "appStatus": "partial"
     },
     {
       "id": "rec",
@@ -2484,7 +3031,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "applied",
+      "appStatus": "partial"
     },
     {
       "id": "registry",
@@ -2539,9 +3088,7 @@
             "zh": "API 指南·拟",
             "en": "API guide (planned)"
           },
-          "src": [
-            "S10"
-          ]
+          "src": []
         }
       ],
       "src": [
@@ -2553,8 +3100,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "上线、求助台、测试环境已核验；生产注册、服务账号、API 指南、技术规范开放状态未能核验（FAQ 无明确表述，不得写成“未发布”）",
-          "en": "Launch, helpdesk and test environment verified; production registration, service accounts, API guide and tech-spec openness could not be verified (the FAQ does not state them; must not be written as “not published”)"
+          "zh": "上线、求助台、测试环境已核验；生产注册、服务账号、API 指南、技术规范开放状态未能核验（FAQ 无明确表述，不得写成“未发布”）；API 集成指南 2026-12-31 计划日期未能公开核验，已降级为未核验计划",
+          "en": "Launch, helpdesk and test environment verified; production registration, service accounts, API guide and tech-spec openness could not be verified (the FAQ does not state them; must not be written as “not published”); the 31 Dec 2026 API-guide plan date could not be publicly verified and has been downgraded to an unverified plan"
         }
       },
       "act": {
@@ -2578,18 +3125,24 @@
         {
           "zh": "v14：“尚不接受电池注册”改为“生产注册开放状态未能核验（观察时间 2026-10-24）”，依据为欧委会 FAQ 全文（FAQ 未明确表述接受或不接受）；API 指南与技术规范保持计划标记，不得升级为已确认。",
           "en": "v14: “battery registrations not accepted” changed to “production-registration openness could not be verified (observed 24 Oct 2026)”, per the full FAQ text (which states neither acceptance nor refusal); API guide and tech specs kept as planned, not upgraded to confirmed."
+        },
+        {
+          "zh": "v14.1：API 集成指南 2026-12-31 由计划倒计时降级为未能公开核验的计划（FAQ 无此日期，公开研讨会材料无出处），移出确定节点组；计划到期后显示“计划日期已过，发布状态待核验”，不自动变已发生。",
+          "en": "v14.1: the 31 Dec 2026 API-guide date downgraded from a planned countdown to an unverifiable plan (absent from the FAQ, no public workshop source), moved out of the firm-milestones group; once passed it shows “planned date passed; publication status pending verification” and never auto-flips to occurred."
         }
       ],
       "next": {
+        "zh": "API 集成指南（计划，研讨会口径；未能公开核验：FAQ 与公开研讨会材料均无此日期，核查截至 2026-10-25）",
+        "en": "API integration guide (planned, webinar wording; could not be publicly verified: neither the FAQ nor public workshop materials give this date, checked through 25 Oct 2026)",
         "d": "2026-12-31",
-        "nat": "plan",
-        "zh": "API 集成指南（计划，研讨会口径）",
-        "en": "API integration guide (planned, webinar wording)"
+        "nat": "plan"
       },
       "disp": {
         "child": true,
         "hidden": false
-      }
+      },
+      "cat": "published",
+      "appStatus": "pending"
     },
     {
       "id": "steel",
@@ -2686,7 +3239,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "awaited",
+      "appStatus": "pending"
     },
     {
       "id": "tex",
@@ -2757,15 +3312,15 @@
         }
       ],
       "next": {
-        "d": null,
-        "nat": "plan",
-        "zh": "指示性年份 2027",
-        "en": "Indicative year 2027"
+        "zh": "指示性年份 2027（计划）",
+        "en": "Indicative year 2027 (planned)"
       },
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "awaited",
+      "appStatus": "pending"
     },
     {
       "id": "cbamrev",
@@ -2850,7 +3405,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "applied",
+      "appStatus": "inforce"
     },
     {
       "id": "cbamdef",
@@ -2934,7 +3491,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "applied",
+      "appStatus": "applied"
     },
     {
       "id": "cert",
@@ -3018,7 +3577,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "surrender",
@@ -3099,7 +3660,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "downstream",
@@ -3168,15 +3731,15 @@
       },
       "hist": [],
       "next": {
-        "d": null,
-        "nat": "plan",
-        "zh": "拟纳入（提案，2028-01 起）",
-        "en": "Proposed inclusion (proposal, from Jan 2028)"
+        "zh": "计划纳入（提案，2028-01 起）",
+        "en": "Planned inclusion (proposal, from Jan 2028)"
       },
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "proposal",
+      "appStatus": "na"
     },
     {
       "id": "euro7",
@@ -3203,8 +3766,8 @@
         "en": "Parent act in force; phased application"
       },
       "app": {
-        "zh": "尚未适用（轻型车新车型 2026-11-29 起）",
-        "en": "Not yet applying (new light-duty types from 29 Nov 2026)"
+        "zh": "尚未适用（轻型车新车型 2026-11-29 起；重型车新车型 2028-05-29 起）",
+        "en": "Not yet applying (new light-duty types from 29 Nov 2026; new heavy-duty types from 29 May 2028)"
       },
       "ev": [
         {
@@ -3228,11 +3791,39 @@
           "prec": "day",
           "d": "2027-11-29",
           "lbl": {
-            "zh": "全部新车",
-            "en": "All new vehicles"
+            "zh": "轻型车（M1/N1）新车",
+            "en": "New light-duty (M1/N1) vehicles"
           },
           "src": [
             "S28"
+          ]
+        },
+        {
+          "id": "e7-h-new",
+          "type": "application",
+          "nat": "firm",
+          "prec": "day",
+          "d": "2028-05-29",
+          "lbl": {
+            "zh": "重型车新车型",
+            "en": "New heavy-duty types"
+          },
+          "src": [
+            "S29"
+          ]
+        },
+        {
+          "id": "e7-h-all",
+          "type": "application",
+          "nat": "firm",
+          "prec": "day",
+          "d": "2029-05-29",
+          "lbl": {
+            "zh": "重型车及挂车全部新车",
+            "en": "All new heavy-duty vehicles and trailers"
+          },
+          "src": [
+            "S29"
           ]
         }
       ],
@@ -3247,8 +3838,8 @@
             "en": "Regulation"
           },
           "status": {
-            "zh": "已生效；轻型车新车型 2026-11-29、全部新车 2027-11-29",
-            "en": "In force; new light-duty types 29 Nov 2026, all new vehicles 29 Nov 2027"
+            "zh": "已生效；轻型车新车型 2026-11-29、轻型车（M1/N1）新车 2027-11-29；重型车新车型 2028-05-29、重型车及挂车全部新车 2029-05-29（重型日历引自欧洲议会 Euro 7 摘要，母法原文待核验）",
+            "en": "In force; new light-duty types 29 Nov 2026, new light-duty (M1/N1) vehicles 29 Nov 2027; new heavy-duty types 29 May 2028, all new heavy-duty vehicles and trailers 29 May 2029 (heavy-duty calendar from the European Parliament Euro 7 summary; parent-act text pending verification)"
           }
         },
         {
@@ -3327,14 +3918,15 @@
         "S05",
         "S04",
         "S22",
-        "S23"
+        "S23",
+        "S29"
       ],
       "ver": {
         "checked": "2026-10-24",
         "verified": null,
         "note": {
-          "zh": "1707 已核验（非 EUR-Lex 直读）；1764、1706 生效日、通报后续待核验",
-          "en": "1707 verified (not EUR-Lex direct read); 1764, 1706 entry-into-force date and notification follow-ups pending"
+          "zh": "1707 已核验（非 EUR-Lex 直读）；1764、1706 生效日、通报后续待核验；重型日历引自欧洲议会摘要，母法原文待核验",
+          "en": "1707 verified (not EUR-Lex direct read); 1764, 1706 entry-into-force date and notification follow-ups pending; heavy-duty calendar from the Parliament summary, parent-act text pending verification"
         }
       },
       "act": {
@@ -3351,13 +3943,17 @@
         }
       ],
       "note": {
-        "zh": "电池耐久最低值：乘用车 5 年／10 万 km ≥80%、8 年／16 万 km ≥72%。文件正式发布 ≠ 全部条款均已适用：各配套文件的生效与车辆适用按母法分阶段日历分别判断。",
-        "en": "Battery durability minima (cars): ≥80% at 5 yrs/100k km, ≥72% at 8 yrs/160k km. A file being formally published does not mean all its provisions already apply: each companion file's entry into force and vehicle application follow the parent act's phased calendar separately."
+        "zh": "电池耐久最低值：乘用车 5 年／10 万 km ≥80%、8 年／16 万 km ≥72%。文件正式发布 ≠ 全部条款均已适用：各配套文件的生效与车辆适用按母法分阶段日历分别判断。小批量制造商另有例外安排（具体日期待核验）。重型车日历引自欧洲议会 Euro 7 摘要（S29），母法原文待核验；2027-11-29 只对应轻型车（M1/N1）新车，不写“全部新车”。",
+        "en": "Battery durability minima (cars): ≥80% at 5 yrs/100k km, ≥72% at 8 yrs/160k km. A file being formally published does not mean all its provisions already apply: each companion file's entry into force and vehicle application follow the parent act's phased calendar separately. Small-series manufacturers have separate exception arrangements (specific dates pending). The heavy-duty calendar comes from the European Parliament Euro 7 summary (S29); the parent-act text is pending verification. 29 Nov 2027 covers new light-duty (M1/N1) vehicles only, not “all new vehicles”."
       },
       "hist": [
         {
           "zh": "v14：删除“实施细则草案在走 WTO／TBT 通报”笼统表述，拆分为 1706／1707／1133／1212／1764 逐行；删除正文固定“36 天”，倒计时改为运行时计算；1764 不得等同为 1212。",
           "en": "v14: removed the blanket “implementing drafts under WTO/TBT notification” wording, split into 1706/1707/1133/1212/1764 rows; removed the fixed “36 days” text, countdowns computed at runtime; 1764 must not be equated with 1212."
+        },
+        {
+          "zh": "v14.1：2027-11-29 由“全部新车”改为“轻型车（M1/N1）新车”；补重型车及挂车日历（新车型 2028-05-29、全部新车 2029-05-29，引自欧洲议会摘要并标注母法原文待核验）；小批量仅保留例外提示，不写具体日期；WTO／TBT 1133／1212 继续与 EU 编号分离；1764 附件与日期继续待核验。",
+          "en": "v14.1: 29 Nov 2027 relabelled from “all new vehicles” to “new light-duty (M1/N1) vehicles”; heavy-duty and trailer calendar added (new types 29 May 2028, all new vehicles 29 May 2029, from the Parliament summary, parent-act text flagged pending); small-series kept as an exception note with no dates; WTO/TBT 1133/1212 kept separate from EU numbers; 1764 annex and dates still pending."
         }
       ],
       "next": {
@@ -3369,7 +3965,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "elv",
@@ -3511,7 +4109,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "pending"
     },
     {
       "id": "crma",
@@ -3626,8 +4226,8 @@
             "en": "Label-format IA due by 24 Nov 2025 (status pending); label and data carrier from 2 years after the IA enters into force; MRI / motor vehicles / L-type approved light vehicles from 24 May 2029"
           },
           "scope": {
-            "zh": "产品：MRI 设备、风力发电机、工业机器人、机动车、轻型交通工具、制冷发电机、热泵、电动机（含集成）、自动洗衣机、滚筒干衣机、微波炉、吸尘器、洗碗机。标签：是否含永磁体；含则标类型（钕铁硼／钐钴／铝镍钴／铁氧体）。数据载体：磁体重量、位置、化学成分、涂层／胶水／添加剂、接触与安全移除信息。标题虽为“可回收性”，但义务是信息义务，无可回收率数值指标。国防／航天设计产品豁免；特殊用途车辆、多阶段型式批准部件、小批量车辆不适用。",
-            "en": "Products: MRI equipment, wind turbines, industrial robots, motor vehicles, light means of transport, cooling generators, heat pumps, electric motors (incl. integrated), washing machines, tumble dryers, microwave ovens, vacuum cleaners, dishwashers. Label: whether permanent magnets are present; if so, type (NdFeB / SmCo / AlNiCo / ferrite). Data carrier: magnet weight, location, chemical composition, coatings/glues/additives, access and safe-removal information. Despite the “recyclability” title, the duties are information duties with no recyclability-rate indicator. Defence/space products exempt; special-purpose vehicles, multi-stage approval parts and small-series vehicles out of scope."
+            "zh": "列举的产品类型：MRI 设备、风力发电机、工业机器人、机动车、轻型交通工具、制冷发电机、热泵、电动机（含集成）、自动洗衣机、滚筒干衣机、微波炉、吸尘器、洗碗机。标签问题与产品范围分开判断：标签问是否含永磁体；含则标类型（钕铁硼／钐钴／铝镍钴／铁氧体）。数据载体：磁体重量、位置、化学成分、涂层／胶水／添加剂、接触与安全移除信息。标题虽为“可回收性”，但义务是信息义务，无可回收率数值指标。国防／航天设计产品豁免；特殊用途车辆、多阶段型式批准中除底盘车外的 N1／N2／N3／M2／M3 车辆部件、小批量车辆不适用（多阶段豁免精确范围引自 v14 CRMA 合并文本核验，本轮 EUR-Lex 直读待补核）。",
+            "en": "Listed product types: MRI equipment, wind turbines, industrial robots, motor vehicles, light means of transport, cooling generators, heat pumps, electric motors (incl. integrated), washing machines, tumble dryers, microwave ovens, vacuum cleaners, dishwashers. The label question is separate from the product scope: the label asks whether permanent magnets are present; if so, the type (NdFeB / SmCo / AlNiCo / ferrite). Data carrier: magnet weight, location, chemical composition, coatings/glues/additives, access and safe-removal information. Despite the “recyclability” title, the duties are information duties with no recyclability-rate indicator. Defence/space products exempt; special-purpose vehicles, components of N1/N2/N3/M2/M3 vehicles under multi-stage type approval other than the base vehicle, and small-series vehicles are out of scope (the precise multi-stage exemption scope is from the v14 CRMA consolidated-text verification; EUR-Lex direct re-read pending this round)."
           }
         },
         {
@@ -3669,8 +4269,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "Art 28／29／5 已核验；IA、DA 实时状态与最低份额百分比待核验",
-          "en": "Arts 28/29/5 verified; live IA/DA status and minimum-share percentages pending"
+          "zh": "Art 28／29／5 已核验；IA、DA 实时状态与最低份额百分比待核验；多阶段豁免精确范围与 Art 28(2) 更正依据本轮未直读，待补核",
+          "en": "Arts 28/29/5 verified; live IA/DA status and minimum-share percentages pending; the precise multi-stage exemption scope and the Art 28(2) corrigendum basis were not directly re-read this round, pending re-check"
         }
       },
       "act": {
@@ -3701,6 +4301,10 @@
         {
           "zh": "v14：删除“不直接设产品义务”；新增 Art 28／29 子记录与 Art 5 基准口径说明。",
           "en": "v14: removed “sets no direct product duties”; added Art 28/29 sub-records and the Art 5 benchmark-basis note."
+        },
+        {
+          "zh": "v14.1：多阶段豁免由概括表述改为精确范围（多阶段型式批准中除底盘车外的 N1／N2／N3／M2／M3 车辆部件），并标注引自 v14 合并文本核验、本轮 EUR-Lex 直读待补核；Art 28(2) 日期保持 2025-11-24 前通过（状态待核验），不写“经 2024 年更正”（本轮未核验）；列举的产品类型与是否含特定永磁体分开表述；Art 28 信息义务、Art 29 口径、2030 欧盟基准等 v14 已核验核心保留。",
+          "en": "v14.1: multi-stage exemption narrowed from a blanket phrase to its precise scope (components of N1/N2/N3/M2/M3 vehicles under multi-stage type approval other than the base vehicle), flagged as from the v14 consolidated-text verification with EUR-Lex direct re-read pending; Art 28(2) date kept at “by 24 Nov 2025” (status pending) with no “2024 corrigendum” claim (not verified this round); listed product types and the whether-it-contains-a-specific-magnet question stated separately; v14 verified core (Art 28 information duty, Art 29 basis, 2030 EU benchmarks) retained."
         }
       ],
       "next": {
@@ -3712,7 +4316,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "pending",
+      "appStatus": "partial"
     },
     {
       "id": "cn1",
@@ -3831,7 +4437,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "applied",
+      "appStatus": "partial"
     },
     {
       "id": "cn2",
@@ -3909,7 +4517,9 @@
       "disp": {
         "child": false,
         "hidden": false
-      }
+      },
+      "cat": "consult",
+      "appStatus": "na"
     },
     {
       "id": "art14",
@@ -3924,8 +4534,8 @@
         "en": "Stationary battery energy storage systems, LMT and EV batteries"
       },
       "roles": {
-        "zh": "电池制造商（BMS 数据方）；合法购买者、独立运营商、废物管理运营商或其代表（只读访问方）",
-        "en": "Battery manufacturers (BMS data holders); legitimate purchasers, independent operators, waste management operators or parties acting for them (read-only accessors)"
+        "zh": "电池制造商（BMS 数据方）；合法购买电池的自然人或法人（符合该条件的独立运营商、废物管理运营商包含在内）只读访问；第三方仅限代表购买者行事",
+        "en": "Battery manufacturers (BMS data holders); natural or legal persons who have legitimately purchased the battery (independent operators and waste management operators are included where they meet that condition) with read-only access; third parties only when acting on the purchaser's behalf"
       },
       "basis": {
         "inst": "(EU) 2023/1542",
@@ -3962,13 +4572,13 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "类别、数据内容、访问角色已核验；Annex XIII 全文清单、Annex VII 后续 DA 修订现状待核验",
-          "en": "Categories, data content and access roles verified; full Annex XIII list and Annex VII DA revision status pending"
+          "zh": "类别、数据内容、访问角色已核验；Annex XIII 全文清单、Annex VII 后续 DA 修订现状待核验；护照 Annex XIII 第 4(b) 点本轮未重读，沿用 v14 结论",
+          "en": "Categories, data content and access roles verified; full Annex XIII list and Annex VII DA revision status pending; Annex XIII point 4(b) not re-read in this round, v14 conclusion retained"
         }
       },
       "act": {
-        "zh": "核对 BMS 数据字段与 Annex VII 的对应关系；确认只读访问的提供对象与用途（向独立聚合商／市场参与方提供储能、评估残值与剩余寿命、便利复用／再利用／再制造）。",
-        "en": "Map BMS data fields to Annex VII; confirm read-only access recipients and purposes (offering storage to independent aggregators/market participants, assessing residual value and remaining life, facilitating repurposing/reuse/remanufacturing)."
+        "zh": "核对 BMS 数据字段与 Annex VII 的对应关系；确认只读访问的提供对象（合法购买者，含符合条件的独立／废物运营商；第三方仅限代表购买者行事）与三项用途（向独立聚合商／市场参与方提供储能、评估残值与剩余寿命、便利复用／再利用／再制造）。",
+        "en": "Map BMS data fields to Annex VII; confirm read-only access recipients (legitimate purchasers, incl. qualifying independent/waste operators; third parties only when acting for the purchaser) and the three purposes (offering storage to independent aggregators/market participants, assessing residual value and remaining life, facilitating repurposing/reuse/remanufacturing)."
       },
       "rel": [
         {
@@ -3987,13 +4597,17 @@
         }
       ],
       "note": {
-        "zh": "固定式电池储能系统、LMT 电池、EV 电池的 BMS 须包含按 Annex VII 参数的健康状态与预期寿命最新数据。EV 健康状态参数为认证能量状态（SOCE）；固定式储能与 LMT 另含剩余容量、功率能力、往返效率、自放电率演变、欧姆电阻等。护照关联的法源是 Annex XIII 第 4(b) 点（仅限有合法利益者访问的信息），Art 14 正文本身不规定护照义务。",
-        "en": "The BMS of stationary battery energy storage systems, LMT batteries and EV batteries must contain up-to-date state-of-health and expected-lifetime data per Annex VII. EV state-of-health parameter: state of certified energy (SOCE); stationary storage and LMT additionally cover remaining capacity, power capability, round-trip efficiency, self-discharge evolution and ohmic resistance. The passport link's legal basis is Annex XIII point 4(b) (information for legitimate-interest access only); Art 14 itself does not impose a passport duty."
+        "zh": "固定式电池储能系统、LMT 电池、EV 电池的 BMS 须包含按 Annex VII 参数的健康状态与预期寿命最新数据。Annex VII Part A 分组规定：EV 只有认证能量状态（SOCE）；固定式储能与 LMT 为剩余容量、“在可能情况下”剩余功率能力、“在可能情况下”剩余往返效率、自放电率演变、“在可能情况下”欧姆电阻。Annex VII Part B 预期寿命参数只列固定式储能与 LMT。只读访问条件：只读、尊重制造商知识产权、无歧视、随时可得；用途仅限三项：(a) 经储能向独立聚合商／市场参与方提供电池，(b) 残值与剩余寿命评估，(c) 再利用／再用途／再制造准备。护照关联的法源是 Annex XIII 第 4(b) 点（仅限有合法利益者访问的信息），Art 14 正文本身不规定护照义务。",
+        "en": "The BMS of stationary battery energy storage systems, LMT batteries and EV batteries must contain up-to-date state-of-health and expected-lifetime data per Annex VII. Annex VII Part A is grouped: EV has only the state of certified energy (SOCE); stationary storage and LMT have remaining capacity, remaining power capability “where possible”, remaining round-trip efficiency “where possible”, self-discharge evolution and ohmic resistance “where possible”. Annex VII Part B expected-lifetime parameters list only stationary storage and LMT. Read-only access conditions: read-only, respecting the manufacturer's intellectual property, non-discriminatory, available at any time; purposes limited to three: (a) offering the battery via storage to independent aggregators/market participants, (b) residual-value and remaining-lifetime assessment, (c) preparation for repurposing, reuse or remanufacturing. The passport link's legal basis is Annex XIII point 4(b) (information for legitimate-interest access only); Art 14 itself does not impose a passport duty."
       },
       "hist": [
         {
           "zh": "v14 新增：G-02 候选经核验后进入正式展示；法源为 Art 14＋Annex XIII 第 4(b) 点；不含便携式、SLI、一般工业电池（固定式储能为单独列出的子集）。",
           "en": "Added in v14: G-02 candidate verified and admitted to formal display; legal basis Art 14 + Annex XIII point 4(b); excludes portable, SLI and general industrial batteries (stationary storage is a separately listed subset)."
+        },
+        {
+          "zh": "v14.1：访问对象改为“合法购买电池的自然人或法人”，独立／废物运营商仅作为购买者被包含，第三方仅限代表购买者行事；Annex VII 按 EV／固定式储能与 LMT 分组，补“在可能情况下”限定（功率能力、往返效率、欧姆电阻），Part B 只列固定式储能与 LMT；护照 Annex XIII 4(b) 关联保留 v14 结论并注明本轮未重读。",
+          "en": "v14.1: access recipients rewritten as “natural or legal persons who have legitimately purchased the battery”; independent/waste operators included only as purchasers, third parties only when acting for the purchaser; Annex VII grouped EV vs stationary storage/LMT, “where possible” qualifiers added (power capability, round-trip efficiency, ohmic resistance), Part B limited to stationary storage and LMT; passport Annex XIII 4(b) link keeps the v14 conclusion, flagged as not re-read this round."
         }
       ],
       "next": {
@@ -4006,7 +4620,9 @@
         "child": false,
         "hidden": false,
         "v14new": true
-      }
+      },
+      "cat": "applied",
+      "appStatus": "applied"
     },
     {
       "id": "ets",
@@ -4072,7 +4688,9 @@
       "disp": {
         "child": false,
         "hidden": true
-      }
+      },
+      "cat": "running",
+      "appStatus": "inforce"
     },
     {
       "id": "espr",
@@ -4138,7 +4756,9 @@
       "disp": {
         "child": false,
         "hidden": true
-      }
+      },
+      "cat": "framework",
+      "appStatus": "inforce"
     },
     {
       "id": "cbam-note",
@@ -4225,7 +4845,9 @@
       "disp": {
         "child": false,
         "hidden": true
-      }
+      },
+      "cat": "definitive",
+      "appStatus": "inforce"
     },
     {
       "id": "bat-act",
@@ -4283,10 +4905,89 @@
       "disp": {
         "child": false,
         "hidden": true
-      }
+      },
+      "cat": "phased",
+      "appStatus": "partial"
     }
   ],
   "changelog": [
+    {
+      "changeId": "CH-20261025-01",
+      "itemId": null,
+      "changedAt": "2026-10-25",
+      "changedFields": [
+        "statusModel"
+      ],
+      "previousValue": "catOf 默认返回“待通过”，背景记录被误标",
+      "newValue": "31 条记录全部设显式 cat 字段；未知状态显示“状态待核验”徽章；背景记录：电池法规母法＝已生效·分阶段适用、ESPR＝框架已生效、CBAM 母法＝正式期运行中、EU ETS＝运行中",
+      "reason": "v14 公网复审 V14-01",
+      "sourceRefs": [
+        "S01",
+        "S25",
+        "S27"
+      ],
+      "reviewStatus": "已实测",
+      "newValue_en": "All 31 records carry an explicit cat field; unknown status shows a “Status pending verification” badge; background records: Battery Regulation parent = in force · phasing in, ESPR = framework in force, CBAM parent = definitive period running, EU ETS = running",
+      "reviewStatus_en": "Verified live"
+    },
+    {
+      "changeId": "CH-20261025-02",
+      "itemId": "cf1",
+      "changedAt": "2026-10-25",
+      "changedFields": [
+        "stage",
+        "app",
+        "deps",
+        "rule"
+      ],
+      "previousValue": "“方法学委托法案与格式实施法案均待通过”“尚未适用（条件未满足）”",
+      "newValue": "详情状态与证据拆四行（法定规则／配套文件当前状态／实际适用状态／证据状态）；deps 状态一律写实时状态待核验并带各自核验记录；规则写法拆法定基准日／依赖生效后偏移量／取最晚结果三段",
+      "reason": "v14 公网复审 V14-02、V14-11、V14-17",
+      "sourceRefs": [
+        "S01"
+      ],
+      "reviewStatus": "规则已核验；实时状态待核验",
+      "newValue_en": "Detail status and evidence split into four rows (statutory rule / companion-file status / actual application status / evidence status); dep statuses all read as live-status pending with per-dep verification records; rules rewritten as base date / offset / latest-of",
+      "reviewStatus_en": "Rule verified; live status pending"
+    },
+    {
+      "changeId": "CH-20261025-03",
+      "itemId": "registry",
+      "changedAt": "2026-10-25",
+      "changedFields": [
+        "next",
+        "verification"
+      ],
+      "previousValue": "API 集成指南 2026-12-31 列入近期截止倒计时；开发者技术规范 2026-10-31 同列",
+      "newValue": "近期关注改为“近期关键节点”，内分确定节点／计划与征询／待核验变化三组；两个计划日期降级为未能公开核验的计划（研讨会口径，FAQ 与公开研讨会材料均无此日期，核查截至 2026-10-25），移出确定节点组；计划过期显示“计划日期已过，发布状态待核验”",
+      "reason": "v14 公网复审 V14-03、V14-18；公开资料组 2026-10-25 核验",
+      "sourceRefs": [
+        "S10"
+      ],
+      "reviewStatus": "计划日期已降级；FAQ 无依据已核验",
+      "newValue_en": "Recent focus renamed “Upcoming key milestones”, split into firm milestones / plans & consultations / pending verification; both plan dates downgraded to unverifiable plans (webinar wording; absent from the FAQ and public workshop materials, checked through 25 Oct 2026), moved out of the firm group; expired plans show “planned date passed; publication status pending verification”",
+      "reviewStatus_en": "Plan dates downgraded; FAQ absence verified"
+    },
+    {
+      "changeId": "CH-20261025-04",
+      "itemId": "rc",
+      "changedAt": "2026-10-25",
+      "changedFields": [
+        "subs",
+        "events",
+        "next",
+        "cond"
+      ],
+      "previousValue": "Art 8 一项统写，缺 SLI，LMT 与 2028／2031 混写；next 为 2031 固定最低值",
+      "newValue": "Art 8 拆 8(1) 第一分段／第二分段／8(2)／8(3)／8(4) 子记录；补 SLI 与 LMT 2033 固定申报日；next 改为条件式申报，进入日期待定区；补条件计算结构（分产品、基准日、依赖、偏移量），列表／时间轴／详情／近期关注同读统一计算函数",
+      "reason": "v14 公网复审 V14-11、V14-12；法规文本组 2026-10-25 核验",
+      "sourceRefs": [
+        "S01"
+      ],
+      "reviewStatus": "规则已核验；实时状态待核验",
+      "newValue_en": "Art 8 split into 8(1) first subparagraph / second subparagraph / 8(2) / 8(3) / 8(4) sub-records; SLI scope and the LMT 2033 fixed declaration date added; next changed to the conditional declaration, entering the dates-to-be-confirmed zone; conditional-calculation structure added (by category, base date, dependency, offset), read by one function across list / timeline / detail / recent focus",
+      "reviewStatus_en": "Rule verified; live status pending"
+    },
     {
       "changeId": "CH-20261024-01",
       "itemId": "ia779",
@@ -4648,6 +5349,14 @@
     {
       "zh": "Annex XIII 护照全文清单；Annex VII 参数后续 DA 修订现状",
       "en": "Full Annex XIII passport list; Annex VII parameter DA revision status"
+    },
+    {
+      "zh": "Art 8 方法学委托法案实时状态与申报实际适用日",
+      "en": "Live status of the Art 8 methodology delegated act and the declaration's actual application date"
+    },
+    {
+      "zh": "qr 草案推算日（2026-09-29）的推算依据",
+      "en": "Inference basis for the qr draft date (29 Sep 2026)"
     }
   ]
 }</script>
@@ -4656,44 +5365,48 @@
 let RAW=null;
 try { RAW = JSON.parse(document.getElementById('reg-data').textContent); }
 catch(e) {
-  document.getElementById('chartWrap').innerHTML = '<div class="errbox">数据加载失败：法规数据无法解析，页面未显示任何事项。请使用上一可用版本 v13 设计稿。</div>';
+  document.getElementById('chartWrap').innerHTML = '<div class="errbox">数据加载失败：法规数据无法解析，页面未显示任何事项。请使用上一可用版本 v14 设计稿。</div>';
   throw e;
 }
 const DATA = RAW, SOURCES = DATA.sources, SECTIONS = DATA.sections;
 const ITEMS = DATA.items, byId = {};
 ITEMS.forEach(i => byId[i.id] = i);
 const DISPLAYED = [];
-SECTIONS.forEach(s => s.lanes.forEach(l => l.items.forEach(id => { if (byId[id] && !byId[id].disp.hidden) DISPLAYED.push(byId[id]); })));
+function buildDisplayed() {
+  DISPLAYED.length = 0;
+  SECTIONS.forEach(s => s.lanes.forEach(l => l.items.forEach(id => { if (byId[id] && !byId[id].disp.hidden) DISPLAYED.push(byId[id]); })));
+}
+buildDisplayed();
 
 /* ============ 语言资源（全部界面文案与状态词，切换时同步主题按钮与已打开详情） ============ */
 const I18N = {
   zh: { searchPh: '搜标题／法规编号／条款，如 CF、1542、Art 7', jur: '法域', typ: '对象类型', win: '时间窗', view: '视图',
     chart: '时间轴', list: '列表', clear: '清除筛选', match: '匹配', of: '／共', items: '项',
     zero: '没有符合条件的事项。', zeroClear: '清除筛选',
-    unknownTitle: '日期待确定事项（条件未满足或日期未知，仍可搜索、筛选与打开）',
-    recentChanges: '最近变化', recentDue: '近期截止', recentPending: '待确认',
+    unknownTitle: '日期待确定事项（条件未满足、依赖未解决或日期未知，仍可搜索、筛选与打开）',
+    recentChanges: '最近变化', recentDue: '近期关键节点', recentFirm: '确定节点', recentPlan: '计划与征询', recentPending: '待核验变化',
     detail: '详情', back: '← 返回上一事项', close: '关闭',
-    fScope: '产品与主体范围', fStatus: '当前状态与证据状态', fNext: '下一关键节点', fRule: '起算规则与依赖条件',
+    fScope: '产品与主体范围', fStatus: '当前状态与证据状态', fNext: '下一关键节点', fRule: '起算规则与依赖条件', fRuleLine: '法定规则', fDeps: '配套文件当前状态', fAppSt: '实际适用状态', fEvSt: '证据状态', fCond: '条件计算（分产品）', noDeps: '无配套文件依赖', plan: '计划', overduePlan: '计划日期已过，发布状态待核验', dateTbc: '实际适用日待确认', condBase: '法定基准日', condResult: '计算结果',
     fSubs: '拆分记录', fFiles: '关联配套文件', fAct: '建议准备（站点建议，非法规原文）', fNote: '说明', fSrc: '直接来源', fRel: '关联事项', fHist: '历史与核验记录',
     noSource: '来源待核验：本事项暂无可追溯的直接来源，核验状态见上。', srcStatus: '证据状态', lastVerified: '最近核验', lastChecked: '最近检查',
     tbc: '日期待确定', viewFull: '查看完整路线', noNodeInWindow: '本时间窗内无节点', applyingCont: '已适用／持续要求',
     today: '今天', daysLeft: '距今', days: '天', occurred: '已发生', closed: '已截止', overduePending: '已过期限，状态待核验',
-    status: { consult: '公开咨询中', awaited: '待通过', pending: '已生效 · 待适用', applied: '已适用', proposal: '立法提案', published: '已发布／已上线' },
+    status: { consult: '公开咨询中', awaited: '待通过', pending: '已生效 · 待适用', applied: '已适用', proposal: '立法提案', published: '已发布／已上线', phased: '已生效 · 分阶段适用', framework: '框架已生效', definitive: '正式期运行中', running: '运行中', unverified: '状态待核验' },
     type: { obligation: '义务', file: '文件', standard: '标准', guidance: '指南', service: '平台服务' },
     themeDark: '深色', themeLight: '浅色', unknownId: '未找到该事项，已回到总览。', newBadge: 'v14 新增',
     scopeNote: '收录范围见页头；事项数不等于法规数。' },
   en: { searchPh: 'Search title / number / article, e.g. CF, 1542, Art 7', jur: 'Jurisdiction', typ: 'Object type', win: 'Window', view: 'View',
     chart: 'Timeline', list: 'List', clear: 'Clear filters', match: 'Matching', of: ' / ', items: 'items',
     zero: 'No items match the current filters.', zeroClear: 'Clear filters',
-    unknownTitle: 'Items with dates to be confirmed (conditions unmet or dates unknown; still searchable, filterable and openable)',
-    recentChanges: 'Recent changes', recentDue: 'Upcoming deadlines', recentPending: 'Pending confirmation',
+    unknownTitle: 'Items with dates to be confirmed (conditions unmet, dependencies unresolved or dates unknown; still searchable, filterable and openable)',
+    recentChanges: 'Recent changes', recentDue: 'Upcoming key milestones', recentFirm: 'Firm milestones', recentPlan: 'Plans & consultations', recentPending: 'Pending verification',
     detail: 'Details', back: '← Back to previous item', close: 'Close',
-    fScope: 'Product and actor scope', fStatus: 'Current status and evidence', fNext: 'Next key milestone', fRule: 'Start rule and dependencies',
+    fScope: 'Product and actor scope', fStatus: 'Current status and evidence', fNext: 'Next key milestone', fRule: 'Start rule and dependencies', fRuleLine: 'Statutory rule', fDeps: 'Companion-file status', fAppSt: 'Actual application status', fEvSt: 'Evidence status', fCond: 'Conditional calculation (by category)', noDeps: 'No companion-file dependencies', plan: 'Planned', overduePlan: 'Planned date passed; publication status pending verification', dateTbc: 'Application date to be confirmed', condBase: 'Statutory base date', condResult: 'Computed result',
     fSubs: 'Split records', fFiles: 'Related companion files', fAct: 'Suggested preparation (site suggestion, not legal text)', fNote: 'Notes', fSrc: 'Direct sources', fRel: 'Related items', fHist: 'History and verification record',
     noSource: 'Source pending verification: no traceable direct source is available for this item yet; see evidence status above.', srcStatus: 'Evidence status', lastVerified: 'Last verified', lastChecked: 'Last checked',
     tbc: 'Date to be confirmed', viewFull: 'View full timeline', noNodeInWindow: 'No nodes in this window', applyingCont: 'Applying / ongoing duty',
     today: 'today', daysLeft: 'in', days: 'days', occurred: 'Occurred', closed: 'Closed', overduePending: 'Past due; status pending verification',
-    status: { consult: 'Under consultation', awaited: 'Not yet adopted', pending: 'In force · pending application', applied: 'Applying', proposal: 'Legislative proposal', published: 'Published / live' },
+    status: { consult: 'Under consultation', awaited: 'Not yet adopted', pending: 'In force · pending application', applied: 'Applying', proposal: 'Legislative proposal', published: 'Published / live', phased: 'In force · phasing in', framework: 'Framework in force', definitive: 'Definitive period running', running: 'Running', unverified: 'Status pending verification' },
     type: { obligation: 'Obligation', file: 'File', standard: 'Standard', guidance: 'Guidance', service: 'Service' },
     themeDark: 'Dark', themeLight: 'Light', unknownId: 'Item not found; returned to overview.', newBadge: 'New in v14',
     scopeNote: 'See coverage note in the header; item count does not equal regulation count.' }
@@ -4702,18 +5415,11 @@ const L = { lang: 'zh' };
 const T = o => (o && (o[L.lang] || o.zh)) || '';
 const UI = () => I18N[L.lang];
 
-/* 状态分类（展示用；与数据 stage/app 对应，校验脚本核对覆盖全部 27 个展示 id 且不重不漏） */
-const CAT = {
-  consult: ['cn2', 'ia779'],
-  awaited: ['cf1', 'cf2', 'cf3', 'rc', 'dur', 'lab', 'steel', 'tex', 'qr'],
-  pending: ['passport', 'dd', 'euro7', 'elv', 'crma', 'cert', 'surrender'],
-  applied: ['cbamrev', 'cbamdef', 'cn1', 'rec', 'art14'],
-  proposal: ['downstream'],
-  published: ['guide', 'jtc24', 'registry']
-};
+/* 状态字段：每条记录自带显式 cat；未知状态不默认“待通过”，回退“状态待核验”（V14-01）。
+   图例只列 6 个主状态；背景记录的 phased/framework/definitive/running 仅出现在详情与关联徽章。 */
 const CAT_ORDER = ['consult', 'awaited', 'pending', 'applied', 'proposal', 'published'];
-const catOf = id => CAT_ORDER.find(c => CAT[c].includes(id)) || 'awaited';
-const ST_COL = { consult: 'var(--consult)', awaited: 'var(--awaited)', pending: 'var(--pending)', applied: 'var(--applied)', proposal: 'var(--proposal)', published: 'var(--published)' };
+const catOf = id => (byId[id] && byId[id].cat) || 'unverified';
+const ST_COL = { consult: 'var(--consult)', awaited: 'var(--awaited)', pending: 'var(--pending)', applied: 'var(--applied)', proposal: 'var(--proposal)', published: 'var(--published)', phased: 'var(--applied)', framework: 'var(--applied)', definitive: 'var(--published)', running: 'var(--pending)', unverified: 'var(--ink2)' };
 
 /* ============ 日期服务（全站唯一；图表／列表／详情共用；左闭右开） ============ */
 const DAY = 86400000;
@@ -4762,6 +5468,34 @@ const $ = s => document.querySelector(s);
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function pill(cat) { const u = UI(); return '<span class="pill ' + cat + '">' + u.status[cat] + '</span>'; }
 
+
+/* ============ 条件日期统一计算（V14-11）：唯一计算入口，四视图同读结果 ============ */
+function computeCondDate(it) {
+  if (!it.cond) return null;
+  const cats = it.cond.categories.map(c => {
+    const deps = c.dependencies.map(d => {
+      const dep = (it.deps || []).find(x => x.key === d.key);
+      const eif = d.entryIntoForce || null;
+      const result = eif ? addMonths(eif, d.offsetMonths) : null;
+      return { key: d.key, name: dep ? T(dep.name) : d.key, entryIntoForce: eif, offsetMonths: d.offsetMonths, result };
+    });
+    const parts = [c.baseDate].concat(deps.map(d => d.result));
+    const result = deps.some(d => d.result === null) ? null : parts.sort().pop();
+    return { key: c.key, label: c.label, labelText: T(c.label), baseDate: c.baseDate, deps, result };
+  });
+  const allResolved = cats.every(c => c.result !== null);
+  const earliest = allResolved ? cats.map(c => c.result).sort()[0] : null;
+  return { categories: cats, allResolved, earliest };
+}
+function condResolved(it) { const cc = computeCondDate(it); return !!cc && cc.allResolved; }
+/* 待定区纳入规则：next 为 cond/unknown，或存在未解决的条件依赖，或显式 unresolved 标记（qr 推算依据待补） */
+function isUnresolved(it) {
+  if (it.next.nat === 'cond' || it.next.nat === 'unknown') return true;
+  if (it.cond && !condResolved(it)) return true;
+  if (it.unresolved) return true;
+  return false;
+}
+
 function getFiltered() {
   return DISPLAYED.filter(it => {
     if (statusFilter && catOf(it.id) !== statusFilter) return false;
@@ -4784,6 +5518,7 @@ function fillStatic() {
   document.documentElement.lang = L.lang === 'zh' ? 'zh-CN' : 'en';
   const th = $('#themeBtn'), dark = document.documentElement.dataset.theme === 'dark', u = UI();
   th.textContent = dark ? u.themeLight : u.themeDark;
+  document.title = L.lang === 'zh' ? '法规进展监控 · v14.1 测试版 — LCA瞭望' : 'Regulation Tracker · v14.1 test page — LCA RADAR';
   $('#q').placeholder = u.searchPh;
   $('#q').setAttribute('aria-label', u.searchPh);
 }
@@ -4800,14 +5535,23 @@ function renderRecent() {
     const colon = L.lang === 'en' ? ': ' : '：', lp = L.lang === 'en' ? ' (' : '（', rp = L.lang === 'en' ? ')' : '）';
     return '<li>' + link + colon + esc(nv.length > 60 ? nv.slice(0, 60) + '…' : nv) + lp + esc(rs) + rp + '</li>';
   }).join('');
-  const upcoming = DISPLAYED.filter(it => it.next.d && daysTo(it.next.d, todayStr) >= 0 && daysTo(it.next.d, todayStr) <= 150)
-    .sort((a, b) => pd(a.next.d) - pd(b.next.d)).slice(0, 5)
-    .map(it => '<li><a href="#item/' + it.id + '" data-open="' + it.id + '">' + esc(T(it.t)) + '</a> — ' + esc(T(it.next)) + ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.daysLeft + ' ' + daysTo(it.next.d, todayStr) + ' ' + u.days + '）</li>').join('')
+  const firm = DISPLAYED.map(it => {
+    let d = null, lbl = null;
+    if (it.cond) { const cc = computeCondDate(it); if (cc.allResolved) { d = cc.earliest; lbl = (L.lang === 'zh' ? '条件适用日（计算）' : 'Computed conditional date'); } }
+    else if (it.next.d && it.next.nat === 'firm') { d = it.next.d; lbl = T(it.next); }
+    return { it, d, lbl };
+  }).filter(o => o.d && daysTo(o.d, todayStr) >= 0 && daysTo(o.d, todayStr) <= 150)
+    .sort((a, b) => pd(a.d) - pd(b.d)).slice(0, 5)
+    .map(o => '<li><a href="#item/' + o.it.id + '" data-open="' + o.it.id + '">' + esc(T(o.it.t)) + '</a> — ' + esc(o.lbl) + ' ' + fmtDLocal(pd(o.d)) + '（' + u.daysLeft + ' ' + daysTo(o.d, todayStr) + ' ' + u.days + '）</li>').join('')
     || '<li>' + (L.lang === 'zh' ? '150 天内无确定日期节点。' : 'No firm-date milestones within 150 days.') + '</li>';
+  const plan = DISPLAYED.filter(it => it.next.nat === 'plan')
+    .sort((a, b) => (a.next.d ? pd(a.next.d) : Infinity) - (b.next.d ? pd(b.next.d) : Infinity)).slice(0, 6)
+    .map(it => { const od = it.next.d && daysTo(it.next.d, todayStr) < 0; return '<li><a href="#item/' + it.id + '" data-open="' + it.id + '">' + esc(T(it.t)) + '</a> — ' + esc(T(it.next)) + (it.next.d ? ' ' + fmtDLocal(pd(it.next.d)) : '') + '（' + (od ? u.overduePlan : u.plan) + '）</li>'; }).join('')
+    || '<li>' + (L.lang === 'zh' ? '暂无计划类节点。' : 'No planned milestones.') + '</li>';
   const pend = DATA.pending.slice(0, 6).map(p => '<li>' + esc(T(p)) + '</li>').join('');
   $('#recent').innerHTML =
     '<div><h3>' + u.recentChanges + '</h3><ul>' + ch + '</ul></div>' +
-    '<div><h3>' + u.recentDue + '</h3><ul>' + upcoming + '</ul></div>' +
+    '<div><h3>' + u.recentDue + '</h3><h4>' + u.recentFirm + '</h4><ul>' + firm + '</ul><h4>' + u.recentPlan + '</h4><ul>' + plan + '</ul></div>' +
     '<div><h3>' + u.recentPending + '</h3><ul>' + pend + '</ul></div>';
   $('#recent').querySelectorAll('[data-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openDetail(a.dataset.open, document.activeElement); }));
 }
@@ -4815,16 +5559,17 @@ function renderRecent() {
 /* ============ 图例（真实筛选计数）与筛选控件 ============ */
 function renderLegend() {
   const u = UI();
-  const counts = {}; CAT_ORDER.forEach(c => counts[c] = 0);
-  DISPLAYED.forEach(it => counts[catOf(it.id)]++);
+  const counts = {};
+  DISPLAYED.forEach(it => { const c = catOf(it.id); counts[c] = (counts[c] || 0) + 1; });
   $('#legend').innerHTML = CAT_ORDER.map(c =>
-    '<button class="lg ' + c + (statusFilter && statusFilter !== c ? ' off' : '') + '" data-s="' + c + '" aria-pressed="' + (statusFilter === c) + '">' + u.status[c] + ' <span class="n">' + counts[c] + '</span></button>').join('')
+    '<button class="lg ' + c + (statusFilter && statusFilter !== c ? ' off' : '') + '" data-s="' + c + '" aria-pressed="' + (statusFilter === c) + '">' + u.status[c] + ' <span class="n">' + (counts[c] || 0) + '</span></button>').join('')
     + '<span class="lg-hint">' + (L.lang === 'zh' ? '点状态筛选 · 点事项看详情' : 'Click a status to filter · click an item for details') + '</span>';
   $('#legend').querySelectorAll('.lg').forEach(b => b.addEventListener('click', () => {
     statusFilter = statusFilter === b.dataset.s ? null : b.dataset.s;
     renderAll();
   }));
 }
+
 function renderFilters() {
   const u = UI();
   const types = [...new Set(DISPLAYED.map(i => i.type))];
@@ -4854,25 +5599,44 @@ function clearFilters() {
 }
 function renderUnknownList() {
   const u = UI();
-  const items = DISPLAYED.filter(it => it.next.nat === 'cond' || it.next.nat === 'unknown');
+  const items = getFiltered().filter(it => isUnresolved(it));
   $('#unknownTitle').textContent = u.unknownTitle + '（' + items.length + '）';
   $('#unknownList').innerHTML = items.map(it =>
-    '<li><a href="#item/' + it.id + '" data-open="' + it.id + '">' + esc(T(it.t)) + '</a> — ' + esc(T(it.next)) + (it.rule ? '（' + esc(T(it.rule.text).slice(0, 80)) + '）' : '') + '</li>').join('');
+    '<li><a href="#item/' + it.id + '" data-open="' + it.id + '">' + esc(T(it.t)) + '</a> — ' + esc(nextLine(it)) + '</li>').join('');
   $('#unknownList').querySelectorAll('[data-open]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openDetail(a.dataset.open, document.activeElement); }));
 }
 
 /* ============ 列表视图（与图表共用同一过滤数据集） ============ */
 function nextLine(it) {
   const u = UI();
+  if (it.cond) {
+    const cc = computeCondDate(it);
+    if (cc.allResolved) {
+      const n = daysTo(cc.earliest, todayStr);
+      let s = (L.lang === 'zh' ? '条件适用日（计算，分产品见详情）：' : 'Computed conditional date (by category, see detail): ') + fmtDLocal(pd(cc.earliest));
+      if (n > 0) s += '（' + u.daysLeft + ' ' + n + ' ' + u.days + '）';
+      else if (n === 0) s += '（' + u.today + '）';
+      else s += '（' + u.occurred + '）';
+      return s;
+    }
+    return T(it.next) + '（' + u.dateTbc + '）';
+  }
   let s = T(it.next);
   if (it.next.d) {
     const n = daysTo(it.next.d, todayStr);
-    if (n > 0) s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.daysLeft + ' ' + n + ' ' + u.days + '）';
+    if (n > 0) {
+      if (it.next.nat === 'plan') s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.plan + '）';
+      else s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.daysLeft + ' ' + n + ' ' + u.days + '）';
+    }
     else if (n === 0) s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.today + '）';
-    else s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + (catOf(it.id) === 'consult' ? u.closed : u.occurred) + '）';
+    else if (catOf(it.id) === 'consult') s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.closed + '）';
+    else if (it.next.nat === 'plan') s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.overduePlan + '）';
+    else if (it.next.nat === 'firm') s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.occurred + '）';
+    else s += ' ' + fmtDLocal(pd(it.next.d)) + '（' + u.overduePending + '）';
   }
   return s;
 }
+
 function renderList() {
   const u = UI(), f = getFiltered();
   $('#listview').innerHTML = f.map(it => {
@@ -4926,6 +5690,7 @@ const group = [it]; let gj = gi + 1;
 while (gj < items.length && items[gj].disp.child) { group.push(items[gj]); gj++;}
 group.forEach(git => {
 const pev = git.ev.map(ev => ({ ev, sp: eventSpan(ev)})).filter(o => o.sp && o.sp.t > f && o.sp.f < t);
+if (git.cond) { const cc = computeCondDate(git); if (cc && cc.allResolved) cc.categories.forEach(c => { const sp = eventSpan({ d: c.result }); if (sp && sp.t > f && sp.f < t) pev.push({ ev: { d: c.result, nat: 'firm', lbl: { zh: '条件适用日·' + c.label.zh, en: 'Conditional date · ' + c.label.en }, src: [] }, sp }); }); }
 const labels = [];
 pev.forEach(({ ev, sp}) => {
 let txt = T(ev.lbl);
@@ -4934,26 +5699,27 @@ if (ev.d) {
 const x = X(sp.f);
 let anchor = 'start', lx = x + 9;
 if (x > plotX + plotW - 80) { anchor = 'end'; lx = x - 9;}
-labels.push({ text: txt, x: lx, anchor, w: wL(txt)});
+labels.push({ text: txt, x: lx, anchor, w: wL(txt), full: txt});
 } else {
 const bx1 = Math.max(sp.f, f), bx2 = Math.min(sp.t, t);
 let anchor = 'start', lx = X(bx2) + 6;
 if (lx > plotX + plotW - 60) { anchor = 'end'; lx = X(bx1) - 6;}
-labels.push({ text: txt, x: lx, anchor, w: wL(txt)});
+labels.push({ text: txt, x: lx, anchor, w: wL(txt), full: txt});
 }
 });
 /* 碰撞：按 x 排序，依次放入不重叠的行（最多 3 行） */
 const placed = labels.map(l => ({...l, line: 0}));
+placed.forEach(l => { const x0 = l.anchor === 'end' ? l.x - l.w : l.x, x1 = l.anchor === 'end' ? l.x : l.x + l.w; if (x1 > plotX + plotW - 4) { l.anchor = 'end'; l.x = plotX + plotW - 4; } else if (x0 < plotX) { l.anchor = 'start'; l.x = plotX + 4; } });
 placed.sort((a, b) => (a.anchor === 'end'? a.x - a.w: a.x) - (b.anchor === 'end'? b.x - b.w: b.x));
-const lines = [[], [], []];
+const lines = [[], [], [], []];
 placed.forEach(l => {
 const x0 = l.anchor === 'end'? l.x - l.w: l.x, x1 = l.anchor === 'end'? l.x: l.x + l.w;
 let ln = 0;
-while (ln < 3) {
+while (ln < 4) {
 const clash = lines[ln].some(o => { const ox0 = o.anchor === 'end'? o.x - o.w: o.x, ox1 = o.anchor === 'end'? o.x: o.x + o.w; return x0 < ox1 + 4 && ox0 < x1 + 4;});
 if (!clash) break; ln++;
 }
-if (ln > 2) { ln = 2; l.text = truncPx(l.text, 120); l.w = wL(l.text);}
+if (ln > 3) { ln = 3; l.text = truncPx(l.text, 120); l.w = wL(l.text);}
 l.line = ln; lines[ln].push(l);
 });
 const linesUsed = Math.max(1,...placed.map(l => l.line + 1));
@@ -4964,8 +5730,8 @@ const cy = (badges.length? 14: 0) + 18;
 let note = null;
 if (!pev.length) {
 const cat = catOf(git.id);
-if (git.app && /已适用/.test(T(git.app))) note = { kind: 'applying'};
-else if (git.next.nat === 'cond' || git.next.nat === 'unknown') note = { kind: 'tbc', text: T(git.next)};
+if (git.appStatus === 'applied') note = { kind: 'applying'};
+else if (isUnresolved(git)) note = { kind: 'tbc', text: T(git.next)};
 else note = { kind: 'empty'};
 }
 secRows.push({ lane, item: git, group: group.length > 1, groupFirst: git === it, h, cy, labels: placed, badges, pev, note});
@@ -5036,15 +5802,15 @@ k = j;
 lrows.forEach(r => {
 const it = r.item, cy = rowY + r.cy, cat = catOf(it.id), c = col(cat);
 const g = gel('g', { style: 'cursor:pointer', tabindex: '0', role: 'button'});
-g.setAttribute('aria-label', T(it.t) + ' · ' + UI().status[cat] + ' · ' + T(it.next));
+g.setAttribute('data-open', it.id);
+g.setAttribute('aria-label', T(it.t) + ' · ' + UI().status[cat] + ' · ' + nextLine(it));
 if (modalOpen && modalId === it.id) g.appendChild(gel('rect', { x: 0, y: rowY + 1, width: W - 2, height: r.h - 2, fill: 'var(--sel)', rx: 6}));
 const nx = it.disp.child? 30: 10;
 const nm = gel('text', { x: nx, y: rowY + (r.badges.length? 14: 0) + 14, 'font-size': 12, fill: 'var(--ink)', 'font-weight': (modalOpen && modalId === it.id)? 700: 400});
 nm.textContent = truncPx((it.disp.child? '└ ': '') + T(it.t), labelW - nx - 10);
 const tip1 = document.createElementNS(NS, 'title'); tip1.textContent = T(it.t); nm.appendChild(tip1);
 g.appendChild(nm);
-let nextTxt = T(it.next);
-if (it.next.d) nextTxt += ' ' + it.next.d;
+let nextTxt = nextLine(it);
 const nn = gel('text', { x: nx, y: rowY + (r.badges.length? 14: 0) + 28, 'font-size': 10, fill: 'var(--ink2)'});
 nn.textContent = truncPx(nextTxt, labelW - nx - 10);
 const tip2 = document.createElementNS(NS, 'title'); tip2.textContent = nextTxt; nn.appendChild(tip2);
@@ -5072,18 +5838,18 @@ const x = X(sp.f), s = 7;
 g.appendChild(gel('polygon', { points: x + ',' + (cy - s) + ' ' + (x + s) + ',' + cy + ' ' + x + ',' + (cy + s) + ' ' + (x - s) + ',' + cy, fill: ev.nat === 'firm'? c: 'var(--card)', stroke: c, 'stroke-width': 1.8}));
 } else {
 const cx1 = Math.max(sp.f, f), cx2 = Math.min(sp.t, t);
-g.appendChild(gel('rect', { x: cx1, y: cy - 5, width: cx2 - cx1, height: 10, rx: 5, fill: ev.nat === 'plan'? 'none': c, 'fill-opacity': ev.nat === 'plan'? 0:.75, stroke: c, 'stroke-width': ev.nat === 'plan'? 1.4: 0, 'stroke-dasharray': ev.nat === 'plan'? '5 4': 'none'}));
+let rx = X(cx1), rw = Math.max(X(cx2) - X(cx1), 2); if (rx + rw > plotX + plotW) rx = plotX + plotW - rw; g.appendChild(gel('rect', { x: rx, y: cy - 5, width: rw, height: 10, rx: 5, fill: ev.nat === 'plan'? 'none': c, 'fill-opacity': ev.nat === 'plan'? 0:.75, stroke: c, 'stroke-width': ev.nat === 'plan'? 1.4: 0, 'stroke-dasharray': ev.nat === 'plan'? '5 4': 'none'}));
 }
 });
 r.badges.forEach(b => {
 const u = UI(), bt = L.lang === 'zh'? b.days + ' 天': b.days + 'd', bw = bt.length * 7.5 + 10;
-g.appendChild(gel('rect', { x: b.x - bw / 2, y: cy - 24, width: bw, height: 14, rx: 7, fill: b.days <= 40? 'var(--alert)': 'var(--steel)'}));
-const btx = gel('text', { x: b.x, y: cy - 13.5, 'font-size': 9.5, fill: '#fff', 'text-anchor': 'middle', 'font-weight': 700}); btx.textContent = bt; g.appendChild(btx);
+g.appendChild(gel('rect', { x: b.x - bw / 2, y: cy - 24, width: bw, height: 14, rx: 7, fill: b.days <= 40? 'var(--badge-alert-bg)': 'var(--badge-steel-bg)'}));
+const btx = gel('text', { x: b.x, y: cy - 13.5, 'font-size': 9.5, fill: b.days <= 40? 'var(--badge-alert-fg)': 'var(--badge-steel-fg)', 'text-anchor': 'middle', 'font-weight': 700}); btx.textContent = bt; g.appendChild(btx);
 });
 r.labels.forEach(l => {
 const ly = cy + 3.5 + l.line * 14;
 const lb = gel('text', { x: l.x, y: ly, 'font-size': 10.5, fill: 'var(--ink2)', 'text-anchor': l.anchor, 'paint-order': 'stroke', stroke: 'var(--card)', 'stroke-width': 3, 'stroke-linejoin': 'round'});
-lb.textContent = l.text; g.appendChild(lb);
+lb.textContent = l.text; const tip = document.createElementNS(NS, 'title'); tip.textContent = l.full || l.text; lb.appendChild(tip); g.appendChild(lb);
 });
 }
 const go = () => openDetail(it.id, g);
@@ -5098,6 +5864,47 @@ y = rowY + secGap;
 }
 
 /* ============ 详情（§6.3 顺序） ============ */
+
+/* ============ 弹窗焦点管理（V14-06）：入口只记事项 id 与类型，关闭时重新查询 ============ */
+function triggerKind(el) {
+  if (!el || !el.closest) return 'unknown';
+  if (el.closest('#listview')) return 'list';
+  if (el.closest('svg')) return 'chart';
+  if (el.closest('#recent')) return 'recent';
+  if (el.closest('#unknownList')) return 'unknown';
+  if (el.closest('.modal')) return 'rel';
+  return 'unknown';
+}
+function focusModalTitle() {
+  const title = document.getElementById('modalTitle');
+  let tries = 0;
+  const attempt = () => {
+    if (!modalOpen) return;
+    if (title) title.focus({ preventScroll: true });
+    if (document.activeElement === title) return;
+    if (++tries < 12) requestAnimationFrame(attempt);
+    else {
+      const modal = document.querySelector('.modal');
+      const first = modal && modal.querySelector('button, [href], [tabindex]:not([tabindex="-1"])');
+      if (first) first.focus({ preventScroll: true });
+    }
+  };
+  requestAnimationFrame(attempt);
+}
+function restoreFocus() {
+  const lt = lastTrigger;
+  let el = null;
+  if (lt) {
+    if (lt.kind === 'chart') el = document.querySelector('#chart g[data-open="' + lt.id + '"]');
+    else if (lt.kind === 'list') el = document.querySelector('#listview [data-open="' + lt.id + '"]');
+    else if (lt.kind === 'recent') el = document.querySelector('#recent [data-open="' + lt.id + '"]');
+    else if (lt.kind === 'unknown') el = document.querySelector('#unknownList [data-open="' + lt.id + '"]');
+    if (!el) el = document.querySelector('#chart g[data-open="' + lt.id + '"]') || document.querySelector('#listview [data-open="' + lt.id + '"]');
+  }
+  if (el && el.focus) { try { el.focus(); return; } catch (e) {} }
+  const q = document.getElementById('q'); if (q) q.focus();
+}
+
 function srcLinks(ids) {
 return ids.map(id => { const s = SOURCES[id]; if (!s) return null;
 return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(T(s.title)) + '</a>（' + esc(s.doc) + '；' + esc(T(s.status)) + '）';
@@ -5114,24 +5921,45 @@ return;
 $('#banner').classList.remove('show');
 if (modalOpen && modalId && modalId!== id &&!opts.noPush) modalStack.push(modalId);
 if (opts.backTo) { /* 从返回按钮进入：不再压栈 */}
+const sameItem = modalOpen && modalId === id;
+const prevScroll = sameItem ? document.querySelector('.modal').scrollTop : 0;
 modalOpen = true; modalId = id;
-lastTrigger = trigger || lastTrigger;
+/* 只记录来自弹窗外的入口；弹窗内关联跳转不覆盖原入口（关闭后回到最初入口） */
+if (trigger && !(trigger.closest && trigger.closest('.modal'))) {
+  lastTrigger = { id, kind: triggerKind(trigger) };
+} else if (!lastTrigger) {
+  lastTrigger = { id, kind: 'unknown' };
+}
 const u = UI(), cat = catOf(id);
 let html = '';
 if (modalStack.length) html += '<button class="backbtn" id="modalBack">' + u.back + '</button>';
 html += '<h3 id="modalTitle" tabindex="-1">' + esc(T(it.t)) + (it.disp.v14new? ' <span class="typechip">' + u.newBadge + '</span>': '') + '</h3>'
-+ '<div class="en">' + esc(it.t.en) + ' · ' + esc(it.basis.inst) + ' ' + esc(it.basis.art) + '</div>'
++ '<div class="en">' + (L.lang === 'en' ? esc(it.basis.inst) + ' ' + esc(it.basis.art) : esc(it.t.en) + ' · ' + esc(it.basis.inst) + ' ' + esc(it.basis.art)) + '</div>'
 + pill(cat) + '<span class="typechip">' + esc(u.type[it.type]) + '</span>';
 /* 2 产品与主体 */
 html += '<dl class="kv" style="margin-top:12px"><dt>' + u.fScope + '</dt><dd>' + esc(T(it.prod)) + '<br>' + (it.roles? esc(T(it.roles)): (L.lang === 'zh'? '主体待核验': 'Actors pending verification')) + '</dd>';
-/* 3 状态与证据 */
-html += '<dt>' + u.fStatus + '</dt><dd>' + (it.stage? esc(T(it.stage)): '') + (it.app? '<br>' + esc(T(it.app)): '')
-+ '<br>' + u.srcStatus + '：' + (it.ver.verified? (u.lastVerified + ' ' + fmtDLocal(pd(it.ver.verified))): (L.lang === 'zh'? '待核验': 'Pending verification'))
+/* 3 状态与证据：法定规则／配套文件当前状态／实际适用状态／证据状态四行（V14-02） */
+html += '<dt>' + u.fStatus + '</dt><dd>' + u.fRuleLine + '：' + (it.rule ? esc(T(it.rule.text)) : (it.stage ? esc(T(it.stage)) : '')) + '<br>';
+if (it.deps && it.deps.length) {
+  html += u.fDeps + '：' + it.deps.map(d => esc(T(d.name)) + '：' + esc(T(d.status)) + (d.ver ? '（' + u.lastChecked + ' ' + esc(d.ver.checked) + '；' + esc(T(d.ver.note)) + '）' : '')).join('；') + '<br>';
+} else if (it.files && it.files.length) {
+  html += u.fDeps + '：' + it.files.map(fl => esc(T(fl.name)) + '：' + esc(T(fl.status))).join('；') + '<br>';
+} else {
+  html += u.fDeps + '：' + esc(u.noDeps) + '<br>';
+}
+html += u.fAppSt + '：' + (it.app ? esc(T(it.app)) : (L.lang === 'zh' ? '待核验' : 'Pending verification')) + '<br>';
+html += u.fEvSt + '：' + (it.ver.verified ? (u.lastVerified + ' ' + fmtDLocal(pd(it.ver.verified))) : (L.lang === 'zh' ? '待核验' : 'Pending verification'))
 + '（' + u.lastChecked + ' ' + fmtDLocal(pd(it.ver.checked)) + '；' + esc(T(it.ver.note)) + '）</dd>';
-/* 4 下一节点 */
+/* 4 下一节点（含条件分产品计算表） */
 html += '<dt>' + u.fNext + '</dt><dd>' + esc(nextLine(it));
-if (it.rule) html += '<br>' + esc(T(it.rule.text));
-if (it.deps) html += '<br>' + it.deps.map(d => esc(T(d.name)) + '：' + esc(T(d.status))).join('；');
+if (it.cond) {
+  const cc = computeCondDate(it);
+  const tbc = L.lang === 'zh' ? '待确认' : 'To be confirmed';
+  html += '<br><b>' + u.fCond + '：</b><br>' + cc.categories.map(c => {
+    const ds = c.deps.map(d => esc(d.name) + ' ' + (d.entryIntoForce ? esc(d.entryIntoForce) + ' +' + d.offsetMonths + (L.lang === 'zh' ? '个月' : ' months') + ' → ' + d.result : (L.lang === 'zh' ? '生效日未知' : 'entry-into-force unknown'))).join('；');
+    return '· ' + esc(c.labelText) + '：' + u.condBase + ' ' + c.baseDate + (ds ? '；' + ds : '') + '；' + u.condResult + ' ' + (c.result || tbc);
+  }).join('<br>');
+}
 html += '</dd></dl>';
 /* 拆分记录 */
 if (it.subs) html += '<div class="mech"><b>' + u.fSubs + '：</b><br>' + it.subs.map(s => '<b>' + esc(s.art) + ' ' + esc(T(s.t)) + '</b> — ' + esc(T(s.status)) + '<br>' + esc(T(s.scope))).join('<br>') + '</div>';
@@ -5157,9 +5985,9 @@ $('#modalDetail').querySelectorAll('.rel-chip').forEach(c => c.addEventListener(
 const modal = document.querySelector('.modal');
 $('#modalBg').classList.add('open');
 document.body.style.overflow = 'hidden';
-modal.scrollTop = 0;
-const title = document.getElementById('modalTitle');
-if (title) title.focus();
+const mainEl = document.getElementById('mainContent'); if (mainEl) mainEl.inert = true;
+modal.scrollTop = sameItem ? prevScroll : 0;
+focusModalTitle();
 if (!opts.noHash) {
 const hash = '#item/' + id;
 if (opts.syncReplace) history.replaceState({ item: id}, '', hash);
@@ -5167,17 +5995,20 @@ else history.pushState({ item: id}, '', hash);
 }
 if (viewMode === 'chart') renderChart();
 }
+
 function closeModal() {
 if (!modalOpen) return;
 modalOpen = false; modalStack = [];
 const id = modalId; modalId = null;
 $('#modalBg').classList.remove('open');
 document.body.style.overflow = '';
+const mainEl = document.getElementById('mainContent'); if (mainEl) mainEl.inert = false;
 if (location.hash.indexOf('#item/') === 0) history.replaceState(null, '', location.pathname + location.search);
-if (lastTrigger && lastTrigger.focus) { try { lastTrigger.focus();} catch (e) {}}
 if (viewMode === 'chart') renderChart();
+restoreFocus();
 return id;
 }
+
 function setWindow(mode) {
 winMode = mode;
 win = mode === 'all'? windowAll(): window24(todayStr);
@@ -5213,6 +6044,14 @@ if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.f
 else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus();}
 }
 });
+document.addEventListener('focusin', e => {
+  if (!modalOpen) return;
+  const modal = document.querySelector('.modal');
+  const t = e.target;
+  if (modal && modal.contains(t)) return;
+  if (t && t.closest && (t.closest('.toggles') || t.closest('header'))) return;
+  if (modal) { const title = document.getElementById('modalTitle'); if (title) title.focus(); }
+});
 window.addEventListener('popstate', () => {
 const m = location.hash.match(/^#item\/([A-Za-z0-9_-]+)$/);
 if (m) openDetail(m[1], null, { noPush: true, noHash: true});
@@ -5237,17 +6076,26 @@ window.addEventListener('focus', refreshDateIfChanged);
 
 /* ============ 测试模式（仅?test=1 时启用，明确横幅标识，不混入正式记录） ============ */
 window.__v14 = { addMonths, latestOf, todayShanghai, windowAll: () => windowAll(), window24: t => window24(t)};
+window.__v141 = { computeCondDate, condResolved, isUnresolved, buildDisplayed, getFiltered, renderAll, renderRecent, version: 'v14.1',
+  setDepDate: (itemId, depKey, date) => { const it = byId[itemId]; if (!it || !it.cond) return false; let ok = false; it.cond.categories.forEach(c => c.dependencies.forEach(d => { if (d.key === depKey) { d.entryIntoForce = date; ok = true; } })); if (ok) { renderAll(); renderRecent(); if (modalOpen && modalId) openDetail(modalId, null, { noPush: true, noHash: true }); } return ok; },
+  setToday: (d) => { todayStr = d; win = winMode === 'all' ? windowAll() : window24(todayStr); renderRecent(); renderAll(); if (modalOpen && modalId) openDetail(modalId, null, { noPush: true, noHash: true }); }
+};
 (function () {
 const params = new URLSearchParams(location.search);
 if (params.get('test') === '1') {
 const testItem = { id: '__test', type: 'file', t: { zh: '更晚事件', en: '[TEST DATA] Later event'}, jur: 'EU',
 prod: { zh: '测试', en: 'Test'}, roles: null, basis: { inst: 'TEST', art: '—'},
-stage: { zh: '测试', en: 'Test'}, app: { zh: '测试', en: 'Test'},
+stage: { zh: '测试', en: 'Test'}, app: { zh: '测试', en: 'Test'}, appStatus: 'pending',
 ev: [{ id: 't1', type: 'application', nat: 'firm', prec: 'day', d: '2040-06-01', lbl: { zh: '测试节点', en: 'Test node'}, src: []}],
 src: [], ver: { checked: '2026-10-24', verified: null, note: { zh: '测试数据', en: 'Test data'}},
 act: null, rel: [], note: { zh: '测试数据，不属于正式法规记录。', en: 'Test data, not part of formal records.'}, hist: [],
 next: { d: '2040-06-01', nat: 'firm', zh: '测试节点', en: 'Test node'}, disp: { child: false, hidden: false}};
-byId.__test = testItem; DISPLAYED.push(testItem); CAT.awaited.push('__test');
+/* 注意：testItem 故意不设 cat，验收“状态待核验”回退徽章；注入进泳道后重建 DISPLAYED 并重算窗口（A-03 修复） */
+byId.__test = testItem;
+SECTIONS[0].lanes[0].items.push('__test');
+buildDisplayed();
+win = windowAll();
+renderAll();
 const b = $('#banner'); b.textContent = '测试数据模式：已注入 2040-06-01 测试事件，仅用于验收 A-03／A-05／A-09，不属于正式法规记录。';
 b.classList.add('show');
 }
