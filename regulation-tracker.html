@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>法规进展监控 · v14.2 测试版 — LCA瞭望</title>
+<title>法规进展监控 · v14.3 测试版 — LCA瞭望</title>
 <style>
   :root{
     --bg:#F4F6F8; --card:#FFFFFF; --ink:rgba(0,0,0,.88); --ink2:#54585A; --line:#E4E4E6;
@@ -164,7 +164,7 @@
   <header class="top">
     <div>
       <div class="site"><a href="https://radar.lca.wiki/" target="_blank" rel="noopener" data-zh="LCA瞭望 · LCA RADAR" data-en="LCA RADAR"></a> <span data-zh="／ 法规进展监控" data-en=" / Regulation Tracker"></span></div>
-      <h1><span data-zh="法规进展监控" data-en="Regulation Tracker"></span><span class="draft-tag" data-zh="v14.2 测试版" data-en="v14.2 test page"></span></h1>
+      <h1><span data-zh="法规进展监控" data-en="Regulation Tracker"></span><span class="draft-tag" data-zh="v14.3 测试版" data-en="v14.3 test page"></span></h1>
       <div class="sub"><span data-zh="数据核验截止：" data-en="Data verified through: "></span><span id="asof"></span><span data-zh=" · 展示事项 27 项（含 v14 新增 1 项）" data-en=" · 27 items shown (incl. 1 added in v14)"></span></div>
     </div>
     <div class="toggles">
@@ -188,7 +188,7 @@
   <div class="card method">
     <details>
       <summary data-zh="数据与核验方法" data-en="Data &amp; verification method"></summary>
-      <p data-zh="版本 v14.2 测试版；数据核验截止 2026-10-25（v14.1 复核于 2026-10-25，v14.2 复核于 2026-10-25）。" data-en="Version v14.2 test page; data verified through 25 Oct 2026 (v14.1 re-checked 25 Oct 2026, v14.2 re-checked 25 Oct 2026)."></p>
+      <p data-zh="版本 v14.3 测试版；数据核验截止 2026-10-26（v14.1 复核于 2026-10-25，v14.2 复核于 2026-10-25，v14.3 复核于 2026-10-26）。" data-en="Version v14.3 test page; data verified through 26 Oct 2026 (v14.1 re-checked 25 Oct 2026, v14.2 re-checked 25 Oct 2026, v14.3 re-checked 26 Oct 2026)."></p>
       <p data-zh="“待核验”表示尚未取得一手依据，不得理解为“未发布”“未通过”或“不存在”；状态徽章来自事项的显式状态字段，未知状态显示“状态待核验”，不默认“待通过”。" data-en="“Pending verification” means no primary source has been obtained yet; it must not be read as “not published”, “not adopted” or “non-existent”. Status badges come from each item's explicit status field; unknown status shows “Status pending verification”, never a default “Not yet adopted”."></p>
       <p data-zh="计划日期口径：计划、指示、目标类日期不是正式截止；过期后显示“计划日期已过，发布状态待核验”，不自动变为已发生。条件日期口径：依赖法案生效日未知时不产出确定适用日，列表、时间轴、详情、近期关注四处一致显示待确认。" data-en="Plan-date convention: planned, indicative or target dates are not formal deadlines; once passed they show “Planned date passed; publication status pending verification” and never auto-flip to occurred. Conditional-date convention: while a dependency's entry-into-force date is unknown, no firm application date is produced, and the list, timeline, detail and recent-focus views all show “to be confirmed”."></p>
     </details>
@@ -226,21 +226,22 @@
 
   <div class="banner" id="banner" role="alert"></div>
 
-  <div class="foot" data-zh="说明：空心菱形为原定或指示日期，实际起算以子法规生效为准；「待通过」指子法规尚未通过。状态以 EUR-Lex 与欧委会为准，细节见各事项详情。数据版本：v14.2（核验截止 2026-10-25）；上一可用版本：v14.1 设计稿（文件原样保留，v14.2 如有问题回退到 v14.1；v14 设计稿亦保留）。"
-       data-en="Notes: hollow diamonds are original or indicative dates; the actual start depends on the sub-act entering into force. 'Not yet adopted' means the sub-act is outstanding. EUR-Lex and the Commission prevail; see each item's detail for specifics. Data version: v14.2 (verified through 25 Oct 2026); previous usable version: v14.1 draft (file retained as-is; fall back to v14.1 if v14.2 has problems; v14 draft also retained)."></div>
+  <div class="foot" data-zh="说明：空心菱形为原定或指示日期，实际起算以子法规生效为准；「待通过」指子法规尚未通过。状态以 EUR-Lex 与欧委会为准，细节见各事项详情。数据版本：v14.3（核验截止 2026-10-26）；上一可用版本：v14.2 设计稿（文件原样保留，v14.3 如有问题回退到 v14.2；v14.1／v14 设计稿亦保留）。"
+       data-en="Notes: hollow diamonds are original or indicative dates; the actual start depends on the sub-act entering into force. 'Not yet adopted' means the sub-act is outstanding. EUR-Lex and the Commission prevail; see each item's detail for specifics. Data version: v14.3 (verified through 26 Oct 2026); previous usable version: v14.2 draft (file retained as-is; fall back to v14.2 if v14.3 has problems; v14.1 and v14 drafts also retained)."></div>
 </main>
 </div>
 <div class="modal-bg" id="modalBg"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-x" id="modalX" aria-label="close">✕</button>
     <div id="modalDetail"></div>
   </div></div>
-<script id="reg-data" type="application/json">{
+<script id="reg-data" type="application/json">
+{
   "meta": {
-    "version": "v14.2",
-    "dataAsOf": "2026-10-25",
+    "version": "v14.3",
+    "dataAsOf": "2026-10-26",
     "displayCount": 27,
-    "prevVersion": "v14.1",
-    "prevNote": "v14.1 设计稿文件原样保留；v14.2 如有问题回退到 v14.1，v14 设计稿亦保留。"
+    "prevVersion": "v14.2",
+    "prevNote": "v14.2 设计稿与数据文件原样保留；v14.3 如有问题回退到 v14.2，v14.1／v14 设计稿亦保留。"
   },
   "sources": {
     "S01": {
@@ -704,8 +705,8 @@
       "checked": "2026-10-25",
       "verified": null,
       "status": {
-        "zh": "目录索引；题名、文号与文件头日期；草案全文未取得；Published 字段本轮未读出",
-        "en": "Directory index; title, file number and file-header date; draft full text not obtained; Published field not read this round"
+        "zh": "目录索引；题名、文号；草案全文未取得；v14.2 记录（Published 字段本轮未读出）保留；补充复核（复审轮 2026-10-25）：官方目录 Publication details 直接读出 Published 2026-09-29、IMMC Ares(2026)9188325；目录元数据已读，草案全文／附件是否已读另记",
+        "en": "Directory index; title and file number; draft full text not obtained; v14.2 record (Published field not read that round) retained; supplementary re-check (review round 25 Oct 2026): official directory Publication details directly read Published 29 Sep 2026, IMMC Ares(2026)9188325; directory metadata read; whether the draft full text / annexes have been read is recorded separately"
       }
     },
     "S34": {
@@ -2078,7 +2079,8 @@
               "en": "LMT declaration"
             },
             "baseDate": "2033-08-18",
-            "dependencies": []
+            "dependencies": [],
+            "fixedEvent": "rc-lmt-decl"
           }
         ]
       }
@@ -2368,8 +2370,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "咨询期与草案标识已核验；通过目标无官方计划字段支持，草案附件正文待核验",
-          "en": "Feedback period and draft ID verified; no official plan-field support for an adoption target; annex text pending"
+          "zh": "咨询期与草案标识已核验；通过目标：官方索引列 Q4 2026 计划，实时程序页待复核，计划不等于已通过；草案附件正文待核验",
+          "en": "Feedback period and draft ID verified; adoption target: official index lists a Q4 2026 plan, live procedure page awaits re-check, a plan is not an adoption; annex text pending"
         }
       },
       "act": {
@@ -2386,8 +2388,8 @@
         }
       ],
       "note": {
-        "zh": "决定谁能看护照的哪一层数据，直接影响自建平台的访问控制设计。草案标识 Ares(2026)9814179。FAQ §1.4 称实施法案仍在制定中、预计以草案形式于 2026 年十月或十一月在 Have your say 公开反馈；通过目标无官方计划字段支持（HYS16473 页面本轮未能读取正文，计划不等于通过）；第三场研讨会（2026-09-30）称委员会投票目标 2026-12／2027-01（研讨会口径，材料未完整取得，待核验）。护照 2027-02-18 适用不受影响。",
-        "en": "Decides who can see which layer of passport data — directly shapes access-control design of an in-house platform. Draft ID Ares(2026)9814179. FAQ §1.4 says the implementing act is still being prepared and is expected to open for public feedback in draft form in October or November 2026 on Have your say; no official plan-field support exists for an adoption target (the HYS16473 page text could not be read this round; a plan is not an adoption); webinar 3 (30 Sep 2026) targets a committee vote in Dec 2026/Jan 2027 (webinar wording, materials not fully obtained, pending verification). The 18 Feb 2027 passport date is unaffected."
+        "zh": "决定谁能看护照的哪一层数据，直接影响自建平台的访问控制设计。草案标识 Ares(2026)9814179。FAQ §1.4 称实施法案仍在制定中、预计以草案形式于 2026 年十月或十一月在 Have your say 公开反馈；官方页面索引列采纳计划为 2026 年第四季度；实时程序页待复核，计划不等于已通过；第三场研讨会（2026-09-30）称委员会投票目标 2026-12／2027-01（研讨会口径，材料未完整取得，待核验）。护照 2027-02-18 适用不受影响。",
+        "en": "Decides who can see which layer of passport data — directly shapes access-control design of an in-house platform. Draft ID Ares(2026)9814179. FAQ §1.4 says the implementing act is still being prepared and is expected to open for public feedback in draft form in October or November 2026 on Have your say; the official page index lists the adoption plan as Q4 2026; the live procedure page awaits re-check; a plan is not an adoption; webinar 3 (30 Sep 2026) targets a committee vote in Dec 2026/Jan 2027 (webinar wording, materials not fully obtained, pending verification). The 18 Feb 2027 passport date is unaffected."
       },
       "hist": [
         {
@@ -2397,6 +2399,10 @@
         {
           "zh": "v14.2：删除 FAQ 定 Q4 通过目标的主张（无官方计划字段支持）；投票事件去 S10、prec 改为 month、显示为 2026 年 12 月至 2027 年 1 月的月度计划。",
           "en": "v14.2: removed the FAQ-based Q4 adoption-target claim (no official plan-field support); vote event de-linked from S10, prec changed to month, shown as a monthly plan Dec 2026–Jan 2027."
+        },
+        {
+          "zh": "v14.3：ia779 通过目标断言更正——删除“无官方计划字段支持”的绝对表述，改为官方索引列 Q4 2026 计划、实时程序页待复核、计划不等于已通过（季度精度，不造 2026-12-31；Q4 计划不进入确定节点；投票线索仍标材料待核验）。",
+          "en": "v14.3: ia779 adoption-target assertion corrected — the absolute 'no official plan-field support' wording removed, replaced by official index lists a Q4 2026 plan, live procedure page awaits re-check, a plan is not an adoption (quarter precision, no invented 31 Dec 2026; the Q4 plan enters no firm node; voting clues remain material-pending)."
         }
       ],
       "next": {
@@ -2659,11 +2665,11 @@
           "prec": "day",
           "d": "2026-09-29",
           "lbl": {
-            "zh": "草案发布（Ares 文件头标注日期 2026-09-29）",
-            "en": "Draft published (Ares file header date 29 Sep 2026)"
+            "zh": "草案目录发布日期 2026-09-29",
+            "en": "Draft directory publication date 29 Sep 2026"
           },
           "src": [
-            "S01"
+            "S33"
           ]
         }
       ],
@@ -2676,8 +2682,8 @@
         "checked": "2026-10-24",
         "verified": null,
         "note": {
-          "zh": "草案日为 Ares 文件头标注日期 2026-09-29（OP 目录 Published 字段本轮未读出，不写为官方目录记载的发布日期）；草案尚未通过、尚未生效（文件自带未通过声明）；通过与发布目标 2027 年（未给月份）；公开反馈起止日期为空白占位符，不写截止日；该日不代入生效后 18 个月，草案第 3 条不作为已生效证明",
-          "en": "Draft date is the Ares file header date 29 Sep 2026 (the OP directory Published field was not read this round; not written as the officially recorded publication date); the draft is not adopted and not in force (the file carries its own not-adopted statement); adoption and publication targeted 2027 (no month given); public-feedback dates are blank placeholders, no deadline stated; the date is not fed into an 18-months-after-entry-into-force calculation, and draft Article 3 is not proof of entry into force"
+          "zh": "草案目录发布日期 2026-09-29（官方目录 Published 字段，S33，复审轮 2026-10-25 直接读出）；取得文件 Ares(2026)9188325 为未通过草案版本；截至 2026-10-25 核查，OP 目录记录仍为草案发布、未见公报通过件，正式采纳／生效状态待核验；通过与发布目标 2027 年（未给月份）；公开反馈起止日期为空白占位符，不写截止日；该日不代入生效后 18 个月，草案第 3 条不作为已生效证明",
+          "en": "Draft directory publication date 29 Sep 2026 (official directory Published field, S33, directly read in the review round of 25 Oct 2026); the obtained file Ares(2026)9188325 is an unadopted draft version; as checked on 25 Oct 2026, the OP directory record remains a draft publication and no gazette adoption text has been seen; formal adoption / entry-into-force status is pending verification; adoption and publication targeted 2027 (no month given); public-feedback dates are blank placeholders, no deadline stated; the date is not fed into an 18-months-after-entry-into-force calculation, and draft Article 3 is not proof of entry into force"
         }
       },
       "act": {
@@ -2701,8 +2707,8 @@
         }
       ],
       "note": {
-        "zh": "护照“扫码可读”的标准层：二维码载体与唯一标识符格式由这件委托法案定。拟更新为 EN 18220 与 EN 18219；讲稿未区分两者对应关系，页内不硬写对应关系。草案文件记录 Ares(2026)9188325 题名同时涉及三部分：可充电工业电池性能耐久最低值、技术与安全参数、电池护照标准；草案尚未通过、尚未生效。咨询程序数仍为 2（ia779、cn2）；HYS14460 相关草案影响 qr、dur 两项，但其咨询窗口未取得一手截止日期，不计入咨询程序数；2026-10-27 不作为一手核验日期写入。",
-        "en": "The standards layer behind “scan to read” the passport: the data-carrier and unique-identifier formats are set by this delegated act. To be updated to EN 18220 and EN 18219; the workshop did not distinguish which maps to which, so this page does not hard-code the mapping. Draft file record Ares(2026)9188325 covers three parts in its title: minimum values for rechargeable industrial-battery performance and durability, technical and safety parameters, and battery passport standards; the draft is not adopted and not in force. The consultation-programme count stays at 2 (ia779, cn2); the HYS14460 draft affects qr and dur, but its consultation window has no first-hand deadline, so it is not counted as a consultation programme; 27 Oct 2026 is not written as a first-hand verified date."
+        "zh": "护照“扫码可读”的标准层：二维码载体与唯一标识符格式由这件委托法案定。拟更新为 EN 18220 与 EN 18219；讲稿未区分两者对应关系，页内不硬写对应关系。草案文件记录 Ares(2026)9188325 题名同时涉及三部分：可充电工业电池性能耐久最低值、技术与安全参数、电池护照标准；取得文件 Ares(2026)9188325 为未通过草案版本；截至 2026-10-25 核查，OP 目录记录仍为草案发布、未见公报通过件，正式采纳／生效状态待核验。咨询程序数仍为 2（ia779、cn2）；HYS14460 相关草案影响 qr、dur 两项，但其咨询窗口未取得一手截止日期，不计入咨询程序数；2026-10-27 不作为一手核验日期写入。",
+        "en": "The standards layer behind “scan to read” the passport: the data-carrier and unique-identifier formats are set by this delegated act. To be updated to EN 18220 and EN 18219; the workshop did not distinguish which maps to which, so this page does not hard-code the mapping. Draft file record Ares(2026)9188325 covers three parts in its title: minimum values for rechargeable industrial-battery performance and durability, technical and safety parameters, and battery passport standards; the obtained file Ares(2026)9188325 is an unadopted draft version; as checked on 25 Oct 2026, the OP directory record remains a draft publication and no gazette adoption text has been seen; formal adoption / entry-into-force status is pending verification. The consultation-programme count stays at 2 (ia779, cn2); the HYS14460 draft affects qr and dur, but its consultation window has no first-hand deadline, so it is not counted as a consultation programme; 27 Oct 2026 is not written as a first-hand verified date."
       },
       "hist": [
         {
@@ -2716,11 +2722,15 @@
         {
           "zh": "v14.2：草案日由推算改为 Ares 文件头标注日期；关联 Ares(2026)9188325 草案文件记录与 dur；咨询程序数与受影响事项数分开写。",
           "en": "v14.2: draft date changed from inferred to the Ares file header date; linked to the Ares(2026)9188325 draft file record and to dur; consultation-programme count and affected-item count written separately."
+        },
+        {
+          "zh": "v14.3：qr-dr 改绑 S33（母法 S01 不再作该日期事件来源）；标签改为草案目录发布日期 2026-09-29（官方目录 Published 字段，复审轮 2026-10-25 直接读出；历史文件头标注记录保留）；草案状态改按取得版本与核查日状态分开写（截至 2026-10-25 核查，OP 目录仍为草案发布、未见公报通过件，正式采纳／生效状态待核验）；该日期不是通过日、生效日或适用日。",
+          "en": "v14.3: qr-dr re-bound to S33 (parent act S01 no longer the source of that date event); label changed to draft directory publication date 29 Sep 2026 (official directory Published field, directly read in the review round of 25 Oct 2026; the earlier file-header-date record retained); draft status now written as obtained version versus checked-date status (as checked on 25 Oct 2026 the OP directory remains a draft publication, no gazette adoption text seen, formal adoption / entry-into-force status pending verification); the date is not an adoption, entry-into-force or application date."
         }
       ],
       "next": {
-        "zh": "通过与发布目标 2027 年（计划，未给月份）；草案日 2026-09-29 为 Ares 文件头标注日期",
-        "en": "Adoption & publication targeted 2027 (planned, no month given); draft date 29 Sep 2026 is the Ares file header date",
+        "zh": "通过与发布目标 2027 年（计划，未给月份）；草案目录发布日期 2026-09-29",
+        "en": "Adoption & publication targeted 2027 (planned, no month given); draft directory publication date 29 Sep 2026",
         "nat": "plan"
       },
       "disp": {
@@ -3019,8 +3029,8 @@
             "en": "Applying (since 18 Aug 2024)"
           },
           "scope": {
-            "zh": "可充电工业电池（容量大于 2kWh）、LMT 电池、EV 电池随附 Annex IV Part A 参数值文件；10(1) 本身无仅外部储能排除。",
-            "en": "Rechargeable industrial batteries (> 2 kWh), LMT batteries and EV batteries accompanied by a document with Annex IV Part A parameter values; 10(1) itself has no exclusively-external-storage exclusion."
+            "zh": "可充电工业电池（容量大于 2kWh）、LMT 电池、EV 电池随附 Annex IV Part A 参数值文件；10(1) 本身无仅外部储能排除。第二分段：Annex VIII 技术文档须解释测量、计算或估算性能／耐久参数所采用的技术规格、标准和条件，并至少包含 Annex IV Part B 的要素；完整 Annex IV B／VIII 映射未完成。",
+            "en": "Rechargeable industrial batteries (> 2 kWh), LMT batteries and EV batteries accompanied by a document with Annex IV Part A parameter values; 10(1) itself has no exclusively-external-storage exclusion. Second subparagraph: the Annex VIII technical documentation must explain the technical specifications, standards and conditions used to measure, calculate or estimate the performance and durability parameters, and must at least contain the elements of Annex IV Part B; full Annex IV Part B / Annex VIII mapping pending."
           }
         },
         {
@@ -3049,8 +3059,23 @@
             "en": "18 months after the Art 10(5) second-subparagraph DA enters into force (base 18 Aug 2028, whichever latest)"
           },
           "scope": {
-            "zh": "LMT 电池。授权在 Art 10(5)（两项 DA：工业 DA 须 2026-02-18 前通过，LMT DA 须 2027-02-18 前通过）；Art 10 内无 EV 最低值路径；10(4) 例外比 8(4) 更严：须经营者证明，且电池须在义务适用日之前已投放市场／投入使用。",
-            "en": "LMT batteries. Authorisation sits in Art 10(5) (two DAs: industrial DA due by 18 Feb 2026, LMT DA due by 18 Feb 2027); Art 10 has no EV minimum-value path; The 10(4) exception is stricter than 8(4): the operator must demonstrate it, and the battery must have been placed on the market or put into service before the obligation's application date."
+            "zh": "LMT 电池。授权在 Art 10(5)（两项 DA：工业 DA 须 2026-02-18 前通过，LMT DA 须 2027-02-18 前通过）；Art 10 内无 EV 最低值路径；10(4) 例外见 Art 10(4) 子记录。",
+            "en": "LMT batteries. Authorisation sits in Art 10(5) (two DAs: industrial DA due by 18 Feb 2026, LMT DA due by 18 Feb 2027); Art 10 has no EV minimum-value path; see the Art 10(4) sub-record for the exception."
+          }
+        },
+        {
+          "art": "Art 10(4)",
+          "t": {
+            "zh": "再利用例外",
+            "en": "Reuse exception"
+          },
+          "status": {
+            "zh": "相应段落不适用（须经营者证明）",
+            "en": "Corresponding paragraphs do not apply (operator demonstration required)"
+          },
+          "scope": {
+            "zh": "对经过再使用准备、再用途准备、再用途或再制造的电池，投放该电池市场或将其投入使用的经济运营者须证明：该电池在上述操作前，已于 Art 10(1)、10(2) 或 10(3) 相应义务适用日之前投放市场或投入使用；符合条件时，相应段落不适用。本例外仅适用于符合上述证明与时序条件的电池，不得推广为所有旧电池的一般豁免。",
+            "en": "For batteries that have undergone preparation for re-use, preparation for repurposing, repurposing or remanufacturing, the economic operator placing the battery on the market or putting it into service must demonstrate that the battery had already been placed on the market or put into service before the dates on which the obligations in Art 10(1), 10(2) or 10(3) become applicable; where the conditions are met, the corresponding paragraphs do not apply. This exception applies only to batteries meeting the above demonstration and timing conditions; it is not a general exemption for all old batteries."
           }
         }
       ],
@@ -3103,8 +3128,8 @@
         "checked": "2026-10-24",
         "verified": "2026-10-24",
         "note": {
-          "zh": "拆分规则已核验；两项 DA 实时状态待复核；Art 10(1) 与 Annex IV Part A 的条款级证据映射已按官方索引段落推进；健康状态关联核验进行中；Annex IV B／Annex VIII 完整映射仍待处理，不宣称整份母法及全部附件已直读。",
-          "en": "Split rules verified; live DA status needs review Clause-level evidence mapping for Art 10(1) against Annex IV Part A has been advanced against official index paragraphs; health-status association checks are ongoing; full Annex IV Part B / Annex VIII mapping remains pending, and no claim is made that the whole parent act and all annexes have been read in full."
+          "zh": "拆分规则已核验；两项 DA 实时状态待复核；Art 10(1) 条款级证据映射已按官方索引段落推进（Part A 参数文件＋第二分段 Annex VIII 技术文档要求已入正文）；健康状态关联核验进行中；Annex IV B／Annex VIII 完整映射仍待处理，不宣称整份母法及全部附件已直读。",
+          "en": "Split rules verified; live DA status needs review Clause-level evidence mapping for Art 10(1) against Annex IV Part A has been advanced against official index paragraphs (Part A parameter document plus the second-subparagraph Annex VIII technical-documentation duty now in the text); health-status association checks are ongoing; full Annex IV Part B / Annex VIII mapping remains pending, and no claim is made that the whole parent act and all annexes have been read in full."
         }
       },
       "act": {
@@ -3143,6 +3168,10 @@
         {
           "zh": "v14.2：cat 由待通过改为部分已适用；next 补 nat cond；10(4) 按更严条件单写；Art 10(1) 条款级映射按官方索引段落推进；关联 Ares(2026)9188325 草案文件记录。",
           "en": "v14.2: cat changed from awaited to partially applying; next gains nat cond; 10(4) written under its stricter conditions; Art 10(1) clause-level mapping advanced against official index paragraphs; linked to the Ares(2026)9188325 draft file record."
+        },
+        {
+          "zh": "v14.3：Art 10(4) 单列再利用例外子记录（四项操作、经营者证明、相应义务适用日前投放时序，非一般豁免）；10(3) 行内附注移出并留指引；Art 10(1) 补第二分段 Annex VIII 技术文档要求（完整映射仍待处理）；Ares 草案文件状态改按取得版本与核查日状态分开写。",
+          "en": "v14.3: Art 10(4) given its own reuse-exception sub-record (four operations, operator demonstration, placed-before-applicable-date timing, not a general exemption); the 10(3) inline note moved out with a pointer left; Art 10(1) supplemented with the second-subparagraph Annex VIII technical-documentation duty (full mapping still pending); Ares draft file status now written as obtained version versus checked-date status."
         }
       ],
       "next": {
@@ -3221,8 +3250,8 @@
             "en": "Draft file record"
           },
           "status": {
-            "zh": "草案尚未通过、尚未生效（文件自带未通过声明）；题名涉三部分：可充电工业电池性能耐久最低值、技术与安全参数、电池护照标准；公开反馈起止日期为空白占位符，不写截止日",
-            "en": "Draft not adopted, not in force (the file carries its own not-adopted statement); title covers three parts: minimum values for rechargeable industrial-battery performance and durability, technical and safety parameters, and battery passport standards; public-feedback dates are blank placeholders, no deadline stated"
+            "zh": "取得文件为未通过草案版本；截至 2026-10-25 核查，OP 目录记录仍为草案发布、未见公报通过件，正式采纳／生效状态待核验；题名涉三部分：可充电工业电池性能耐久最低值、技术与安全参数、电池护照标准；公开反馈起止日期为空白占位符，不写截止日",
+            "en": "Obtained file is an unadopted draft version; as checked on 25 Oct 2026, the OP directory record remains a draft publication and no gazette adoption text has been seen; formal adoption / entry-into-force status is pending verification; title covers three parts: minimum values for rechargeable industrial-battery performance and durability, technical and safety parameters, and battery passport standards; public-feedback dates are blank placeholders, no deadline stated"
           }
         }
       ]
@@ -5408,6 +5437,124 @@
   ],
   "changelog": [
     {
+      "changeId": "CH-20261026-01",
+      "itemId": "rc",
+      "changedFields": [
+        "next",
+        "recent",
+        "chart",
+        "cond"
+      ],
+      "reason": "v14.2 公网复审 F142-01",
+      "sourceRefs": [
+        "S01"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "下一节点只读条件结果（2033），近期同分支；2033 LMT 在时间轴画两次且称条件适用日",
+      "previousValue_en": "Next node read only computed results (2033), recent used the same branch; the 2033 LMT date was drawn twice on the timeline and called a computed conditional date",
+      "newValue": "统一义务事件集合（原始固定事件＋去重后计算结果）；decl-lmt 加 fixedEvent 指向 rc-lmt-decl，计算孪生跳过；下一节点取今天及以后最早有效结果（真实 rc 为 2031-08-18 最低含量，另 1 类待确认）；LMT 固定日一律称固定申报日；近期改用统一集合再按 150 天窗口选择",
+      "newValue_en": "Unified obligation-event set (raw firm events + de-duplicated computed results); decl-lmt gains fixedEvent pointing at rc-lmt-decl, the computed twin skipped; next node takes the earliest valid result on or after today (real rc: 31 Aug 2031 minimum content, 1 category to be confirmed); LMT fixed dates always called fixed declaration dates; recent picks from the unified set within the 150-day window",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
+      "changeId": "CH-20261026-02",
+      "itemId": "dur",
+      "changedFields": [
+        "subs",
+        "scope"
+      ],
+      "reason": "v14.2 公网复审 F142-02",
+      "sourceRefs": [
+        "S01"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "10(4) 附注挂在 10(3) LMT 行内且缺对象限定与完整时序；10(1) 仅列 Part A 参数文件",
+      "previousValue_en": "The 10(4) note sat inside the 10(3) LMT row without object limits or full timing; 10(1) listed only the Part A parameter document",
+      "newValue": "单列 Art 10(4) 再利用例外子记录（四项操作、经营者证明、相应义务适用日前投放时序、非一般豁免）；10(3) 附注移出并留指引；10(1) 补第二分段 Annex VIII 技术文档要求（完整映射仍待处理）",
+      "newValue_en": "Art 10(4) given its own reuse-exception sub-record (four operations, operator demonstration, placed-before-applicable-date timing, not a general exemption); the 10(3) note moved out with a pointer left; Art 10(1) supplemented with the second-subparagraph Annex VIII technical-documentation duty (full mapping still pending)",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
+      "changeId": "CH-20261026-03",
+      "itemId": "ia779",
+      "changedFields": [
+        "note",
+        "verification",
+        "pending"
+      ],
+      "reason": "v14.2 公网复审 F142-03",
+      "sourceRefs": [
+        "S11"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "通过目标无官方计划字段支持",
+      "previousValue_en": "No official plan-field support for an adoption target",
+      "newValue": "官方页面索引列采纳计划为 2026 年第四季度；实时程序页待复核，计划不等于已通过（季度精度，不造 2026-12-31；Q4 不进确定节点；投票线索仍标材料待核验）",
+      "newValue_en": "The official page index lists the adoption plan as Q4 2026; the live procedure page awaits re-check; a plan is not an adoption (quarter precision, no invented 31 Dec 2026; the Q4 plan enters no firm node; voting clues remain material-pending)",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
+      "changeId": "CH-20261026-04",
+      "itemId": "qr",
+      "changedFields": [
+        "note",
+        "verification",
+        "files"
+      ],
+      "reason": "v14.2 公网复审 F142-04",
+      "sourceRefs": [
+        "S33"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "文件自带未通过声明支撑当前仍未通过／未生效",
+      "previousValue_en": "The file's own not-adopted statement supported the current not-adopted / not-in-force status",
+      "newValue": "取得文件与核查日状态分开写：取得文件为未通过草案版本；截至 2026-10-25 核查，OP 目录记录仍为草案发布、未见公报通过件，正式采纳／生效状态待核验（qr 与 dur 同一文件口径一致）",
+      "newValue_en": "Obtained file and checked-date status written separately: the obtained file is an unadopted draft version; as checked on 25 Oct 2026, the OP directory record remains a draft publication and no gazette adoption text has been seen; formal adoption / entry-into-force status is pending verification (qr and dur share the same file-status wording)",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
+      "changeId": "CH-20261026-05",
+      "itemId": "qr",
+      "changedFields": [
+        "events",
+        "sources"
+      ],
+      "reason": "v14.2 公网复审 F142-05",
+      "sourceRefs": [
+        "S33"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "qr-dr 来源仅 S01（母法），标签为 Ares 文件头标注日期",
+      "previousValue_en": "qr-dr sourced only to S01 (parent act), labelled as an Ares file-header date",
+      "newValue": "qr-dr 来源改绑 S33；标签改为草案目录发布日期 2026-09-29；S33 新增 Published 字段补充复核记录（历史未读出记录保留）；目录元数据已读与全文是否已读分开写；该日期不是通过日／生效日／适用日",
+      "newValue_en": "qr-dr re-bound to S33; label changed to draft directory publication date 29 Sep 2026; S33 gains a Published-field supplementary re-check record (the earlier not-read record retained); directory metadata read and full-text read recorded separately; the date is not an adoption, entry-into-force or application date",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
+      "changeId": "CH-20261026-06",
+      "itemId": null,
+      "changedFields": [
+        "changelog",
+        "sources"
+      ],
+      "reason": "v14.2 公网复审 F142-06",
+      "sourceRefs": [
+        "S31"
+      ],
+      "reviewStatus": "已验收（accept143，2026-10-26）",
+      "changedAt": "2026-10-26",
+      "previousValue": "CH-20261025-02 挂 S31（WCAG）但内容为 cf1 状态与条件规则；日志首部称 21 条原样保留",
+      "previousValue_en": "CH-20261025-02 cited S31 (WCAG) although its content is cf1 status and conditional rules; the log header said 21 entries were retained as-is",
+      "newValue": "CH-20261025-02 移除 S31；WCAG 引用归属对比度验收证据；日志首部改为保留 21 条历史记录并更正其中一条来源；本条记录本次来源更正（refs S31）",
+      "newValue_en": "S31 removed from CH-20261025-02; the WCAG citation belongs to the contrast acceptance evidence; the log header now says 21 history entries are retained with one source corrected; this entry records that source correction (refs S31)",
+      "reviewStatus_en": "Accepted (accept143, 2026-10-26)"
+    },
+    {
       "changeId": "CH-20261025-11",
       "itemId": null,
       "changedAt": "2026-10-25",
@@ -5622,8 +5769,7 @@
       "newValue": "详情状态与证据拆四行（法定规则／配套文件当前状态／实际适用状态／证据状态）；deps 状态一律写实时状态待核验并带各自核验记录；规则写法拆法定基准日／依赖生效后偏移量／取最晚结果三段",
       "reason": "v14 公网复审 V14-02、V14-11、V14-17",
       "sourceRefs": [
-        "S01",
-        "S31"
+        "S01"
       ],
       "reviewStatus": "规则已核验；实时状态待核验",
       "newValue_en": "Detail status and evidence split into four rows (statutory rule / companion-file status / actual application status / evidence status); dep statuses all read as live-status pending with per-dep verification records; rules rewritten as base date / offset / latest-of",
@@ -6002,8 +6148,8 @@
       "en": "Status of the CRMA Art 28(2) label IA and Art 29(2) calculation-and-verification DA; Art 29 minimum-share percentages (not set in the text)"
     },
     {
-      "zh": "ia779 通过目标（无官方计划字段支持）与草案附件正文",
-      "en": "ia779 adoption target (no official plan-field support) and draft annex text"
+      "zh": "ia779 通过目标（官方索引列 Q4 2026 计划，实时程序页待复核）与草案附件正文",
+      "en": "ia779 adoption target (official index lists a Q4 2026 plan, live procedure page awaits re-check) and draft annex text"
     },
     {
       "zh": "cn2 汽车分册独立文件与附件正文",
@@ -6034,17 +6180,18 @@
       "en": "Live status of the Art 8 methodology delegated act and the declaration's actual application date"
     },
     {
-      "zh": "qr 草案日 2026-09-29（Ares 文件头标注）的官方目录 Published 字段复核；公开反馈窗口待核验",
-      "en": "Official-directory Published-field re-check for the qr draft date 29 Sep 2026 (Ares file header date); public-feedback window pending"
+      "zh": "qr 公开反馈窗口待核验（草案目录发布日期 2026-09-29 已复核，S33）",
+      "en": "qr public-feedback window pending verification (draft directory publication date 29 Sep 2026 re-checked, S33)"
     }
   ]
-}</script>
+}
+</script>
 <script>
 /* ============ v14 · 数据加载（失败时明确报错，不留假空图） ============ */
 let RAW=null;
 try { RAW = JSON.parse(document.getElementById('reg-data').textContent); }
 catch(e) {
-  document.getElementById('chartWrap').innerHTML = '<div class="errbox">数据加载失败：法规数据无法解析，页面未显示任何事项。请使用上一可用版本 v14.1 设计稿。</div>';
+  document.getElementById('chartWrap').innerHTML = '<div class="errbox">数据加载失败：法规数据无法解析，页面未显示任何事项。请使用上一可用版本 v14.2 设计稿。</div>';
   throw e;
 }
 const DATA = RAW, SOURCES = DATA.sources, SECTIONS = DATA.sections;
@@ -6122,11 +6269,32 @@ function eventSpan(ev) {
   if (ev.f && ev.t) return { f: pd(ev.f), t: pd(ev.t) + DAY };
   return null;
 }
-/* 汇总全部事件（v14.2 R04）：原始事件＋各类别已确定的计算事件（仅已知结果）；近期仍按自身 150 天窗口筛选 */
+/* 汇总全部事件（v14.2 R04／v14.3 F142-01）：原始事件＋去重后已知计算事件（与原始固定事件同义务的计算孪生跳过，保留原始固定事件）；windowAll 用它定范围；近期与下一节点改用 obligationEvents（原始固定事件＋去重后计算结果）。*/
 function collectAllEvents(it) {
-  const evs = (it.ev || []).slice();
-  if (it.cond) { const cc = computeCondDate(it); cc.categories.forEach(c => { if (c.result) evs.push({ d: c.result, nat: 'firm', prec: 'day', lbl: { zh: '条件适用日·' + c.label.zh, en: 'Conditional date · ' + c.label.en }, src: [], computed: true }); }); }
-  return evs;
+  // v14.2 原形：返回原始事件对象原样（lbl 为 {zh,en} 对象、nat/f/t 完整，图表与窗口依赖该形态）；
+  // F142-01 仅加一处：与原始固定事件同义务的计算孪生跳过（保留原始固定事件，防同一义务画两次）。
+  const out = (it.ev || []).slice();
+  if (!it.cond) return out;
+  const cc = computeCondDate(it);
+  cc.categories.forEach(c => {
+    if (c.fixedEvent && (it.ev || []).some(e => e.id === c.fixedEvent)) return;
+    if (c.result) out.push({ d: c.result, nat: 'firm', prec: 'day', lbl: { zh: '条件适用日·' + c.label.zh, en: 'Conditional date · ' + c.label.en }, src: [], computed: true });
+  });
+  return out;
+}
+/* 可用于提醒的已知义务事件（F142-01）：原始固定义务事件（nat firm 的原始事件）＋去重后已知条件计算结果。
+   原定条件基准日（nat cond 的原始事件）、历史发布日、推测计划日不得混入。 */
+function obligationEvents(it) {
+  const out = [];
+  (it.ev || []).forEach(e => { if (e.nat === 'firm' && e.d) out.push({ d: e.d, lbl: T(e.lbl), kind: 'firm' }); });
+  if (it.cond) {
+    const cc = computeCondDate(it);
+    cc.categories.forEach(c => {
+      if (c.fixedEvent && (it.ev || []).some(e => e.id === c.fixedEvent)) return;
+      if (c.result) out.push({ d: c.result, lbl: (L.lang === 'zh' ? '条件适用日·' + c.label.zh : 'Conditional date · ' + c.label.en), kind: 'computed', cat: c.key });
+    });
+  }
+  return out;
 }
 function windowAll() {
   let mn = Infinity, mx = -Infinity;
@@ -6155,7 +6323,7 @@ function pill(cat) { const u = UI(); return '<span class="pill ' + cat + '">' + 
 function basisLine(it) { return esc(it.basis.inst) + (it.basis.art ? ' ' + esc(it.basis.art) : '') + (it.basis.artNote ? ' · ' + esc(T(it.basis.artNote)) : ''); }
 
 
-/* ============ 条件日期统一计算（V14-11／v14.2 R02–R05）：唯一计算入口，四视图同读结果 ============ */
+/* ============ 条件日期统一计算（V14-11／v14.2 R02–R05／v14.3 F142-01 fixedEvent 去重）：唯一计算入口，四视图同读结果 ============ */
 /* 每类别独立计算：result 为空表示该类别待确认；nextFuture 为今天及以后最早已知结果；已发生结果进 pastResults */
 function computeCondDate(it, today) {
   if (!it.cond) return null;
@@ -6169,7 +6337,7 @@ function computeCondDate(it, today) {
     });
     const parts = [c.baseDate].concat(deps.map(d => d.result));
     const result = deps.some(d => d.result === null) ? null : parts.sort().pop();
-    return { key: c.key, label: c.label, labelText: T(c.label), baseDate: c.baseDate, deps, result, resolved: result !== null };
+    return { key: c.key, label: c.label, labelText: T(c.label), baseDate: c.baseDate, deps, result, resolved: result !== null, fixedEvent: c.fixedEvent || null };
   });
   const allResolved = cats.every(c => c.result !== null);
   const earliest = allResolved ? cats.map(c => c.result).sort()[0] : null;
@@ -6209,7 +6377,7 @@ function fillStatic() {
   document.documentElement.lang = L.lang === 'zh' ? 'zh-CN' : 'en';
   const th = $('#themeBtn'), dark = document.documentElement.dataset.theme === 'dark', u = UI();
   th.textContent = dark ? u.themeLight : u.themeDark;
-  document.title = L.lang === 'zh' ? '法规进展监控 · v14.2 测试版 — LCA瞭望' : 'Regulation Tracker · v14.2 test page — LCA RADAR';
+  document.title = L.lang === 'zh' ? '法规进展监控 · v14.3 测试版 — LCA瞭望' : 'Regulation Tracker · v14.3 test page — LCA RADAR';
   $('#q').placeholder = u.searchPh;
   $('#q').setAttribute('aria-label', u.searchPh);
 }
@@ -6228,7 +6396,7 @@ function renderRecent() {
   }).join('');
   const firm = DISPLAYED.flatMap(it => {
     const rows = [];
-    if (it.cond) { const cc = computeCondDate(it); cc.categories.forEach(c => { if (c.result) rows.push({ it, d: c.result, lbl: (L.lang === 'zh' ? '条件适用日·' + c.label.zh : 'Conditional date · ' + c.label.en) }); }); }
+    if (it.cond) { obligationEvents(it).forEach(o => rows.push({ it, d: o.d, lbl: o.lbl })); }
     else if (it.next.d && it.next.nat === 'firm') rows.push({ it, d: it.next.d, lbl: T(it.next) });
     return rows;
   }).filter(o => o.d && daysTo(o.d, todayStr) >= 0 && daysTo(o.d, todayStr) <= 150)
@@ -6254,7 +6422,8 @@ function renderLegend() {
   DISPLAYED.forEach(it => { const c = catOf(it.id); counts[c] = (counts[c] || 0) + 1; });
   $('#legend').innerHTML = CAT_ORDER.map(c =>
     '<button class="lg ' + c + (statusFilter && statusFilter !== c ? ' off' : '') + '" data-s="' + c + '" aria-pressed="' + (statusFilter === c) + '">' + u.status[c] + ' <span class="n">' + (counts[c] || 0) + '</span></button>').join('')
-    + '<span class="lg-hint">' + (L.lang === 'zh' ? '点状态筛选 · 点事项看详情' : 'Click a status to filter · click an item for details') + '</span>';
+    + '<span class="lg-hint">' + (L.lang === 'zh' ? '点状态筛选 · 点事项看详情' : 'Click a status to filter · click an item for details') + '</span>'
+    + '<span class="lg-hint">' + (L.lang === 'zh' ? '咨询中＝已核实处于咨询期的事项；另有程序窗口待核验。' : 'Under consultation = items verified to be in a consultation window; other procedure windows remain pending verification.') + '</span>';
   $('#legend').querySelectorAll('.lg').forEach(b => b.addEventListener('click', () => {
     statusFilter = statusFilter === b.dataset.s ? null : b.dataset.s;
     renderAll();
@@ -6304,18 +6473,22 @@ function nextLine(it) {
     const cc = computeCondDate(it);
     const unres = cc.categories.filter(c => !c.result).length;
     const more = n => (L.lang === 'zh' ? '；另 ' + n + ' 类待确认' : '; ' + n + ' categor' + (n > 1 ? 'ies' : 'y') + ' to be confirmed');
-    if (cc.nextFuture) {
-      const n = daysTo(cc.nextFuture, todayStr);
-      let s = (L.lang === 'zh' ? '条件适用日（计算）：' : 'Computed conditional date: ') + fmtDLocal(pd(cc.nextFuture));
-      if (n > 0) s += '（' + u.daysLeft + ' ' + n + ' ' + u.days + '）';
-      else if (n === 0) s += '（' + u.today + '）';
-      if (cc.pastResults.length) s += (L.lang === 'zh' ? '；另 ' + cc.pastResults.length + ' 类已发生' : '; ' + cc.pastResults.length + ' categor' + (cc.pastResults.length > 1 ? 'ies' : 'y') + ' already occurred');
+    const obs = obligationEvents(it);
+    const future = obs.filter(o => o.d >= todayStr).sort((a, b) => pd(a.d) - pd(b.d));
+    const past = obs.filter(o => o.d < todayStr).sort((a, b) => pd(a.d) - pd(b.d));
+    const dls = d => { const n = daysTo(d, todayStr); return n > 0 ? '（' + u.daysLeft + ' ' + n + ' ' + u.days + '）' : (n === 0 ? '（' + u.today + '）' : '（' + u.occurred + '）'); };
+    if (future.length) {
+      const nx = future[0];
+      let s = nx.kind === 'computed' ? (L.lang === 'zh' ? '条件适用日（计算）：' : 'Computed conditional date: ') + fmtDLocal(pd(nx.d)) : nx.lbl + ' ' + fmtDLocal(pd(nx.d));
+      s += dls(nx.d);
+      if (past.length) s += (L.lang === 'zh' ? '；另 ' + past.length + ' 项已发生' : '; ' + past.length + ' item' + (past.length > 1 ? 's' : '') + ' already occurred');
       if (unres) s += more(unres);
       return s;
     }
-    if (cc.categories.some(c => c.result)) {
-      const last = cc.pastResults[cc.pastResults.length - 1];
-      let s = (L.lang === 'zh' ? '条件适用日（计算，分产品见详情）：' : 'Computed conditional date (by category, see detail): ') + fmtDLocal(pd(last)) + '（' + u.occurred + '）';
+    if (past.length) {
+      const last = past[past.length - 1];
+      let s = last.kind === 'computed' ? (L.lang === 'zh' ? '条件适用日（计算，分产品见详情）：' : 'Computed conditional date (by category, see detail): ') + fmtDLocal(pd(last.d)) : last.lbl + ' ' + fmtDLocal(pd(last.d));
+      s += '（' + u.occurred + '）';
       if (unres) s += more(unres);
       return s;
     }
@@ -6656,6 +6829,7 @@ if (it.cond) {
   const tbc = L.lang === 'zh' ? '待确认' : 'To be confirmed';
   html += '<br><b>' + u.fCond + '：</b><br>' + cc.categories.map(c => {
     const ds = c.deps.map(d => esc(d.name) + ' ' + (d.entryIntoForce ? esc(d.entryIntoForce) + ' +' + d.offsetMonths + (L.lang === 'zh' ? '个月' : ' months') + ' → ' + d.result : (L.lang === 'zh' ? '生效日未知' : 'entry-into-force unknown'))).join('；');
+    if (c.fixedEvent) { const rev = (it.ev || []).find(e => e.id === c.fixedEvent); const rl = rev ? T(rev.lbl) : c.fixedEvent; return L.lang === 'zh' ? '· ' + esc(c.labelText) + '：固定申报日 ' + c.baseDate + '（与原始事件 ' + esc(rl) + ' 同一义务）' : '· ' + esc(c.labelText) + ': Fixed declaration date ' + c.baseDate + ' (same obligation as raw event ' + esc(rl) + ')'; }
     return '· ' + esc(c.labelText) + '：' + u.condBase + ' ' + c.baseDate + (ds ? '；' + ds : '') + '；' + u.condResult + ' ' + (c.result || tbc);
   }).join('<br>');
 }
@@ -6775,7 +6949,7 @@ window.addEventListener('focus', refreshDateIfChanged);
 
 /* ============ 测试模式（仅?test=1 时启用，明确横幅标识，不混入正式记录） ============ */
 window.__v14 = { addMonths, latestOf, todayShanghai, windowAll: () => windowAll(), window24: t => window24(t)};
-window.__v142 = { computeCondDate, condResolved, isUnresolved, buildDisplayed, getFiltered, renderAll, renderRecent, collectAllEvents, version: 'v14.2',
+window.__v143 = { computeCondDate, condResolved, isUnresolved, buildDisplayed, getFiltered, renderAll, renderRecent, collectAllEvents, version: 'v14.3',
   setDepDate: (itemId, categoryKey, depKey, date) => { const it = byId[itemId]; if (!it || !it.cond) return false; const cat = it.cond.categories.find(c => c.key === categoryKey); if (!cat) return false; let ok = false; cat.dependencies.forEach(d => { if (d.key === depKey) { d.entryIntoForce = date; ok = true; } }); if (ok) { if (winMode === 'all') win = windowAll(); renderRecent(); renderAll(); if (modalOpen && modalId) openDetail(modalId, null, { noPush: true, noHash: true }); } return ok; },
   clearDepDate: (itemId, categoryKey, depKey) => { const it = byId[itemId]; if (!it || !it.cond) return false; const cat = it.cond.categories.find(c => c.key === categoryKey); if (!cat) return false; let ok = false; cat.dependencies.forEach(d => { if (d.key === depKey) { d.entryIntoForce = null; ok = true; } }); if (ok) { if (winMode === 'all') win = windowAll(); renderRecent(); renderAll(); if (modalOpen && modalId) openDetail(modalId, null, { noPush: true, noHash: true }); } return ok; },
   setToday: (d) => { todayStr = d; win = winMode === 'all' ? windowAll() : window24(todayStr); renderRecent(); renderAll(); if (modalOpen && modalId) openDetail(modalId, null, { noPush: true, noHash: true }); }
