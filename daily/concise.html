@@ -1314,9 +1314,13 @@ renderFav();
 var I18N={
 zh:{"sidebar.highlights":"今日看点","sidebar.layout":"本期版面","fav.unsave":"取消收藏","ui.vieworig":"查看原文","ui.morning":"早报","ui.wd2":"周三","ui.issue_prefix":"第","ui.cov":"覆盖窗口：","ui.issue_num":"期"},
 en:{"sidebar.highlights":"Today's Highlights","sidebar.layout":"In This Issue","fav.unsave":"Remove","ui.vieworig":"View Original","ui.morning":"Morning Brief","ui.wd2":"Wed","ui.issue_prefix":"Issue","ui.cov":"Coverage:","ui.issue_num":""}};
-var cur=localStorage.getItem("lca-lang")||"zh";
+// 本地存储在某些环境会抛错（另存为单个文件后用 file:// 打开、Safari 隐私模式、禁用存储时），
+// 语言切换不能因此整个失效：读写失败就退化为仅当次内存生效（不持久化），翻译照常进行。
+function storeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function storeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+var cur=storeGet("lca-lang")||"zh";
 function apply(lang){
-  cur=lang; localStorage.setItem("lca-lang",lang);
+  cur=lang; storeSet("lca-lang",lang);
   document.documentElement.classList.toggle("lang-en", lang==="en");
   // 导航文字变了，pill 位置要重算（等重排完成）
   if(window.movePill){ requestAnimationFrame(function(){ window.movePill(true); }); }
