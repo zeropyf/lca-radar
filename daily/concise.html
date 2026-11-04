@@ -937,6 +937,21 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 }
 .item h3,.hl-item .t b,.arc .tx b,.tl-title,.modal h2,.tcard h3,.citem .tx h3,.pstep h3,.wk-one-tx{line-break:strict}
 @media (hover:none){.item h3 a .ext{display:none}}
+.concise-jump{text-align:center;margin:30px 0 0}
+.concise-jump a{display:inline-block;padding:9px 22px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:inherit;font-size:14px}
+.concise-jump a:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:1200px){
+#drail{display:block;position:static;align-self:auto;height:auto;overflow:visible;order:3;min-width:0;border-left:none;padding-left:0}
+#drail .toc{display:none}
+.maincol{display:contents}
+#dmain{display:contents}
+.shell{row-gap:0}
+.seg.m-typeseg{order:0;min-width:0;margin-top:26px}
+.shell .masthead{order:1;min-width:0}
+.shell .stats-line{order:2;min-width:0}
+.shell .layer{order:4;min-width:0}
+.shell .tail{order:5;min-width:0;margin-bottom:60px}
+}
 /* 简洁版：两栏版式（仅 ≥1201px 生效；≤1200px 沿用原站窄屏单列＋右栏隐藏。
    用 1201px 而不用 1200px，是为了在 1200px 整点与 v4 一致：该宽度下原站窄屏规则后胜、应为单列） */
 @media(min-width:1201px){.shell{grid-template-columns:minmax(0,1fr) 260px}}
