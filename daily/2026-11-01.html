@@ -6481,9 +6481,11 @@ function initLang(){
     document.documentElement.classList.add('lang-ready');
   });});
   document.querySelectorAll('.lang-switch').forEach(function(sw){
-    // 防止重复绑定
-    if(sw.dataset.langBound) return;
-    sw.dataset.langBound = "1";
+    // 防止重复绑定：必须用 JS 侧标记，不能用 DOM 属性——
+    // 浏览器另存页面时会把 live DOM（含 data-* 属性）一并存下来，但事件处理函数不会跟过去；
+    // 下次打开保存件时若见属性就跳过绑定，开关就彻底死了（2026-11-05 实测：保存件点 EN 只动圆点、不换文字且零报错）。
+    if(sw.__langBound) return;
+    sw.__langBound = true;
     sw.addEventListener('click',function(e){
       var label = e.target.closest('label');
       if(!label) return;
