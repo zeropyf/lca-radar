@@ -981,9 +981,13 @@ html.force-dark .lang-switch input:checked+span{color:#0f2841!important}
    maincol 与 #dmain 置为 display:contents（两者皆纯包皮、无背景无边框，#dmain 本身
    无任何样式），让刊头、统计行、层、尾巴直接成为 shell 的网格项再排 order；
    行距归零、间距改由元素自身边距承担，并补回 maincol 原有的上下内边距
-   （刊头上 26px、尾巴下 60px）。桌面端不受影响（本块只在 ≤1200px 生效）。 */
+   （刊头上 26px、尾巴下 60px）。桌面端不受影响（本块只在 ≤1200px 生效）。
+   用户 01:13 再反馈：看点左侧的竖线与刊头线条接上了——那是桌面端右栏的左边分界线
+   （.rail border-left）与统计行底边（.stats-line border-bottom）在窄屏叠放时于角上相接；
+   窄屏右栏已是通栏内容块，分界线本无意义，故窄屏去掉左边框及其 28px 左缩进，
+   看点内容与刊头、专题左对齐，统计行底边保留（刊头自己的分隔线）。 */
 @media(max-width:1200px){
-#drail{display:block;position:static;align-self:auto;height:auto;overflow:visible;order:3;min-width:0}
+#drail{display:block;position:static;align-self:auto;height:auto;overflow:visible;order:3;min-width:0;border-left:none;padding-left:0}
 #drail .toc{display:none}
 .maincol{display:contents}
 #dmain{display:contents}
