@@ -4232,7 +4232,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
     <div class="tail">
       <div class="end" data-zh="（ 本 期 完 ）" data-en="— End of Issue —">（ 本 期 完 ）</div>
-      <p class="disclaimer"><span data-zh="本简报基于公开来源整理；微信公众号内容凡涉法规状态均须一手核验。URL 均为实际检索到的链接，未编造。" data-en="Regulatory status is based on official documents; items marked &quot;pending first-hand verification&quot; have not yet been confirmed by primary sources.">本简报基于公开来源整理；微信公众号内容凡涉法规状态均须一手核验。URL 均为实际检索到的链接，未编造。</span></p>
+      
       </div>
   </div>
   <div id="wmain" hidden>
@@ -6062,7 +6062,7 @@ function toggleFav(btn,url){let favs=[];try{favs=JSON.parse(localStorage.getItem
 </script>
 
 </div>
-<footer class="site-foot"><span data-zh="LCA瞭望 · LCA RADAR" data-en="LCA RADAR">LCA瞭望 · LCA RADAR</span><span class="pv"><span data-i18n="ui.pv">本站总访问</span> <span id="busuanzi_value_site_pv">…</span> · <span data-i18n="ui.visitors">访客</span> <span id="busuanzi_value_site_uv">…</span></span></footer>
+
 <div class="search-ov" id="searchOv" role="dialog" aria-label="搜索">
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="搜索标题、摘要…" autocomplete="off">
@@ -6472,15 +6472,5 @@ if(document.readyState === 'loading'){
 window.LCA_I18N={apply:apply,get:function(){return cur;},dict:I18N};
 })();
 </script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<script>
-setTimeout(function(){
-  var ok=false;
-  document.querySelectorAll('[id^="busuanzi_value_"]').forEach(function(el){
-    var t=el.textContent.trim();
-    if(t && t!=="…") ok=true;
-  });
-  if(!ok) document.querySelectorAll(".site-foot .pv").forEach(function(el){el.style.display="none";});
-},3500);
-</script></body>
+</body>
 </html>
