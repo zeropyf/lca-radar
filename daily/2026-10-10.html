@@ -3828,10 +3828,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
    层、尾巴直接成为 shell 网格项再排 order；行距归零、间距由元素边距承担，并补回
    maincol 原有的上下内边距（切换条上 26px、尾巴下 60px）。
    本期版面（.toc）在窄屏隐藏（与简洁版一致，只留看点）；左边分界线与左缩进一并去掉，
-   看点内容与刊头、专题左对齐。左栏（sidenav）与周报视图（wmain/wrail，hidden）不动。桌面端不受影响。 */
+   看点内容与刊头、专题左对齐。左栏（sidenav）与周报视图（wmain/wrail，hidden）不动。桌面端不受影响。
+   2026-11-09 补：上面两条 display 规则的特异性高于浏览器内置的 [hidden]{display:none}，
+   切到周报 tab 时 #dmain/#drail 虽被挂上 hidden 仍会渲染（日报内容留在周报下方）；
+   故在此显式补回 hidden 态的 display:none，特异性 (1,1,0) 高于原规则。 */
 @media(max-width:1200px){
 #drail{display:block;position:static;align-self:auto;height:auto;overflow:visible;order:3;min-width:0;border-left:none;padding-left:0}
 #drail .toc{display:none}
+#dmain[hidden],#drail[hidden]{display:none}
 .maincol{display:contents}
 #dmain{display:contents}
 .shell{row-gap:0}
@@ -4120,7 +4124,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
     <div class="stats-line">
       <span class="st-main"><span data-zh="15 条内容" data-en="15 items">15 条内容</span></span>
-      <span class="st-sub"><span data-zh="276 个来源" data-en="276 sources">276 个来源</span> · <span data-zh="6 条一手发布" data-en="6 primary sources">6 条一手发布</span> · <span data-zh="8 个子专题有动态" data-en="8 topics updated">8 个子专题有动态</span></span>
+      <span class="st-sub"><span data-zh="277 个来源" data-en="277 sources">277 个来源</span> · <span data-zh="6 条一手发布" data-en="6 primary sources">6 条一手发布</span> · <span data-zh="8 个子专题有动态" data-en="8 topics updated">8 个子专题有动态</span></span>
     </div>
 
     <div class="layer">

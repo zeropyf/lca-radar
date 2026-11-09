@@ -3828,10 +3828,14 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
    层、尾巴直接成为 shell 网格项再排 order；行距归零、间距由元素边距承担，并补回
    maincol 原有的上下内边距（切换条上 26px、尾巴下 60px）。
    本期版面（.toc）在窄屏隐藏（与简洁版一致，只留看点）；左边分界线与左缩进一并去掉，
-   看点内容与刊头、专题左对齐。左栏（sidenav）与周报视图（wmain/wrail，hidden）不动。桌面端不受影响。 */
+   看点内容与刊头、专题左对齐。左栏（sidenav）与周报视图（wmain/wrail，hidden）不动。桌面端不受影响。
+   2026-11-09 补：上面两条 display 规则的特异性高于浏览器内置的 [hidden]{display:none}，
+   切到周报 tab 时 #dmain/#drail 虽被挂上 hidden 仍会渲染（日报内容留在周报下方）；
+   故在此显式补回 hidden 态的 display:none，特异性 (1,1,0) 高于原规则。 */
 @media(max-width:1200px){
 #drail{display:block;position:static;align-self:auto;height:auto;overflow:visible;order:3;min-width:0;border-left:none;padding-left:0}
 #drail .toc{display:none}
+#dmain[hidden],#drail[hidden]{display:none}
 .maincol{display:contents}
 #dmain{display:contents}
 .shell{row-gap:0}
@@ -3879,18 +3883,18 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 
   <div class="kicker">MONITORING</div>
   <h1><span data-zh="信息源监控" data-en="Source Monitoring">信息源监控</span></h1>
-  <p class="lede"><span data-zh="386 个监测渠道的存活状态 · 数据更新于 2 分钟前" data-en="Monitoring 386 channels · Updated">386 个监测渠道的存活状态 · 数据更新于 2 分钟前</span></p>
+  <p class="lede"><span data-zh="387 个监测渠道的存活状态 · 数据更新于 2 分钟前" data-en="Monitoring 387 channels · Updated">387 个监测渠道的存活状态 · 数据更新于 2 分钟前</span></p>
 
   <div class="statusline">
     <span class="dot"></span>
     <span class="t"><span data-zh="运行正常" data-en="Operational">运行正常</span></span>
-    <span class="s"><span data-zh="374 / 386 渠道健康" data-en="374 / 386 healthy">374 / 386 渠道健康</span></span></span>
+    <span class="s"><span data-zh="375 / 387 渠道健康" data-en="375 / 387 healthy">375 / 387 渠道健康</span></span></span>
     <span class="r"><span data-zh="健康度 98%" data-en="Health 98%"><span data-zh="健康度 98%" data-en="Health 98%">健康度 98%</span></span></span>
   </div>
 
   <div class="nums">
-    <div class="num"><b>386</b><span><span data-zh="监测渠道" data-en="Channels">监测渠道</span></span><div class="sub"><span data-zh="官网 199 · RSS 40 · API 31 · 微信 116个公众号" data-en="Website 199 · RSS 40 · API 31 · 116 WeChat accounts"><span data-zh="官网 199 · RSS 40 · API 31 · 微信 116个公众号" data-en="Website 199 · RSS 40 · API 31 · 116 WeChat accounts">官网 199 · RSS 40 · API 31 · 微信 116个公众号</span></span></div></div>
-    <div class="num"><b>374</b><span><span data-zh="正常" data-en="Healthy">正常</span></span><div class="sub"><span data-zh="连续 6 天 ≥98%" data-en="6 days ≥98%"><span data-zh="连续 6 天 ≥98%" data-en="6 days ≥98%">连续 6 天 ≥98%</span></span></div></div>
+    <div class="num"><b>387</b><span><span data-zh="监测渠道" data-en="Channels">监测渠道</span></span><div class="sub"><span data-zh="官网 200 · RSS 40 · API 31 · 微信 116个公众号" data-en="Website 200 · RSS 40 · API 31 · 116 WeChat accounts"><span data-zh="官网 200 · RSS 40 · API 31 · 微信 116个公众号" data-en="Website 200 · RSS 40 · API 31 · 116 WeChat accounts">官网 200 · RSS 40 · API 31 · 微信 116个公众号</span></span></div></div>
+    <div class="num"><b>375</b><span><span data-zh="正常" data-en="Healthy">正常</span></span><div class="sub"><span data-zh="连续 6 天 ≥98%" data-en="6 days ≥98%"><span data-zh="连续 6 天 ≥98%" data-en="6 days ≥98%">连续 6 天 ≥98%</span></span></div></div>
     <div class="num"><b>11</b><span><span data-zh="警告" data-en="Warnings">警告</span></span><div class="sub"><span data-zh="偶发失败 · 观察中" data-en="Occasional failures · watching"><span data-zh="偶发失败 · 观察中" data-en="Occasional failures · watching">偶发失败 · 观察中</span></span></div></div>
     <div class="num bad"><b>1</b><span><span data-zh="严重" data-en="Critical">严重</span></span><div class="sub"><span data-zh="连续失败超阈值" data-en="Exceeded failure threshold"><span data-zh="连续失败超阈值" data-en="Exceeded failure threshold">连续失败超阈值</span></span></div></div>
   </div>
@@ -4096,6 +4100,7 @@ html:has(.theme-switch input[value="dark"]:checked) .mnote{color:#8b96a5}
 <tr class=""><td class="mono">N121</td><td><span data-zh="Medium · Susi Guth 专栏" data-en="Medium">Medium · Susi Guth 专栏</span></td><td><span data-zh="RSS" data-en="RSS">RSS</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
 <tr class=""><td class="mono">N122</td><td><span data-zh="Medium · Medium 主题发现（Google News）" data-en="Medium">Medium · Medium 主题发现（Google News）</span></td><td><span data-zh="RSS" data-en="RSS">RSS</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
 <tr class=""><td class="mono">N123</td><td><span data-zh="Novelis" data-en="Novelis">Novelis</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
+<tr class=""><td class="mono">N125</td><td><span data-zh="East Asia Brief" data-en="East Asia Brief">East Asia Brief</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
 <tr class=""><td class="mono">N14</td><td><span data-zh="远景动力（AESC）" data-en="N14">远景动力（AESC）</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
 <tr class=""><td class="mono">N15</td><td><span data-zh="福特汽车（Ford）" data-en="N15">福特汽车（Ford）</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
 <tr class=""><td class="mono">N16</td><td><span data-zh="OECD" data-en="OECD">OECD</span></td><td><span data-zh="官网" data-en="Website">官网</span></td><td><span class="pill ok" data-zh="正常" data-en="OK">正常</span></td><td class="num">0</td><td class="mono">2026-11-09</td></tr>
